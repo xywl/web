@@ -1,0 +1,66 @@
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    padding: 0;
+    margin-top: 20px;
+}
+input[type=range]:focus {
+    outline: none;
+}
+/*chrom*/
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 20px;
+    width: 20px;
+    margin-top: -8px; /*使滑块超出轨道部分的偏移量相等*/
+    background: #fff;
+    border-radius: 50%;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    height: 5px;
+    border-color: transparent;
+    color: transparent;
+    background-color: #569fff;
+}
+
+/*firefox*/
+input[type=range]::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-color: transparent;
+}
+input[type=range]::-moz-range-track {
+    height: 5px;
+    background-color: #cacaca;
+}
+input[type=range]::-moz-range-progress {
+    background: #569fff;
+}
+
+/*ie9+*/
+input[type=range]::-ms-thumb {
+    height: 20px;
+    width: 18px;
+    background-color: #fff;
+    border-radius: 50%;
+    border-color: transparent;
+}
+input[type=range]::-ms-track {
+    height: 5px;
+    color: transparent; /*去除轨道内的竖线*/
+    border-width: 10px 0;
+    border-color: transparent; /*去除原有边框*/
+    background-color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+    /*进度条已填充的部分*/
+    background: #569fff;
+}
+input[type=range]::-ms-fill-upper {
+    /*进度条未填充的部分*/
+    background: #cacaca;
+}
+input[type=range]:focus::-ms-fill-lower { background: #538be8;}
+input[type=range]:focus::-ms-fill-upper { background: #bbbbbb;}

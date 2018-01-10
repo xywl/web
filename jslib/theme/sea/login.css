@@ -1,0 +1,232 @@
+*{
+    margin:0;
+    padding:0;
+    text-decoration: none;
+}
+p{
+    font-family:"Microsoft YaHei";
+    font-family:"微软雅黑";
+    font-size: 18px;
+    font-weight: lighter;
+    color: #262a2b;
+}
+h1{
+    font-family:"Microsoft YaHei";
+    font-family:"微软雅黑";
+    font-weight: 500;
+    letter-spacing: 4px;
+    font-size:30px;
+}
+.bg{
+    max-width: 1920px;
+    height: auto;
+    position:absolute;
+    z-index: 0;
+    overflow: hidden;
+}
+.bg img{
+    width:100%;
+}
+.login_bg{
+    position: absolute;
+    left:65%;
+    width: 400px;
+    height:80%;
+    z-index:1;
+    border-radius:0 0 8px 8px;
+}
+.border{
+    position: absolute;
+    width:99%;
+    height:99%;
+    opacity: 0.8;
+    box-shadow: 0px 0px 25px #ffffff;
+    border-radius:0 0 8px 8px;
+    border:1px solid #ffffff;
+}
+.bgd{
+    position: absolute;
+    width:99%;
+    height:99%;
+    opacity: 0.8;
+    background: #ffffff;
+    border-radius:0 0 8px 8px;
+    border:1px solid #ffffff;
+}
+.content{
+    position: absolute;
+    width:100%;
+    height:100%;
+    background: no-repeat 16px 16px;
+    background-image: url(images/logo.png);
+}
+#con_title{
+    position: absolute;
+    top:24%;
+    left:68px;
+}
+.ver{
+    position: absolute;
+    top:29%;
+    left:266px;
+}
+#userName{
+    position: absolute;
+    top:40%;
+    left:44px;
+    width:260px;
+    height: 40px;
+    border:3px solid #f4b97f;
+    border-radius: 4px;
+    background: url(images/LoginUser.png) 10px 6px no-repeat;
+    font-size:18px;
+    color: #555555;
+    padding-left: 40px;
+    outline:none;
+    transition: border-color 0.6s;
+}
+#userName:focus{
+    border-color: #f79631;
+}
+#userPwd{
+    position: absolute;
+    top:49%;
+    left:44px;
+    width:260px;
+    height: 40px;
+    border: 3px solid #f4b97f;
+    border-radius: 4px;
+    background: url(images/LOCK.png) 10px 6px no-repeat;
+    font-size:18px;
+    color:#555555;
+    padding-left: 40px;
+    outline:none;
+    transition: border-color 0.6s;
+}
+#userPwd:focus{
+    border-color: #f79631;
+}
+.user{
+    position: absolute;
+    top:57%;
+    left:45px;
+    cursor: pointer;
+    color:#999999;
+    transition: color 0.6s;
+}
+.user:hover{
+    color:#333333;
+}
+.password{
+    position: absolute;
+    top:57%;
+    right:46px;
+    cursor: pointer;
+    color:#999999;
+    transition: color 0.6s;
+}
+.password:hover{
+    color:#333333;
+}
+#btn_login{
+    position: absolute;
+    top:69%;
+    left:44px;
+    width:304px;
+    height: 42px;
+    border:none;
+    opacity: 0.9;
+    border-radius: 4px;
+    background: #f4b97f;
+    font-size:24px;
+    color:#ffffff;
+    letter-spacing: 18px;
+    font-weight: 200;
+    padding-left: 26px;
+    cursor: pointer;
+    transition: background 0.6s;
+}
+#btn_login:hover{
+    background: #f79631;
+}
+#btn_reset{
+    position: absolute;
+    top:76%;
+    left:44px;
+    width:304px;
+    height: 42px;
+    border:none;
+    opacity: 0.9;
+    border-radius: 4px;
+    background: #f4b97f;
+    font-size:24px;
+    color:#ffffff;
+    letter-spacing: 18px;
+    font-weight: 200;
+    padding-left: 26px;
+    cursor: pointer;
+    transition: background 0.6s;
+}
+#btn_reset:hover{
+    background: #f79631;
+}
+.about{
+    position: absolute;
+    top:83%;
+    right:52px;
+    cursor: pointer;
+    color:#999999;
+    transition: color 0.6s;
+}
+.about:hover{
+    color:#333333;
+}
+@media (max-width:1366px) {
+    .login_bg{
+        width:328px;
+        height:90%;
+    }
+    #con_title{
+        font-size: 24px;
+        left:54px;
+    }
+    .ver{
+        font-size: 14px;
+        left: 214px;
+    }
+    #txt_user{
+        font-size: 14px;
+        height: 32px;
+        background-position: 8px 5px;
+        background-size: 18px;
+        width: 244px;
+    }
+    #txt_password{
+        font-size: 14px;
+        height: 32px;
+        background-position: 9px 4px;
+        background-size: 16px;
+        width: 244px;
+    }
+    .user{
+        font-size: 14px;
+    }
+    .password{
+        font-size: 14px;
+        right: 36px;
+    }
+    #btn_login{
+        font-size: 18px;
+        height:30px;
+        width: 244px;
+    }
+    #btn_reset{
+        font-size: 18px;
+        height:30px;
+        width: 244px;
+    }
+    .about{
+        font-size: 14px;
+        right: 40px;
+    }
+}

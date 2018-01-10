@@ -1,0 +1,33 @@
+.mini-grid-headerCell{height:30px !important;}
+.mini-grid-cell-inner, .mini-grid-headerCell-inner {
+    padding: 3px 0 !important;
+}
+.mini-textbox-border, .mini-buttonedit-border{
+    height: 24px;
+}
+.mini-textbox-input, .mini-combobox{
+    height: 24px;
+    line-height: 24px;
+}
+.mini-textbox, .mini-combobox{
+    height: 27px;
+    width:350px;
+}
+.form-label{
+    text-align: right;
+    padding-right:5px;
+    width:140px;
+}
+.form-content{
+    padding-left:5px;
+}
+.form-table{
+    font-size: 12px;
+}
+.mini-pager .mini-buttonedit-border{
+    height: 19px;
+}
+.mini-layout-region-body
+{
+    overflow: hidden;
+}
