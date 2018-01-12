@@ -1,0 +1,66 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/customer.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="customerForm">
+				<lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入单位编号或单位名称或单位简称或联系人或手机号"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageCustomer.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageCustomer.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageCustomer.funAdd()"><label class="form-label">增加</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageCustomer.funModify()"><label class="form-label">修改</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageCustomer.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="customerGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+					 <div field="customerNo" width="120" headerAlign="center" allowSort="true">单位编号</div>
+					 <div field="fullName" width="120" headerAlign="center" allowSort="true">单位名称</div>
+					 <div field="simpleName" width="120" headerAlign="center" allowSort="true">单位简称</div>
+					 <div field="contact" width="120" headerAlign="center" allowSort="true">负责人</div>
+					 <div field="phone" width="120" headerAlign="center" allowSort="true">单位电话</div>
+					 <div field="contact" width="120" headerAlign="center" allowSort="true">具体联系人</div>
+                    <!--联系电话和负责人取什么值-->
+					 <div field="radius" width="120" headerAlign="center" allowSort="true">联系电话</div>
+
+                    <div field="name" width="120" headerAlign="center" allowSort="true">微信号</div>
+                    <div field="portType" width="120" headerAlign="center" allowSort="true">QQ</div>
+                    <div field="type" width="120" headerAlign="center" allowSort="true" renderer="PageCustomer.funRendererType">客户类型</div>
+                    <div field="goodsType" width="120" headerAlign="center" allowSort="true" renderer="PageCustomer.funRendererGoodsType">货物分类</div>
+                    <div field="creator" width="120" headerAlign="center" allowSort="true">创建人员</div>
+                    <!--<div field="radius" width="120" headerAlign="center" allowSort="true">创建时间</div>-->
+
+
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageCustomer.funOperRenderer">操作
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

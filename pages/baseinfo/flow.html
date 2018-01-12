@@ -1,0 +1,57 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewflow" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/flow.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="flowForm">
+				<lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入港口编号或名称"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageFlow.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageFlow.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageFlow.funAdd()"><label class="form-label">增加</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageFlow.funModify()"><label class="form-label">修改</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageFlow.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="flowGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+					 <div field="name" width="120" headerAlign="center" allowSort="true">流向名称</div>
+					 <div field="startFlow" width="120" headerAlign="center" allowSort="true">起点港口名称</div>
+					 <div field="endFlow" width="120" headerAlign="center" allowSort="true">终点港口名称</div>
+					 <div field="startPortId" width="120" headerAlign="center" allowSort="true">起始流向</div>
+					 <div field="endPortId" width="120" headerAlign="center" allowSort="true">结束流向</div>
+					 <div field="waterLevelPoint" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererFlowWaterLevelPoint">测水点选择</div>
+					 <div field="sailingArea" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererFlowSailingArea">航行区域</div>
+                    <div field="status" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererFlowStatus">状态</div>
+                    <div field="description" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageFlow.funOperRenderer">操作</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
