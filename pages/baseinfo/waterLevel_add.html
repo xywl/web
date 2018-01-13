@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/waterLevel_add.js"></script>
+    <title></title>
+    <style>
+
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_waterLevel_add" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none;  padding:10px;">
+        <div id="waterLevelFormAdd">
+
+            <input id="id" name="id"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">水位名称：</td>
+                    <td class="form-content">
+                        <input name="name" id="name" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="水位名称不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">水位：</td>
+                    <td class="form-content">
+                        <input name="level" id="level" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="水位不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">状态：</td>
+                    <td class="form-content">
+                        <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"
+                               required="true" maxlength="3" requiredErrorText="状态 1：启用  2：禁用不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">备<span style="padding: 0 12px;"></span>注：</td>
+                    <td class="form-content">
+                        <input name="description" id="description" class="mini-textarea" style="width:350px; height: 80px;"  required="true" maxlength="100" requiredErrorText="备注不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">是否已删除：</td>
+                    <td class="form-content">
+                        <input name="isDeleted" id="isDeleted" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="是否已删除不能为空"/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+            <a class="mini-button cursor" onclick="PageWaterLevelAdd.funSave()" iconCls="icon-save">保存</a>
+            <a class="mini-button cursor" onclick="PageWaterLevelAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    mini.parse();
+</script>
+</body>
+</html>
