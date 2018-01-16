@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="themes/self/map.css" type="text/css">
-    <script type="text/javascript" src="js/jquery-1.8.3-min.js"></script>
+    <script src="../../jslib/miniui/boot.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <script type="text/javascript" src="js/mapbaidu/DrawingManager_min.js"></script>
     <link rel="stylesheet" id="mainCss" href="js/mapbaidu/DrawingManager_min.css" type="text/css">
@@ -23,8 +23,8 @@
     </div>
 </div>
 
-<span class="btn_op" onclick="javascript:alert('关闭，返回数据')">保存</span>
-<span class="btn_op" onclick="PageLine.funCreatePolyLine(0)" style=" right: 390px;">画线</span>
+<span class="btn_op" onclick="PageLine.funOk()">保存</span>
+<!--<span class="btn_op" onclick="PageLine.funCreatePolyLine(0)" style=" right: 390px;">画线</span>-->
 <span class="btn_op" onclick="PageLine.funCreatePolyLine(1)" style=" right: 445px;">画电子围栏</span>
 </body>
 </html>
@@ -78,6 +78,15 @@
                 });
                 local.search($("#in_poi").val());
             },
+            funOk : function ()
+            {
+                var argFlys = [];
+                for (var nItem = 0; nItem < this.defaultOption.polylineFly.length; nItem ++)
+                {
+                    argFlys.push(parseInt(this.defaultOption.polylineFly[nItem].lng * 1000000) + "," + parseInt(this.defaultOption.polylineFly[nItem].lat * 1000000));
+                }
+                PageMain.funCloseWindow({oper:"ok", lnglats:argFlys.join(";")});
+            },
             //0画线；1画电子围栏
             funCreatePolyLine : function(paramType)
             {
@@ -112,7 +121,6 @@
                     me.defaultOption.polylineOverlay = polyLine;
 
                 });
-
             }
         }
     }();

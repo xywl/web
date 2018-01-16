@@ -34,7 +34,7 @@
         #operdiv{position: absolute; right: 100px; top: 10px; z-index: 9999; font-size: 12px;}
     </style>
     <link rel="stylesheet" href="themes/self/rangeslider.css" type="text/css">
-    <script type="text/javascript" src="js/jquery-1.8.3-min.js"></script>
+    <script src="../../jslib/miniui/boot.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <title>地图展示</title>
 </head>
@@ -107,6 +107,7 @@
                 mapDiv : "",
                 mapObj : null,
                 GlobalGeocoder : new BMap.Geocoder(),
+                GlobalPointIcon:null,
                 GlobalLabelOps : {
                     offset : new BMap.Size(28, 5)    //设置文本偏移量
                 },
@@ -172,7 +173,7 @@
                 }
 
                 this.defaultOption.GlobalShipIcon = new BMap.Icon("themes/images/carRun0.gif", new BMap.Size(25, 25));
-
+                this.defaultOption.GlobalPointIcon = new BMap.Icon("themes/images/point.png", new BMap.Size(16, 16));
                 // 添加带有定位的导航控件
                 var navigationControl = new BMap.NavigationControl({
                     // 靠左上角位置
@@ -194,7 +195,56 @@
                     function(){$(".info").hide()}
                 );
                 $("#bncs_select").attr("disabled", "disabled");
+
+                this.funLoadBase();
             },
+            funLoadBase:function()
+            {
+                //加载港口
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadPortAll",{}, function (data) {
+                    if(data != null && data.length > 0)
+                    {
+                        for(var nItem = 0; nItem < data.length; nItem++)
+                        {
+                            PageMap.funAddPort(data[nItem], {bgColor:"#ffff00", pgColor:"#ffffff", lineColor:"#6e57fb"});
+                        }
+                    }
+                });
+
+                //加载危险区域
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadDangerZoneAll",{}, function (data) {
+                    console.log(data);
+                    if(data != null && data.length > 0)
+                    {
+                        for(var nItem = 0; nItem < data.length; nItem++)
+                        {
+                            PageMap.funAddPort(data[nItem], {bgColor:"#ff6600", pgColor:"#ffffff", lineColor:"red"});
+                        }
+                    }
+                });
+
+            },
+            funAddPort : function(mObj, colorFly)
+            {
+                var mLngLat = this.funPoint(mObj.longitude/1000000, mObj.latitude/1000000);
+                var mCircle2 = this.funAddCircle(mLngLat, mObj.radius);
+                mCircle2.addEventListener("mouseover", function(e){
+                    mCircle2.setStrokeWeight(6)
+                    mCircle2.setFillColor(colorFly.bgColor);
+                });
+                mCircle2.setStrokeColor(colorFly.lineColor)
+                this.funAddLabelSet(mObj.name, mLngLat,{
+                    position : mLngLat,    // 指定文本标注所在的地理位置
+                    offset   : new BMap.Size(-16 * parseInt(mObj.name.length / 2), -35)    //设置文本偏移量
+                });
+
+                mCircle2.addEventListener("mouseout", function(e){
+                    mCircle2.setStrokeWeight(4);
+                    mCircle2.setFillColor(colorFly.pgColor);
+                });
+                this.funAddMarkerInfo(mLngLat, this.defaultOption.GlobalPointIcon);
+            },
+
             funResetSearch : function()
             {
                 $("#in01").val("");
@@ -469,7 +519,11 @@
                     position : paramPoint,    // 指定文本标注所在的地理位置
                     offset   : new BMap.Size(-20, -15)    //设置文本偏移量
                 }
-                var label = new BMap.Label(paramTitle, opts);  // 创建文本标注对象
+                return this.funAddLabelSet(paramTitle, paramPoint, opts);
+            },
+            funAddLabelSet : function (paramTitle, paramPoint, paramSize)
+            {
+                var label = new BMap.Label(paramTitle, paramSize);  // 创建文本标注对象
                 label.setStyle(this.defaultOption.GlobalLabelStyle2);
                 this.mapObj.addOverlay(label);
                 return label;
@@ -507,6 +561,7 @@
                     me.mapObj.closeInfoWindow()
                 });
 
+                /*
                 // 画圆
                 var mCircleLngLat = new BMap.Point(118.803676, 32.085336);
                 var mCircle = this.funAddCircle(mCircleLngLat, 1200);
@@ -531,7 +586,7 @@
                 mCircle2.addEventListener("mouseout", function(e){
                     mCircle2.setStrokeWeight(4);
                     mCircle2.setFillColor("#ffffff");
-                });
+                });*/
 
                 var mPolyLineFly = [{lng: 118.8118, lat: 32.050454},{lng: 118.813022, lat: 32.054555},{lng: 118.8141, lat: 32.057737},{lng: 118.814603, lat: 32.061777},{lng: 118.815034, lat: 32.065081},{lng: 118.815322, lat: 32.06808}];
                 this.funAddPolyLineInfo(this.funPointFly(mPolyLineFly));
