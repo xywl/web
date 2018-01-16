@@ -2,7 +2,7 @@ var PageMain = function(){
     return {
         defaultOption: {
             basePath:"",
-            httpUrl : "http://47.100.45.229:8080/xyl"
+            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
