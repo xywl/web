@@ -2,7 +2,7 @@ var PageMain = function(){
     return {
         defaultOption: {
             basePath:"",
-            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
+            httpUrl : "http://127.0.0.1:16721/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
@@ -36,5 +36,23 @@ var PageMain = function(){
             }
             return path;
         },
+        
+        callAjax : function (paramUrl, paramData, callback) 
+        {
+            $.ajax({
+                url : paramUrl,
+                type: 'POST',
+                data: paramData,
+                dataType: 'json',
+                success: function (data)
+                {
+                    callback(data);
+                },
+                error: function ()
+                {
+                    PageMain.funShowMessageBox("加载数据失败");
+                }
+            });
+        }
     }
 }();

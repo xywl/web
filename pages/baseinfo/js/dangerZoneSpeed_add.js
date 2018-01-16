@@ -35,7 +35,7 @@ var PageDangerZoneSpeedAdd = function(){
         {
             var me = this;
             mini.open({
-                url: PageMain.funGetRootPath() + "/pages/jk/circle.html",
+                url: PageMain.funGetRootPath() + "/pages/jk/polyline.html",
                 title: "地图",
                 width: 950,
                 height: 500,
@@ -47,10 +47,8 @@ var PageDangerZoneSpeedAdd = function(){
                     if(action != "close")
                     {
                         var iframe = this.getIFrameEl();
-                        mini.get("longitude").focus();
-                        mini.get("longitude").setValue(action.lng);
-                        mini.get("latitude").setValue(action.lat);
-                        mini.get("radius").setValue(action.radius);
+                        mini.get("coordinate").focus();
+                        mini.get("coordinate").setValue(action.lnglats);
                         mini.get("description").focus();
                     }
                 }

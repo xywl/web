@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <title>鼐威欣贸易信息管理系统</title>
+    <title>兴一物流后台运营支撑平台</title>
     <link href="../../jslib/theme/sea/mainframe.css" rel="stylesheet" type="text/css"/>
     <link href="../../jslib/miniui/themes/self/common.css" rel="stylesheet" type="text/css"/>
     <link href="../../jslib/scroll/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"/>
@@ -89,16 +89,26 @@
         <ol>
             <li class="pli">
                 <div style="padding: 6px 0;">
-                    <img src="../../jslib/theme/sea/images/sy.png" >
-                    <span id="span1">测试</span>
+                    <span id="span1">基础管理</span>
                     <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">
                 </div>
                 <ul class="nav1">
                     <li onclick="PageMain.funAddTab(this, '../baseinfo/port.html')">港口信息</li>
+                    <li onclick="PageMain.funAddTab(this, '../baseinfo/dangerZone.html')">危险区域</li>
+                    <li onclick="PageMain.funAddTab(this, '../baseinfo/dangerZoneSpeed.html')">行驶航道</li>
                     <li onclick="PageMain.funAddTab(this, '../baseinfo/waterLevel.html')">水位信息</li>
+                </ul>
+            </li>
+            <li class="pli">
+                <div style="padding: 6px 0;">
+                    <span id="span1">实时监控</span>
+                    <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">
+                </div>
+                <ul class="nav1">
                     <li onclick="PageMain.funAddTab(this, '../jk/real.html')">实时监控</li>
                     <li onclick="PageMain.funAddTab(this, '../jk/circle.html')">画圆</li>
                     <li onclick="PageMain.funAddTab(this, '../jk/polyline.html')">电子围栏</li>
+                    <li onclick="PageMain.funAddTab(this, '../baseinfo/shipevent.html')">电子围栏</li>
                 </ul>
             </li>
         </ol>
