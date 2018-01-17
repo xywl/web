@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="themes/self/rangeslider.css" type="text/css">
     <script src="../../jslib/miniui/boot.js"></script>
     <link href="../../jslib/miniui/themes/blue2003/skin.css">
+    <script type="text/javascript" src="js/mapbaidu/bdtowgs84.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <title>地图展示</title>
 </head>
@@ -43,7 +44,7 @@
 <div id="operdiv">
 
     <span class="btn" >轨迹回放
-        <div class="info" style="display: block">
+        <div class="info">
              <div class="info-top">
                 <span class="">设<span style="padding: 0 4px;"></span>备<span style="padding: 0 4px;"></span>号:</span>
                 <input type="text" class="myselect" id="in11">
@@ -78,7 +79,7 @@
             <div class="info-bottom"></div>
         </div>
     </span>
-    <span class="btn">船舶监控
+    <span class="btn" id="spanreal">船舶监控
         <div class="info" style="height: 240px; width: 660px;">
             <div class="info-top">
                 <span class="">设备号:</span>
@@ -91,15 +92,13 @@
             </div>
             <div class="info-middle" style="padding-top: 10px; margin-bottom:10px;">
                 <div id="flowGrid" class="mini-datagrid"
-                     idField="id" allowResize="false" allowAlternating="true" virtualScroll="true" showPager="false" sortMode="client" style="height: 188px; width: 656px;">
+                     idField="id" allowResize="false" allowAlternating="true" virtualScroll="true" showPager="false" sortMode="client" style="height: 205px; width: 658px;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="40">序号</div>
 					 <div field="shipNo" width="120" headerAlign="center" allowSort="true">船号码</div>
 					 <div field="devId" width="120" headerAlign="center" allowSort="true">设备号</div>
 					 <div field="gpsTime" width="120" headerAlign="center" allowSort="true">GPS时间</div>
 					 <div field="speed" width="120" headerAlign="center" allowSort="true">速度</div>
-					<!-- <div field="alarmType" width="120" headerAlign="center" allowSort="true">速度</div>
-					 <div field="areaId" width="120" headerAlign="center" allowSort="true">速度</div>-->
                 </div>
             </div>
 
@@ -120,6 +119,8 @@
                 basePath : "",
                 mapDiv : "",
                 mapObj : null,
+                btnOperId:null,
+                btnOperFlag:false,
                 GlobalGeocoder : new BMap.Geocoder(),
                 GlobalPointIcon:null,
                 GlobalLabelOps : {
@@ -205,8 +206,33 @@
                 }, 10000);
 
                 $(".btn").hover(
-                    function(){$(this).find(".info").show()},
-                    function(){$(".info").hide()}
+                    function()
+                    {
+                        if(PageMap.defaultOption.btnOperId != $(this).attr("id"))
+                        {
+                            PageMap.defaultOption.btnOperId = $(this).attr("id");
+                            $(".info").hide();
+                        }
+                        $(this).find(".info").show();
+
+                        PageMap.defaultOption.btnOperFlag = true;
+                        if($(this).attr("id") == "spanreal")
+                        {
+                            mini.layout();
+                        }
+                    },
+                    function()
+                    {
+                        var me = this;
+                        PageMap.defaultOption.btnOperFlag = false;
+                        window.setTimeout(function ()
+                        {
+                            if (PageMap.defaultOption.btnOperFlag == false && $(this).attr("me") != PageMap.defaultOption.btnOperId)
+                            {
+                                $(".info").hide()
+                            }
+                        }, 3000);
+                    }
                 );
                 $("#bncs_select").attr("disabled", "disabled");
 
@@ -247,9 +273,15 @@
                     }
                 });
 
+                PageMap.funLoadRealInfo();
                 //加载航道
+                window.setInterval(PageMap.funLoadRealInfo, 15000)
+            },
+            funLoadRealInfo : function ()
+            {
                 PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadGpsReal",{shipNo:"", devId:""}, function (data) {
                     mini.get("flowGrid").setData(data);
+                    PageMap.funShowRealInfo(data);
                 });
             },
             funAddDangerZoneSpeed : function (mObj)
@@ -426,7 +458,8 @@
 
                 for(var nItem=0; nItem < data.length; nItem++)
                 {
-                    var mPoint = this.funPoint(data[nItem].lng, data[nItem].lat);
+                    var pfly = PageConvert.funWGS84ToBaidu(data[nItem].longitude/1000000, data[nItem].latitude/1000000)
+                    var mPoint = this.funPoint(pfly[0], pfly[1]);
                     this.funGlobalGeocoder(data[nItem], mPoint);
                 }
             },
@@ -448,7 +481,7 @@
                         '</tr>'+
                         '<tr>'+
                         '<tr>'+
-                        '<td>时<span style="padding:0 12px;"></span>间：'+paramRow.gtime+'</td>'+
+                        '<td>时<span style="padding:0 12px;"></span>间：'+paramRow.gpsTime+'</td>'+
                         '<td style="padding-left: 10px;">速<span style="padding:0 12px;"></span>度：'+paramRow.speed+'</td>'+
                         '</tr>'+
                         '<tr>'+
@@ -469,8 +502,8 @@
                         '<td style="padding-left: 10px;">联系电话：13770727896</td>'+
                         '</tr>'+
                         '<tr>'+
-                        '<td>离港日期：'+paramRow.gtime+'</td>'+
-                        '<td style="padding-left: 10px;">预计到港：'+paramRow.gtime+'</td>'+
+                        '<td>离港日期：'+paramRow.gpsTime+'</td>'+
+                        '<td style="padding-left: 10px;">预计到港：'+paramRow.gpsTime+'</td>'+
                         '</tr>'+
                         '<tr>'+
                         '<td colspan="2">详细信息：'+ paramPlace +'</td>'+
@@ -488,7 +521,7 @@
                     if(this.defaultOption.GlobalShipFly[nItem].devId == paramRow.devId)
                     {
                         this.defaultOption.GlobalShipFly[nItem].marker.setPosition(paramPoint);
-                        this.defaultOption.GlobalShipFly[nItem].marker.setIcon(this.funShipIconInfo(paramRow.fx));
+                        this.defaultOption.GlobalShipFly[nItem].marker.setIcon(this.funShipIconInfo(paramRow.angle));
                         this.defaultOption.GlobalShipFly[nItem].infoWindow.setContent(tmpContent);
                         flag = false;
                         break;
@@ -504,7 +537,7 @@
                     mMarkerObj.label = new BMap.Label(paramRow.shipNo, this.defaultOption.GlobalLabelOps2);
                     mMarkerObj.label.setStyle(this.defaultOption.GlobalLabelStyle);
 
-                    mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShipIconInfo(paramRow.fx));
+                    mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShipIconInfo(paramRow.angle));
                     //mMarkerObj.marker.setLabel(mMarkerObj.label);
                     this.defaultOption.GlobalShipFly.push(mMarkerObj);
                     mMarkerObj.marker.addEventListener("click", function(e){
@@ -645,11 +678,12 @@
                 /*var mPolyLineFly = [{lng: 118.8118, lat: 32.050454},{lng: 118.813022, lat: 32.054555},{lng: 118.8141, lat: 32.057737},{lng: 118.814603, lat: 32.061777},{lng: 118.815034, lat: 32.065081},{lng: 118.815322, lat: 32.06808}];
                 this.funAddPolyLineInfo(this.funPointFly(mPolyLineFly));*/
 
-                var me = this;
+                /*var me = this;
                 window.setTimeout(function () {
                     me.funTestReal();
-                }, 3000)
+                }, 3000)*/
 
+                //console.log(PageConvert.funBaiduToWGS84(118.774503, 32.035257));
             },
             funTestReal : function ()
             {
