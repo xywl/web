@@ -35,6 +35,7 @@
     </style>
     <link rel="stylesheet" href="themes/self/rangeslider.css" type="text/css">
     <script src="../../jslib/miniui/boot.js"></script>
+    <link href="../../jslib/miniui/themes/blue2003/skin.css">
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <title>地图展示</title>
 </head>
@@ -78,7 +79,7 @@
         </div>
     </span>
     <span class="btn">船舶监控
-        <div class="info">
+        <div class="info" style="height: 240px; width: 660px;">
             <div class="info-top">
                 <span class="">设备号:</span>
                 <input type="text" class="myselect" id="in01">
@@ -87,9 +88,22 @@
                 <span class="" style="padding-left: 15px;">&nbsp;</span>
                 <button  onclick="PageMap.funTestReal()">开始监控</button>
                 <button onclick="PageMap.funResetSearch()">重置</button>
+            </div>
+            <div class="info-middle" style="padding-top: 10px; margin-bottom:10px;">
+                <div id="flowGrid" class="mini-datagrid"
+                     idField="id" allowResize="false" allowAlternating="true" virtualScroll="true" showPager="false" sortMode="client" style="height: 188px; width: 656px;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="40">序号</div>
+					 <div field="shipNo" width="120" headerAlign="center" allowSort="true">船号码</div>
+					 <div field="devId" width="120" headerAlign="center" allowSort="true">设备号</div>
+					 <div field="gpsTime" width="120" headerAlign="center" allowSort="true">GPS时间</div>
+					 <div field="speed" width="120" headerAlign="center" allowSort="true">速度</div>
+					<!-- <div field="alarmType" width="120" headerAlign="center" allowSort="true">速度</div>
+					 <div field="areaId" width="120" headerAlign="center" allowSort="true">速度</div>-->
+                </div>
+            </div>
 
             </div>
-            <div class="info-middle"></div>
             <div class="info-bottom"></div>
         </div>
     </span>
@@ -213,7 +227,6 @@
 
                 //加载危险区域
                 PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadDangerZoneAll",{}, function (data) {
-                    console.log(data);
                     if(data != null && data.length > 0)
                     {
                         for(var nItem = 0; nItem < data.length; nItem++)
@@ -223,6 +236,47 @@
                     }
                 });
 
+                //加载航道
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadDangerZoneSpeedAll",{}, function (data) {
+                    if(data != null && data.length > 0)
+                    {
+                        for(var nItem = 0; nItem < data.length; nItem++)
+                        {
+                            PageMap.funAddDangerZoneSpeed(data[nItem]);
+                        }
+                    }
+                });
+
+                //加载航道
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadGpsReal",{shipNo:"", devId:""}, function (data) {
+                    mini.get("flowGrid").setData(data);
+                });
+            },
+            funAddDangerZoneSpeed : function (mObj)
+            {
+                var pointFlys = mObj.coordinate.split(";");
+                var eleCircleFly = [];
+                for (var nItem=0; nItem<pointFlys.length; nItem++)
+                {
+                    var tmp = pointFlys[nItem].split(",");
+                    eleCircleFly.push({lng: tmp[0] / 1000000, lat: tmp[1] / 1000000})
+                }
+                console.log(eleCircleFly)
+                var mPolyLine = this.funAddElecircle(eleCircleFly);
+                var me = this;
+                mPolyLine.addEventListener("mouseover", function(e){
+                    try{
+                        me.defaultOption.mInfoWindow.setContent("航道名称：" + mObj.name + " <br/>最低速度：" + mObj.minSpeed + " <br/>最高速度：" + mObj.maxSpeed + " <br/>描述信息：" + mObj.description);
+                        me.mapObj.openInfoWindow(me.defaultOption.mInfoWindow, e.point);
+                    }catch(e){alert(e)}
+                    mPolyLine.setStrokeWeight(6)
+                    mPolyLine.setFillColor("#ffff00");
+                });
+                mPolyLine.addEventListener("mouseout", function(e){
+                    mPolyLine.setStrokeWeight(4);
+                    mPolyLine.setFillColor("#ffffff");
+                    me.mapObj.closeInfoWindow()
+                });
             },
             funAddPort : function(mObj, colorFly)
             {
@@ -544,7 +598,7 @@
             funAddTest()
             {
                 // 画电子圈栏
-                var eleCircleFly = [{lng: 118.773676, lat: 32.085336},{lng: 118.763903, lat: 32.062083},{lng: 118.780575, lat: 32.051066},{lng: 118.799547, lat: 32.060614},{lng: 118.821394, lat: 32.109318},{lng: 118.792074, lat: 32.095859},{lng: 118.768789, lat: 32.098307},{lng: 118.773676, lat: 32.085336}];
+                /*var eleCircleFly = [{lng: 118.773676, lat: 32.085336},{lng: 118.763903, lat: 32.062083},{lng: 118.780575, lat: 32.051066},{lng: 118.799547, lat: 32.060614},{lng: 118.821394, lat: 32.109318},{lng: 118.792074, lat: 32.095859},{lng: 118.768789, lat: 32.098307},{lng: 118.773676, lat: 32.085336}];
                 var mPolyLine = this.funAddElecircle(eleCircleFly);
                 var me = this;
                 mPolyLine.addEventListener("mouseover", function(e){
@@ -559,7 +613,7 @@
                     mPolyLine.setStrokeWeight(4);
                     mPolyLine.setFillColor("#ffffff");
                     me.mapObj.closeInfoWindow()
-                });
+                });*/
 
                 /*
                 // 画圆
@@ -588,8 +642,8 @@
                     mCircle2.setFillColor("#ffffff");
                 });*/
 
-                var mPolyLineFly = [{lng: 118.8118, lat: 32.050454},{lng: 118.813022, lat: 32.054555},{lng: 118.8141, lat: 32.057737},{lng: 118.814603, lat: 32.061777},{lng: 118.815034, lat: 32.065081},{lng: 118.815322, lat: 32.06808}];
-                this.funAddPolyLineInfo(this.funPointFly(mPolyLineFly));
+                /*var mPolyLineFly = [{lng: 118.8118, lat: 32.050454},{lng: 118.813022, lat: 32.054555},{lng: 118.8141, lat: 32.057737},{lng: 118.814603, lat: 32.061777},{lng: 118.815034, lat: 32.065081},{lng: 118.815322, lat: 32.06808}];
+                this.funAddPolyLineInfo(this.funPointFly(mPolyLineFly));*/
 
                 var me = this;
                 window.setTimeout(function () {
