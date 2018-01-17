@@ -186,7 +186,7 @@
                     this.funShowCity();
                 }
 
-                this.defaultOption.GlobalShipIcon = new BMap.Icon("themes/images/carRun0.gif", new BMap.Size(25, 25));
+                this.defaultOption.GlobalShipIcon = new BMap.Icon("themes/images/shipRed0.png", new BMap.Size(40, 40));
                 this.defaultOption.GlobalPointIcon = new BMap.Icon("themes/images/point.png", new BMap.Size(16, 16));
                 // 添加带有定位的导航控件
                 var navigationControl = new BMap.NavigationControl({
@@ -557,7 +557,7 @@
                     _mIndex = parseInt((eval(paramVal) + 22.5 + 360)/45);
                 }
                 var tmp =  _mIndex % 8;
-                this.defaultOption.GlobalShipIcon.setImageUrl(this.defaultOption.basePath + "themes/images/carRun"+tmp+".gif");
+                this.defaultOption.GlobalShipIcon.setImageUrl(this.defaultOption.basePath + "themes/images/shipRed"+tmp+".png");
                 return this.defaultOption.GlobalShipIcon;
             },
             //画电子圈栏
