@@ -21,15 +21,9 @@
                 <input name="title" id="title" class="mini-textbox" emptyText="消息标题"  style="width:100px;"/>
 				<lable class="form-label">消息内容：</lable>
                 <input name="content" id="content" class="mini-textbox" emptyText="消息内容"  style="width:100px;"/>
-				<lable class="form-label">消息状态 1:已下发 2：发送成功  3：发送失败：</lable>
-                <input name="status" id="status" class="mini-textbox" emptyText="消息状态 1:已下发 2：发送成功  3：发送失败"  style="width:100px;"/>
-				<lable class="form-label">creator：</lable>
-                <input name="creator" id="creator" class="mini-textbox" emptyText="creator"  style="width:100px;"/>
-				<lable class="form-label">created：</lable>
-                <input name="created" id="created" class="mini-textbox" emptyText="created"  style="width:100px;"/>
-				<lable class="form-label">isDeleted：</lable>
-                <input name="isDeleted" id="isDeleted" class="mini-textbox" emptyText="isDeleted"  style="width:100px;"/>
-				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />	
+				<lable class="form-label">消息状态 ：</lable>
+                <input name="status" id="status" class="mini-textbox" emptyText="消息状态"  style="width:100px;"/>
+				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageTerminalMsg.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageTerminalMsg.funReset()" plain="true"><label>重置</label></a>
             </div>
@@ -58,9 +52,6 @@
 					 <div field="title" width="120" headerAlign="center" allowSort="true">消息标题</div>
 					 <div field="content" width="120" headerAlign="center" allowSort="true">消息内容</div>
 					 <div field="status" width="120" headerAlign="center" allowSort="true">消息状态 1:已下发 2：发送成功  3：发送失败</div>
-					 <div field="creator" width="120" headerAlign="center" allowSort="true">creator</div>
-					 <div field="created" width="120" headerAlign="center" allowSort="true">created</div>
-					 <div field="isDeleted" width="120" headerAlign="center" allowSort="true">isDeleted</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false"
                          align="center" renderer="PageTerminalMsg.funOperRenderer">操作
                     </div>

@@ -3,6 +3,8 @@ var PageContract = function(){
     return {
         defaultOption: {
             basePath:"",
+            contractStatus:[{id:1, name:"启用"},{id:2, name:"禁用"}],
+            contractType:[{id:1, name:"短期"},{id:2, name:"长期"}],
             contractGrid : null
         },
         init :function ()
@@ -17,6 +19,28 @@ var PageContract = function(){
         {
         	var contractForm = new mini.Form("contractForm");
         	this.contractGrid.load(contractForm.getData());
+        },
+        funTypeRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageContract.defaultOption.contractType.length; nItem++)
+            {
+                if(e.value == PageContract.defaultOption.contractType[nItem].id)
+                {
+                    return PageContract.defaultOption.contractType[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        funStatueRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageContract.defaultOption.contractStatus.length; nItem++)
+            {
+                if(e.value == PageContract.defaultOption.contractStatus[nItem].id)
+                {
+                    return PageContract.defaultOption.contractStatus[nItem].name;
+                }
+            }
+            return e.value;
         },
         funOperRenderer : function(e)
         {
@@ -49,7 +73,7 @@ var PageContract = function(){
         },
         funDetail : function()
         {
-        	var row = this.portGrid.getSelected();
+        	var row = this.contractGrid.getSelected();
         	var paramData = {action: "oper", row:row, title:"查看详细"};
         	this.funOpenInfo(paramData);
         },

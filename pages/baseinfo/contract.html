@@ -12,47 +12,8 @@
         <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="contractForm">
-                
-				<lable class="form-label">合同编号：</lable>
-                <input name="contractNo" id="contractNo" class="mini-textbox" emptyText="合同编号"  style="width:100px;"/>
-				<lable class="form-label">合同名称：</lable>
-                <input name="name" id="name" class="mini-textbox" emptyText="合同名称"  style="width:100px;"/>
-				<lable class="form-label">合同甲方 从客户信息中选：</lable>
-                <input name="partyA" id="partyA" class="mini-textbox" emptyText="合同甲方 从客户信息中选"  style="width:100px;"/>
-				<lable class="form-label">合同乙方：</lable>
-                <input name="partyB" id="partyB" class="mini-textbox" emptyText="合同乙方"  style="width:100px;"/>
-				<lable class="form-label">合同有效期起始日期：</lable>
-                <input name="validSDate" id="validSDate" class="mini-textbox" emptyText="合同有效期起始日期"  style="width:100px;"/>
-				<lable class="form-label">合同有效期截止日期：</lable>
-                <input name="validEDate" id="validEDate" class="mini-textbox" emptyText="合同有效期截止日期"  style="width:100px;"/>
-				<lable class="form-label">保证金：</lable>
-                <input name="deposit" id="deposit" class="mini-textbox" emptyText="保证金"  style="width:100px;"/>
-				<lable class="form-label">保证金缴纳日期：</lable>
-                <input name="depositDate" id="depositDate" class="mini-textbox" emptyText="保证金缴纳日期"  style="width:100px;"/>
-				<lable class="form-label">保证金交财务日期：</lable>
-                <input name="depositFinanceDate" id="depositFinanceDate" class="mini-textbox" emptyText="保证金交财务日期"  style="width:100px;"/>
-				<lable class="form-label">合同类型  1：短期  2：长期：</lable>
-                <input name="type" id="type" class="mini-textbox" emptyText="合同类型  1：短期  2：长期"  style="width:100px;"/>
-				<lable class="form-label">合同签订部门：</lable>
-                <input name="signDepartment" id="signDepartment" class="mini-textbox" emptyText="合同签订部门"  style="width:100px;"/>
-				<lable class="form-label">合同签订人员：</lable>
-                <input name="signPerson" id="signPerson" class="mini-textbox" emptyText="合同签订人员"  style="width:100px;"/>
-				<lable class="form-label">车辆运费：</lable>
-                <input name="cheyun" id="cheyun" class="mini-textbox" emptyText="车辆运费"  style="width:100px;"/>
-				<lable class="form-label">状态 1：启用  2：禁用：</lable>
-                <input name="status" id="status" class="mini-textbox" emptyText="状态 1：启用  2：禁用"  style="width:100px;"/>
-				<lable class="form-label">description：</lable>
-                <input name="description" id="description" class="mini-textbox" emptyText="description"  style="width:100px;"/>
-				<lable class="form-label">creator：</lable>
-                <input name="creator" id="creator" class="mini-textbox" emptyText="creator"  style="width:100px;"/>
-				<lable class="form-label">created：</lable>
-                <input name="created" id="created" class="mini-textbox" emptyText="created"  style="width:100px;"/>
-				<lable class="form-label">updater：</lable>
-                <input name="updater" id="updater" class="mini-textbox" emptyText="updater"  style="width:100px;"/>
-				<lable class="form-label">updated：</lable>
-                <input name="updated" id="updated" class="mini-textbox" emptyText="updated"  style="width:100px;"/>
-				<lable class="form-label">isDeleted：</lable>
-                <input name="isDeleted" id="isDeleted" class="mini-textbox" emptyText="isDeleted"  style="width:100px;"/>
+                <lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入港口编号或名称"  style="width:160px;"/>
 				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />	
                 <a class="mini-button" iconCls="icon-search" onclick="PageContract.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageContract.funReset()" plain="true"><label>重置</label></a>
@@ -84,19 +45,11 @@
 					 <div field="validSDate" width="120" headerAlign="center" allowSort="true">合同有效期起始日期</div>
 					 <div field="validEDate" width="120" headerAlign="center" allowSort="true">合同有效期截止日期</div>
 					 <div field="deposit" width="120" headerAlign="center" allowSort="true">保证金</div>
-					 <div field="depositDate" width="120" headerAlign="center" allowSort="true">保证金缴纳日期</div>
-					 <div field="depositFinanceDate" width="120" headerAlign="center" allowSort="true">保证金交财务日期</div>
-					 <div field="type" width="120" headerAlign="center" allowSort="true">合同类型  1：短期  2：长期</div>
+					 <div field="type" width="120" headerAlign="center" allowSort="true" renderer="PageContract.funTypeRenderer">合同类型</div>
 					 <div field="signDepartment" width="120" headerAlign="center" allowSort="true">合同签订部门</div>
 					 <div field="signPerson" width="120" headerAlign="center" allowSort="true">合同签订人员</div>
 					 <div field="cheyun" width="120" headerAlign="center" allowSort="true">车辆运费</div>
-					 <div field="status" width="120" headerAlign="center" allowSort="true">状态 1：启用  2：禁用</div>
-					 <div field="description" width="120" headerAlign="center" allowSort="true">description</div>
-					 <div field="creator" width="120" headerAlign="center" allowSort="true">creator</div>
-					 <div field="created" width="120" headerAlign="center" allowSort="true">created</div>
-					 <div field="updater" width="120" headerAlign="center" allowSort="true">updater</div>
-					 <div field="updated" width="120" headerAlign="center" allowSort="true">updated</div>
-					 <div field="isDeleted" width="120" headerAlign="center" allowSort="true">isDeleted</div>
+					 <div field="status" width="120" headerAlign="center" allowSort="true"  renderer="PageContract.funStatueRenderer">状态</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false"
                          align="center" renderer="PageContract.funOperRenderer">操作
                     </div>

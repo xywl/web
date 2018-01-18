@@ -49,7 +49,7 @@ var PageShipEvent = function(){
         },
         funDetail : function()
         {
-        	var row = this.portGrid.getSelected();
+        	var row = this.terminalMsgGrid.getSelected();
         	var paramData = {action: "oper", row:row, title:"查看详细"};
         	this.funOpenInfo(paramData);
         },

@@ -21,8 +21,7 @@
 <div class="mini-layout" id="layout_contract_add" style="width: 100%;height: 100%;" allowResize="false">
         <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
         <div id="contractFormAdd">
-       
-                	<input id="id" name="id"  class="mini-hidden" />
+            <input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
                     <td class="form-label">合同编号：</td>
@@ -37,7 +36,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">合同甲方 从客户信息中选：</td>
+                    <td class="form-label">合同甲方：</td>
                     <td class="form-content">
                         <input name="partyA" id="partyA" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同甲方 从客户信息中选不能为空"/>
                     </td>
@@ -49,22 +48,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">合同有效期起始日期：</td>
+                    <td class="form-label">有效期起始日期：</td>
                     <td class="form-content">
                     	<input name="validSdate" id="validSdate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
-                    
-                    
-                    
                 </tr>
                 <tr>
-                    <td class="form-label">合同有效期截止日期：</td>
+                    <td class="form-label">有效期截止日期：</td>
                     <td class="form-content">
                     	<input name="validEdate" id="validEdate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
-                    
-                    
-                    
                 </tr>
                 <tr>
                     <td class="form-label">保证金：</td>
@@ -77,33 +70,27 @@
                     <td class="form-content">
                     	<input name="depositDate" id="depositDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
-                    
-                    
-                    
                 </tr>
                 <tr>
                     <td class="form-label">保证金交财务日期：</td>
                     <td class="form-content">
                     	<input name="depositFinanceDate" id="depositFinanceDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
-                    
-                    
-                    
                 </tr>
                 <tr>
-                    <td class="form-label">合同类型  1：短期  2：长期：</td>
+                    <td class="form-label">合同类型：</td>
                     <td class="form-content">
                         <input name="type" id="type" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="合同类型  1：短期  2：长期不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">合同签订部门：</td>
+                    <td class="form-label">签订部门：</td>
                     <td class="form-content">
                         <input name="signDepartment" id="signDepartment" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订部门不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">合同签订人员：</td>
+                    <td class="form-label">签订人员：</td>
                     <td class="form-content">
                         <input name="signPerson" id="signPerson" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订人员不能为空"/>
                     </td>
@@ -115,45 +102,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">状态 1：启用  2：禁用：</td>
+                    <td class="form-label">状<span style="padding: 0px 14px;"></span>态：</td>
                     <td class="form-content">
                         <input name="status" id="status" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="状态 1：启用  2：禁用不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">description：</td>
+                    <td class="form-label">描<span style="padding: 0px 14px;"></span>述：</td>
                     <td class="form-content">
                         <input name="description" id="description" class="mini-textbox"  required="true" maxlength="100" requiredErrorText="description不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">creator：</td>
-                    <td class="form-content">
-                        <input name="creator" id="creator" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="creator不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">created：</td>
-                    <td class="form-content">
-                        <input name="created" id="created" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="created不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">updater：</td>
-                    <td class="form-content">
-                        <input name="updater" id="updater" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="updater不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">updated：</td>
-                    <td class="form-content">
-                        <input name="updated" id="updated" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="updated不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">isDeleted：</td>
-                    <td class="form-content">
-                        <input name="isDeleted" id="isDeleted" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="isDeleted不能为空"/>
                     </td>
                 </tr>
             </table>
