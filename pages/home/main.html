@@ -32,7 +32,7 @@
             background: #43AAD7;
         }
         .nav1>li {
-            background: #518be6;
+            background: #356cc1;
             display: block;
             line-height: 30px;
             transition: color 0.6s;
@@ -147,6 +147,7 @@
 <script>
     var PageMain = {
         menuFlag:true,
+        menuText : "",
         init : function()
         {
             this.menu_state = 1;
@@ -156,6 +157,17 @@
             });
 
             $(".pli div").bind("click", function(){
+
+                if(PageMain.menuText != $(this).text())
+                {
+                    PageMain.menuText = $(this).text();
+                    $(".pli").find("div").each(function () {
+                        $(this).parent().find("ul").hide();
+                        $(this).attr("tag", false);
+                        $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_0.png");
+                    });
+                }
+
                 if($(this).attr("tag") == "true")
                 {
                     $(this).attr("tag", false);
