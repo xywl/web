@@ -64,7 +64,8 @@
                     </td>
                     <td class="form-label">保<span style="padding: 0px 4px;"></span>证<span style="padding: 0px 4px;"></span>金：</td>
                     <td class="form-content">
-                        <input name="deposit" id="deposit" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="保证金不能为空"/>
+                        <input name="deposit"  id="deposit" class="mini-spinner"  minValue="0" maxValue="1000000000000" format="¥#,0"  required="true" requiredErrorText="保证金不能为空"/>
+<!--                        <input name="deposit" id="deposit" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="保证金不能为空"/>-->
                     </td>
                 </tr>
                 <tr>
