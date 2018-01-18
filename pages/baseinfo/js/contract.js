@@ -5,6 +5,7 @@ var PageContract = function(){
             basePath:"",
             contractStatus:[{id:1, name:"启用"},{id:2, name:"禁用"}],
             contractType:[{id:1, name:"短期"},{id:2, name:"长期"}],
+            customerFly : [],
             contractGrid : null
         },
         init :function ()
@@ -13,7 +14,11 @@ var PageContract = function(){
             this.basePath = PageMain.basePath;
             this.contractGrid = mini.get("contractGrid");
             this.contractGrid.setUrl(PageMain.defaultOption.httpUrl + "/contract/getList")
-            this.funSearch();
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadCustomer",{}, function (data) {
+                console.log(data);
+                PageContract.defaultOption.customerFly = data;
+                PageContract.funSearch();
+            });
         },
         funSearch : function()
         {
@@ -27,6 +32,16 @@ var PageContract = function(){
                 if(e.value == PageContract.defaultOption.contractType[nItem].id)
                 {
                     return PageContract.defaultOption.contractType[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        funARenderer : function (e) {
+            for(var nItem = 0; nItem < PageContract.defaultOption.customerFly.length; nItem++)
+            {
+                if(e.value == PageContract.defaultOption.customerFly[nItem].id)
+                {
+                    return PageContract.defaultOption.customerFly[nItem].name;
                 }
             }
             return e.value;
@@ -81,6 +96,7 @@ var PageContract = function(){
         {
             paramData.type = this.defaultOption.contractType;
             paramData.status = this.defaultOption.contractStatus;
+            paramData.partyA = this.defaultOption.customerFly;
         	var me = this;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/contract_add.html",

@@ -18,6 +18,7 @@ var PageContractAdd = function(){
             //console.log(parseInt(7).toString(2))
             mini.get("type").setData(data.type);
             mini.get("status").setData(data.status);
+            mini.get("partyA").setData(data.partyA);
 
         	var row = data.row;
         	this.action = data.action;
