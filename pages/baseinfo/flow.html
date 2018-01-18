@@ -39,10 +39,10 @@
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
 					 <div field="name" width="120" headerAlign="center" allowSort="true">流向名称</div>
-					 <div field="startFlow" width="120" headerAlign="center" allowSort="true">起点港口名称</div>
-					 <div field="endFlow" width="120" headerAlign="center" allowSort="true">终点港口名称</div>
-					 <div field="startPortId" width="120" headerAlign="center" allowSort="true">起始流向</div>
-					 <div field="endPortId" width="120" headerAlign="center" allowSort="true">结束流向</div>
+					 <div field="startPortId" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererPortType">起点港口名称</div>
+					 <div field="endPortId" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererPortType">终点港口名称</div>
+					 <div field="startFlow" width="120" headerAlign="center" allowSort="true">起始流向</div>
+					 <div field="endFlow" width="120" headerAlign="center" allowSort="true">结束流向</div>
 					 <div field="waterLevelPoint" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererFlowWaterLevelPoint">测水点选择</div>
 					 <div field="sailingArea" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererFlowSailingArea">航行区域</div>
                     <div field="status" width="120" headerAlign="center" allowSort="true" renderer="PageFlow.funRendererFlowStatus">状态</div>

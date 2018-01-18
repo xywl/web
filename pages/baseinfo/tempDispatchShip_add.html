@@ -1,0 +1,108 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/tempDispatchShip_add.js"></script>
+    <title></title>
+    <style>
+
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        .mini-layout-region-body{
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout"  id="layout_tempDispatchShip_add" style="width: 100%;height: 100%;" allowResize="false" >
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none;  padding:10px;">
+        <div id="tempDispatchShipFormAdd">
+                	<input id="id" name="id"  class="mini-hidden" />
+                    <input id="from" name="from" class="mini-hidden" />
+            <table class="form-table" border="0"  style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">船号：</td>
+                    <td class="form-content">
+                        <input name="shipNo" id="shipNo" class="mini-textbox"
+                               maxlength="10" requiredErrorText="船号不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">姓名：</td>
+                    <td class="form-content">
+                        <input name="name" id="name" width="140" class="mini-textbox"   maxlength="30"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">手机号：</td>
+                    <td class="form-content">
+                        <input name="mobile" id="mobile" width="140" class="mini-textbox"  maxlength="30" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-label">预报吨位：</td>
+                    <td class="form-content">
+                        <input name="preLoad" id="preLoad" width="140" class="mini-textbox"   maxlength="30" />
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="form-label">身份证号：</td>
+                    <td class="form-content">
+                        <input name="identity" id="identity" width="140" class="mini-textbox"   maxlength="30"/>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="form-label">银行卡号：</td>
+                    <td class="form-content">
+                        <input name="bankCardNo" id="bankCardNo" class="mini-textbox" width="140" maxlength="50"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">银行名称：</td>
+                    <td class="form-content">
+                        <input name="bankName" id="bankName" class="mini-textbox" width="140"  maxlength="10"  />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="form-label">状态：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="status" id="status"  class="mini-combobox"
+                                width="140"class="mini-combobox" valueField="id" textField="name"  maxlength="3" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">备<span style="padding: 0 12px;"></span>注：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="description" id="description" class="mini-textarea" style="width:350px; height: 80px;"  maxlength="100"/>
+                    </td>
+                </tr>
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageTempDispatchShipAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageTempDispatchShipAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>

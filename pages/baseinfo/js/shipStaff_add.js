@@ -4,8 +4,8 @@ var PageShipStaffAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
-            shipStaffForm : null
-
+            shipStaffForm : null,
+            shipNoData:[]
         },
         init :function ()
         {
@@ -16,6 +16,7 @@ var PageShipStaffAdd = function(){
             mini.get("title").setData([{id:1, name:"船长"},{id:2, name:"驾驶员"},{id:1, name:"轮机员"},{id:2, name:"水手"}]);
             mini.get("isOwner").setData([{id:1, name:"是"},{id:2, name:"否"}]);
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}]);
+            this.funInitShipNoDate();
         },
         funSetData : function(data)
         {
@@ -79,7 +80,27 @@ var PageShipStaffAdd = function(){
         funCancel : function()
         {
             PageMain.funCloseWindow("cancel");
+        },
+        funInitShipNoDate:function () {
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/ship/getList",
+                type : 'POST',
+                dataType: 'json',
+                success: function (data)
+                {
+                    if (data.success)
+                    {
+                        PageShipStaffAdd.shipNoData = data.data.list;
+                        mini.get("shipId").setData(PageShipStaffAdd.shipNoData);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    PageMain.funShowMessageBox("获取船号失败");
+                }
+            });
         }
+
     }
 }();
 

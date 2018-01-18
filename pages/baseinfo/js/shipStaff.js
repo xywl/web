@@ -3,7 +3,8 @@ var PageShipStaff = function(){
     return {
         defaultOption: {
             basePath:"",
-            shipStaffGrid : null
+            shipStaffGrid : null,
+            shipNoData:[]
         },
         init :function ()
         {
@@ -12,6 +13,7 @@ var PageShipStaff = function(){
             this.shipStaffGrid = mini.get("shipStaffGrid");
             this.shipStaffGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipStaff/getList")
             this.funSearch();
+            this.funInitShipNoDate();
         },
         funSearch : function()
         {
@@ -157,6 +159,24 @@ var PageShipStaff = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
+        },
+        funInitShipNoDate:function () {
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/ship/getList",
+                type : 'POST',
+                dataType: 'json',
+                success: function (data)
+                {
+                    if (data.success)
+                    {
+                        PageShipStaff.shipNoData = data.data;
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    PageMain.funShowMessageBox("获取船号失败");
+                }
+            });
         }
     }
 }();

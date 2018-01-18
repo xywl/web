@@ -4,8 +4,8 @@ var PageFlowAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
-            flowForm : null
-            
+            flowForm : null,
+            portData:[]
         },
         init :function ()
         {
@@ -15,6 +15,7 @@ var PageFlowAdd = function(){
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}])
             mini.get("waterLevelPoint").setData([{id:1, name:"点1"},{id:2, name:"点2"},{id:3, name:"点3"}])
             mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:3, name:"C级"}])
+            this.funInitPortDate();
         },
         funSetData : function(data)
         {
@@ -103,6 +104,26 @@ var PageFlowAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
+        },
+        funInitPortDate:function () {
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/port/getList",
+                type : 'POST',
+                dataType: 'json',
+                success: function (data)
+                {
+                    if (data.success)
+                    {
+                        PageFlowAdd.portData = data.data.list;
+                        mini.get("startPortId").setData(PageFlowAdd.portData);
+                        mini.get("endPortId").setData(PageFlowAdd.portData);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    PageMain.funShowMessageBox("获取船号失败");
+                }
+            });
         }
     }
 }();

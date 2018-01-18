@@ -50,7 +50,8 @@
                 <tr>
                     <td class="form-label">身份证号码：</td>
                     <td class="form-content">
-                        <input name="identity" id="identity" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="身份证号码不能为空"/>
+                        <input name="identity" id="identity" class="mini-textbox" onvalidation="onIDCardsValidation"
+                               required="true" maxlength="50" requiredErrorText="身份证号码不能为空"/>
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +82,10 @@
                 <tr>
                     <td class="form-label">船号：</td>
                     <td class="form-content">
-                        <input name="shipId" id="shipId" class="mini-textbox"  maxlength="10" requiredErrorText="船号不能为空"/>
+                        <input name="shipId" id="shipId"  class="mini-combobox"  width="280"
+                               required="true" maxlength="20" valueField="id" textField="shipNo"   emptyText="请选择..."
+                               allowInput="true" showNullItem="true" nullItemText="请选择..."
+                               requiredErrorText="船号不能为空"/>
                     </td>
                 </tr>
                 <tr>
@@ -122,6 +126,15 @@
     </div>
     <script type="text/javascript">
     	mini.parse();
+        function onIDCardsValidation(e) {
+            if (e.isValid) {
+                var pattern = /\d*/;
+                if (e.value.length < 15 || e.value.length > 18 || pattern.test(e.value) == false) {
+                    e.errorText = "必须输入15~18位数字";
+                    e.isValid = false;
+                }
+            }
+        }
     </script>
 </body>
 </html>

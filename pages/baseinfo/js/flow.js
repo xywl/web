@@ -3,7 +3,8 @@ var PageFlow = function(){
     return {
         defaultOption: {
             basePath:"",
-            flowGrid : null
+            flowGrid : null,
+            portData:[]
         },
         init :function ()
         {
@@ -12,6 +13,7 @@ var PageFlow = function(){
             this.flowGrid = mini.get("flowGrid");
             this.flowGrid.setUrl(PageMain.defaultOption.httpUrl + "/flow/getList")
             this.funSearch();
+            this.funInitPortDate();
         },
         funSearch : function()
         {
@@ -87,6 +89,16 @@ var PageFlow = function(){
             }
             return e.value;
         },
+        funRendererPortType : function (e)
+        {
+            for(var i =0 ;  i< (PageFlow.portData.list).length;i++) {
+
+                if(PageFlow.portData.list[i].id == e.value){
+                    return PageFlow.portData.list[i].name;
+                }
+
+            }
+        },
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageFlow.funDetail()"></a>';
@@ -157,6 +169,24 @@ var PageFlow = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
+        },
+        funInitPortDate:function () {
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/port/getList",
+                type : 'POST',
+                dataType: 'json',
+                success: function (data)
+                {
+                    if (data.success)
+                    {
+                        PageFlow.portData = data.data;
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    PageMain.funShowMessageBox("获取船号失败");
+                }
+            });
         }
     }
 }();

@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/tempDispatchShip.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="tempDispatchShipForm">
+				<lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入船号或姓名"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageTempDispatchShip.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageTempDispatchShip.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageTempDispatchShip.funAdd()"><label class="form-label">增加</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageTempDispatchShip.funModify()"><label class="form-label">修改</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageTempDispatchShip.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="tempDispatchShipGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+					 <div field="shipNo" width="120" headerAlign="center" allowSort="true"  renderer="PageTempDispatchShip.funRendererShipNoType">船号</div>
+					 <div field="name" width="50" headerAlign="center" allowSort="true">姓名</div>
+					 <div field="mobile" width="50" headerAlign="center" allowSort="true">手机号</div>
+					 <div field="preLoad" width="60" headerAlign="center" allowSort="true">预报吨位</div>
+					 <div field="identity" width="70" headerAlign="center" allowSort="true">身份证号</div>
+					 <div field="bankCardNo" width="120" headerAlign="center" allowSort="true">银行卡号</div>
+					 <div field="bankName" width="120" headerAlign="center" allowSort="true">银行名称</div>
+                    <div field="description" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageTempDispatchShip.funOperRenderer">操作</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -34,15 +34,19 @@
                 <tr>
                     <td class="form-label">起点港口名称：</td>
                     <td class="form-content">
-                        <input name="startPortId" id="startPortId" class="mini-combobox" valueField="id" textField="name"
-                              maxlength="3" />
+                        <input name="startPortId" id="startPortId"  class="mini-combobox"  width="280"
+                               required="true" maxlength="20" valueField="id" textField="name"   emptyText="请选择..."
+                               allowInput="true" showNullItem="true" nullItemText="请选择..."
+                               requiredErrorText="起点港口名称不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">终点港口名称：</td>
                     <td class="form-content">
-                        <input name="endPortId" id="endPortId" class="mini-combobox" valueField="id" textField="name"
-                                 maxlength="3" />
+                        <input name="endPortId" id="endPortId"  class="mini-combobox"  width="280"
+                               required="true" maxlength="20" valueField="id" textField="name"   emptyText="请选择..."
+                               allowInput="true" showNullItem="true" nullItemText="请选择..."
+                               requiredErrorText="终点港口名称不能为空"/>
                     </td>
                 </tr>
                 <tr>
