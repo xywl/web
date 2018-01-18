@@ -122,14 +122,6 @@ function formatData(e) {
     var field = e.field;
     var value = e.value;
     var result = "--";
-    //转换"是否已删除"
-    if("isDeleted" == field){
-        if(0 == e.value){
-            result = "未删除";
-        }else if(1 == e.value){
-            result = "已删除";
-        }
-    }
 
     //转换"创建时间"
     if("created" == field){
