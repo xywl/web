@@ -7,6 +7,7 @@
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <script type="text/javascript" src="js/mapbaidu/DrawingManager_min.js"></script>
     <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="js/mapbaidu/bdtowgs84.js"></script>
     <link rel="stylesheet" id="mainCss" href="js/mapbaidu/DrawingManager_min.css" type="text/css">
     <title>地图展示</title>
 </head>
@@ -74,7 +75,20 @@
                 this.mapObj.addControl(navigationControl);
                 PageCircle.defaultOption.GlobalPointIcon = new BMap.Icon("themes/images/point.png", new BMap.Size(16, 16));
             },
-
+            funSetData : function (data)
+            {
+                if(data.lng != "")
+                {
+                    var pfly = PageConvert.funWGS84ToBaidu(data.lng/1000000, data.lat/1000000);
+                    var mPoint = new BMap.Point(pfly[0], pfly[1]);
+                    PageCircle.defaultOption.circlePointMarker = PageCircle.funAddMarkerInfo(mPoint);
+                    PageCircle.defaultOption.circleOverlay = new BMap.Circle(mPoint, data.radius);
+                    this.mapObj.addOverlay(PageCircle.defaultOption.circleOverlay);
+                    window.setTimeout(function () {
+                        PageCircle.mapObj.centerAndZoom(mPoint, 15);
+                    }, 500);
+                }
+            },
             funSearchPoi : function ()
             {
                 var local = new BMap.LocalSearch(this.mapObj, {
@@ -91,7 +105,15 @@
             },
             funOk : function ()
             {
-                PageMain.funCloseWindow({oper:"ok", lng:PageCircle.defaultOption.cricleLng, lat:PageCircle.defaultOption.circleLat, "radius":PageCircle.defaultOption.circleRadius});
+                if (PageCircle.defaultOption.circleRadius  == 0)
+                {
+                    PageMain.funCloseWindow("close");
+                }
+                else
+                {
+                    var pfly = PageConvert.funBaiduToWGS84(PageCircle.defaultOption.cricleLng, PageCircle.defaultOption.circleLat);
+                    PageMain.funCloseWindow({oper:"ok", lng:parseInt(pfly[0]*1000000), lat:parseInt(pfly[1]*1000000), "radius":PageCircle.defaultOption.circleRadius});
+                }
             },
             funCreateCircle : function()
             {
@@ -115,8 +137,8 @@
                 drawingManager.addEventListener('circlecomplete', function(e, overlay) {
                     me.defaultOption.circleOverlay = overlay;
                     me.defaultOption.circlePointMarker = me.funAddMarkerInfo(new BMap.Point(e.getCenter().lng, e.getCenter().lat));
-                    me.defaultOption.cricleLng = parseInt(e.getCenter().lng * 1000000);
-                    me.defaultOption.circleLat = parseInt(e.getCenter().lat  * 1000000);
+                    me.defaultOption.cricleLng = e.getCenter().lng;
+                    me.defaultOption.circleLat = e.getCenter().lat;
                     me.defaultOption.circleRadius = parseInt(e.getRadius());
                     drawingManager.close();
                 });

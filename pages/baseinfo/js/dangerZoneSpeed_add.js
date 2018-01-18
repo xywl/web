@@ -40,8 +40,8 @@ var PageDangerZoneSpeedAdd = function(){
                 width: 950,
                 height: 500,
                 onload:function(){
-                    //var iframe=this.getIFrameEl();
-                    //iframe.contentWindow.PageDangerZoneSpeedAdd.funSetData(paramData);
+                    var iframe=this.getIFrameEl();
+                    iframe.contentWindow.PageLine.funSetData({coordinate:mini.get("coordinate").getValue()});
                 },
                 ondestroy:function(action){
                     if(action != "close")

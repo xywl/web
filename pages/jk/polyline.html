@@ -7,6 +7,7 @@
     <script src="../../jslib/miniui/boot.js"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <script type="text/javascript" src="js/mapbaidu/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="js/mapbaidu/bdtowgs84.js"></script>
     <link rel="stylesheet" id="mainCss" href="js/mapbaidu/DrawingManager_min.css" type="text/css">
     <title>地图展示</title>
 </head>
@@ -24,8 +25,8 @@
 </div>
 
 <span class="btn_op" onclick="PageLine.funOk()">保存</span>
-<!--<span class="btn_op" onclick="PageLine.funCreatePolyLine(0)" style=" right: 390px;">画线</span>-->
-<span class="btn_op" onclick="PageLine.funCreatePolyLine(1)" style=" right: 445px;">画电子围栏</span>
+<!--<span class="btn_op" onclick="PageLine.funCreatePolyLine(0)" style=" right: 390px;">画线</span> 445-->
+<span class="btn_op" onclick="PageLine.funCreatePolyLine(1)" style=" right: 390px;">画电子围栏</span>
 </body>
 </html>
 <script type="text/javascript">
@@ -71,6 +72,26 @@
                 });
                 this.mapObj.addControl(navigationControl);
             },
+            funSetData : function (data)
+            {
+                if(data.coordinate != "")
+                {
+                    var pointFly = [];
+                    var pArgs = data.coordinate.split(";");
+                    for(var nItem=0; nItem<pArgs.length; nItem++)
+                    {
+                        var tmpFly = pArgs[nItem].split(",");
+                        var pfly = PageConvert.funWGS84ToBaidu(tmpFly[0]/1000000, tmpFly[1]/1000000);
+                        pointFly.push(new BMap.Point(pfly[0], pfly[1]));
+                    }
+                    var polyLine = new BMap.Polyline(pointFly, {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.4});
+                    PageLine.mapObj.addOverlay(polyLine);
+                    PageLine.defaultOption.polylineOverlay = polyLine;
+                    window.setTimeout(function () {
+                        PageLine.mapObj.centerAndZoom(pointFly[0], 13);
+                    }, 500);
+                }
+            },
             funSearchPoi : function ()
             {
                 var local = new BMap.LocalSearch(this.mapObj, {
@@ -80,12 +101,20 @@
             },
             funOk : function ()
             {
-                var argFlys = [];
-                for (var nItem = 0; nItem < this.defaultOption.polylineFly.length; nItem ++)
+                if (this.defaultOption.polylineFly.length > 0)
                 {
-                    argFlys.push(parseInt(this.defaultOption.polylineFly[nItem].lng * 1000000) + "," + parseInt(this.defaultOption.polylineFly[nItem].lat * 1000000));
+                    var argFlys = [];
+                    for (var nItem = 0; nItem < this.defaultOption.polylineFly.length; nItem ++)
+                    {
+                        var pfly = PageConvert.funBaiduToWGS84(this.defaultOption.polylineFly[nItem].lng, this.defaultOption.polylineFly[nItem].lat);
+                        argFlys.push(parseInt(pfly[0] * 1000000) + "," + parseInt(pfly[1] * 1000000));
+                    }
+                    PageMain.funCloseWindow({oper:"ok", lnglats:argFlys.join(";")});
                 }
-                PageMain.funCloseWindow({oper:"ok", lnglats:argFlys.join(";")});
+                else
+                {
+                    PageMain.funCloseWindow("close");
+                }
             },
             //0画线；1画电子围栏
             funCreatePolyLine : function(paramType)

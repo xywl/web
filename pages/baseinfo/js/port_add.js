@@ -40,8 +40,8 @@ var PagePortAdd = function(){
                 width: 950,
                 height: 500,
                 onload:function(){
-                    //var iframe=this.getIFrameEl();
-                    //iframe.contentWindow.PagePortAdd.funSetData(paramData);
+                    var iframe=this.getIFrameEl();
+                    iframe.contentWindow.PageCircle.funSetData({lng:mini.get("longitude").getValue(), lat:mini.get("latitude").getValue(), radius:mini.get("radius").getValue()});
                 },
                 ondestroy:function(action){
                     if(action != "close")
