@@ -1,0 +1,120 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/sailingInfo_add.js"></script>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_sailingInfo_add" style="width: 100%;height: 100%;" allowResize="false">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
+        <div id="sailingInfoFormAdd">
+       
+                	<input id="id" name="id"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">船id：</td>
+                    <td class="form-content">
+                        <input name="shipId" id="shipId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="船id不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">订单id：</td>
+                    <td class="form-content">
+                        <input name="orderId" id="orderId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="订单id不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">航次信息类型  1：空船到港  2：空船装后  3:重船到港  4：重船卸后  5：重船离港：</td>
+                    <td class="form-content">
+                        <input name="status" id="status" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="航次信息类型  1：空船到港  2：空船装后  3:重船到港  4：重船卸后  5：重船离港不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">实际到装货港时间：</td>
+                    <td class="form-content">
+                        <input name="arriveSportTime" id="arriveSportTime" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="实际到装货港时间不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">实际装货时间：</td>
+                    <td class="form-content">
+                        <input name="loadTime" id="loadTime" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="实际装货时间不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">装货吨位：</td>
+                    <td class="form-content">
+                        <input name="loadWeight" id="loadWeight" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="装货吨位不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">预计到卸货港时间：</td>
+                    <td class="form-content">
+                        <input name="preArriveEportTime" id="preArriveEportTime" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="预计到卸货港时间不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">实际到达卸货港时间：</td>
+                    <td class="form-content">
+                        <input name="actualArriveEportTime" id="actualArriveEportTime" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="实际到达卸货港时间不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">实际卸货时间：</td>
+                    <td class="form-content">
+                        <input name="dischargeTime" id="dischargeTime" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="实际卸货时间不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">实际卸货重量：</td>
+                    <td class="form-content">
+                        <input name="dischargeWeight" id="dischargeWeight" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="实际卸货重量不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">卸货延迟费用：</td>
+                    <td class="form-content">
+                        <input name="dischargeDelayFee" id="dischargeDelayFee" class="mini-textbox"  required="true" maxlength="12" requiredErrorText="卸货延迟费用不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">异常补助：</td>
+                    <td class="form-content">
+                        <input name="allowance" id="allowance" class="mini-textbox"  required="true" maxlength="12" requiredErrorText="异常补助不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">description：</td>
+                    <td class="form-content">
+                        <input name="description" id="description" class="mini-textbox"  required="true" maxlength="100" requiredErrorText="description不能为空"/>
+                    </td>
+                </tr>
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageSailingInfoAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageSailingInfoAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>
