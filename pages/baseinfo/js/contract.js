@@ -79,12 +79,14 @@ var PageContract = function(){
         },
         funOpenInfo : function(paramData)
         {
+            paramData.type = this.defaultOption.contractType;
+            paramData.status = this.defaultOption.contractStatus;
         	var me = this;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/contract_add.html",
                 title: paramData.title,
-                width: 650,
-                height: 30 *  21 + 65,
+                width: 850,
+                height: 30 *  10 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageContractAdd.funSetData(paramData);

@@ -15,6 +15,10 @@
             font-size: 12px;
             overflow: hidden;
         }
+        .mini-textbox, .mini-combobox, .mini-buttonedit{
+            height: 27px;
+            width:180px;
+        }
     </style>
 </head>
 <body>
@@ -28,8 +32,6 @@
                     <td class="form-content">
                         <input name="contractNo" id="contractNo" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="合同编号不能为空"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">合同名称：</td>
                     <td class="form-content">
                         <input name="name" id="name" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="合同名称不能为空"/>
@@ -40,56 +42,47 @@
                     <td class="form-content">
                         <input name="partyA" id="partyA" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同甲方 从客户信息中选不能为空"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">合同乙方：</td>
                     <td class="form-content">
-                        <input name="partyB" id="partyB" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="合同乙方不能为空"/>
+                        <input name="partyB" id="partyB" class="mini-textbox" required="true" maxlength="50" requiredErrorText="合同乙方不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">有效期起始日期：</td>
+                    <td class="form-label">起始日期：</td>
                     <td class="form-content">
                     	<input name="validSdate" id="validSdate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
-                </tr>
-                <tr>
-                    <td class="form-label">有效期截止日期：</td>
+                    <td class="form-label">截止日期：</td>
                     <td class="form-content">
                     	<input name="validEdate" id="validEdate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">保证金：</td>
+                    <td class="form-label">合同类型：</td>
+                    <td class="form-content">
+                        <input name="type" id="type" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="合同类型不能为空"/>
+                    </td>
+                    <td class="form-label">保<span style="padding: 0px 4px;"></span>证<span style="padding: 0px 4px;"></span>金：</td>
                     <td class="form-content">
                         <input name="deposit" id="deposit" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="保证金不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">保证金缴纳日期：</td>
+                    <td class="form-label">缴纳日期：</td>
                     <td class="form-content">
                     	<input name="depositDate" id="depositDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
-                </tr>
-                <tr>
-                    <td class="form-label">保证金交财务日期：</td>
+                    <td class="form-label">交财务日期：</td>
                     <td class="form-content">
                     	<input name="depositFinanceDate" id="depositFinanceDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
                 </tr>
-                <tr>
-                    <td class="form-label">合同类型：</td>
-                    <td class="form-content">
-                        <input name="type" id="type" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="合同类型  1：短期  2：长期不能为空"/>
-                    </td>
-                </tr>
+
                 <tr>
                     <td class="form-label">签订部门：</td>
                     <td class="form-content">
                         <input name="signDepartment" id="signDepartment" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订部门不能为空"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">签订人员：</td>
                     <td class="form-content">
                         <input name="signPerson" id="signPerson" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订人员不能为空"/>
@@ -100,17 +93,15 @@
                     <td class="form-content">
                         <input name="cheyun" id="cheyun" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="车辆运费不能为空"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">状<span style="padding: 0px 14px;"></span>态：</td>
                     <td class="form-content">
-                        <input name="status" id="status" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="状态 1：启用  2：禁用不能为空"/>
+                        <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="状态不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">描<span style="padding: 0px 14px;"></span>述：</td>
-                    <td class="form-content">
-                        <input name="description" id="description" class="mini-textbox"  required="true" maxlength="100" requiredErrorText="description不能为空"/>
+                    <td class="form-content" colspan="3">
+                        <input name="description" id="description" class="mini-textarea" style="width:595px; height: 80px;"   maxlength="100" requiredErrorText="消息内容不能为空"/>
                     </td>
                 </tr>
             </table>

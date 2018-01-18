@@ -15,12 +15,22 @@ var PageContractAdd = function(){
         },
         funSetData : function(data)
         {
+            //console.log(parseInt(7).toString(2))
+            mini.get("type").setData(data.type);
+            mini.get("status").setData(data.status);
+
         	var row = data.row;
         	this.action = data.action;
         	this.contractForm.setData(row);
+            if(this.action == "add")
+            {
+                mini.get("partyB").setValue("兴一物流");
+                mini.get("type").setValue(1);
+                mini.get("status").setValue(1);
+            }
+
         	if(this.action == "oper")
         	{
-        		
         		mini.get("layout_contract_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
         		var fields = this.contractForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)

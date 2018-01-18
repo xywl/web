@@ -60,7 +60,7 @@ var PageTerminalMsg = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/terminalMsg_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  9 + 65,
+                height: 30 *  7 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageTerminalMsgAdd.funSetData(paramData);

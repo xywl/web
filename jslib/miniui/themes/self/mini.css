@@ -9,7 +9,7 @@
     height: 24px;
     line-height: 24px;
 }
-.mini-textbox, .mini-combobox{
+.mini-textbox, .mini-combobox, .mini-buttonedit{
     height: 27px;
     width:350px;
 }
