@@ -1,0 +1,90 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/terminalMsg_add.js"></script>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_terminalMsg_add" style="width: 100%;height: 100%;" allowResize="false">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
+        <div id="terminalMsgFormAdd">
+       
+                	<input id="id" name="id"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">船舶id：</td>
+                    <td class="form-content">
+                        <input name="shipId" id="shipId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="船舶id不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">设备id：</td>
+                    <td class="form-content">
+                        <input name="deviceId" id="deviceId" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="设备id不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">消息标题：</td>
+                    <td class="form-content">
+                        <input name="title" id="title" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="消息标题不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">消息内容：</td>
+                    <td class="form-content">
+                        <input name="content" id="content" class="mini-textbox"  required="true" maxlength="200" requiredErrorText="消息内容不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">消息状态 1:已下发 2：发送成功  3：发送失败：</td>
+                    <td class="form-content">
+                        <input name="status" id="status" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="消息状态 1:已下发 2：发送成功  3：发送失败不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">creator：</td>
+                    <td class="form-content">
+                        <input name="creator" id="creator" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="creator不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">created：</td>
+                    <td class="form-content">
+                        <input name="created" id="created" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="created不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">isDeleted：</td>
+                    <td class="form-content">
+                        <input name="isDeleted" id="isDeleted" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="isDeleted不能为空"/>
+                    </td>
+                </tr>
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageTerminalMsgAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageTerminalMsgAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>

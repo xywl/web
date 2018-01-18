@@ -28,10 +28,10 @@
             border-radius:5px;
         }
         .myselect{
-            width:118px;
+            width:118px !important;
         }
 
-        #operdiv{position: absolute; right: 100px; top: 10px; z-index: 9999; font-size: 12px;}
+        #operdiv{position: absolute; right: 100px; top: 10px; z-index: 199; font-size: 12px;}
     </style>
     <link rel="stylesheet" href="themes/self/rangeslider.css" type="text/css">
     <script src="../../jslib/miniui/boot.js"></script>
@@ -80,14 +80,16 @@
         </div>
     </span>
     <span class="btn" id="spanreal">船舶监控
-        <div class="info" style="height: 240px; width: 660px;">
+        <div class="info" style="height: 240px; width: 660px; display: block;">
             <div class="info-top">
                 <span class="">设备号:</span>
-                <input type="text" class="myselect" id="in01">
-                <span class="" style="padding-left: 15px;">船编号:</span>
-                <input type="text" class="myselect"  id="in02">
+                <input id="in01" class="mini-combobox myselect" textField="id" valueField="id" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 15px;">船号码:</span>
+                <input id="in02" class="mini-combobox myselect" textField="name" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 15px;">状态:</span>
+                <input id="in03" class="mini-combobox myselect" textField="id" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
                 <span class="" style="padding-left: 15px;">&nbsp;</span>
-                <button  onclick="PageMap.funTestReal()">开始监控</button>
+                <button  onclick="PageMap.funTestReal()">查询</button>
                 <button onclick="PageMap.funResetSearch()">重置</button>
             </div>
             <div class="info-middle" style="padding-top: 10px; margin-bottom:10px;">
@@ -205,6 +207,7 @@
                    me.funTestReal();
                 }, 10000);
 
+                /*
                 $(".btn").hover(
                     function()
                     {
@@ -234,6 +237,7 @@
                         }, 3000);
                     }
                 );
+                */
                 $("#bncs_select").attr("disabled", "disabled");
 
                 this.funLoadBase();
@@ -273,6 +277,11 @@
                     }
                 });
 
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadShip",{}, function (data) {
+                    mini.get("in01").setData(data);
+                    mini.get("in02").setData(data);
+                });
+
                 PageMap.funLoadRealInfo();
                 //加载航道
                 window.setInterval(PageMap.funLoadRealInfo, 15000)
@@ -293,7 +302,7 @@
                     var tmp = pointFlys[nItem].split(",");
                     eleCircleFly.push({lng: tmp[0] / 1000000, lat: tmp[1] / 1000000})
                 }
-                console.log(eleCircleFly)
+                //console.log(eleCircleFly)
                 var mPolyLine = this.funAddElecircle(eleCircleFly);
                 var me = this;
                 mPolyLine.addEventListener("mouseover", function(e){
@@ -349,8 +358,8 @@
             {
                 PageMap.defaultOption.hisCurrCnt = 0;
                 PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
-                console.log(PageMap.defaultOption.hisCurrCnt);
-                console.log(PageMap.defaultOption.hisSumCnt);
+                //console.log(PageMap.defaultOption.hisCurrCnt);
+                //console.log(PageMap.defaultOption.hisSumCnt);
                 $("#bncs_select").val(0);
                 $("#bncs_select").attr("max" , PageMap.defaultOption.hisSumCnt);
                 PageMap.defaultOption.hisPlayFlag = true;
@@ -360,7 +369,7 @@
             //滚动条变化
             funSliderChange : function ()
             {
-                console.log("--------------" + $("#bncs_select").val())
+                //console.log("--------------" + $("#bncs_select").val())
                 PageMap.defaultOption.hisCurrCnt = parseInt($("#bncs_select").val() - 1);
                 PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
             },
@@ -379,7 +388,7 @@
             //自动回放
             funAutoPlay : function ()
             {
-                console.log(PageMap.defaultOption.hisCurrCnt);
+                //console.log(PageMap.defaultOption.hisCurrCnt);
                 PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
                 $("#bncs_select").val(PageMap.defaultOption.hisCurrCnt + 1);
                 //设置进度条
