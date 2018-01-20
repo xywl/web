@@ -6,12 +6,18 @@ var PageContract = function(){
             contractStatus:[{id:1, name:"启用"},{id:2, name:"禁用"}],
             contractType:[{id:1, name:"短期"},{id:2, name:"长期"}],
             customerFly : [],
-            contractGrid : null
+            contractGrid : null,
+            contractFlowGrid : null,
+            contractId:0,
+            detailGridForm : null
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
+            this.defaultOption.contractFlowGrid = mini.get("contractFlow_grid");
+            this.defaultOption.contractFlowGrid.setUrl(PageMain.defaultOption.httpUrl + "/contractFlow/getList");
+            this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
             this.contractGrid = mini.get("contractGrid");
             this.contractGrid.setUrl(PageMain.defaultOption.httpUrl + "/contract/getList")
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadCustomer",{}, function (data) {
@@ -92,6 +98,18 @@ var PageContract = function(){
         	var paramData = {action: "oper", row:row, title:"查看详细"};
         	this.funOpenInfo(paramData);
         },
+        onShowRowDetail : function (e)
+        {
+            var grid = e.sender;
+            var row = e.record;
+            console.log(row.id)
+            console.log(row)
+            var td = grid.getRowDetailCellEl(row);
+            td.appendChild(PageContract.defaultOption.detailGridForm);
+            PageContract.defaultOption.detailGridForm.style.display = "block";
+            PageContract.defaultOption.contractId = row.id;
+            PageContract.defaultOption.contractFlowGrid.load({ contractId: row.id, queryParamFlag: 1 });
+        },
         funOpenInfo : function(paramData)
         {
             paramData.type = this.defaultOption.contractType;
@@ -108,7 +126,20 @@ var PageContract = function(){
                     iframe.contentWindow.PageContractAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.contractGrid.reload();
+                    if(action == "close")
+                    {
+                        return ;
+                    }
+                    else if (action == "save")
+                    {
+                        me.contractGrid.reload();
+                    }
+                    else
+                    {
+                        PageContract.defaultOption.contractId = action.contractId;
+                        PageContractFlow.funAdd();
+                        me.contractGrid.reload();
+                    }
                 }
             })
         },

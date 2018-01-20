@@ -1,39 +1,29 @@
 
-var PageContractAdd = function(){
+var PageContractFlowAdd = function(){
     return {
         defaultOption: {
             basePath:"",
             action : "",
-            contractForm : null
-            
+            contractFlowForm : null
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.contractForm = new mini.Form("contractFormAdd");
+            this.contractFlowForm = new mini.Form("contractFlowFormAdd");
         },
         funSetData : function(data)
         {
-            //console.log(parseInt(7).toString(2))
-            mini.get("type").setData(data.type);
-            mini.get("status").setData(data.status);
-            mini.get("partyA").setData(data.partyA);
-
         	var row = data.row;
         	this.defaultOption.action = data.action;
-        	this.contractForm.setData(row);
-            if(this.defaultOption.action == "add")
-            {
-                mini.get("partyB").setValue("兴一物流");
-                mini.get("type").setValue(1);
-                mini.get("status").setValue(1);
-            }
-
+            mini.get("flowId").setData(row.flowFly);
+            mini.get("ticketStatus").setData(row.ticketStatusFly);
+        	this.contractFlowForm.setData(row);
         	if(this.defaultOption.action == "oper")
         	{
-        		mini.get("layout_contract_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
-        		var fields = this.contractForm.getFields();
+        		
+        		mini.get("layout_contractFlow_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
+        		var fields = this.contractFlowForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
                 {
                     var c = fields[i];
@@ -44,8 +34,8 @@ var PageContractAdd = function(){
         },
         funSave : function()
         {
-        	this.contractForm.validate();
-            if (!this.contractForm.isValid()) 
+        	this.contractFlowForm.validate();
+            if (!this.contractFlowForm.isValid()) 
             {
                  var errorTexts = form.getErrorTexts();
                  for (var i in errorTexts) 
@@ -56,9 +46,9 @@ var PageContractAdd = function(){
             }
             
             var me = this;
-            var obj = this.contractForm.getData(true);
+            var obj = this.contractFlowForm.getData(true);
             $.ajax({
-               url : PageMain.defaultOption.httpUrl + "/contract/" + me.defaultOption.action + "?a="+Math.random(),
+               url : PageMain.defaultOption.httpUrl + "/contractFlow/" + me.defaultOption.action + "?a="+Math.random(),
                type : 'POST',
                data : obj,
                dataType: 'json',
@@ -72,7 +62,7 @@ var PageContractAdd = function(){
                                function (action, value) {
                                    if (action == "ok")
                                    {
-                                       PageMain.funCloseWindow({op:"continue", contractId:data.data});
+                                       PageMain.funCloseWindow("continue");
                                    }
                                    else
                                    {
@@ -110,5 +100,5 @@ var PageContractAdd = function(){
 }();
 
 $(function(){
-	PageContractAdd.init();
+	PageContractFlowAdd.init();
 });
