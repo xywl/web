@@ -13,7 +13,7 @@
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="terminalMsgForm">
                 <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入港口编号或名称"  style="width:160px;"/>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入消息标题"  style="width:160px;"/>
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageTerminalMsg.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageTerminalMsg.funReset()" plain="true"><label>重置</label></a>
@@ -42,7 +42,7 @@
 					 <div field="deviceId" width="120" headerAlign="center" allowSort="true">设备id</div>
 					 <div field="title" width="120" headerAlign="center" allowSort="true">消息标题</div>
 					 <div field="content" width="120" headerAlign="center" allowSort="true">消息内容</div>
-					 <div field="status" width="120" headerAlign="center" allowSort="true" renderer="PageTerminalMsg.funStatusRenderer">消息状态</div>
+					 <div field="status" width="120" headerAlign="center" allowSort="true" renderer="status">消息状态</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false"
                          align="center" renderer="PageTerminalMsg.funOperRenderer">操作
                     </div>

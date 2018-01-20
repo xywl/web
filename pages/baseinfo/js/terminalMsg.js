@@ -117,6 +117,23 @@ var PageTerminalMsg = function(){
     }
 }();
 
+function status (e) {
+    var field = e.field;
+    var value = e.value;
+    var result = "";
+    //转换"状态"
+    if("status" == field){
+        if(1 == e.value){
+            result = "已下发";
+        }else if(2 == e.value){
+            result = "发送成功";
+        }else if(3 == e.value){
+            result = "发送失败";
+        }
+    }
+    return result;
+}
+
 $(function(){
 	PageTerminalMsg.init();
 });
