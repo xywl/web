@@ -1,0 +1,255 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/sailingInfo.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="sailingInfoForm">
+                <lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入查询条件"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageSailingInfo.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageSailingInfo.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageSailingInfo.funAdd(1)"><label class="form-label">空船到港登记</label></a>
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageSailingInfo.funAdd(2)"><label class="form-label">空船装后登记</label></a>
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageSailingInfo.funAdd(3)"><label class="form-label">重船离港登记</label></a>
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageSailingInfo.funAdd(4)"><label class="form-label">重船到港登记</label></a>
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageSailingInfo.funAdd(5)"><label class="form-label">重船卸后登记</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageSailingInfo.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="sailingInfoGrid" class="mini-datagrid"
+                 idField="id" allowResize="false"
+                sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="shipId" width="120" headerAlign="center" allowSort="true">预发吨位</div>
+                    <div field="shipId" width="120" headerAlign="center" allowSort="true">电话</div>
+                    <div field="arriveSPortTime" width="120" headerAlign="center" align="center" allowSort="true" renderer="formatData">实际到装货港时间</div>
+                    <div field="loadWeight" width="120" headerAlign="center" allowSort="true">实装吨位</div>
+                    <div field="preArriveEPortTime" width="120" headerAlign="center" allowSort="true">预计到达卸货港时间</div>
+                    <div field="dischargeWeight" width="120" headerAlign="center" align="center" allowSort="true" renderer="formatData">实际卸货吨位</div>
+                    <!--<div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageSailingInfo.funOperRenderer">操作</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="editWindow1" class="mini-window" title="空船到港登记" style="width:650px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="editform1" class="form" >
+        <input class="mini-hidden" name="id"/>
+        <table style="width:100%;" class="form-table">
+            <tr>
+                <td style="width:80px;"  class="form-label">船号：</td>
+                <td style="width:150px;"><input name="shipId" class="mini-textbox" required="true" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;"  class="form-label">订单号：</td>
+                <td style="width:150px;"><input name="orderId" class="mini-textbox"  required="true"/></td>
+            </tr>
+            <tr>
+                <td style="width:80px;"  class="form-label">实际到装货港时间：</td>
+                <td style="width:150px;"><input name="arriveSPortTime" id="arriveSPortTime"  required="true" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false"  /></td>
+            </tr>
+            <tr>
+                <td style="text-align:center;padding-top:5px;padfunSaveding-right:20px;" colspan="6">
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funSave(1)" iconCls="icon-save">保存</a>
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funCancel(1)" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="editWindow2" class="mini-window" title="空船装后登记" style="width:650px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="editform2" class="form" >
+        <input class="mini-hidden" name="id"/>
+        <input name="orderId" class="mini-hidden" />
+        <table style="width:100%;">
+            <tr>
+                <td style="width:80px;">船号：</td>
+                <td style="width:150px;"><input name="shipId" id="shipId" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际装货时间：</td>
+                <td style="width:150px;"><input name="loadTime" id="loadTime" required="true" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false"  /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际装货吨位：</td>
+                <td style="width:150px;"><input name="loadWeight" id="loadWeight"  required="true" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">预计到卸货港时间：</td>
+                <td style="width:150px;"><input name="preArriveEPortTime" id="preArriveEPortTime" required="true" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false"  /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funSave(2)" iconCls="icon-save">保存</a>
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funCancel(2)" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="editWindow3" class="mini-window" title="重船离港登记" style="width:650px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="editform3" class="form" >
+        <input class="mini-hidden" name="id"/>
+        <input name="orderId" class="mini-hidden" />
+        <table style="width:100%;">
+            <tr>
+                <td style="width:80px;">船号：</td>
+                <td style="width:150px;"><input name="shipId" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">离港时间：</td>
+                <td style="width:150px;"><input name="departPortTime"  required="true" id="departPortTime" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false"  /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funSave(3)" iconCls="icon-save">保存</a>
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funCancel(3)" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="editWindow4" class="mini-window" title="重船到港登记" style="width:650px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="editform4" class="form" >
+        <input class="mini-hidden" name="id"/>
+        <input name="orderId" class="mini-hidden" />
+        <table style="width:100%;">
+            <tr>
+                <td style="width:80px;">船号：</td>
+                <td style="width:150px;"><input name="shipId" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际到卸货港时间：</td>
+                <td style="width:150px;"><input name="actualArriveEPortTime"  required="true" id="actualArriveEPortTime" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funSave(4)" iconCls="icon-save">保存</a>
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funCancel(4)" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="editWindow5" class="mini-window" title="重船卸后登记" style="width:650px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="editform5" class="form" >
+        <input class="mini-hidden" name="id"/>
+        <input name="orderId" class="mini-hidden" />
+        <table style="width:100%;">
+            <tr>
+                <td style="width:80px;">船号：</td>
+                <td style="width:150px;"><input name="shipId" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际卸货时间：</td>
+                <td style="width:150px;"><input name="dischargeTime"  required="true" id="dischargeTime" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际卸货吨位：</td>
+                <td style="width:150px;"><input name="dischargeWeight"  required="true" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">卸货延期费：</td>
+                <td style="width:150px;"><input name="dischargeDelayFee"  required="true" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">异常补助：</td>
+                <td style="width:150px;"><input name="allowance" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">备注：</td>
+                <td style="width:150px;"><input name="description" class="mini-textarea" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funSave(5)" iconCls="icon-save">保存</a>
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funCancel(5)" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="editWindow6" class="mini-window" title="重船卸后登记" style="width:650px;"
+     showModal="true" allowResize="true" allowDrag="true">
+    <div id="editform6" class="form" >
+        <input class="mini-hidden" name="id"/>
+        <input name="orderId" class="mini-hidden" />
+        <table style="width:100%;">
+
+            <tr>
+                <td style="width:80px;">船号：</td>
+                <td style="width:150px;"><input name="shipId" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际卸货时间：</td>
+                <td style="width:150px;"><input name="dischargeTime"  required="true" id="dischargeTime" class="mini-datepicker" nullValue="null"
+                                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
+                                                showOkButton="true" showClearButton="false" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">实际卸货吨位：</td>
+                <td style="width:150px;"><input name="dischargeWeight"  required="true" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">卸货延期费：</td>
+                <td style="width:150px;"><input name="dischargeDelayFee"  required="true" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">异常补助：</td>
+                <td style="width:150px;"><input name="allowance" class="mini-textbox" /></td>
+            </tr>
+            <tr>
+                <td style="width:80px;">备注：</td>
+                <td style="width:150px;"><input name="description" class="mini-textarea" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:right;padding-top:5px;padding-right:20px;" colspan="6">
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funSave(5)" iconCls="icon-save">保存</a>
+                    <a class="mini-button cursor" onclick="PageSailingInfo.funCancel(5)" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
