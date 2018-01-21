@@ -1,0 +1,18 @@
+{"total":200,"data":[
+	{"dispatchInfoId":"1",
+	"shipId":"004",
+	"shipType":"自有",
+	"preWeight":"10000",
+	"actualPrice":"1234",
+	"preLoad":"1234",
+	"preArriveTime":"2017-01-08",
+	"settleType":"1"},
+	{"dispatchInfoId":"2",
+	"shipId":"005",
+	"shipType":"自有",
+	"preWeight":"10000",
+	"actualPrice":"1234",
+	"preLoad":"1234",
+	"preArriveTime":"2017-01-08",
+	"settleType":"1"}
+]}
