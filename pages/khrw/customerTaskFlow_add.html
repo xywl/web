@@ -1,0 +1,181 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/customerTaskFlow_add.js"></script>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_customerTaskFlow_add" style="width: 100%;height: 100%;" allowResize="false">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
+        <div id="customerTaskFlowFormAdd">
+       
+                	<input id="id" name="id"  class="mini-hidden" />
+                	<input id="taskId" name="taskId"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">流向：</td>
+                    <td class="form-content">
+                        <input name="flowId" id="flowId" class="mini-combobox" valueField="id"
+                               textField="name"  required="true"  requiredErrorText="流向不能为空"/>
+                    </td>
+                    <td class="form-label">货物名称：</td>
+                    <td class="form-content">
+                        <input name="goodsName" id="goodsName" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="货物名称不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">货物类型：</td>
+                    <td class="form-content">
+                        <input name="goodsType" id="goodsType" class="mini-combobox"
+                               valueField="id" textField="name"  required="true"  requiredErrorText="货物类型不能为空"/>
+                    </td>
+                    <td class="form-label">总吨位：</td>
+                    <td class="form-content">
+                        <input name="totalWeight" id="totalWeight" class="mini-textbox"
+                               required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">方向：</td>
+                    <td class="form-content">
+                        <input name="direction" id="direction" class="mini-textbox"
+                               required="true" maxlength="10" requiredErrorText="方向不能为空"/>
+                    </td>
+                    <td class="form-label">发货单位：</td>
+                    <td class="form-content">
+                        <input name="sender" id="sender"  class="mini-textbox"
+                               required="true"  requiredErrorText="发货单位不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">收货单位：</td>
+                    <td class="form-content">
+                        <input name="receiver" id="receiver"  class="mini-textbox"
+                                required="true"  requiredErrorText="收货单位不能为空"/>
+                    </td>
+                    <td class="form-label">装货日期：</td>
+                    <td class="form-content">
+                        <input name="loadingDate" id="loadingDate" class="mini-datepicker"
+                               format="yyyy-MM-dd"  nullValue="null"  emptyText="起始日期" allowInput="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">预计卸货日期：</td>
+                    <td class="form-content">
+                        <input name="dischargeDate" id="dischargeDate" class="mini-datepicker"
+                               format="yyyy-MM-dd"  nullValue="null"  emptyText="预计卸货日期" allowInput="false"/>
+                    </td>
+                    <td class="form-label">装货点：</td>
+                    <td class="form-content">
+                        <input name="startPortId" id="startPortId" class="mini-combobox"
+                               valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="装货点不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">卸货点：</td>
+                    <td class="form-content">
+                        <input name="endPortId" id="endPortId" class="mini-combobox"
+                               valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="卸货点不能为空"/>
+                    </td>
+                    <td class="form-label">装货途径：</td>
+                    <td class="form-content">
+                        <input name="loadType" id="loadType" class="mini-combobox"
+                               valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="装货途径不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">大轮批次：</td>
+                    <td class="form-content">
+                        <input name="bigShipPC" id="bigShipPC" class="mini-textbox"
+                               required="true" maxlength="10" requiredErrorText="大轮批次不能为空"/>
+                    </td>
+                    <td class="form-label">总载重：</td>
+                    <td class="form-content">
+                        <input name="totalLoad" id="totalLoad" class="mini-textbox"
+                               required="true" maxlength="10" requiredErrorText="总载重不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">到达位置：</td>
+                    <td class="form-content">
+                        <input name="arriveLocation" id="arriveLocation" class="mini-textbox"
+                               required="true" maxlength="10" requiredErrorText="到达位置不能为空"/>
+                    </td>
+                    <td class="form-label">大轮预计到达时间：</td>
+                    <td class="form-content">
+                        <input name="bigShipArriveTime" id="bigShipArriveTime" required="true" class="mini-datepicker" nullValue="null"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
+                               showOkButton="true" showClearButton="false"   emptyText="大轮预计到达时间" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">大轮预计离开时间：</td>
+                    <td class="form-content">
+                        <input name="bigShipDepartTime" id="bigShipDepartTime" class="mini-datepicker" showOkButton="true" showClearButton="true"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss"  nullValue="null" showTime="true"   emptyText="大轮预计离开时间" allowInput="false"/>
+                    </td>
+                    <td class="form-label">是否自提：</td>
+                    <td class="form-content">
+                        <input name="selfPick" id="selfPick"  class="mini-combobox"
+                               valueField="id" textField="name"  required="true"  requiredErrorText="是否自提不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">航行区域：</td>
+                    <td class="form-content">
+                        <input name="sailingArea" id="sailingArea"  valueField="id" textField="name"
+                               class="mini-checkboxlist"   requiredErrorText="航行区域不能为空"/>
+                    </td>
+                    <td class="form-label">船户参考运价：</td>
+                    <td class="form-content">
+                        <input name="shipSuggestUnitPrice" id="shipSuggestUnitPrice" class="mini-textbox"
+                               required="true" maxlength="10" requiredErrorText="船户参考运价不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">航次标识：</td>
+                    <td class="form-content">
+                        <input name="status" id="sailingFlag"  valueField="id" textField="name"
+                               class="mini-checkboxlist" required="true"  requiredErrorText="航次标识不能为空"/>
+                    </td>
+                    <td class="form-label">状态：</td>
+                    <td class="form-content">
+                        <input name="status" id="status"  class="mini-combobox"
+                               valueField="id" textField="name"  required="true"  requiredErrorText="状态不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">描<span style="padding: 0px 14px;"></span>述：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="description" id="description" class="mini-textarea" style="width:595px; height: 80px;"   maxlength="100" />
+                    </td>
+                </tr>
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageCustomerTaskFlowAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageCustomerTaskFlowAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>

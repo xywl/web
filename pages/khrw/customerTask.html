@@ -1,0 +1,100 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/customerTask.js"></script>
+    <script type="text/javascript" src="./js/customerTaskFlow.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="customerTaskForm">
+                <lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入港口编号或名称"  style="width:160px;"/>
+				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />	
+                <a class="mini-button" iconCls="icon-search" onclick="PageCustomerTask.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageCustomerTask.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageCustomerTask.funAdd()"><label class="form-label">增加</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageCustomerTask.funModify()"><label class="form-label">修改</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageCustomerTask.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="customerTaskGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 onshowrowdetail="PageCustomerTask.onShowRowDetail"  idField="id"
+                 pagesize="30" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="expandcolumn"></div>
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="contractId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.funContractRenderer">合同名称</div>
+					 <div field="customerId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.funCustomerRenderer">客户名称</div>
+					 <div field="totalLoad" width="120" headerAlign="center" allowSort="true" >总载重</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false"
+                         align="center" renderer="PageCustomerTask.funOperRenderer">操作
+                    </div>
+                </div>
+            </div>
+            <div id="detailGrid_Form" style="display:none;">
+                <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100%;">
+                                <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageCustomerTaskFlow.funAdd()"><label class="form-label">增加</label></a>
+                                <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true"  onclick="PageCustomerTaskFlow.funModify()"><label class="form-label">修改</label></a>
+                                <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true"  onclick="PageCustomerTaskFlow.funDelete()"><label class="form-label">删除</label></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            <div id="customerTaskFlow_grid" class="mini-datagrid" style="width:100%;height:150px;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="flowId" width="120" headerAlign="center" allowSort="true"  renderer="PageCustomerTaskFlow.funFlowRenderer">流向</div>
+                    <div field="goodsName" width="120" headerAlign="center" allowSort="true">货物名称</div>
+                    <div field="goodsType" width="120" headerAlign="center" allowSort="true"  renderer="PageCustomerTaskFlow.funGoodsTypeRenderer">货物类型</div>
+                    <div field="totalWeight" width="120" headerAlign="center" allowSort="true">总吨位</div>
+                    <div field="direction" width="120" headerAlign="center" allowSort="true">方向</div>
+                    <div field="sender" width="120" headerAlign="center" allowSort="true">发货单位</div>
+                    <div field="receiver" width="120" headerAlign="center" allowSort="true">收货单位</div>
+                    <div field="loadingDate" width="120" headerAlign="center" allowSort="true">装货日期</div>
+                    <div field="dischargeDate" width="120" headerAlign="center" allowSort="true">预计卸货日期</div>
+                    <div field="startPortId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funPortNameRenderer">装货点</div>
+                    <div field="endPortId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funPortNameRenderer">卸货点</div>
+                    <div field="loadType" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.fuLoadTypeRenderer">装货途径</div>
+                    <div field="bigShipPC" width="120" headerAlign="center" allowSort="true">大轮批次</div>
+                    <div field="totalLoad" width="120" headerAlign="center" allowSort="true">总载重</div>
+                    <div field="arriveLocation" width="120" headerAlign="center" allowSort="true">到达位置</div>
+                    <div field="bigShipArriveTime" width="120" headerAlign="center" allowSort="true">大轮预计到达时间</div>
+                    <div field="bigShipDepartTime" width="120" headerAlign="center" allowSort="true">大轮预计离开时间</div>
+                    <div field="selfPick" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funSelfPickRenderer">是否自提</div>
+                    <div field="sailingArea" width="120" headerAlign="center" allowSort="true">航行区域</div>
+                    <div field="shipSuggestUnitPrice" width="120" headerAlign="center" allowSort="true">船户参考运价</div>
+                    <div field="sailingFlag" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funSailingFlagRenderer">航次标识</div>
+                    <div field="status" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funStatusRenderer">状态</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false"
+                         align="center" renderer="PageCustomerTaskFlow.funOperRenderer">操作
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+</body>
+</html>
