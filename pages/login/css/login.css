@@ -1,0 +1,129 @@
+body {
+    font-family: "Microsoft Yahei";
+    font-size: 12px;
+    margin: 0;
+    background: #fff url(../images/1.jpeg) 30% 0 no-repeat;
+    height: 100%;
+}
+
+.login {
+    margin: 0 auto;
+    top: 240px;
+    width: 415px;
+    height: 300px;
+    border: 2px solid #eee;
+    border-bottom: none;
+    position: relative;
+}
+
+/*.web-login {
+    width: 100%;
+    position: relative;
+}
+
+.login-content {
+    position: relative;
+    overflow: hidden;
+}*/
+
+*, *:after, *:before{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+
+.login {
+    border: 0;
+    padding: 5px 0;
+    background: #fff;
+    margin: 0 auto;
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, .3);
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, .3);
+}
+
+.login-header {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #ff8500;
+    font-weight: 600;
+    text-align: center;
+}
+
+.login-box {
+    width: 415px;
+    height: 300px;
+    padding: 20px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box input[type="button"],
+.login-box input[type="submit"] {
+    width: 100%;
+    border: 1px solid #ddd;
+    padding: 15px 4px 15px 40px;
+    line-height: normal;
+    font-size: 14px;
+    border-radius: 2px;
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.login-box input[name="username"] {
+    background: url(../images/login/userimg.png) no-repeat 10px center;
+}
+
+.login-box input[type="password"] {
+    background: url(../images/login/keys.png) no-repeat 10px center;
+}
+
+.login-box input[name="verificationCode"] {
+    background: url(../images/login/chilun.png) no-repeat 10px center;
+}
+
+.login-box input:focus {
+    border: 1px solid #ff8500;
+}
+
+.login-box input[type="password"]:focus {
+    background: url(../images/login/keys-h.png) no-repeat 10px center;
+}
+
+.login-box input[name="username"]:focus {
+    background: url(../images/login/userimg-h.png) no-repeat 10px center;
+}
+
+.login-box input[name="verificationCode"]:focus {
+    background: url(../images/login/chilun2.png) no-repeat 10px center;
+}
+
+input#login-button {
+    background: #ff8200;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    padding: 10px 0px 10px 0px;
+}
+
+input#login-button:hover {
+    background-color: #ff9e36;
+}
+
+.operate-area {
+    margin-bottom: 10px;
+}
+
+.operate-area >a {
+    float: right;
+}
+
+.blue {
+    color: #3399ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.red {
+    color:#f4002f;
+}
