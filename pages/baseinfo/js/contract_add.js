@@ -5,7 +5,6 @@ var PageContractAdd = function(){
             basePath:"",
             action : "",
             contractForm : null
-            
         },
         init :function ()
         {
@@ -54,7 +53,7 @@ var PageContractAdd = function(){
                      return;
                  }
             }
-            
+
             var me = this;
             var obj = this.contractForm.getData(true);
             $.ajax({

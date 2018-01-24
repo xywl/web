@@ -18,6 +18,66 @@ var PageMain = function(){
                 timeout: 2000
             });
         },
+        funShowLoading : function ()
+        {
+            var tmp = '加载中...';
+            if (arguments.length  > 0)
+            {
+                tmp = arguments[0];
+            }
+            mini.mask({
+                el: document.body,
+                cls: 'mini-mask-loading',
+                html: tmp
+            });
+        },
+        IsNull:function (paramId, paramTip)
+        {
+            var tmp = "";
+            if (arguments.length == 3)
+            {
+                tmp = $("#"+paramId).val();
+            }
+            else
+            {
+                tmp = mini.get(paramId).getValue();
+            }
+            if(tmp == null || tmp == "" || $.trim(tmp).length == 0)
+            {
+                PageMain.funShowMessageBox(paramTip + "内容为空");
+                return true;
+            }
+            return false;
+        },
+        funStrToDate :function ()
+        {
+            if (arguments[0] == "0"
+                || arguments[0] == 0
+                || arguments[0] == null
+                || arguments[0] == "null")
+            {
+                return "";
+            }
+            var paramFormat = "yyyy-MM-dd HH:mm:ss";
+            if (arguments.length > 1)
+            {
+                paramFormat = arguments[1];
+            }
+            var tmp = parseInt(arguments[0]) * 1000;
+            return mini.formatDate(new Date(tmp), paramFormat);
+        },
+        funStrinfo : function (text)
+        {
+            if (text == null || text == "null")
+            {
+                return "";
+            }
+            return text;
+        },
+        funCloseLoading : function ()
+        {
+            mini.unmask(document.body);
+        },
         funCloseWindow : function(action)
         {
             if(window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
@@ -36,14 +96,35 @@ var PageMain = function(){
             }
             return path;
         },
-        
-        callAjax : function (paramUrl, paramData, callback) 
+        funTipInfo : function (txt)
         {
+            mini.showMessageBox({
+                showModal: false,
+                width: 250,
+                height:120,
+                title: "提示",
+                iconCls: "mini-messagebox-warning",
+                message: txt,
+                x: "right",
+                y: "bottom",
+                timeout: 10000
+            });
+        },
+        //
+        callAjax : function (paramUrl, paramData, callback)
+        {
+            var contentType = "application/x-www-form-urlencoded";
+            if (arguments.length == 4)
+            {
+                contentType =  arguments[3];
+            }
             $.ajax({
                 url : paramUrl,
                 type: 'POST',
                 data: paramData,
+                async: true, //同步
                 dataType: 'json',
+                contentType:contentType,
                 success: function (data)
                 {
                     callback(data);
