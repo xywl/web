@@ -91,31 +91,19 @@ var PagePort = function(){
                 mini.confirm("确定要删除这条记录?", "提醒", function (action) {
                     if (action == "ok") 
                     {
-                        $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/port/del",
-                            type: 'POST',
-                            data: {"id": row.id},
-                            dataType: 'json',
-                            success: function (data)
+                        PageMain.callAjax(PageMain.defaultOption.httpUrl + "/port/del?a="+Math.random(), {"id": row.id}, function (data) {
+                            if (data.success)
                             {
-                            	
-                            	 if (data.success)
-                                 {
-                                     mini.alert("操作成功", "提醒", function(){
-                                         if(data.success)
-                                         {
-                                        	 me.portGrid.reload();
-                                         }
-                                     });
-                                 }
-                                 else
-                                 {
-                                     PageMain.funShowMessageBox(data.msg);
-                                 }
-                            },
-                            error: function ()
+                                mini.alert("操作成功", "提醒", function(){
+                                    if(data.success)
+                                    {
+                                        me.portGrid.reload();
+                                    }
+                                });
+                            }
+                            else
                             {
-                                PageMain.funShowMessageBox("删除记录失败");
+                                PageMain.funShowMessageBox(data.msg);
                             }
                         });
                     }
