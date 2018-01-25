@@ -131,10 +131,10 @@ var BMapLib = window.BMapLib = BMapLib || {};
         }
 
         //首先判断点是否在多边形的外包矩形内，如果在，则进一步判断，否则返回false
-        var polygonBounds = polygon.getBounds();
+        /*var polygonBounds = polygon.getBounds();
         if(!this.isPointInRect(point, polygonBounds)){
             return false;
-        }
+        }*/
 
         var pts = polygon.getPath();//获取多边形点
 

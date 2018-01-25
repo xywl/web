@@ -38,6 +38,7 @@
                 basePath : "",
                 mapDiv : "",
                 mapObj : null,
+                mAutocomplete : null,
                 polylineOverlay:null,
                 polylineFly : []
             },
@@ -69,6 +70,34 @@
                     type: BMAP_NAVIGATION_CONTROL_LARGE,
                     // 启用显示定位
                     enableGeolocation: true
+                });
+
+                this.defaultOption.mAutocomplete =  new BMap.Autocomplete({"input" : "in_poi"
+                    ,"location" : PageLine.mapObj
+                });
+                this.defaultOption.mAutocomplete.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+                    var str = "";
+                    var _value = e.fromitem.value;
+                    var value = "";
+                    if (e.fromitem.index > -1) {
+                        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+                    }
+                    str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+                    value = "";
+                    if (e.toitem.index > -1) {
+                        _value = e.toitem.value;
+                        value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+                    }
+                    str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+                    document.getElementById("in_poi").innerHTML = str;//(str);
+                });
+
+                var myValue;
+                this.defaultOption.mAutocomplete.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+                    var _value = e.item.value;
+                    myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+                    document.getElementById("in_poi").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
                 });
                 this.mapObj.addControl(navigationControl);
             },

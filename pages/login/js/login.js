@@ -55,6 +55,7 @@ var PageLogin = function(){
                         }
                         var token = result.data.token;
                         $.cookie('token', token, { path: '/' });
+                        alert($.cookie('token'))
                         window.location.href = "../home/main.html";
                     }
                     else {

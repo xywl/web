@@ -56,6 +56,7 @@ var PageMap = function()
             hisTimeOut:null,
             hisTime : 1000,
             hisPlayFlag:false,
+            baseInfoWindow:null,
             realFlag : false,
             PortFly : [],
             DangerZoneFly : [],
@@ -235,31 +236,46 @@ var PageMap = function()
             }
             else
             {
-                var ckFlys = this.defaultOption.statelist.getValue().split(",");
-                this.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                    mObj.marker.hide();
-                });
-                var me = this;
-                ckFlys.forEach(function (ck) {
-                    if (ck == "4")
-                    {
-                        me.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                            if (mObj.alarmType == 1)
-                            {
-                                mObj.marker.show();
-                            }
-                        });
-                    }
-                    else if(ck == "5")
-                    {
-                        me.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                            if (mObj.sailState == 1)
-                            {
-                                mObj.marker.show();
-                            }
-                        });
-                    }
-                });
+                var tmp = this.defaultOption.statelist.getValue().replace(/,/g,"");
+                if(tmp == 4)
+                {
+                    this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                        if (mObj.alarmType == 1)
+                        {
+                            mObj.marker.show();
+                        }
+                        else
+                        {
+                            mObj.marker.hide();
+                        }
+                    });
+                }
+                else if (tmp == 5)
+                {
+                    this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                        if (mObj.sailState == 1)
+                        {
+                            mObj.marker.show();
+                        }
+                        else
+                        {
+                            mObj.marker.hide();
+                        }
+                    });
+                }
+                else if(tmp ==45)
+                {
+                    this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                        if (mObj.sailState == 1 && mObj.alarmType == 1)
+                        {
+                            mObj.marker.show();
+                        }
+                        else
+                        {
+                            mObj.marker.hide();
+                        }
+                    });
+                }
             }
         },
         funLoadBase:function()
@@ -367,9 +383,12 @@ var PageMap = function()
                 var tmp = pointFlys[nItem].split(",");
                 eleCircleFly.push({lng: tmp[0] / 1000000, lat: tmp[1] / 1000000})
             }
-            //console.log(eleCircleFly)
+
             var mPolyLine = this.funAddElecircle(eleCircleFly);
             var me = this;
+            mPolyLine.addEventListener("click", function(e){
+                PageMap.funPortShipPolyLineInfo(mPolyLine, e.point);
+            });
             mPolyLine.addEventListener("mouseover", function(e){
                 try{
                     me.defaultOption.mInfoWindow.setContent("航道名称：" + mObj.name + " <br/>最低速度：" + mObj.minSpeed + " <br/>最高速度：" + mObj.maxSpeed + " <br/>描述信息：" + mObj.description);
@@ -385,6 +404,53 @@ var PageMap = function()
             });
             this.defaultOption.DangerZoneSpeedMapFly.push(mPolyLine);
         },
+        funPortShipPolyLineInfo : function (mPolyLine, point)
+        {
+            var tmp = "";
+            this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                console.log(BMapLib.GeoUtils.isPointInPolygon(mObj.lnglat, mPolyLine))
+                if (BMapLib.GeoUtils.isPointInPolygon(mObj.lnglat, mPolyLine))
+                {
+                    tmp +="<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>设备号："+ mObj.devId +"</span><span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>船号：" + mObj.shipNo + "</span>"+ (mObj.alarmType == 1?"<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>报警</span>":"")  + (mObj.sailState == 1?"<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>有任务</span>":"") + " <br/>"
+                }
+            });
+            if (this.defaultOption.baseInfoWindow == null)
+            {
+                this.defaultOption.baseInfoWindow =  new BMap.InfoWindow("");
+            }
+            if (tmp == "")
+            {
+                tmp = "航道内无船舶";
+            }
+            this.defaultOption.baseInfoWindow.setContent(tmp);
+            this.mapObj.openInfoWindow(this.defaultOption.baseInfoWindow, point);
+        },
+        funPortShipCircleInfo : function (mClicle, type)
+        {
+            var tmp = "";
+            this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                if (BMapLib.GeoUtils.isPointInCircle(mObj.lnglat, mClicle))
+                {
+                    tmp +="<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>设备号："+ mObj.devId +"</span><span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>船号：" + mObj.shipNo + "</span>"+ (mObj.alarmType == 1?"<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>报警</span>":"")  + (mObj.sailState == 1?"<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>有任务</span>":"") + " <br/>"
+                }
+            });
+            if (this.defaultOption.baseInfoWindow == null)
+            {
+                this.defaultOption.baseInfoWindow =  new BMap.InfoWindow("");
+            }
+            if (type == 1 && tmp == "")
+            {
+                //this.defaultOption.baseInfoWindow.setTitle('<div style="height: 30px; border-bottom: 1px solid #ff0000;">港口</div>');
+                tmp = "港口内无船舶";
+            }
+            else if (type == 3 && tmp == "")
+            {
+                //this.defaultOption.baseInfoWindow.setTitle('<div style="height: 30px; border-bottom: 1px solid #ff0000;">危险区域</div>');
+                tmp = "危险区域内无船舶";
+            }
+            this.defaultOption.baseInfoWindow.setContent(tmp);
+            this.mapObj.openInfoWindow(this.defaultOption.baseInfoWindow, mClicle.getCenter());
+        },
         funAddPort : function(mObj, colorFly)
         {
             var PortObj = {circle:null, circlePoint:null, label:null};
@@ -393,6 +459,9 @@ var PageMap = function()
             mCircle2.addEventListener("mouseover", function(e){
                 mCircle2.setStrokeWeight(6)
                 mCircle2.setFillColor(colorFly.bgColor);
+            });
+            mCircle2.addEventListener("click", function(e){
+               PageMap.funPortShipCircleInfo(mCircle2, colorFly.type);
             });
             mCircle2.setStrokeColor(colorFly.lineColor)
             PortObj.label = this.funAddLabelSet(mObj.name, mLngLat,{
@@ -414,10 +483,6 @@ var PageMap = function()
             {
                 this.defaultOption.DangerZoneMapFly.push(PortObj);
             }
-
-            console.log("--------------")
-            console.log(BMapLib.GeoUtils.isPointInCircle(mLngLat, mCircle2))
-            console.log("--------------")
         },
         funDealState : function (mObj)
         {
@@ -914,19 +979,28 @@ var PageMap = function()
             {
                 alarmType = 1;
                 var tmpObj = PageMap.funGetDangerZoneSpeedInfo(paramRow.areaId);
-                tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">超速报警：'+tmpObj.name+'【最高速度'+tmpObj.maxSpeed+'】</div>';
+                if (tmpObj != null)
+                {
+                    tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">超速报警：'+tmpObj.name+'【最高速度'+tmpObj.maxSpeed+'】</div>';
+                }
             }
             if(tmpStatue.charAt(4) == "1")
             {
                 alarmType = 1;
                 var tmpObj = PageMap.funGetDangerZoneSpeedInfo(paramRow.areaId);
-                tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">低速报警：'+tmpObj.name+'【最低速度'+tmpObj.minSpeed+'】</div>';
+                if (tmpObj != null)
+                {
+                    tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">低速报警：' + tmpObj.name + '【最低速度' + tmpObj.minSpeed + '】</div>';
+                }
             }
             if(tmpStatue.charAt(5) == "1")
             {
                 alarmType = 1;
                 var tmpObj = PageMap.funGetDangerZoneInfo(paramRow.areaId);
-                tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">区载报警：'+tmpObj.name+'</div>';
+                if (tmpObj != null)
+                {
+                    tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">区载报警：' + tmpObj.name + '</div>';
+                }
             }
 
             //进港
