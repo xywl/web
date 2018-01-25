@@ -52,9 +52,10 @@
 <div style=" height: 40px; background: #c6e6bd; border: 1px solid #eee; padding-left: 4px; font-size: 14px; line-height: 39px;">
     <div style="float: left; cursor: pointer; margin-left:10px; margin-top: 5px; height: 30px;" id="toolsDiv"></div>
     <div style="float: left; width: 1px; height: 20px; background: #b3cc6f; margin: 10px 15px 10px 0px;"></div>
-    <div style="float: left; font-size: 15px;"> 区域显示：</div>
-    <div id="cklist" class="mini-checkboxlist" repeatItems="3" repeatLayout="table" style="cursor: pointer;float: left; font-size: 14px;"  textField="text" valueField="id" onvaluechanged="PageMap.funCkListchangedInfo()">
-    </div>
+    <div style="float: left; font-size: 15px;"> </div>
+    <div id="cklist" class="mini-checkboxlist" repeatItems="3" repeatLayout="table" style="cursor: pointer;float: left; font-size: 14px;"  textField="text" valueField="id" onvaluechanged="PageMap.funCkListchangedInfo()"></div>
+    <div id="statelist" class="mini-checkboxlist" repeatItems="2" repeatLayout="table" style="cursor: pointer;float: left; font-size: 14px;"  textField="text" valueField="id" onvaluechanged="PageMap.funStateListchangedInfo()"></div>
+
     <div style="float: left; width: 1px; height: 20px; background: #b3cc6f; margin: 10px 15px;"></div>
     <div style="float: left; font-size: 15px; ">船舶数据为：<span id="shipcnt" style="font-weight: bold; color: red;">0</span></div>
 </div>
@@ -137,5 +138,6 @@
 <script type="text/javascript" src="js/mapbaidu/DistanceTool_min.js"></script>
 <script type="text/javascript" src="js/mapbaidu/RectangleZoom_min.js"></script>
 <script type="text/javascript" src="js/mapbaidu/DrawingManager_min.js"></script>
+<script type="text/javascript" src="js/mapbaidu/BMapLib_GeoUtils.js"></script>
 </html>
 

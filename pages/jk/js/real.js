@@ -67,8 +67,11 @@ var PageMap = function()
             SailingFly:[],
             DispatchFly:[],
             cklist:null,
+            statelist : null,
+            showSatateList:"",
             TipFly:[],// 提醒
             cklistData :[{"id": 1, "text": "港口"},{"id": 2, "text": "航道"},{"id": 3, "text": "危险区域"}],
+            statelistData :[{"id": 4, "text": "只显报警船"},{"id": 5, "text": "只显重载船"}],
             //是否显示地图
             isShowCity : false
         },
@@ -80,6 +83,9 @@ var PageMap = function()
             this.defaultOption.cklist = mini.get("cklist");
             this.defaultOption.cklist.setData(this.defaultOption.cklistData);
             this.defaultOption.cklist.setValue("1,2,3");
+
+            this.defaultOption.statelist = mini.get("statelist");
+            this.defaultOption.statelist.setData(this.defaultOption.statelistData);
 
             this.mapObj = new BMap.Map(mapdiv);
             try{
@@ -174,7 +180,8 @@ var PageMap = function()
             mini.get("speed").select(1);
             this.funLoadBase();
         },
-        funCkListchangedInfo : function () {
+        funCkListchangedInfo : function ()
+        {
            var ckFlys = this.defaultOption.cklist.getValue().split(",");
             this.defaultOption.PortMapFly.forEach(function (obj) {
                 obj.circle.hide();
@@ -217,6 +224,43 @@ var PageMap = function()
                     });
                 }
             });
+        },
+        funStateListchangedInfo : function ()
+        {
+            if (this.defaultOption.statelist.getValue() == "")
+            {
+                this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                    mObj.marker.show();
+                });
+            }
+            else
+            {
+                var ckFlys = this.defaultOption.statelist.getValue().split(",");
+                this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                    mObj.marker.hide();
+                });
+                var me = this;
+                ckFlys.forEach(function (ck) {
+                    if (ck == "4")
+                    {
+                        me.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                            if (mObj.alarmType == 1)
+                            {
+                                mObj.marker.show();
+                            }
+                        });
+                    }
+                    else if(ck == "5")
+                    {
+                        me.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                            if (mObj.sailState == 1)
+                            {
+                                mObj.marker.show();
+                            }
+                        });
+                    }
+                });
+            }
         },
         funLoadBase:function()
         {
@@ -370,6 +414,10 @@ var PageMap = function()
             {
                 this.defaultOption.DangerZoneMapFly.push(PortObj);
             }
+
+            console.log("--------------")
+            console.log(BMapLib.GeoUtils.isPointInCircle(mLngLat, mCircle2))
+            console.log("--------------")
         },
         funDealState : function (mObj)
         {
@@ -717,12 +765,14 @@ var PageMap = function()
         },
         funShowRealInfo : function(data)
         {
+            //this.defaultOption.statelist.showSatateList = this.defaultOption.statelist.getValue().replace(/,/g,"");
             for(var nItem=0; nItem < data.length; nItem++)
             {
                 var pfly = PageConvert.funWGS84ToBaidu(data[nItem].longitude/1000000, data[nItem].latitude/1000000)
                 var mPoint = this.funPoint(pfly[0], pfly[1]);
                 this.funGlobalGeocoder(data[nItem], mPoint);
             }
+            this.funStateListchangedInfo();
         },
         funGlobalGeocoder : function (paramRow, paramPoint)
         {
@@ -848,7 +898,7 @@ var PageMap = function()
         funDrawCarCallBackInfo : function (paramRow, paramPoint, paramPlace)
         {
             var alarmType = 0;
-            var shipState = 0;
+            var sailState = 0;
             /*PageMain.funTipInfo(paramRow.shipNo)*/
             var flag = true;
             var tmpContent = '<table style="font-size:12px; width: 600px;"><tr><td colspan="2" style="border: 0px solid #CCCCCC;">'+
@@ -898,7 +948,7 @@ var PageMap = function()
             var mSail = PageMap.funGetSailingInfo(paramRow.shipId);
             if (mSail != null)
             {
-                shipState = 1;
+                sailState = 1;
                 tmpContent +=
                     /*'<table style="font-size:12px; width: 650px;"><tr><td colspan="2"><div style="width: 100%; height: 1px; background: #cce1fc; "> </div></td></tr><tr><td colspan="2">'+*/
                     '<div style="width: 272px; float: left; height: 25px;">货物名称：'+PageMain.funStrinfo(mSail.goodsName)+'</div>' +
@@ -918,7 +968,7 @@ var PageMap = function()
                 var mDispatch = PageMap.funGetDispatchInfo(paramRow.shipId);
                 if (mDispatch != null)
                 {
-                    shipState = 1;
+                    sailState = 1;
                     tmpContent +=
                        /* '<table style="font-size:12px; width: 650px;"><tr><td colspan="2"><div style="width: 100%; height: 1px; background: #cce1fc;"> </div></td></tr><tr><td colspan="2">'+*/
                         '<div style="width: 272px; float: left; height: 25px;">货物名称：'+PageMain.funStrinfo(mDispatch.goodsName)+'</div>' +
@@ -937,12 +987,12 @@ var PageMap = function()
             {
                 if(this.defaultOption.GlobalShipFly[nItem].devId == paramRow.devId)
                 {
-                    this.defaultOption.GlobalShipFly[nItem].marker.show();
+                    this.defaultOption.GlobalShipFly[nItem].lnglat = paramPoint;
+                    this.defaultOption.GlobalShipFly[nItem].alarmType = alarmType;
+                    this.defaultOption.GlobalShipFly[nItem].sailState = sailState;
                     this.defaultOption.GlobalShipFly[nItem].marker.setPosition(paramPoint);
                     //this.defaultOption.GlobalShipFly[nItem].marker.setIcon(this.funShipIconInfo(paramRow.angle));
                     this.defaultOption.GlobalShipFly[nItem].marker.setRotation(paramRow.angle);
-                    //this.defaultOption.GlobalShipFly[nItem].label.setRotation(paramRow.angle);
-
                     this.defaultOption.GlobalShipFly[nItem].infoWindow.setContent(tmpContent);
                     flag = false;
                     break;
@@ -951,8 +1001,12 @@ var PageMap = function()
 
             if (flag)
             {
-                var mMarkerObj = {devId: null, marker: null, label: null, infoWindow: null};
+                var mMarkerObj = {devId: null, lnglat:null, alarmType:null, sailState:null, shipNo:null, marker: null, label: null, infoWindow: null};
                 mMarkerObj.devId = paramRow.devId;
+                mMarkerObj.lnglat = paramPoint;
+                mMarkerObj.alarmType = alarmType;
+                mMarkerObj.sailState = sailState;
+                mMarkerObj.shipNo = paramRow.shipNo;
                 mMarkerObj.infoWindow = new BMap.InfoWindow(tmpContent);
 
                 mMarkerObj.label = new BMap.Label(paramRow.shipNo, {
@@ -960,7 +1014,7 @@ var PageMap = function()
                 });
                 mMarkerObj.label.setStyle(this.defaultOption.GlobalLabelStyle);
 
-                mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShowRealIconInfo(alarmType, shipState));
+                mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShowRealIconInfo(alarmType, sailState));
                 mMarkerObj.marker.setRotation(paramRow.angle);
 
                 //mMarkerObj.label.setRotation(paramRow.angle);
