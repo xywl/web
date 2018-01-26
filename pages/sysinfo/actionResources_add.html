@@ -1,0 +1,138 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/actionResources_add.js"></script>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_actionResources_add" style="width: 100%;height: 100%;" allowResize="false">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
+        <div id="actionResourcesFormAdd">
+       
+                	<input id="id" name="id"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">code：</td>
+                    <td class="form-content">
+                        <input name="code" id="code" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="code不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">name：</td>
+                    <td class="form-content">
+                        <input name="name" id="name" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="name不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">url：</td>
+                    <td class="form-content">
+                        <input name="url" id="url" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="url不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">iconUrl：</td>
+                    <td class="form-content">
+                        <input name="iconUrl" id="iconUrl" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="iconUrl不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">type：</td>
+                    <td class="form-content">
+                        <input name="type" id="type" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="type不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">status：</td>
+                    <td class="form-content">
+                        <input name="status" id="status" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="status不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">remark：</td>
+                    <td class="form-content">
+                        <input name="remark" id="remark" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="remark不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">parentId：</td>
+                    <td class="form-content">
+                        <input name="parentId" id="parentId" class="mini-textbox"  required="true" maxlength="19" requiredErrorText="parentId不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">orderNo：</td>
+                    <td class="form-content">
+                        <input name="orderNo" id="orderNo" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="orderNo不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">isDeleted：</td>
+                    <td class="form-content">
+                        <input name="isDeleted" id="isDeleted" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="isDeleted不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">creator：</td>
+                    <td class="form-content">
+                        <input name="creator" id="creator" class="mini-textbox"  required="true" maxlength="19" requiredErrorText="creator不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">creatorName：</td>
+                    <td class="form-content">
+                        <input name="creatorName" id="creatorName" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="creatorName不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">created：</td>
+                    <td class="form-content">
+                        <input name="created" id="created" class="mini-textbox"  required="true" maxlength="19" requiredErrorText="created不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">updater：</td>
+                    <td class="form-content">
+                        <input name="updater" id="updater" class="mini-textbox"  required="true" maxlength="19" requiredErrorText="updater不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">updaterName：</td>
+                    <td class="form-content">
+                        <input name="updaterName" id="updaterName" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="updaterName不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">updated：</td>
+                    <td class="form-content">
+                        <input name="updated" id="updated" class="mini-textbox"  required="true" maxlength="19" requiredErrorText="updated不能为空"/>
+                    </td>
+                </tr>
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageActionResourcesAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageActionResourcesAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>
