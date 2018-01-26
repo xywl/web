@@ -27,8 +27,10 @@ var bootPATH = __CreateJSPath("boot.js");
 mini_debugger = true;
 //miniui
 document.write('<script src="' + bootPATH + 'jquery-1.8.3-min.js" type="text/javascript"></sc' + 'ript>');
+document.write('<script src="' + bootPATH + 'jquery-extend.js" type="text/javascript"></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'jquery.gesoft-1.0.js" type="text/javascript"></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'miniui.js" type="text/javascript" ></sc' + 'ript>');
+document.write('<script src="' + bootPATH + 'jquery.cookie.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'mini.vtypes.js" type="text/javascript" ></sc' + 'ript>');
 document.write('<link href="' + bootPATH + 'themes/default/miniui.css" rel="stylesheet" type="text/css" />');
 document.write('<link href="' + bootPATH + 'themes/pure/skin.css" rel="stylesheet" type="text/css" />');
@@ -42,7 +44,6 @@ if (skin) {
     document.write('<link href="' + bootPATH + 'themes/' + skin + '/skin.css" rel="stylesheet" type="text/css" />');
 }
 */
-
 
 ////////////////////////////////////////////////////////////////////////////////////////
 function getCookie(sName) {
