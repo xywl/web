@@ -1,9 +1,10 @@
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <script src="../../jslib/miniui/boot.js"></script>
     <script type="text/javascript" src="./js/customer_add.js"></script>
+    <title></title>
     <title></title>
     <style>
 
@@ -28,17 +29,17 @@
                 <tr>
                     <td class="form-label">客户单位编号：</td>
                     <td class="form-content" colspan="5">
-                        <input name="customerNo" id="customerNo"  class="mini-textbox"  required="true" maxlength="20" requiredErrorText="客户单位编号不能为空"/>
+                        <input name="customerNo" id="customerNo"  class="mini-textbox"  required="true" maxlength="50" requiredErrorText="客户单位编号不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">客户单位名称：</td>
                     <td class="form-content">
-                        <input name="fullName" id="fullName" width="120" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="客户单位名称不能为空"/>
+                        <input name="fullName" id="fullName" width="120" class="mini-textbox"  required="true" maxlength="100" requiredErrorText="客户单位名称不能为空"/>
                     </td>
                     <td class="form-label">客户单位简称：</td>
                     <td class="form-content">
-                        <input name="simpleName" id="simpleName" width="120" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="客户单位简称不能为空"/>
+                        <input name="simpleName" id="simpleName" width="120" class="mini-textbox"  required="true" maxlength="100" requiredErrorText="客户单位简称不能为空"/>
                     </td>
                 </tr>
                 <tr>
@@ -48,11 +49,11 @@
                     </td>
                     <td class="form-label">单位联系电话：</td>
                     <td class="form-content">
-                        <input name="phone" id="phone" class="mini-textbox" width="120" required="true" maxlength="10" requiredErrorText="单位联系电话不能为空"/>
+                        <input name="phone" id="phone" class="mini-textbox" width="120" required="true" vtype="telePhone"  requiredErrorText="单位联系电话不能为空"/>
                     </td>
                     <td class="form-label">单位邮箱：</td>
                     <td class="form-content">
-                        <input name="email" id="email" class="mini-textbox" width="120" required="true" maxlength="10" requiredErrorText="单位邮箱为空" />
+                        <input name="email" id="email" class="mini-textbox" width="120" />
                     </td>
                 </tr>
                 <tr>
