@@ -28,75 +28,59 @@
                 	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0"  style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">船号：</td>
-                    <td class="form-content">
+                    <td width="10%" align="right">船号：</td>
+                    <td width="20%"  class="form-content">
                         <input name="shipNo" id="shipNo"  class="mini-textbox"  width="140" required="true" maxlength="20" requiredErrorText="船号不能为空"/>
                     </td>
-                    <td class="form-label">船舶种类：</td>
-                    <td class="form-content">
+                    <td width="10%" align="right">船舶种类：</td>
+                    <td width="20%" class="form-content">
                         <input name="shipFlag" id="shipFlag"   class="mini-combobox" valueField="id" textField="name"
                                width="140" maxlength="3"   />
                     </td>
+                    <td width="10%" align="right">航行区域：</td>
+                    <td width="20%" class="form-content">
+                        <input   class="mini-checkboxlist" name="sailingArea" id="sailingArea"  valueField="id" textField="name"   />
+                    </td>
+
                 </tr>
                 <tr>
                     <td class="form-label">长：</td>
                     <td class="form-content">
                         <input name="length" id="length" width="140" class="mini-textbox"   maxlength="30"/>
                     </td>
-                    <td class="form-label">航行区域：</td>
-                    <td class="form-content">
-                        <input   class="mini-checkboxlist"   />
-                        <!--航行区域取哪个字段-->
-                    </td>
-                </tr>
-                <tr>
+
                     <td class="form-label">宽：</td>
                     <td class="form-content">
                         <input name="width" id="width" width="140" class="mini-textbox"  maxlength="30" />
                     </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td class="form-label">型深：</td>
                     <td class="form-content">
                         <input name="depth" id="depth" width="140" class="mini-textbox"   maxlength="30" />
                     </td>
-                    <td></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td class="form-label">总吨：</td>
                     <td class="form-content">
                         <input name="totalWeight" id="totalWeight" width="140" class="mini-textbox"   maxlength="30"/>
                     </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td class="form-label">净重：</td>
                     <td class="form-content">
                         <input name="netWeight" id="netWeight" class="mini-textbox" width="140" maxlength="50"/>
                     </td>
-                    <td class="form-label">A级-长江：</td>
-                    <td class="form-content">
-                        <input name="levelAWeight" id="levelAWeight" class="mini-textbox" width="140" maxlength="10" />
-                    </td>
-                </tr>
-                <tr>
                     <td class="form-label">载重吨：</td>
                     <td class="form-content">
                         <input name="loadWeight" id="loadWeight" class="mini-textbox" width="140"  maxlength="10"  />
                     </td>
+
+                </tr>
+                <tr>
+                    <td class="form-label">A级-长江：</td>
+                    <td class="form-content">
+                        <input name="levelAWeight" id="levelAWeight" class="mini-textbox" width="140" maxlength="10" />
+                    </td>
                     <td class="form-label">B级-黄浦江：</td>
                     <td class="form-content">
                         <input name="levelBWeight" id="levelBWeight" class="mini-textbox" width="140" maxlength="10" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">计费吨：</td>
-                    <td class="form-content">
-                        <input name="feeWeight" id="feeWeight" class="mini-textbox" maxlength="30"   width="140"   />
                     </td>
                     <td class="form-label">C级-内河：</td>
                     <td class="form-content" colspan="3">
@@ -104,6 +88,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="form-label">计费吨：</td>
+                    <td class="form-content">
+                        <input name="feeWeight" id="feeWeight" class="mini-textbox" maxlength="30"   width="140"   />
+                    </td>
                     <td class="form-label">建成日期：</td>
                     <td class="form-content">
                         <input name="buildDate" id="buildDate" required="true" class="mini-datepicker" width="140"  />
@@ -118,90 +106,81 @@
                     <td class="form-content">
                         <input name="checkRegisterNo" id="checkRegisterNo" width="140" class="mini-textbox"  maxlength="30" />
                     </td>
-                    <td class="form-label">干舷-A级航区：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="sailingAreaA" id="sailingAreaA" class="mini-textbox" width="140" />
-                    </td>
-                </tr>
-                <tr>
                     <td class="form-label">船检编号：</td>
                     <td class="form-content">
                         <input name="checkNo" id="checkNo" class="mini-textbox"
                                width="140"   maxlength="10"/>
                     </td>
-                    <td class="form-label">干舷-B级航区：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="sailingAreaB" id="sailingAreaB" class="mini-textbox"  width="140"/>
-                    </td>
-                </tr>
-                <tr>
                     <td class="form-label">船舶识别码：</td>
                     <td class="form-content">
                         <input name="shipID" id="shipID" class="mini-textbox"width="140" />
                     </td>
+                </tr>
+                <tr>
+
+                    <td class="form-label">干舷-A级航区：</td>
+                    <td class="form-content">
+                        <input name="sailingAreaA" id="sailingAreaA" class="mini-textbox" width="140" />
+                    </td>
+                    <td class="form-label">干舷-B级航区：</td>
+                    <td class="form-content">
+                        <input name="sailingAreaB" id="sailingAreaB" class="mini-textbox"  width="140"/>
+                    </td>
                     <td class="form-label">干舷-C级航区：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content">
                         <input name="sailingAreaC" id="sailingAreaC" class="mini-textbox"width="140" />
                     </td>
                 </tr>
+
                 <tr>
                     <td class="form-label">初次登记号码：</td>
                     <td class="form-content">
                         <input name="firstRegisterNo" id="firstRegisterNo" class="mini-textbox"width="140" />
                     </td>
                     <td class="form-label">行深：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content">
                         <input name="sailingDepth" id="sailingDepth" class="mini-textbox" width="140"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">制造厂家：</td>
                     <td class="form-content">
                         <input name="buildFactory" id="buildFactory" class="mini-textbox" width="140"/>
                     </td>
-                    <td class="form-label">AIS识别码（MMSI）：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="aisID" id="aisID" class="mini-textbox" width="140"/>
-                    </td>
                 </tr>
                 <tr>
+                    <td class="form-label">AIS识别码（MMSI）：</td>
+                    <td class="form-content">
+                        <input name="aisID" id="aisID" class="mini-textbox" width="140"/>
+                    </td>
                     <td class="form-label">原船名：</td>
                     <td class="form-content">
                         <input name="oldShipName" id="oldShipName" class="mini-textbox" width="140"/>
                     </td>
                     <td class="form-label">营运类型：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content">
                         <input name="runType" id="runType"  class="mini-combobox"
-                                width="140"class="mini-combobox" valueField="id" textField="name"  maxlength="3" />
+                               width="140"class="mini-combobox" valueField="id" textField="name"  maxlength="3" />
                     </td>
                 </tr>
+
                 <tr>
                     <td class="form-label">改建日期：</td>
                     <td class="form-content">
                         <input name="rebuildDate" id="rebuildDate" required="true" class="mini-datepicker" width="140"  />
                     </td>
                     <td class="form-label">GPS设备编号：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content">
                         <input name="gpsDeviceId" id="gpsDeviceId"  class="mini-textbox" width="140"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">保险日期：</td>
                     <td class="form-content">
                         <input name="insuranceDate" required="true" id="insuranceDate" class="mini-datepicker" width="140"  />
                     </td>
-                    <td></td>
-                    <td></td>
                 </tr>
                 <tr>
                     <td class="form-label">检验日期：</td>
                     <td class="form-content">
                         <input name="checkDate" id="checkDate" required="true" class="mini-datepicker" width="140"  />
                     </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td class="form-label">维修/保养日期：</td>
                     <td class="form-content">
                         <input name="repairDate" id="repairDate" required="true" class="mini-datepicker" width="140"  />
@@ -212,7 +191,7 @@
                 <tr>
                     <td class="form-label">备<span style="padding: 0 12px;"></span>注：</td>
                     <td class="form-content" colspan="3">
-                        <input name="description" id="description" class="mini-textarea" style="width:350px; height: 80px;"  maxlength="100"/>
+                        <input name="description" id="description" class="mini-textarea" width="100%"  maxlength="100"/>
                     </td>
                 </tr>
             </table>

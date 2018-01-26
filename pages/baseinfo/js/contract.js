@@ -102,8 +102,6 @@ var PageContract = function(){
         {
             var grid = e.sender;
             var row = e.record;
-            console.log(row.id)
-            console.log(row)
             var td = grid.getRowDetailCellEl(row);
             td.appendChild(PageContract.defaultOption.detailGridForm);
             PageContract.defaultOption.detailGridForm.style.display = "block";
