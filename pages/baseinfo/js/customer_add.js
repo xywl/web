@@ -9,6 +9,7 @@ var PageCustomerAdd = function(){
         },
         init :function ()
         {
+            alert();
             mini.parse();
             this.basePath = PageMain.basePath;
             this.customerForm = new mini.Form("customerFormAdd");
