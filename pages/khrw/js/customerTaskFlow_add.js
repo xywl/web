@@ -23,6 +23,7 @@ var PageCustomerTaskFlowAdd = function(){
             mini.get("sailingFlag").setData(row.sailingFlagFly);
             mini.get("startPortId").setData(row.portData);
             mini.get("endPortId").setData(row.portData);
+            mini.get("sailingArea").setData(row.sailingAreaFly);
            // row.goodsType=null;row.loadType=null;row.selfPick=null;row.status=null;row.sailingFlag=null;
             this.defaultOption.action = data.action;
         	this.customerTaskFlowForm.setData(row);
@@ -56,6 +57,8 @@ var PageCustomerTaskFlowAdd = function(){
             var obj = this.customerTaskFlowForm.getData(true);
             obj.bigShipArriveTime = mini.get("bigShipArriveTime").getValue().getTime()/1000;
             obj.bigShipDepartTime = mini.get("bigShipDepartTime").getValue().getTime()/1000;
+            obj.loadingTime = mini.get("loadingTime").getValue().getTime()/1000;
+            obj.dischargeTime = mini.get("dischargeTime").getValue().getTime()/1000;
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/customerTaskFlow/" + me.defaultOption.action + "?a="+Math.random(),
                type : 'POST',

@@ -70,6 +70,7 @@ var PageMap = function()
             cklist:null,
             statelist : null,
             showSatateList:"",
+            showBoundsFlag : true,
             TipFly:[],// 提醒
             cklistData :[{"id": 1, "text": "港口"},{"id": 2, "text": "航道"},{"id": 3, "text": "危险区域"}],
             statelistData :[{"id": 4, "text": "只显报警船"},{"id": 5, "text": "只显重载船"}],
@@ -95,7 +96,7 @@ var PageMap = function()
             }catch(e){alert(e)}
             // 初始化地图,设置中心点坐标和地图级别
             //this.mapObj.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
-            this.mapObj.centerAndZoom("南京",15);
+            this.mapObj.centerAndZoom("南京",13);
             this.mapObj.addControl(new BMap.MapTypeControl({
                 mapTypes:[
                     BMAP_NORMAL_MAP,
@@ -201,7 +202,6 @@ var PageMap = function()
             });
 
             ckFlys.forEach(function (ck) {
-                console.log(ck)
                 if(ck == "1")
                 {
                     PageMap.defaultOption.PortMapFly.forEach(function (obj) {
@@ -228,6 +228,40 @@ var PageMap = function()
         },
         funStateListchangedInfo : function ()
         {
+            if(PageMap.defaultOption.showBoundsFlag)
+            {
+                var maxLng =0, maxLat = 0, minLng = 10000000000, minLat = 10000000000;
+                PageMap.defaultOption.GlobalShipFly.forEach(function (mObj)
+                {
+                    if(mObj.lnglat.lng > maxLng)
+                    {
+                        maxLng = mObj.lnglat.lng;
+                    }
+                    if(mObj.lnglat.lat > maxLat)
+                    {
+                        maxLat = mObj.lnglat.lat;
+                    }
+                    if(mObj.lnglat.lng < minLng)
+                    {
+                        minLng = mObj.lnglat.lng;
+                    }
+                    if(mObj.lnglat.lat < minLat)
+                    {
+                        minLat = mObj.lnglat.lat;
+                    }
+                });
+                if (maxLng > 0 )
+                {
+                    var mBounds = new BMap.Bounds(new BMap.Point(maxLng, maxLat),new BMap.Point(minLng, minLat));
+                    try {
+                        console.log(this.mapObj.getCenter());
+                        this.mapObj.setCenter(new BMap.Point(maxLng, maxLat))
+                        BMapLib.AreaRestriction.setBounds(PageMap.mapObj, mBounds);
+                    } catch (e) {
+                    }
+                    PageMap.defaultOption.showBoundsFlag = false;
+                }
+            }
             if (this.defaultOption.statelist.getValue() == "")
             {
                 this.defaultOption.GlobalShipFly.forEach(function (mObj) {
@@ -830,6 +864,7 @@ var PageMap = function()
         },
         funShowRealInfo : function(data)
         {
+
             //this.defaultOption.statelist.showSatateList = this.defaultOption.statelist.getValue().replace(/,/g,"");
             for(var nItem=0; nItem < data.length; nItem++)
             {
@@ -838,6 +873,7 @@ var PageMap = function()
                 this.funGlobalGeocoder(data[nItem], mPoint);
             }
             this.funStateListchangedInfo();
+            //window.setTimeout(this.funStateListchangedInfo, 6000);
         },
         funGlobalGeocoder : function (paramRow, paramPoint)
         {

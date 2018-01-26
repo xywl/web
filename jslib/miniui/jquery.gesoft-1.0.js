@@ -96,6 +96,12 @@ var PageMain = function(){
             }
             return path;
         },
+        funGetUrlInfo : function ()
+        {
+            var pathName = window.location.pathname.substring(1);
+            var webName = pathName == '' ? '' : pathName.substring(pathName.indexOf('/'));
+            return webName;
+        },
         funTipInfo : function (txt)
         {
             mini.showMessageBox({
@@ -131,9 +137,16 @@ var PageMain = function(){
                 },
                 error: function ()
                 {
-                    PageMain.funShowMessageBox("加载数据失败");
+                    PageMain.funShowMessageBox("操作出现异常");
                 }
             });
         }
     }
 }();
+
+$(function () {
+    if( typeof  $.cookie('token') === "undefined" && PageMain.funGetUrlInfo() != "/pages/login/login.html")
+    {
+       window.location.href = PageMain.funGetRootPath() + "/pages/login/login.html"
+    }
+})

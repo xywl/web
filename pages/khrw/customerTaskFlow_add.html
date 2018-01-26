@@ -68,15 +68,17 @@
                     </td>
                     <td class="form-label">装货日期：</td>
                     <td class="form-content">
-                        <input name="loadingDate" id="loadingDate" class="mini-datepicker"
-                               format="yyyy-MM-dd"  nullValue="null"  emptyText="起始日期" allowInput="false"/>
+                        <input name="loadingTime" id="loadingTime" required="true" class="mini-datepicker" nullValue="null"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
+                               showOkButton="true" showClearButton="false"   emptyText="装货时间" />
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">预计卸货日期：</td>
                     <td class="form-content">
-                        <input name="dischargeDate" id="dischargeDate" class="mini-datepicker"
-                               format="yyyy-MM-dd"  nullValue="null"  emptyText="预计卸货日期" allowInput="false"/>
+                        <input name="dischargeTime" id="dischargeTime" required="true" class="mini-datepicker" nullValue="null"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
+                               showOkButton="true" showClearButton="false"   emptyText="预计卸货时间"/>
                     </td>
                     <td class="form-label">装货点：</td>
                     <td class="form-content">

@@ -9,6 +9,7 @@ var PageCustomerTaskFlow = function(){
             selfPick: [{id:1, name:"是"},{id:2, name:"否"}],
             status: [{id:1, name:"启用"},{id:2, name:"禁用"}],
             sailingFlag: [{id:1, name:"正常"},{id:2, name:"散装回程货"},{id:3, name:"安吉货"}],
+            sailingArea: [{id:1, name:"A级"},{id:2, name:"B级"},{id:3, name:"C级"}],
             portData:[],
             customerTaskFlowGrid : null
         },
@@ -52,6 +53,18 @@ var PageCustomerTaskFlow = function(){
                 if(e.value == PageCustomerTaskFlow.defaultOption.sailingFlag[nItem].id)
                 {
                     return PageCustomerTaskFlow.defaultOption.sailingFlag[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        //航次区域
+        funSailingAreaRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageCustomerTaskFlow.defaultOption.sailingArea.length; nItem++)
+            {
+                if(e.value == PageCustomerTaskFlow.defaultOption.sailingArea[nItem].id)
+                {
+                    return PageCustomerTaskFlow.defaultOption.sailingArea[nItem].name;
                 }
             }
             return e.value;
@@ -157,6 +170,7 @@ var PageCustomerTaskFlow = function(){
             paramData.row.selfPickFly = me.defaultOption.selfPick;
             paramData.row.statusFly = me.defaultOption.status;
             paramData.row.sailingFlagFly = me.defaultOption.sailingFlag;
+            paramData.row.sailingAreaFly = me.defaultOption.sailingArea;
             paramData.row.portData = me.defaultOption.portData;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTaskFlow_add.html",
