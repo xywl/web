@@ -92,7 +92,7 @@ var PageShip = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/ship_add.html",
                 title: paramData.title,
                 width: 850,
-                height: 30 *  11 + 65,
+                height: 50 *  10 ,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageShipAdd.funSetData(paramData);
