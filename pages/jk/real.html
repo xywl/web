@@ -17,7 +17,7 @@
          }
         .info{
             position:absolute;
-            width:520px;
+            width:530px;
             height:180px;
             background:rgba(5, 38, 89, 0.8);
             top:30px;
@@ -30,71 +30,92 @@
         .myselect{
             width:118px !important;
         }
-
-        #operdiv{position: absolute; right: 100px; top: 10px; z-index: 199; font-size: 12px;}
+        .myselect2{
+            width:90px !important;
+        }
+        .mini-mask{
+            //display: none !important;
+        }
+        #operdiv{position: absolute; right: 20px; top: 5px; z-index: 199; font-size: 12px;}
+        .close-img{width:14px;position:absolute;top:5px;right:5px;z-index: 99;}
+        .mini-checkboxlist{font-size: 15px !important; }
     </style>
     <link rel="stylesheet" href="themes/self/rangeslider.css" type="text/css">
     <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="js/toolbar.js"></script>
+
     <link href="../../jslib/miniui/themes/blue2003/skin.css">
     <script type="text/javascript" src="js/mapbaidu/bdtowgs84.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
     <title>地图展示</title>
 </head>
 <body>
-<div id="operdiv">
+<div style=" height: 40px; background: #c6e6bd; border: 1px solid #eee; padding-left: 4px; font-size: 14px; line-height: 39px;">
+    <div style="float: left; cursor: pointer; margin-left:10px; margin-top: 5px; height: 30px;" id="toolsDiv"></div>
+    <div style="float: left; width: 1px; height: 20px; background: #b3cc6f; margin: 10px 15px 10px 0px;"></div>
+    <div style="float: left; font-size: 15px;"> </div>
+    <div id="cklist" class="mini-checkboxlist" repeatItems="3" repeatLayout="table" style="cursor: pointer;float: left; font-size: 14px;"  textField="text" valueField="id" onvaluechanged="PageMap.funCkListchangedInfo()"></div>
+    <div id="statelist" class="mini-checkboxlist" repeatItems="2" repeatLayout="table" style="cursor: pointer;float: left; font-size: 14px;"  textField="text" valueField="id" onvaluechanged="PageMap.funStateListchangedInfo()"></div>
 
+    <div style="float: left; width: 1px; height: 20px; background: #b3cc6f; margin: 10px 15px;"></div>
+    <div style="float: left; font-size: 15px; ">船舶数据为：<span id="shipcnt" style="font-weight: bold; color: red;">0</span></div>
+</div>
+<div id="operdiv">
     <span class="btn" >轨迹回放
         <div class="info">
+            <img src="js/mapbaidu/img/map-close-1.png" class="close-img">
              <div class="info-top">
-                <span class="">设<span style="padding: 0 4px;"></span>备<span style="padding: 0 4px;"></span>号:</span>
-                <input type="text" class="myselect" id="in11">
-                <span class="" style="padding-left: 15px;">船<span style="padding: 0 4px;"></span>编<span style="padding: 0 4px;"></span>号:</span>
-                <input type="text" class="myselect"  id="in12">
+                <span class="">设备号:</span>
+                 <input id="in11" name="in11" class="mini-combobox myselect" onvaluechanged="PageMap.funDevChanged(1)"  textField="name" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 15px;">船号:</span>
+                 <input id="in12" name="in12" class="mini-combobox myselect" onvaluechanged="PageMap.funShipChanged(1)" textField="id" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
                 <span class="" style="padding-left: 15px;">&nbsp;速度：</span>
-                 <select class="myselect" style="width: 60px; height: 25px;" id="speed">
+                 <input id="speed" name="speed" class="mini-combobox myselect2"  textField="name" valueField="name" emptyText="请选择..." />
+                 <!--<select class="myselect" style="width: 60px !important; height: 25px;" id="speed">
                      <option>0.5秒/条</option>
                      <option selected>1秒/条</option>
                      <option>2秒/条</option>
                      <option>3秒/条</option>
-                 </select>
+                 </select>-->
                  <p/>
-                 <span class="">开始时间:</span>
-                <input type="text" class="myselect" id="in13">
-                <span class="" style="padding-left: 15px;">结束时间:</span>
-                <input type="text" class="myselect"  id="in14">
+                 <span class="">时间段:</span>
+                 <input name="in13" id="in13" class="mini-datepicker" style="width: 175px;"  valueType="string"   format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowSort="true"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
+                <span class="" style="padding: 0 5px;">-</span>
+                 <input name="in14" id="in14" class="mini-datepicker" style="width: 175px;" valueType="string"  format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss" showTime="true" allowSort="true"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                  <span class="" style="padding-left: 15px;"></span>
-                <button  onclick="PageMap.funTestHis()" style="margin: 0 3px; width: 50px;" >回放</button>
-                <button onclick="PageMap.funResetSearch()" style="margin: 0 3px; width: 50px;">重置</button>
+               <button  onclick="PageMap.funSearchHis()" style="margin: 0 3px; width: 70px; height: 25px;" >回放</button>
+                 <!-- <button onclick="PageMap.funResetSearch()" style="margin: 0 3px; width: 50px;">重置</button>-->
 
                  <p/>
                   <input id="bncs_select" type="range" value="0" onmouseup="PageMap.funSliderChange()" value="0" min="0"
-                         max="100" data-rangeslider style="width:380px;">
+                         max="100" data-rangeslider style="width:480px;">
                  <p/>
                  <input type="button" value="播放" onclick="PageMap.funPlay()"/>
                  <input type="button" value="暂停" onclick="PageMap.funParse()"/>
                  <input type="button" value="停止" onclick="PageMap.funStop()"/>
                  <input type="button" value="重播" onclick="PageMap.funRePlay()"/>
+                 <input type="button" value="清空" onclick="PageMap.funHisClear()"/>
             </div>
             <div class="info-middle"></div>
             <div class="info-bottom"></div>
         </div>
     </span>
     <span class="btn" id="spanreal">船舶监控
-        <div class="info" style="height: 240px; width: 660px; display: block;">
+        <div class="info" style="height: 240px; width: 660px;">
+            <img src="js/mapbaidu/img/map-close-1.png" class="close-img">
             <div class="info-top">
                 <span class="">设备号:</span>
-                <input id="in01" class="mini-combobox myselect" textField="id" valueField="id" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
-                <span class="" style="padding-left: 15px;">船号码:</span>
-                <input id="in02" class="mini-combobox myselect" textField="name" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
-                <span class="" style="padding-left: 15px;">状态:</span>
-                <input id="in03" class="mini-combobox myselect" textField="id" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <input id="in01" class="mini-combobox" style="width: 200px;" textField="name" onvaluechanged="PageMap.funDevChanged(0)" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 15px;">船码:</span>
+                <input id="in02" class="mini-combobox" style="width: 200px;" textField="id" onvaluechanged="PageMap.funShipChanged(0)" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+               <!-- <span class="" style="padding-left: 15px;">状态:</span>
+                <input id="in03" class="mini-combobox myselect" textField="name" valueField="id" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>-->
                 <span class="" style="padding-left: 15px;">&nbsp;</span>
-                <button  onclick="PageMap.funTestReal()">查询</button>
+                <button  onclick="PageMap.funSearchRealInfo()">查询</button>
                 <button onclick="PageMap.funResetSearch()">重置</button>
             </div>
             <div class="info-middle" style="padding-top: 10px; margin-bottom:10px;">
                 <div id="flowGrid" class="mini-datagrid"
-                     idField="id" allowResize="false" allowAlternating="true" virtualScroll="true" showPager="false" sortMode="client" style="height: 205px; width: 658px;">
+                     idField="id" allowResize="false" allowAlternating="true" onrowclick="PageMap.funRealRowClick" virtualScroll="true" showPager="false" sortMode="client" style="height: 205px; width: 658px;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="40">序号</div>
 					 <div field="shipNo" width="120" headerAlign="center" allowSort="true">船号码</div>
@@ -111,658 +132,12 @@
 </div>
 <div id="allmap"></div>
 </body>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=94iK6uYDWx7AV4FbrPaQDtRp8uBHWIoA"></script>
+<script type="text/javascript" src="js/real.js"></script>
+<script type="text/javascript" src="js/mapbaidu/DistanceTool_min.js"></script>
+<script type="text/javascript" src="js/mapbaidu/RectangleZoom_min.js"></script>
+<script type="text/javascript" src="js/mapbaidu/DrawingManager_min.js"></script>
+<script type="text/javascript" src="js/mapbaidu/BMapLib_GeoUtils.js"></script>
 </html>
-<script type="text/javascript">
-    var PageMap = function()
-    {
-        return {
-            defaultOption:
-            {
-                basePath : "",
-                mapDiv : "",
-                mapObj : null,
-                btnOperId:null,
-                btnOperFlag:false,
-                GlobalGeocoder : new BMap.Geocoder(),
-                GlobalPointIcon:null,
-                GlobalLabelOps : {
-                    offset : new BMap.Size(28, 5)    //设置文本偏移量
-                },
-                GlobalLabelOps2:{
-                    offset : new BMap.Size(25, 0)    //设置文本偏移量
-                },
-                mInfoWindow : new BMap.InfoWindow(""),
-                GlobalLabelStyle:{
-                    color : "blue",
-                    fontWeight : "bold",
-                    borderColor : "grey",
-                    paddingLeft : "5px",
-                    paddingRight : "5px",
-                    fontSize : "12px",
-                    height : "20px",
-                    lineHeight : "20px",
-                    fontFamily:"微软雅黑"
-                },
-                GlobalLabelStyle2:{
-                    color : "red",
-                    fontSize : "12px",
-                    height : "20px",
-                    lineHeight : "20px",
-                    fontFamily:"微软雅黑"
-                },
-                GlobalShipIcon : null,
-                realMarkerFly : [],
-                hisDataFly : [], //轨迹数据
-                hisPolyLine : null,//轨迹回放线路
-                hisMarker:null,//轨迹回放时船
-                hisCurrCnt : 0,//轨迹回放的当前记录
-                hisSumCnt : 0,//轨迹的总记录数
-                hisTimeOut:null,
-                hisTime : 1000,
-                hisPlayFlag:false,
-                GlobalShipFly : [],
-                //是否显示地图
-                isShowCity : true
-            },
-            //初始化地图
-            init : function (mapdiv)
-            {
-                this.mapObj = new BMap.Map(mapdiv);
 
-                // 初始化地图,设置中心点坐标和地图级别
-                //this.mapObj.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
-                this.mapObj.centerAndZoom("南京",15);
-                this.mapObj.addControl(new BMap.MapTypeControl({
-                    mapTypes:[
-                        BMAP_NORMAL_MAP,
-                        BMAP_HYBRID_MAP
-                    ]}));
-                // 设置地图显示的城市 此项是必须设置的
-                this.mapObj.setCurrentCity("南京");
-                //开启鼠标滚轮缩放
-                this.mapObj.enableScrollWheelZoom(true);
-                this.mapObj.enableDragging();
-
-                //是否显示地图
-                if(this.defaultOption.isShowCity)
-                {
-                    this.funShowCity();
-                }
-
-                this.defaultOption.GlobalShipIcon = new BMap.Icon("themes/images/shipRed0.png", new BMap.Size(40, 40));
-                this.defaultOption.GlobalPointIcon = new BMap.Icon("themes/images/point.png", new BMap.Size(16, 16));
-                // 添加带有定位的导航控件
-                var navigationControl = new BMap.NavigationControl({
-                    // 靠左上角位置
-                    anchor: BMAP_ANCHOR_TOP_LEFT,
-                    // LARGE类型
-                    type: BMAP_NAVIGATION_CONTROL_LARGE,
-                    // 启用显示定位
-                    enableGeolocation: true
-                });
-                this.mapObj.addControl(navigationControl);
-
-                var me = this;
-                window.setInterval(function(){
-                   me.funTestReal();
-                }, 10000);
-
-                /*
-                $(".btn").hover(
-                    function()
-                    {
-                        if(PageMap.defaultOption.btnOperId != $(this).attr("id"))
-                        {
-                            PageMap.defaultOption.btnOperId = $(this).attr("id");
-                            $(".info").hide();
-                        }
-                        $(this).find(".info").show();
-
-                        PageMap.defaultOption.btnOperFlag = true;
-                        if($(this).attr("id") == "spanreal")
-                        {
-                            mini.layout();
-                        }
-                    },
-                    function()
-                    {
-                        var me = this;
-                        PageMap.defaultOption.btnOperFlag = false;
-                        window.setTimeout(function ()
-                        {
-                            if (PageMap.defaultOption.btnOperFlag == false && $(this).attr("me") != PageMap.defaultOption.btnOperId)
-                            {
-                                $(".info").hide()
-                            }
-                        }, 3000);
-                    }
-                );
-                */
-                $("#bncs_select").attr("disabled", "disabled");
-
-                this.funLoadBase();
-            },
-            funLoadBase:function()
-            {
-                //加载港口
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadPortAll",{}, function (data) {
-                    if(data != null && data.length > 0)
-                    {
-                        for(var nItem = 0; nItem < data.length; nItem++)
-                        {
-                            PageMap.funAddPort(data[nItem], {bgColor:"#ffff00", pgColor:"#ffffff", lineColor:"#6e57fb"});
-                        }
-                    }
-                });
-
-                //加载危险区域
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadDangerZoneAll",{}, function (data) {
-                    if(data != null && data.length > 0)
-                    {
-                        for(var nItem = 0; nItem < data.length; nItem++)
-                        {
-                            PageMap.funAddPort(data[nItem], {bgColor:"#ff6600", pgColor:"#ffffff", lineColor:"red"});
-                        }
-                    }
-                });
-
-                //加载航道
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadDangerZoneSpeedAll",{}, function (data) {
-                    if(data != null && data.length > 0)
-                    {
-                        for(var nItem = 0; nItem < data.length; nItem++)
-                        {
-                            PageMap.funAddDangerZoneSpeed(data[nItem]);
-                        }
-                    }
-                });
-
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadShip",{}, function (data) {
-                    mini.get("in01").setData(data);
-                    mini.get("in02").setData(data);
-                });
-
-                PageMap.funLoadRealInfo();
-                //加载航道
-                window.setInterval(PageMap.funLoadRealInfo, 15000)
-            },
-            funLoadRealInfo : function ()
-            {
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadGpsReal",{shipNo:"", devId:""}, function (data) {
-                    mini.get("flowGrid").setData(data);
-                    PageMap.funShowRealInfo(data);
-                });
-            },
-            funAddDangerZoneSpeed : function (mObj)
-            {
-                var pointFlys = mObj.coordinate.split(";");
-                var eleCircleFly = [];
-                for (var nItem=0; nItem<pointFlys.length; nItem++)
-                {
-                    var tmp = pointFlys[nItem].split(",");
-                    eleCircleFly.push({lng: tmp[0] / 1000000, lat: tmp[1] / 1000000})
-                }
-                //console.log(eleCircleFly)
-                var mPolyLine = this.funAddElecircle(eleCircleFly);
-                var me = this;
-                mPolyLine.addEventListener("mouseover", function(e){
-                    try{
-                        me.defaultOption.mInfoWindow.setContent("航道名称：" + mObj.name + " <br/>最低速度：" + mObj.minSpeed + " <br/>最高速度：" + mObj.maxSpeed + " <br/>描述信息：" + mObj.description);
-                        me.mapObj.openInfoWindow(me.defaultOption.mInfoWindow, e.point);
-                    }catch(e){alert(e)}
-                    mPolyLine.setStrokeWeight(6)
-                    mPolyLine.setFillColor("#ffff00");
-                });
-                mPolyLine.addEventListener("mouseout", function(e){
-                    mPolyLine.setStrokeWeight(4);
-                    mPolyLine.setFillColor("#ffffff");
-                    me.mapObj.closeInfoWindow()
-                });
-            },
-            funAddPort : function(mObj, colorFly)
-            {
-                var mLngLat = this.funPoint(mObj.longitude/1000000, mObj.latitude/1000000);
-                var mCircle2 = this.funAddCircle(mLngLat, mObj.radius);
-                mCircle2.addEventListener("mouseover", function(e){
-                    mCircle2.setStrokeWeight(6)
-                    mCircle2.setFillColor(colorFly.bgColor);
-                });
-                mCircle2.setStrokeColor(colorFly.lineColor)
-                this.funAddLabelSet(mObj.name, mLngLat,{
-                    position : mLngLat,    // 指定文本标注所在的地理位置
-                    offset   : new BMap.Size(-16 * parseInt(mObj.name.length / 2), -35)    //设置文本偏移量
-                });
-
-                mCircle2.addEventListener("mouseout", function(e){
-                    mCircle2.setStrokeWeight(4);
-                    mCircle2.setFillColor(colorFly.pgColor);
-                });
-                this.funAddMarkerInfo(mLngLat, this.defaultOption.GlobalPointIcon);
-            },
-
-            funResetSearch : function()
-            {
-                $("#in01").val("");
-                $("#in02").val("");
-                $("#in03").val("");
-            },
-            funShowCity : function ()
-            {
-                this.mapObj.addControl(new BMap.CityListControl({
-                    anchor: BMAP_ANCHOR_TOP_RIGHT,
-                    offset: new BMap.Size(100, 10)
-                }));
-            },
-            //轨迹回放
-            funHis:function ()
-            {
-                PageMap.defaultOption.hisCurrCnt = 0;
-                PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
-                //console.log(PageMap.defaultOption.hisCurrCnt);
-                //console.log(PageMap.defaultOption.hisSumCnt);
-                $("#bncs_select").val(0);
-                $("#bncs_select").attr("max" , PageMap.defaultOption.hisSumCnt);
-                PageMap.defaultOption.hisPlayFlag = true;
-                $("#bncs_select").attr("disabled", false);
-                //PageMap.funAutoPlay();
-            },
-            //滚动条变化
-            funSliderChange : function ()
-            {
-                //console.log("--------------" + $("#bncs_select").val())
-                PageMap.defaultOption.hisCurrCnt = parseInt($("#bncs_select").val() - 1);
-                PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
-            },
-            //画船的位置
-            funHisMarker : function (paramItem)
-            {
-                if(PageMap.defaultOption.hisMarker == null)
-                {
-                    PageMap.defaultOption.hisMarker = this.funAddMarkerInfo(PageMap.defaultOption.hisDataFly[paramItem],this.defaultOption.GlobalShipIcon);
-                }
-                else
-                {
-                    PageMap.defaultOption.hisMarker.setPosition(PageMap.defaultOption.hisDataFly[paramItem]);
-                }
-            },
-            //自动回放
-            funAutoPlay : function ()
-            {
-                //console.log(PageMap.defaultOption.hisCurrCnt);
-                PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
-                $("#bncs_select").val(PageMap.defaultOption.hisCurrCnt + 1);
-                //设置进度条
-                PageMap.defaultOption.hisCurrCnt += 1;
-                PageMap.funBlack();
-            },
-            //回放停止
-            funStop : function ()
-            {
-                PageMap.defaultOption.hisCurrCnt = 0;
-                PageMap.defaultOption.hisPlayFlag = false;
-                if (PageMap.defaultOption.hisTimeOut != null)
-                {
-                    window.clearTimeout(PageMap.defaultOption.hisTimeOut);
-                    PageMap.defaultOption.hisTimeOut = null;
-                }
-            },
-            //暂停
-            funParse : function()
-            {
-                PageMap.defaultOption.hisPlayFlag = false;
-            },
-            funBlack : function ()
-            {
-                if(PageMap.defaultOption.hisCurrCnt < PageMap.defaultOption.hisSumCnt && PageMap.defaultOption.hisPlayFlag)
-                {
-                    PageMap.defaultOption.hisTimeOut = window.setTimeout(PageMap.funAutoPlay, PageMap.defaultOption.hisTime * parseFloat($("#speed").val()));
-                }
-                else
-                {
-                    return false;
-                }
-            },
-            //播放
-            funPlay : function ()
-            {
-                PageMap.defaultOption.hisPlayFlag = true;
-                PageMap.funAutoPlay();
-            },
-            //重播
-            funRePlay : function()
-            {
-                PageMap.defaultOption.hisPlayFlag = true;
-                PageMap.defaultOption.hisCurrCnt = 0;
-                PageMap.funAutoPlay();
-            },
-            //删除图层
-            funRemoveOverlayByObj : function(mObj)
-            {
-                this.mapObj.removeOverlay(mObj);
-            },
-            //画线路
-            funAddPolyLineInfo : function(pointFly)
-            {
-                var polyLine = new BMap.Polyline(pointFly, {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.4});
-                this.mapObj.addOverlay(polyLine);
-                return polyLine;
-            },
-            //创建图标
-            funAddMarkerInfo : function(paramPoint, paramIcon)
-            {
-                var marker = new BMap.Marker(paramPoint,{icon:paramIcon});
-                this.mapObj.addOverlay(marker);
-                return marker;
-            },
-            // 画圆
-            funAddCircle : function (paramPoint, paramRadius)
-            {
-                var circle = new BMap.Circle(paramPoint, paramRadius);
-                this.mapObj.addOverlay(circle);
-                return circle;
-            },
-            funShowRealInfo : function(data)
-            {
-                //realMarkerFly
-
-                for(var nItem=0; nItem < data.length; nItem++)
-                {
-                    var pfly = PageConvert.funWGS84ToBaidu(data[nItem].longitude/1000000, data[nItem].latitude/1000000)
-                    var mPoint = this.funPoint(pfly[0], pfly[1]);
-                    this.funGlobalGeocoder(data[nItem], mPoint);
-                }
-            },
-            funGlobalGeocoder : function (paramRow, paramPoint)
-            {
-                var me = this;
-                this.defaultOption.GlobalGeocoder.getLocation(paramPoint, function(rs)
-                {
-                    me.funDrawCarCallBackInfo(paramRow, paramPoint, me.funGeocoderAddressInfo(rs));
-                });
-            },
-            funDrawCarCallBackInfo : function (paramRow, paramPoint, paramPlace)
-            {
-                var flag = true;
-                var tmpContent = '<table style="font-size:12px;">'+
-                        '<tr>'+
-                        '<td>设<span style="padding:0 3px;"></span>备<span style="padding:0 3px;"></span>码：'+paramRow.devId+'</td>'+
-                        '<td style="padding-left: 10px;">船<span style="padding:0 3px;"></span>号<span style="padding:0 3px;"></span>码：'+paramRow.shipNo+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<tr>'+
-                        '<td>时<span style="padding:0 12px;"></span>间：'+paramRow.gpsTime+'</td>'+
-                        '<td style="padding-left: 10px;">速<span style="padding:0 12px;"></span>度：'+paramRow.speed+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td>设备状态：'+paramRow.speed+'</td>'+
-                        '<td style="padding-left: 10px;">货物类型：'+paramRow.speed+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<tr>'+
-                        '<td>发货单位：'+paramRow.speed+'</td>'+
-                        '<td style="padding-left: 10px;">收货单位：南京腾飞科技信息技术责任有限公司</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td>预报吨位：'+paramRow.speed+'</td>'+
-                        '<td style="padding-left: 10px;">实发吨位：'+paramRow.speed+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td>船长姓名：赵阳</td>'+
-                        '<td style="padding-left: 10px;">联系电话：13770727896</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td>离港日期：'+paramRow.gpsTime+'</td>'+
-                        '<td style="padding-left: 10px;">预计到港：'+paramRow.gpsTime+'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td colspan="2">详细信息：'+ paramPlace +'</td>'+
-                        '</tr>'+
-                        '<tr>'+
-                        '<td colspan="2">' +
-                        '<input type="button" value="视频"/>' +
-                        '<input type="button" value="视频"/>' +
-                        '<input type="button" value="视频"/>' +
-                        '</td>'+
-                        '</tr>'+
-                        '</table>';
-                for(var nItem=0; nItem<this.defaultOption.GlobalShipFly.length; nItem++)
-                {
-                    if(this.defaultOption.GlobalShipFly[nItem].devId == paramRow.devId)
-                    {
-                        this.defaultOption.GlobalShipFly[nItem].marker.setPosition(paramPoint);
-                        this.defaultOption.GlobalShipFly[nItem].marker.setIcon(this.funShipIconInfo(paramRow.angle));
-                        this.defaultOption.GlobalShipFly[nItem].infoWindow.setContent(tmpContent);
-                        flag = false;
-                        break;
-                    }
-                }
-
-                if (flag)
-                {
-                    var mMarkerObj = {devId: null, marker: null, label: null, infoWindow: null};
-                    mMarkerObj.devId = paramRow.devId;
-                    mMarkerObj.infoWindow = new BMap.InfoWindow(tmpContent);
-
-                    mMarkerObj.label = new BMap.Label(paramRow.shipNo, this.defaultOption.GlobalLabelOps2);
-                    mMarkerObj.label.setStyle(this.defaultOption.GlobalLabelStyle);
-
-                    mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShipIconInfo(paramRow.angle));
-                    //mMarkerObj.marker.setLabel(mMarkerObj.label);
-                    this.defaultOption.GlobalShipFly.push(mMarkerObj);
-                    mMarkerObj.marker.addEventListener("click", function(e){
-                        mMarkerObj.marker.openInfoWindow(mMarkerObj.infoWindow);
-                    });
-                }
-            },
-            //地理位置解析公共部分
-            funGeocoderAddressInfo : function(rs)
-            {
-                var addComp = rs.addressComponents;
-                var tmp = "";
-                //省
-                if(addComp.province != "")
-                {
-                    tmp += addComp.province;
-                }
-
-                //市
-                if(addComp.city != "")
-                {
-                    tmp += "," + addComp.city;
-                }
-
-                //县
-                if(addComp.district != "")
-                {
-                    tmp += "," + addComp.district;
-                }
-
-                //街道
-                if(addComp.street != "")
-                {
-                    tmp += "," + addComp.street;
-                }
-
-                //街道号
-                if(addComp.streetNumber != "")
-                {
-                    tmp += "," + addComp.streetNumber;
-                }
-                return tmp;
-            },
-            //设置图标方向
-            funShipIconInfo : function(paramVal)
-            {
-                var _mIndex = parseInt((eval(paramVal) + 22.5)/45);
-                if(eval(paramVal) < 0)
-                {
-                    _mIndex = parseInt((eval(paramVal) + 22.5 + 360)/45);
-                }
-                var tmp =  _mIndex % 8;
-                this.defaultOption.GlobalShipIcon.setImageUrl(this.defaultOption.basePath + "themes/images/shipRed"+tmp+".png");
-                return this.defaultOption.GlobalShipIcon;
-            },
-            //画电子圈栏
-            funAddElecircle : function (data)
-            {
-                 var polygon = new BMap.Polygon(data, {strokeColor:"#3a6bdb",fillColor:"#fff", strokeWeight:4, strokeOpacity:0,fillOpacity:0,});
-                this.mapObj.addOverlay(polygon);
-                return polygon;
-            },
-            funAddLabel : function (paramTitle, paramPoint)
-            {
-                var opts = {
-                    position : paramPoint,    // 指定文本标注所在的地理位置
-                    offset   : new BMap.Size(-20, -15)    //设置文本偏移量
-                }
-                return this.funAddLabelSet(paramTitle, paramPoint, opts);
-            },
-            funAddLabelSet : function (paramTitle, paramPoint, paramSize)
-            {
-                var label = new BMap.Label(paramTitle, paramSize);  // 创建文本标注对象
-                label.setStyle(this.defaultOption.GlobalLabelStyle2);
-                this.mapObj.addOverlay(label);
-                return label;
-            },
-            funPointFly : function (data)
-            {
-                var pointFly = [];
-                for(var nItem=0; nItem < data.length; nItem++)
-                {
-                    pointFly.push(this.funPoint(data[nItem].lng, data[nItem].lat));
-                }
-                return pointFly;
-            },
-            funPoint : function(lng, lat)
-            {
-                return new BMap.Point(lng, lat);
-            },
-            funAddTest()
-            {
-                // 画电子圈栏
-                /*var eleCircleFly = [{lng: 118.773676, lat: 32.085336},{lng: 118.763903, lat: 32.062083},{lng: 118.780575, lat: 32.051066},{lng: 118.799547, lat: 32.060614},{lng: 118.821394, lat: 32.109318},{lng: 118.792074, lat: 32.095859},{lng: 118.768789, lat: 32.098307},{lng: 118.773676, lat: 32.085336}];
-                var mPolyLine = this.funAddElecircle(eleCircleFly);
-                var me = this;
-                mPolyLine.addEventListener("mouseover", function(e){
-                    try{
-                        me.defaultOption.mInfoWindow.setContent("电子圈栏：XXXXXXXXXXX <p>描述：sdsdsdsd");
-                        me.mapObj.openInfoWindow(me.defaultOption.mInfoWindow, e.point);
-                    }catch(e){alert(e)}
-                    mPolyLine.setStrokeWeight(6)
-                    mPolyLine.setFillColor("#ffff00");
-                });
-                mPolyLine.addEventListener("mouseout", function(e){
-                    mPolyLine.setStrokeWeight(4);
-                    mPolyLine.setFillColor("#ffffff");
-                    me.mapObj.closeInfoWindow()
-                });*/
-
-                /*
-                // 画圆
-                var mCircleLngLat = new BMap.Point(118.803676, 32.085336);
-                var mCircle = this.funAddCircle(mCircleLngLat, 1200);
-                mCircle.addEventListener("mouseover", function(e){
-                    mCircle.setStrokeWeight(6)
-                    mCircle.setFillColor("#ffff00");
-                });
-                mCircle.addEventListener("mouseout", function(e){
-                    mCircle.setStrokeWeight(4);
-                    mCircle.setFillColor("#ffffff");
-                });
-
-
-                var mCircleLngLat = new BMap.Point(118.803676, 32.125336);
-                var mCircle2 = this.funAddCircle(mCircleLngLat, 1200);
-                mCircle2.addEventListener("mouseover", function(e){
-                    mCircle2.setStrokeWeight(6)
-                    mCircle2.setFillColor("#ffff00");
-                });
-                this.funAddLabel("XXX港口", mCircleLngLat);
-
-                mCircle2.addEventListener("mouseout", function(e){
-                    mCircle2.setStrokeWeight(4);
-                    mCircle2.setFillColor("#ffffff");
-                });*/
-
-                /*var mPolyLineFly = [{lng: 118.8118, lat: 32.050454},{lng: 118.813022, lat: 32.054555},{lng: 118.8141, lat: 32.057737},{lng: 118.814603, lat: 32.061777},{lng: 118.815034, lat: 32.065081},{lng: 118.815322, lat: 32.06808}];
-                this.funAddPolyLineInfo(this.funPointFly(mPolyLineFly));*/
-
-                /*var me = this;
-                window.setTimeout(function () {
-                    me.funTestReal();
-                }, 3000)*/
-
-                //console.log(PageConvert.funBaiduToWGS84(118.774503, 32.035257));
-            },
-            funTestReal : function ()
-            {
-                var realFly = [];
-                for(var nItem=0; nItem < 20; nItem++)
-                {
-                    realFly.push({devId:"10010100" + nItem, shipNo: "2120" + nItem, speed: parseInt(20 +  100 * Math.random(1000*nItem)), gtime:"2018-01-03 01:12:21", lng:118.8 + Math.random(1000)/10, lat:32.0 + Math.random(1000)/10, fx : 20 + 200 * Math.random(1000*nItem)});
-                }
-                this.funShowRealInfo(realFly);
-            },
-            //清除轨迹信息
-            funClearHisInfo : function ()
-            {
-                if (this.defaultOption.hisPolyLine != null)
-                {
-                    this.mapObj.removeOverlay(this.defaultOption.hisPolyLine);
-                    this.defaultOption.hisPolyLine = null;
-                }
-
-                if (this.defaultOption.hisMarker != null)
-                {
-                    this.mapObj.removeOverlay(this.defaultOption.hisMarker);
-                    this.defaultOption.hisMarker = null;
-                }
-                this.defaultOption.hisDataFly = [];
-            },
-            funTestHis : function ()
-            {
-
-                this.funClearHisInfo();
-                var hisFlys = [{lng: 118.774431, lat: 32.0344},
-                    {lng: 118.774503, lat: 32.035257},
-                    {lng: 118.774808, lat: 32.036084},
-                    {lng: 118.77488, lat: 32.036925},
-                    {lng: 118.775024, lat: 32.037691},
-                    {lng: 118.775024, lat: 32.038364},
-                    {lng: 118.77506, lat: 32.039206},
-                    {lng: 118.7747, lat: 32.040614},
-                    {lng: 118.774395, lat: 32.04196},
-                    {lng: 118.774054, lat: 32.043062},
-                    {lng: 118.773586, lat: 32.044195},
-                    {lng: 118.77276, lat: 32.045664},
-                    {lng: 118.772185, lat: 32.046628},
-                    {lng: 118.771502, lat: 32.047378},
-                    {lng: 118.769814, lat: 32.049076},
-                    {lng: 118.76852, lat: 32.050071},
-                    {lng: 118.767083, lat: 32.05076},
-                    {lng: 118.765591, lat: 32.051005},
-                    {lng: 118.764226, lat: 32.051494},
-                    {lng: 118.76313, lat: 32.052275},
-                    {lng: 118.761729, lat: 32.053239},
-                    {lng: 118.759501, lat: 32.055029},
-                    {lng: 118.758405, lat: 32.056115},
-                    {lng: 118.756411, lat: 32.057722},
-                    {lng: 118.756016, lat: 32.058609},
-                    {lng: 118.75598, lat: 32.059711},
-                    {lng: 118.756393, lat: 32.063965},
-                    {lng: 118.756195, lat: 32.065265},
-                    {lng: 118.75598, lat: 32.067116}];
-
-                this.defaultOption.hisDataFly =  this.funPointFly(hisFlys);
-                this.defaultOption.hisPolyLine = this.funAddPolyLineInfo(this.defaultOption.hisDataFly);
-                this.funHis();
-            }
-        }
-    }();
-
-
-    $(function () {
-        PageMap.init("allmap");
-        PageMap.funAddTest();
-    })
-</script>
