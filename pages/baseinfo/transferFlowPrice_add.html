@@ -1,0 +1,114 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/transferFlowPrice_add.js"></script>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_transferFlowPrice_add" style="width: 100%;height: 100%;" allowResize="false">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
+        <div id="transferFlowPriceFormAdd">
+       
+                	<input id="id" name="id"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">运价信息id：</td>
+                    <td class="form-content">
+                        <input name="transferPriceId" id="transferPriceId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="运价信息id不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">流向编号：</td>
+                    <td class="form-content">
+                        <input name="flowId" id="flowId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="流向编号不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">运价：</td>
+                    <td class="form-content">
+                        <input name="unitPrice" id="unitPrice" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="运价不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">参考运价：</td>
+                    <td class="form-content">
+                        <input name="suggestUnitPrice" id="suggestUnitPrice" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="参考运价不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">执行开始日期：</td>
+                    <td class="form-content">
+                    	<input name="startDate" id="startDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
+                    </td>
+                    
+                    
+                    
+                </tr>
+                <tr>
+                    <td class="form-label">执行结束日期：</td>
+                    <td class="form-content">
+                    	<input name="endDate" id="endDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
+                    </td>
+                    
+                    
+                    
+                </tr>
+                <tr>
+                    <td class="form-label">creator：</td>
+                    <td class="form-content">
+                        <input name="creator" id="creator" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="creator不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">created：</td>
+                    <td class="form-content">
+                        <input name="created" id="created" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="created不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">updater：</td>
+                    <td class="form-content">
+                        <input name="updater" id="updater" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="updater不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">updated：</td>
+                    <td class="form-content">
+                        <input name="updated" id="updated" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="updated不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">isDeleted：</td>
+                    <td class="form-content">
+                        <input name="isDeleted" id="isDeleted" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="isDeleted不能为空"/>
+                    </td>
+                </tr>
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageTransferFlowPriceAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageTransferFlowPriceAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>
