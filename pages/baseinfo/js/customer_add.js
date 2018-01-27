@@ -60,7 +60,6 @@ var PageCustomerAdd = function(){
                      return;
                  }
             }
-            
             var me = this;
             var obj = this.customerForm.getData(true);
             var goodsTypeFly = obj.goodsType.split(",");

@@ -54,7 +54,7 @@ var PageCustomer = function(){
             {
                 return "临时"
             }
-            return e.value;
+            return e.value; 
         },
         funRendererGoodsType : function (e)
         {
