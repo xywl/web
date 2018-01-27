@@ -7,11 +7,9 @@ var PageTransferFlowPrice = function(){
         },
         init :function ()
         {
-            mini.parse();
             this.basePath = PageMain.basePath;
-            this.transferFlowPriceGrid = mini.get("transferFlowPriceGrid");
+            this.transferFlowPriceGrid = PageTransferPrice.defaultOption.transferFlowPriceGrid;
             this.transferFlowPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferFlowPrice/getList")
-            this.funSearch();
         },
         funSearch : function()
         {

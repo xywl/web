@@ -3,11 +3,18 @@ var PageTransferPrice = function(){
     return {
         defaultOption: {
             basePath:"",
-            transferPriceGrid : null
+            transferFlowPriceGrid:null,
+            transferPriceGrid : null,
+            transferPriceId:0,
+            detailGridForm:null
         },
         init :function ()
         {
             mini.parse();
+            this.defaultOption.transferFlowPriceGrid = mini.get("transferFlowPriceGrid");
+            this.defaultOption.transferFlowPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferFlowPrice/getList");
+            this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
+
             this.basePath = PageMain.basePath;
             this.transferPriceGrid = mini.get("transferPriceGrid");
             this.transferPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferPrice/getList")
@@ -113,7 +120,17 @@ var PageTransferPrice = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
-        }
+        },
+        onShowRowDetail : function (e)
+        {
+            var grid = e.sender;
+            var row = e.record;
+            var td = grid.getRowDetailCellEl(row);
+            td.appendChild(PageTransferPrice.defaultOption.detailGridForm);
+            PageTransferPrice.defaultOption.detailGridForm.style.display = "block";
+            PageTransferPrice.defaultOption.transferPriceId = row.id;
+            PageTransferPrice.defaultOption.transferFlowPriceGrid.load({queryParamFlag: 1 });
+        },
     }
 }();
 
