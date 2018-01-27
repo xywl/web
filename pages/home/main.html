@@ -70,8 +70,8 @@
                 <b id="jt"></b>
                 <div class="user-info">
                     <input type="hidden" value="" id="lesuserid">
-                    <p id="username">admin</p>
-                    <p id="realname">赵子龙</p>
+                    <p id="username"></p>
+                    <p id="realname"></p>
                 </div>
                 <div class="userid">
                     <ul id="userManage">
@@ -124,7 +124,7 @@
                 <ul class="nav1">
                     <li onclick="PageHome.funAddTab(this, '../khrw/customerTask.html')">客户下单管理</li>
                     <li onclick="PageHome.funAddTab(this, '../jk/capacityScheduling.html')">运力调度管理</li>
-                    <li onclick="PageHome.funAddTab(this, '../baseinfo/leftDispatchInfo.html')">临调发布管理</li>
+                    <li onclick="PageHome.funAddTab(this, '../jk/xxx.html')">临调发布管理</li>
                     <li onclick="PageHome.funAddTab(this, '../baseinfo/sailingInfo.html')">航次信息管理</li>
                     <li onclick="PageHome.funAddTab(this, '../khrw/xxx.html')">磅差信息管理</li>
                     <li onclick="PageHome.funAddTab(this, '../khrw/xxx.html')">客户任务查看</li>
@@ -156,10 +156,19 @@
                     <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">
                 </div>
                 <ul class="nav1">
-                    <li onclick="PageHome.funAddTab(this, '../systeminfo/userProfile.html')">用户信息管理</li>
-                    <li onclick="PageHome.funAddTab(this, '../systeminfo/roles.html')">角色信息管理</li>
-                    <li onclick="PageHome.funAddTab(this, '../systeminfo/dataDictionary.html')">数据字典管理</li>
-                    <li onclick="PageHome.funAddTab(this, '../systeminfo/actionResources.html')">操作资源管理</li>
+                    <li onclick="PageHome.funAddTab(this, '../sysinfo/userProfile.html')">用户信息管理</li>
+                    <li onclick="PageHome.funAddTab(this, '../sysinfo/roles.html')">角色信息管理</li>
+                    <li onclick="PageHome.funAddTab(this, '../sysinfo/dataDictionary.html')">数据字典管理</li>
+                    <li onclick="PageHome.funAddTab(this, '../sysinfo/actionResources.html')">操作资源管理</li>
+                </ul>
+            </li>
+            <li class="pli">
+                <div style="padding: 6px 0;">
+                    <span id="span1">系统管理</span>
+                    <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">
+                </div>
+                <ul class="nav1">
+                    <li onclick="PageHome.funAddTab(this, '../qxgl/roleManagement.html')">角色管理</li>
                 </ul>
             </li>
         </ol>
@@ -260,6 +269,24 @@
                 }
             },1000);
         },
+        funGetUserInfo: function()
+        {
+            var token = $.cookie('token');
+            if (token != undefined && token != null ) {
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/user/info", {"token": token}, function (data) {
+                    if (data.success)
+                    {
+                        var result = data.data;
+                        $('#username').html(result.profile.nickName);
+                        $('#realname').html(result.profile.realName);
+                    }
+                    else
+                    {
+                        PageMain.funShowMessageBox(data.msg);
+                    }
+                });
+            }
+        },
         funResize : function()
         {
             var menu_width = 193;
@@ -317,6 +344,7 @@
 
     $(function(){
         PageHome.init();
+        PageHome.funGetUserInfo();
     })
 
 </script>
