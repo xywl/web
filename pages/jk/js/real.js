@@ -226,42 +226,48 @@ var PageMap = function()
                 }
             });
         },
-        funStateListchangedInfo : function ()
+        //设置可见区域
+        funSetBoundsInfo : function (data)
         {
-            if(PageMap.defaultOption.showBoundsFlag)
+            if(PageMap.defaultOption.showBoundsFlag && data.length > 0)
             {
                 var maxLng =0, maxLat = 0, minLng = 10000000000, minLat = 10000000000;
-                PageMap.defaultOption.GlobalShipFly.forEach(function (mObj)
+                data.forEach(function (mObj)
                 {
-                    if(mObj.lnglat.lng > maxLng)
+                    var pfly = PageConvert.funWGS84ToBaidu(mObj.longitude/1000000, mObj.latitude/1000000);
+
+                    if(pfly[0] > maxLng)
                     {
-                        maxLng = mObj.lnglat.lng;
+                        maxLng = pfly[0];
                     }
-                    if(mObj.lnglat.lat > maxLat)
+                    if(pfly[1] > maxLat)
                     {
-                        maxLat = mObj.lnglat.lat;
+                        maxLat = pfly[1];
                     }
-                    if(mObj.lnglat.lng < minLng)
+                    if(pfly[0] < minLng)
                     {
-                        minLng = mObj.lnglat.lng;
+                        minLng = pfly[0];
                     }
-                    if(mObj.lnglat.lat < minLat)
+                    if(pfly[1] < minLat)
                     {
-                        minLat = mObj.lnglat.lat;
+                        minLat = pfly[1];
                     }
                 });
                 if (maxLng > 0 )
                 {
                     var mBounds = new BMap.Bounds(new BMap.Point(maxLng, maxLat),new BMap.Point(minLng, minLat));
                     try {
-                        console.log(this.mapObj.getCenter());
-                        this.mapObj.setCenter(new BMap.Point(maxLng, maxLat))
                         BMapLib.AreaRestriction.setBounds(PageMap.mapObj, mBounds);
+                        var mLngLat = this.mapObj.getCenter();
+                        this.mapObj.setCenter(new BMap.Point(parseFloat(mLngLat.lng) + 0.11, mLngLat.lat));
                     } catch (e) {
                     }
                     PageMap.defaultOption.showBoundsFlag = false;
                 }
             }
+        },
+        funStateListchangedInfo : function ()
+        {
             if (this.defaultOption.statelist.getValue() == "")
             {
                 this.defaultOption.GlobalShipFly.forEach(function (mObj) {
@@ -872,6 +878,7 @@ var PageMap = function()
                 var mPoint = this.funPoint(pfly[0], pfly[1]);
                 this.funGlobalGeocoder(data[nItem], mPoint);
             }
+            this.funSetBoundsInfo(data);
             this.funStateListchangedInfo();
             //window.setTimeout(this.funStateListchangedInfo, 6000);
         },

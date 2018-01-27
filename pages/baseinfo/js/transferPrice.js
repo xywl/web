@@ -1,30 +1,40 @@
 
-var PageCustomer = function(){
+var PageTransferPrice = function(){
     return {
         defaultOption: {
             basePath:"",
-            zero :"000000000",
-            customerGrid : null
+            transferFlowPriceGrid:null,
+            transferPriceGrid : null,
+            transferPriceId:0,
+            detailGridForm:null
         },
         init :function ()
         {
             mini.parse();
+            this.defaultOption.transferFlowPriceGrid = mini.get("transferFlowPriceGrid");
+            this.defaultOption.transferFlowPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferFlowPrice/getList");
+            this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
+
             this.basePath = PageMain.basePath;
-            this.customerGrid = mini.get("customerGrid");
-            this.customerGrid.setUrl(PageMain.defaultOption.httpUrl + "/customer/getList")
+            this.transferPriceGrid = mini.get("transferPriceGrid");
+            this.transferPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferPrice/getList")
             this.funSearch();
         },
         funSearch : function()
         {
-        	var customerForm = new mini.Form("customerForm");
-        	this.customerGrid.load(customerForm.getData());
+        	var transferPriceForm = new mini.Form("transferPriceForm");
+        	this.transferPriceGrid.load(transferPriceForm.getData());
+        },
+        funOperRenderer : function(e)
+        {
+            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageTransferPrice.funDetail()"></a>';
         },
         funReset : function()
         {
-        	var customerForm = new mini.Form("customerForm");
-            customerForm.setData();
-            mini.get("queryParamFlag").setValue("1");
-            this.customerGrid.load(customerForm.getData());
+        	var transferPriceForm = new mini.Form("transferPriceForm");
+        	transferPriceForm.setData();
+        	mini.get("queryParamFlag").setValue("1");
+            this.transferPriceGrid.load(transferPriceForm.getData());
         },
         funAdd : function()
         {
@@ -33,7 +43,7 @@ var PageCustomer = function(){
         },
         funModify : function()
         {
-        	var row = this.customerGrid.getSelected();
+        	var row = this.transferPriceGrid.getSelected();
             if(row)
             {
             	var paramData = {action: "modify", row: row, title:"编辑数据"};
@@ -44,75 +54,32 @@ var PageCustomer = function(){
             	PageMain.funShowMessageBox("请选择一条记录");
             }
         },
-        funRendererType : function (e)
-        {
-            if (e.value == 1)
-            {
-                return "长期"
-            }
-            else if (e.value == 2)
-            {
-                return "临时"
-            }
-            return e.value; 
-        },
-        funRendererGoodsType : function (e)
-        {
-           var mgoodsType = parseInt(e.value).toString(2);
-            mgoodsType = PageCustomer.defaultOption.zero.substring(mgoodsType.length) + mgoodsType;
-            var tmp = "";
-            if (mgoodsType.charAt(8) == "1")
-            {
-                tmp += "孰料;";
-            }
-
-            if (mgoodsType.charAt(7) == "1")
-            {
-                tmp += "电煤;";
-            }
-
-            if (mgoodsType.charAt(6) == "1")
-            {
-                tmp += "集装箱;";
-            }
-
-            if (mgoodsType.charAt(0) == "1")
-            {
-                tmp += "其他;";
-            }
-
-            return tmp;
-        },
-        funOperRenderer : function(e)
-        {
-            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageCustomer.funDetail()"></a>';
-        },
         funDetail : function()
         {
-            var row = this.customerGrid.getSelected();
-            var paramData = {action: "oper", row:row, title:"查看详细"};
-            this.funOpenInfo(paramData);
+        	var row = this.transferPriceGrid.getSelected();
+        	var paramData = {action: "oper", row:row, title:"查看详细"};
+        	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
         {
         	var me = this;
         	mini.open({
-                url: PageMain.funGetRootPath() + "/pages/baseinfo/customer_add.html",
+                url: PageMain.funGetRootPath() + "/pages/baseinfo/transferPrice_add.html",
                 title: paramData.title,
-                width: 850,
-                height: 30 *  11 + 65,
+                width: 650,
+                height: 30 *  4 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
-                    iframe.contentWindow.PageCustomerAdd.funSetData(paramData);
+                    iframe.contentWindow.PageTransferPriceAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.customerGrid.reload();
+                	me.transferPriceGrid.reload();
                 }
             })
         },
         funDelete : function()
         {
-            var row = this.customerGrid.getSelected();
+            var row = this.transferPriceGrid.getSelected();
             var me = this;
             if(row)
             {
@@ -120,7 +87,7 @@ var PageCustomer = function(){
                     if (action == "ok") 
                     {
                         $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/customer/del",
+                            url : PageMain.defaultOption.httpUrl + "/transferPrice/del",
                             type: 'POST',
                             data: {"id": row.id},
                             dataType: 'json',
@@ -132,7 +99,7 @@ var PageCustomer = function(){
                                      mini.alert("操作成功", "提醒", function(){
                                          if(data.success)
                                          {
-                                        	 me.customerGrid.reload();
+                                        	 me.transferPriceGrid.reload();
                                          }
                                      });
                                  }
@@ -153,10 +120,20 @@ var PageCustomer = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
-        }
+        },
+        onShowRowDetail : function (e)
+        {
+            var grid = e.sender;
+            var row = e.record;
+            var td = grid.getRowDetailCellEl(row);
+            td.appendChild(PageTransferPrice.defaultOption.detailGridForm);
+            PageTransferPrice.defaultOption.detailGridForm.style.display = "block";
+            PageTransferPrice.defaultOption.transferPriceId = row.id;
+            PageTransferPrice.defaultOption.transferFlowPriceGrid.load({transferPriceId:row.id, queryParamFlag: 1 });
+        },
     }
 }();
 
 $(function(){
-	PageCustomer.init();
+	PageTransferPrice.init();
 });

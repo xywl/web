@@ -1,30 +1,33 @@
 
-var PageCustomer = function(){
+var PageUserProfile = function(){
     return {
         defaultOption: {
             basePath:"",
-            zero :"000000000",
-            customerGrid : null
+            userProfileGrid : null
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.customerGrid = mini.get("customerGrid");
-            this.customerGrid.setUrl(PageMain.defaultOption.httpUrl + "/customer/getList")
+            this.userProfileGrid = mini.get("userProfileGrid");
+            this.userProfileGrid.setUrl(PageMain.defaultOption.httpUrl + "/user/getList")
             this.funSearch();
         },
         funSearch : function()
         {
-        	var customerForm = new mini.Form("customerForm");
-        	this.customerGrid.load(customerForm.getData());
+        	var userProfileForm = new mini.Form("userProfileForm");
+        	this.userProfileGrid.load(userProfileForm.getData());
+        },
+        funOperRenderer : function(e)
+        {
+            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageUserProfile.funDetail()"></a>';
         },
         funReset : function()
         {
-        	var customerForm = new mini.Form("customerForm");
-            customerForm.setData();
-            mini.get("queryParamFlag").setValue("1");
-            this.customerGrid.load(customerForm.getData());
+        	var userProfileForm = new mini.Form("userProfileForm");
+        	userProfileForm.setData();
+        	mini.get("queryParamFlag").setValue("1");
+            this.userProfileGrid.load(userProfileForm.getData());
         },
         funAdd : function()
         {
@@ -33,7 +36,7 @@ var PageCustomer = function(){
         },
         funModify : function()
         {
-        	var row = this.customerGrid.getSelected();
+        	var row = this.userProfileGrid.getSelected();
             if(row)
             {
             	var paramData = {action: "modify", row: row, title:"编辑数据"};
@@ -44,75 +47,32 @@ var PageCustomer = function(){
             	PageMain.funShowMessageBox("请选择一条记录");
             }
         },
-        funRendererType : function (e)
-        {
-            if (e.value == 1)
-            {
-                return "长期"
-            }
-            else if (e.value == 2)
-            {
-                return "临时"
-            }
-            return e.value; 
-        },
-        funRendererGoodsType : function (e)
-        {
-           var mgoodsType = parseInt(e.value).toString(2);
-            mgoodsType = PageCustomer.defaultOption.zero.substring(mgoodsType.length) + mgoodsType;
-            var tmp = "";
-            if (mgoodsType.charAt(8) == "1")
-            {
-                tmp += "孰料;";
-            }
-
-            if (mgoodsType.charAt(7) == "1")
-            {
-                tmp += "电煤;";
-            }
-
-            if (mgoodsType.charAt(6) == "1")
-            {
-                tmp += "集装箱;";
-            }
-
-            if (mgoodsType.charAt(0) == "1")
-            {
-                tmp += "其他;";
-            }
-
-            return tmp;
-        },
-        funOperRenderer : function(e)
-        {
-            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageCustomer.funDetail()"></a>';
-        },
         funDetail : function()
         {
-            var row = this.customerGrid.getSelected();
-            var paramData = {action: "oper", row:row, title:"查看详细"};
-            this.funOpenInfo(paramData);
+        	var row = this.userProfileGrid.getSelected();
+        	var paramData = {action: "oper", row:row, title:"查看详细"};
+        	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
         {
         	var me = this;
         	mini.open({
-                url: PageMain.funGetRootPath() + "/pages/baseinfo/customer_add.html",
+                url: PageMain.funGetRootPath() + "/pages/sysinfo/userProfile_add.html",
                 title: paramData.title,
-                width: 850,
-                height: 30 *  11 + 65,
+                width: 650,
+                height: 30 *  12 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
-                    iframe.contentWindow.PageCustomerAdd.funSetData(paramData);
+                    iframe.contentWindow.PageUserProfileAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.customerGrid.reload();
+                	me.userProfileGrid.reload();
                 }
             })
         },
         funDelete : function()
         {
-            var row = this.customerGrid.getSelected();
+            var row = this.userProfileGrid.getSelected();
             var me = this;
             if(row)
             {
@@ -120,7 +80,7 @@ var PageCustomer = function(){
                     if (action == "ok") 
                     {
                         $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/customer/del",
+                            url : PageMain.defaultOption.httpUrl + "/user/del",
                             type: 'POST',
                             data: {"id": row.id},
                             dataType: 'json',
@@ -132,7 +92,7 @@ var PageCustomer = function(){
                                      mini.alert("操作成功", "提醒", function(){
                                          if(data.success)
                                          {
-                                        	 me.customerGrid.reload();
+                                        	 me.userProfileGrid.reload();
                                          }
                                      });
                                  }
@@ -158,5 +118,5 @@ var PageCustomer = function(){
 }();
 
 $(function(){
-	PageCustomer.init();
+	PageUserProfile.init();
 });
