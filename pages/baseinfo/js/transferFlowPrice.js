@@ -29,7 +29,7 @@ var PageTransferFlowPrice = function(){
         },
         funAdd : function()
         {
-        	var paramData = {action: "add", row:{}, title:"新增数据"};
+        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId}, title:"新增数据"};
             this.funOpenInfo(paramData);
         },
         funModify : function()
@@ -58,7 +58,7 @@ var PageTransferFlowPrice = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/transferFlowPrice_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  12 + 65,
+                height: 30 *  10 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageTransferFlowPriceAdd.funSetData(paramData);

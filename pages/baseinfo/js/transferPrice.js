@@ -67,7 +67,7 @@ var PageTransferPrice = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/transferPrice_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  9 + 65,
+                height: 30 *  4 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageTransferPriceAdd.funSetData(paramData);
@@ -129,7 +129,7 @@ var PageTransferPrice = function(){
             td.appendChild(PageTransferPrice.defaultOption.detailGridForm);
             PageTransferPrice.defaultOption.detailGridForm.style.display = "block";
             PageTransferPrice.defaultOption.transferPriceId = row.id;
-            PageTransferPrice.defaultOption.transferFlowPriceGrid.load({queryParamFlag: 1 });
+            PageTransferPrice.defaultOption.transferFlowPriceGrid.load({transferPriceId:row.id, queryParamFlag: 1 });
         },
     }
 }();
