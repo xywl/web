@@ -2,7 +2,8 @@ var PageLogin = function(){
     return {
         defaultOption: {
             basePath:"",
-            bigShipStateGrid : null
+            bigShipStateGrid : null,
+            customerLogin: false
         },
         init :function ()
         {
@@ -55,7 +56,7 @@ var PageLogin = function(){
                         }
                         var token = result.data.token;
                         $.cookie('token', token, { path: '/' });
-                        window.location.href = "../home/main.html";
+                        window.location.href = PageMain.funGetRootPath() + "/pages/home/main.html";
                     }
                     else {
                         mini.alert(result.msg);
@@ -65,6 +66,27 @@ var PageLogin = function(){
                     mini.alert("网络异常");
                 },
             });
+        },
+        funJudgeLogin: function() {
+            var token = $.cookie("token");
+            var isLogin = function() {
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/user/info", {"token": token}, function (data) {
+                    if (data.success)
+                    {
+                        customerLogin = true;
+                        window.location.href = PageMain.funGetRootPath() + "/pages/home/main.html";
+                    }
+                    else
+                    {
+                        $.cookie('token', null, { expires: -1, path: '/' });
+                    }
+                });
+            }
+            if (token != undefined && token != null) {
+                isLogin();
+            } else {
+                customerLogin = false;
+            }
         },
         funRemenberKey: function(e)
         {
@@ -84,4 +106,5 @@ var PageLogin = function(){
 
 $(function(){
     PageLogin.init();
+    PageLogin.funJudgeLogin();
 });

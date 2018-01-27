@@ -4,7 +4,9 @@ var PageLeftDispatchInfoAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
-            leftDispatchInfoForm : null
+            leftDispatchInfoForm : null,
+            infoData:[]
+
 
         },
         init :function ()
@@ -13,6 +15,7 @@ var PageLeftDispatchInfoAdd = function(){
             this.basePath = PageMain.basePath;
             this.leftDispatchInfoForm = new mini.Form("leftDispatchInfoFormAdd");
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}])
+            this.funInitPortDate();
         },
         funSetData : function(data)
         {
@@ -82,6 +85,25 @@ var PageLeftDispatchInfoAdd = function(){
         funCancel : function()
         {
             PageMain.funCloseWindow("cancel");
+        },
+        funInitPortDate:function () {
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/customerTaskFlow/queryByTaskNo",
+                type : 'POST',
+                dataType: 'json',
+                success: function (data)
+                {
+                    if (data.success)
+                    {
+                        PageLeftDispatchInfoAdd.infoData = data.data.list;
+                        mini.get("taskNo").setData(PageLeftDispatchInfoAdd.infoData);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    PageMain.funShowMessageBox("获取客户任务单号失败");
+                }
+            });
         }
     }
 }();
