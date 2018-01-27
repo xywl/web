@@ -3,6 +3,7 @@ var PageCustomer = function(){
     return {
         defaultOption: {
             basePath:"",
+            zero :"000000000",
             customerGrid : null
         },
         init :function ()
@@ -57,23 +58,30 @@ var PageCustomer = function(){
         },
         funRendererGoodsType : function (e)
         {
-            if (e.value == 1)
+           var mgoodsType = parseInt(e.value).toString(2);
+            mgoodsType = PageCustomer.defaultOption.zero.substring(mgoodsType.length) + mgoodsType;
+            var tmp = "";
+            if (mgoodsType.charAt(8) == "1")
             {
-                return "孰料"
+                tmp += "孰料;";
             }
-            else if (e.value == 2)
+
+            if (mgoodsType.charAt(7) == "1")
             {
-                return "电煤"
+                tmp += "电煤;";
             }
-            else if (e.value == 3)
+
+            if (mgoodsType.charAt(6) == "1")
             {
-                return "集装箱"
+                tmp += "集装箱;";
             }
-            else if (e.value == 4)
+
+            if (mgoodsType.charAt(0) == "1")
             {
-                return "其他"
+                tmp += "其他;";
             }
-            return e.value;
+
+            return tmp;
         },
         funOperRenderer : function(e)
         {
