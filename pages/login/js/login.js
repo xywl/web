@@ -107,4 +107,10 @@ var PageLogin = function(){
 $(function(){
     PageLogin.init();
     PageLogin.funJudgeLogin();
+    //回车事件
+    $(document).keydown(function(event) {
+        if (event.keyCode == 13) {
+            PageLogin.funLogin();
+        }
+    });
 });
