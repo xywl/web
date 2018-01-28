@@ -42,11 +42,16 @@ var PageCustomerTaskFlowAdd = function(){
             PageCustomerTaskFlowAdd.goodsSubType = row.goodsSubTypeFly;
            // row.goodsType=null;row.loadType=null;row.selfPick=null;row.status=null;row.sailingFlag=null;
             this.defaultOption.action = data.action;
-        	this.customerTaskFlowForm.setData(row);
-            mini.get("loadingTime").setValue(new Date(row.loadingTime));
-            mini.get("dischargeTime").setValue(new Date(row.dischargeTime));
-            mini.get("bigShipArriveTime").setValue(new Date(row.bigShipArriveTime));
-            mini.get("bigShipDepartTime").setValue(new Date(row.bigShipDepartTime));
+
+            if(this.defaultOption.action != "add")
+            {
+                row.loadingTime = new Date(row.loadingTime);
+                row.dischargeTime = new Date(row.dischargeTime);
+                row.bigShipArriveTime = new Date(row.bigShipArriveTime);
+                row.bigShipDepartTime = new Date(row.bigShipDepartTime);
+            }
+
+            this.customerTaskFlowForm.setData(row);
         	if(this.defaultOption.action == "oper")
         	{
         		
@@ -65,7 +70,7 @@ var PageCustomerTaskFlowAdd = function(){
         	this.customerTaskFlowForm.validate();
             if (!this.customerTaskFlowForm.isValid()) 
             {
-                 var errorTexts = form.getErrorTexts();
+                 var errorTexts = this.customerTaskFlowForm.getErrorTexts();
                  for (var i in errorTexts) 
                  {
                      mini.alert(errorTexts[i]);

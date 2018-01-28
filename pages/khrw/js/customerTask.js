@@ -99,7 +99,7 @@ var PageCustomerTask = function(){
                     iframe.contentWindow.PageCustomerTaskAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                    if(action == "close")
+                    if(action == "close" || action == "cancel")
                     {
                         return ;
                     }
@@ -107,7 +107,7 @@ var PageCustomerTask = function(){
                     {
                         me.customerTaskGrid.reload();
                     }
-                    else if(action == "continue")
+                    else
                     {
                         PageCustomerTask.defaultOption.taskId = action.taskId;
                         PageCustomerTaskFlow.funAdd();
