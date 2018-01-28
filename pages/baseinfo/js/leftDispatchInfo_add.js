@@ -14,15 +14,12 @@ var PageLeftDispatchInfoAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.leftDispatchInfoForm = new mini.Form("leftDispatchInfoFormAdd");
-            mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}])
+            mini.get("status").setData([{id:1, name:"待发布"},{id:2, name:"已发布"},{id:3, name:"已取消"}])
             this.funInitPortDate();
         },
         funSetData : function(data)
         {
             var row = data.row;
-            row.bookSTime = new Date(parseInt(row.bookSTime) * 1000);
-            row.bookETime = new Date(parseInt(row.bookETime) * 1000);
-            row.loadingTime = new Date(parseInt(row.loadingTime) * 1000);
             this.action = data.action;
             this.leftDispatchInfoForm.setData(row);
             if(this.action == "oper")
@@ -88,7 +85,7 @@ var PageLeftDispatchInfoAdd = function(){
         },
         funInitPortDate:function () {
             $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/customerTaskFlow/queryByTaskNo",
+                url : PageMain.defaultOption.httpUrl + "/customerTaskFlow/getList",
                 type : 'POST',
                 dataType: 'json',
                 success: function (data)
