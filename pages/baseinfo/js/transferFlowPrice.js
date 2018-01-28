@@ -76,7 +76,7 @@ var PageTransferFlowPrice = function(){
             {
                 mini.confirm("确定要删除这条记录?", "提醒", function (action) {
                     if (action == "ok") 
-                    {
+                    { 
                         $.ajax({
                             url : PageMain.defaultOption.httpUrl + "/transferFlowPrice/del",
                             type: 'POST',

@@ -54,7 +54,7 @@ var PageTransferFlowPriceAdd = function(){
                success: function (data) 
                {
             	   if (data.success)
-                   {
+                   { 
                        mini.alert("操作成功", "提醒", function(){
                            if(data.success)
                            {

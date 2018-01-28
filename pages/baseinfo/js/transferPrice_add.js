@@ -61,7 +61,7 @@ var PageTransferPriceAdd = function(){
                                PageMain.funCloseWindow("save");
                            }
                        });
-                   }
+                   } 
                    else
                    {
                        PageMain.funShowMessageBox(data.msg);

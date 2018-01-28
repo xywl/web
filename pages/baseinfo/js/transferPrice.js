@@ -117,7 +117,7 @@ var PageTransferPrice = function(){
                 })
             }
             else
-            {
+            { 
                 mini.alert("请先选择要删除的记录");
             }
         },
