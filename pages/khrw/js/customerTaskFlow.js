@@ -5,6 +5,7 @@ var PageCustomerTaskFlow = function(){
             basePath:"",
             ticketStatusFly:[{id:1, name:"开"},{id:2, name:"不开"}],
             goodsType : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}],
+            goodsSubType : [{id:1, name:"碎石"},{id:2, name:"市场煤炭"},{id:3, name:"华能电煤"},{id:4, name:"浙能电煤"},{id:5, name:"铜精矿"},{id:6, name:"PAT"},{id:7, name:"经营业务"},{id:8, name:"其他业务"}],
             loadType :[{id:1, name:"大轮"},{id:2, name:"场地"}],
             selfPick: [{id:1, name:"是"},{id:2, name:"否"}],
             status: [{id:1, name:"启用"},{id:2, name:"禁用"}],
@@ -60,13 +61,32 @@ var PageCustomerTaskFlow = function(){
         //航次区域
         funSailingAreaRenderer : function (e)
         {
-            for(var nItem = 0; nItem < PageCustomerTaskFlow.defaultOption.sailingArea.length; nItem++)
+            if (e.value ==1 )
             {
-                if(e.value == PageCustomerTaskFlow.defaultOption.sailingArea[nItem].id)
-                {
-                    return PageCustomerTaskFlow.defaultOption.sailingArea[nItem].name;
-                }
+                return "A级";
+            } else if (e.value == 2)
+            {
+                return "B级";
+            } else if (e.value == 3)
+            {
+                return "A级，B级";
+            } else if (e.value == 4)
+            {
+                return "C级";
+            } else if (e.value == 5)
+            {
+                return "A级，C级";
+            } else if (e.value == 6)
+            {
+                return "B级，C级";
+            } else if (e.value == 7)
+            {
+                return "A级，B级，C级";
+            } else if (e.value == 0)
+            {
+                return "";
             }
+
             return e.value;
         },
         //状态
@@ -129,6 +149,7 @@ var PageCustomerTaskFlow = function(){
             }
             return e.value;
         },
+
         funReset : function()
         {
         	var customerTaskFlowForm = new mini.Form("customerTaskFlowForm");
@@ -172,6 +193,24 @@ var PageCustomerTaskFlow = function(){
             paramData.row.sailingFlagFly = me.defaultOption.sailingFlag;
             paramData.row.sailingAreaFly = me.defaultOption.sailingArea;
             paramData.row.portData = me.defaultOption.portData;
+            paramData.row.goodsSubTypeFly =  me.defaultOption.goodsSubType;
+            var e =[];
+            e.field ="loadingTime";
+            e.value = paramData.row.loadingTime;
+            paramData.row.loadingTime = PageCustomerTask.formatData(e);
+            var e =[];
+            e.field ="dischargeTime";
+            e.value = paramData.row.dischargeTime;
+            paramData.row.dischargeTime = PageCustomerTask.formatData(e);
+            var e =[];
+            e.field ="bigShipArriveTime";
+            e.value = paramData.row.bigShipArriveTime;
+            paramData.row.bigShipArriveTime = PageCustomerTask.formatData(e);
+            var e =[];
+            e.field ="bigShipDepartTime";
+            e.value = paramData.row.bigShipDepartTime;
+            paramData.row.bigShipDepartTime = PageCustomerTask.formatData(e);
+
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTaskFlow_add.html",
                 title: paramData.title,

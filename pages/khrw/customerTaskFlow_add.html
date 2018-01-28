@@ -39,8 +39,10 @@
                 <tr>
                     <td class="form-label">货物类型：</td>
                     <td class="form-content">
-                        <input name="goodsType" id="goodsType" class="mini-combobox"
+                        <input name="goodsType" id="goodsType" class="mini-combobox" width="45%" onvaluechanged="PageCustomerTaskFlowAdd.funSetGoodsSubType()"
                                valueField="id" textField="name"  required="true"  requiredErrorText="货物类型不能为空"/>
+                        <input name="goodsSubType" id="goodsSubType" class="mini-combobox" width="45%"
+                               valueField="id" textField="name" />
                     </td>
                     <td class="form-label">总吨位：</td>
                     <td class="form-content">
@@ -66,15 +68,15 @@
                         <input name="receiver" id="receiver"  class="mini-textbox"
                                 required="true"  requiredErrorText="收货单位不能为空"/>
                     </td>
-                    <td class="form-label">装货日期：</td>
+                    <td class="form-label">装货时间：</td>
                     <td class="form-content">
                         <input name="loadingTime" id="loadingTime" required="true" class="mini-datepicker" nullValue="null"
                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
-                               showOkButton="true" showClearButton="false"   emptyText="装货时间" />
+                               showOkButton="true" showClearButton="false"    emptyText="装货时间" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">预计卸货日期：</td>
+                    <td class="form-label">卸货时间：</td>
                     <td class="form-content">
                         <input name="dischargeTime" id="dischargeTime" required="true" class="mini-datepicker" nullValue="null"
                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
@@ -102,19 +104,19 @@
                     <td class="form-label">大轮批次：</td>
                     <td class="form-content">
                         <input name="bigShipPC" id="bigShipPC" class="mini-textbox"
-                               required="true" maxlength="10" requiredErrorText="大轮批次不能为空"/>
+                                 maxlength="10" />
                     </td>
                     <td class="form-label">总载重：</td>
                     <td class="form-content">
                         <input name="totalLoad" id="totalLoad" class="mini-textbox"
-                               required="true" maxlength="10" requiredErrorText="总载重不能为空"/>
+                                maxlength="20" />
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">到达位置：</td>
                     <td class="form-content">
                         <input name="arriveLocation" id="arriveLocation" class="mini-textbox"
-                               required="true" maxlength="10" requiredErrorText="到达位置不能为空"/>
+                                maxlength="50" />
                     </td>
                     <td class="form-label">大轮预计到达时间：</td>
                     <td class="form-content">
@@ -150,18 +152,23 @@
                 <tr>
                     <td class="form-label">航次标识：</td>
                     <td class="form-content">
-                        <input name="status" id="sailingFlag"  valueField="id" textField="name"
+                        <input name="sailingFlag" id="sailingFlag"  valueField="id" textField="name"
                                class="mini-checkboxlist" required="true"  requiredErrorText="航次标识不能为空"/>
                     </td>
+                    <td class="form-label">是否扣网片：</td>
+                    <td class="form-content">
+                        <input name="selfBuckle" id="selfBuckle"  class="mini-combobox"
+                               valueField="id" textField="name"   />
+                    </td>
+                </tr>
+                <tr>
                     <td class="form-label">状态：</td>
                     <td class="form-content">
                         <input name="status" id="status"  class="mini-combobox"
                                valueField="id" textField="name"  required="true"  requiredErrorText="状态不能为空"/>
                     </td>
-                </tr>
-                <tr>
                     <td class="form-label">描<span style="padding: 0px 14px;"></span>述：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content">
                         <input name="description" id="description" class="mini-textarea" style="width:595px; height: 80px;"   maxlength="100" />
                     </td>
                 </tr>

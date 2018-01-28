@@ -14,12 +14,25 @@ var PageShipAdd = function(){
             this.shipForm = new mini.Form("shipFormAdd");
             mini.get("shipFlag").setData([{id:1, name:"干货船"},{id:2, name:"多用途船"}]);
             mini.get("runType").setData([{id:1, name:"集散两用"},{id:2, name:"集装箱"},{id:3, name:"砂石"},{id:99, name:"其他"}])
-            mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:3, name:"C级"}])
+            mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}])
         },
         funSetData : function(data)
         {
         	var row = data.row;
         	this.action = data.action;
+             if (row.sailingArea == 3)
+            {
+                row.sailingArea = "1,2";
+            } else if (row.sailingArea == 5)
+            {
+                row.sailingArea = "1,4";
+            } else if (row.sailingArea == 6)
+            {
+                row.sailingArea = "2,4";
+            } else if (row.sailingArea == 7)
+            {
+                row.sailingArea = "1,2,4";
+            }
         	this.shipForm.setData(row);
             if(this.action == "oper")
             {
@@ -48,6 +61,12 @@ var PageShipAdd = function(){
             
             var me = this;
             var obj = this.shipForm.getData(true);
+            var arr =obj.sailingArea.split(",") , sum = 0;
+            for (var i=0 ; i<arr.length ; i++){
+                sum += parseInt(arr[i])*1;
+            }
+            obj.sailingArea = sum;
+            return;
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/ship/" + me.action + "?a="+Math.random(),
                type : 'POST',

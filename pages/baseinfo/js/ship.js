@@ -43,38 +43,55 @@ var PageShip = function(){
             	PageMain.funShowMessageBox("请选择一条记录");
             }
         },
-        /*funRendererType : function (e)
+        funRendererSailingArea : function (e)
         {
-            if (e.value == 1)
+            if (e.value ==1 )
             {
-                return "长期"
-            }
-            else if (e.value == 2)
+                return "A级";
+            } else if (e.value == 2)
             {
-                return "临时"
+                return "B级";
+            } else if (e.value == 3)
+            {
+                return "A级，B级";
+            } else if (e.value == 4)
+            {
+                return "C级";
+            } else if (e.value == 5)
+            {
+                return "A级，C级";
+            } else if (e.value == 6)
+            {
+                return "B级，C级";
+            } else if (e.value == 7)
+            {
+                return "A级，B级，C级";
+            } else if (e.value == 0)
+            {
+                return "";
             }
             return e.value;
         },
-        funRendererGoodsType : function (e)
-        {
-            if (e.value == 1)
-            {
-                return "孰料"
-            }
-            else if (e.value == 2)
-            {
-                return "电煤"
-            }
-            else if (e.value == 3)
-            {
-                return "集装箱"
-            }
-            else if (e.value == 4)
-            {
-                return "其他"
-            }
-            return e.value;
-        },*/
+        /* funRendererGoodsType : function (e)
+         {
+             if (e.value == 1)
+             {
+                 return "孰料"
+             }
+             else if (e.value == 2)
+             {
+                 return "电煤"
+             }
+             else if (e.value == 3)
+             {
+                 return "集装箱"
+             }
+             else if (e.value == 4)
+             {
+                 return "其他"
+             }
+             return e.value;
+         },*/
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageShip.funDetail()"></a>';

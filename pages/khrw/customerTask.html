@@ -71,20 +71,21 @@
                     <div field="direction" width="120" headerAlign="center" allowSort="true">方向</div>
                     <div field="sender" width="120" headerAlign="center" allowSort="true">发货单位</div>
                     <div field="receiver" width="120" headerAlign="center" allowSort="true">收货单位</div>
-                    <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="formatData">装货时间</div>
-                    <div field="dischargeTime" width="120" headerAlign="center" allowSort="true" renderer="formatData">卸货时间</div>
+                    <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.formatData">装货时间</div>
+                    <div field="dischargeTime" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.formatData">卸货时间</div>
                     <div field="startPortId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funPortNameRenderer">装货点</div>
                     <div field="endPortId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funPortNameRenderer">卸货点</div>
                     <div field="loadType" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.fuLoadTypeRenderer">装货途径</div>
                     <div field="bigShipPC" width="120" headerAlign="center" allowSort="true">大轮批次</div>
                     <div field="totalLoad" width="120" headerAlign="center" allowSort="true">总载重</div>
                     <div field="arriveLocation" width="120" headerAlign="center" allowSort="true">到达位置</div>
-                    <div field="bigShipArriveTime" width="120" headerAlign="center" allowSort="true" renderer="formatData">大轮预计到达时间</div>
-                    <div field="bigShipDepartTime" width="120" headerAlign="center" allowSort="true" renderer="formatData">大轮预计离开时间</div>
+                    <div field="bigShipArriveTime" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.formatData">大轮预计到达时间</div>
+                    <div field="bigShipDepartTime" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.formatData">大轮预计离开时间</div>
                     <div field="selfPick" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funSelfPickRenderer">是否自提</div>
                     <div field="sailingArea" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funSailingAreaRenderer">航行区域</div>
                     <div field="shipSuggestUnitPrice" width="120" headerAlign="center" allowSort="true">船户参考运价</div>
                     <div field="sailingFlag" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funSailingFlagRenderer">航次标识</div>
+                    <div field="selfBuckle" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funSelfPickRenderer">是否扣网片</div>
                     <div field="status" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTaskFlow.funStatusRenderer">状态</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false"
                          align="center" renderer="PageCustomerTaskFlow.funOperRenderer">操作
@@ -97,53 +98,7 @@
     </div>
 </div>
 <script>
-    function formatData(e) {
-        var field = e.field;
-        var value = e.value;
-        var result = "--";
 
-        //转换"创建时间"
-        if("loadingTime" == field || "dischargeTime" == field ||"bigShipArriveTime" == field|| "bigShipDepartTime" == field){
-            var createdTime = new Date(1000 * value);
-            var year = createdTime.getFullYear();
-            var mon = createdTime.getMonth() + 1;
-            if(10 > mon){
-                mon = "0" + mon;
-            }
-
-            var sDate = createdTime.getDate();
-            if(10 > sDate){
-                sDate = "0" + sDate;
-            }
-
-            var hours = createdTime.getHours();
-            if(10 > hours){
-                hours = "0" + hours;
-            }
-
-            var min = createdTime.getMinutes();
-            if(10 > min){
-                min = "0" + min;
-            }
-
-            var sec = createdTime.getSeconds();
-            if(10 > sec){
-                sec = "0" + sec;
-            }
-
-            result = year + "-" + mon + "-" + sDate + "  " + hours + ":" + min + ":" + sec;
-        }
-
-        //转换"状态"
-        if("status" == field){
-            if(1 == e.value){
-                result = "启用";
-            }else if(2 == e.value){
-                result = "禁用";
-            }
-        }
-        return result;
-    }
 
 </script>
 </body>

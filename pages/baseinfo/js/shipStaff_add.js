@@ -99,6 +99,17 @@ var PageShipStaffAdd = function(){
                     PageMain.funShowMessageBox("获取船号失败");
                 }
             });
+        },funSetOther:function () {
+            var ideVal = mini.get("identity").getValue();
+
+            if(ideVal.length ==15){
+
+            } else if(ideVal.length ==18 ){
+                var year = ideVal.substring(6,10);
+                var month = ideVal.substring(10,12);
+                var day =ideVal.substring(12,14);
+                mini.get("birthday").setValue(year+"-"+month+"-"+day);
+            }
         }
 
     }

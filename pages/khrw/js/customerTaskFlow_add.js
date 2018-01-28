@@ -4,7 +4,8 @@ var PageCustomerTaskFlowAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
-            customerTaskFlowForm : null
+            customerTaskFlowForm : null,
+            goodsSubType : []
         },
         init :function ()
         {
@@ -24,9 +25,28 @@ var PageCustomerTaskFlowAdd = function(){
             mini.get("startPortId").setData(row.portData);
             mini.get("endPortId").setData(row.portData);
             mini.get("sailingArea").setData(row.sailingAreaFly);
+            mini.get("selfBuckle").setData(row.selfPickFly);
+            if (row.sailingArea == 3)
+            {
+                row.sailingArea = "1,2";
+            } else if (row.sailingArea == 5)
+            {
+                row.sailingArea = "1,4";
+            } else if (row.sailingArea == 6)
+            {
+                row.sailingArea = "2,4";
+            } else if (row.sailingArea == 7)
+            {
+                row.sailingArea = "1,2,4";
+            }
+            PageCustomerTaskFlowAdd.goodsSubType = row.goodsSubTypeFly;
            // row.goodsType=null;row.loadType=null;row.selfPick=null;row.status=null;row.sailingFlag=null;
             this.defaultOption.action = data.action;
         	this.customerTaskFlowForm.setData(row);
+            mini.get("loadingTime").setValue(new Date(row.loadingTime));
+            mini.get("dischargeTime").setValue(new Date(row.dischargeTime));
+            mini.get("bigShipArriveTime").setValue(new Date(row.bigShipArriveTime));
+            mini.get("bigShipDepartTime").setValue(new Date(row.bigShipDepartTime));
         	if(this.defaultOption.action == "oper")
         	{
         		
@@ -55,10 +75,23 @@ var PageCustomerTaskFlowAdd = function(){
             
             var me = this;
             var obj = this.customerTaskFlowForm.getData(true);
-            obj.bigShipArriveTime = mini.get("bigShipArriveTime").getValue().getTime()/1000;
-            obj.bigShipDepartTime = mini.get("bigShipDepartTime").getValue().getTime()/1000;
-            obj.loadingTime = mini.get("loadingTime").getValue().getTime()/1000;
-            obj.dischargeTime = mini.get("dischargeTime").getValue().getTime()/1000;
+            if(mini.get("bigShipArriveTime").getValue() != null && mini.get("bigShipArriveTime").getValue() != ""){
+                obj.bigShipArriveTime = mini.get("bigShipArriveTime").getValue().getTime()/1000;
+            }
+            if(mini.get("bigShipDepartTime").getValue() != null && mini.get("bigShipDepartTime").getValue() != ""){
+                obj.bigShipDepartTime = mini.get("bigShipDepartTime").getValue().getTime()/1000;
+            }
+            if(mini.get("loadingTime").getValue() != null && mini.get("loadingTime").getValue() != ""){
+                obj.loadingTime = mini.get("loadingTime").getValue().getTime()/1000;
+            }
+            if(mini.get("dischargeTime").getValue() != null && mini.get("dischargeTime").getValue() != ""){
+                obj.dischargeTime = mini.get("dischargeTime").getValue().getTime()/1000;
+            }
+            var arr =obj.sailingArea.split(",") , sum = 0;
+            for (var i=0 ; i<arr.length ; i++){
+                sum += parseInt(arr[i])*1;
+            }
+            obj.sailingArea = sum;
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/customerTaskFlow/" + me.defaultOption.action + "?a="+Math.random(),
                type : 'POST',
@@ -70,7 +103,7 @@ var PageCustomerTaskFlowAdd = function(){
                    {
                        if(me.defaultOption.action == "add")
                        {
-                           mini.confirm("操作成功是否要继续增加合同流向", "提醒",
+                           mini.confirm("操作成功是否要继续增加客户任务流向", "提醒",
                                function (action, value) {
                                    if (action == "ok")
                                    {
@@ -107,6 +140,16 @@ var PageCustomerTaskFlowAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
+        },funSetGoodsSubType:function () {
+            var goodsVal = mini.get("goodsType").getValue();
+            if(goodsVal == 2) {
+                //alert(goodsVal);
+                mini.get("goodsSubType").setData(PageCustomerTaskFlowAdd.goodsSubType);
+                mini.get("goodsSubType").required =true;
+            } else {
+                mini.get("goodsSubType").setData([]);
+                mini.get("goodsSubType").required =false;
+            }
         }
     }
 }();
