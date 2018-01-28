@@ -39,15 +39,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">最小速度：</td>
+                    <td class="form-label">最小速度(km/h)：</td>
                     <td class="form-content">
-                        <input name="minSpeed" id="minSpeed" class="mini-textbox"maxlength="20" />
+                        <input name="minSpeed" id="minSpeed"   decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="1000000000000" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">最大速度：</td>
+                    <td class="form-label">最大速度(km/h)：</td>
                     <td class="form-content">
-                        <input name="maxSpeed" id="maxSpeed" class="mini-textbox" maxlength="20" />
+                        <input name="maxSpeed" id="maxSpeed" onvalidation="onMaxSpeedValidation"  decimalPlaces="2" class="mini-spinner" minValue="0" maxValue="1000000000000" />
                     </td>
                 </tr>
                 <tr>
@@ -76,6 +76,16 @@
     </div>
     <script type="text/javascript">
     	mini.parse();
+        function onMaxSpeedValidation(e) {
+           if (e.isValid) {
+               var minSpeed = mini.get("minSpeed").getValue();
+               var maxSpeed = mini.get("maxSpeed").getValue();
+               if(parseInt(minSpeed) > parseInt(maxSpeed)){
+                   e.errorText = "最大速度大于等于最小速度";
+                   e.isValid = false;
+               }
+            }
+        }
     </script>
 </body>
 </html>

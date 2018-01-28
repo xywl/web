@@ -48,7 +48,6 @@ var PageTempDispatchShipAdd = function(){
             
             var me = this;
             var obj = this.tempDispatchShipForm.getData(true);
-            alert(JSON.stringify(obj));
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/tempDispatchShip/" + me.action + "?a="+Math.random(),
                type : 'POST',

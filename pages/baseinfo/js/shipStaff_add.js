@@ -99,7 +99,8 @@ var PageShipStaffAdd = function(){
                     PageMain.funShowMessageBox("获取船号失败");
                 }
             });
-        },funSetOther:function () {
+        },
+        funSetOther:function () {
             var ideVal = mini.get("identity").getValue();
 
             if(ideVal.length ==15){
@@ -109,6 +110,16 @@ var PageShipStaffAdd = function(){
                 var month = ideVal.substring(10,12);
                 var day =ideVal.substring(12,14);
                 mini.get("birthday").setValue(year+"-"+month+"-"+day);
+            }
+            var curDate = new Date();
+            var curYear = curDate.getFullYear();
+            mini.get("age").setValue(curYear-year);
+
+            var sex = ideVal.substring(16,17);
+            if( sex % 2 == 0){
+                mini.get("gender").setValue("2");
+            } else {
+                mini.get("gender").setValue("1");
             }
         }
 

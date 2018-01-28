@@ -34,42 +34,42 @@
                     </td>
                     <td width="10%" align="right">船舶种类：</td>
                     <td width="20%" class="form-content">
-                        <input name="shipFlag" id="shipFlag"   class="mini-combobox" valueField="id" textField="name"
+                        <input name="shipFlag" id="shipFlag"   class="mini-combobox" valueField="id" textField="name" required="true"
                                width="140" maxlength="3"   />
                     </td>
                     <td width="10%" align="right">航行区域：</td>
                     <td width="20%" class="form-content">
-                        <input   class="mini-checkboxlist" name="sailingArea" id="sailingArea"  valueField="id" textField="name"   />
+                        <input   class="mini-checkboxlist" name="sailingArea" id="sailingArea"  valueField="id" textField="name" required="true"  />
                     </td>
 
                 </tr>
                 <tr>
-                    <td class="form-label">长：</td>
+                    <td class="form-label">长(米)：</td>
                     <td class="form-content">
-                        <input name="length" id="length" width="140" class="mini-textbox"   maxlength="30"/>
+                        <input name="length" id="length" width="140" decimalPlaces="2" class="mini-spinner" required="true" minValue="0" maxValue="1000000000000" />
                     </td>
 
-                    <td class="form-label">宽：</td>
+                    <td class="form-label">宽(米)：</td>
                     <td class="form-content">
-                        <input name="width" id="width" width="140" class="mini-textbox"  maxlength="30" />
+                        <input name="width" id="width" width="140" decimalPlaces="2" class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000"  />
                     </td>
-                    <td class="form-label">型深：</td>
+                    <td class="form-label">型深(米)：</td>
                     <td class="form-content">
-                        <input name="depth" id="depth" width="140" class="mini-textbox"   maxlength="30" />
+                        <input name="depth" id="depth" width="140" decimalPlaces="2" class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000"  />
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">总吨：</td>
                     <td class="form-content">
-                        <input name="totalWeight" id="totalWeight" width="140" class="mini-textbox"   maxlength="30"/>
+                        <input name="totalWeight" id="totalWeight" decimalPlaces="0" width="140"  class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000" />
                     </td>
-                    <td class="form-label">净重：</td>
+                    <td class="form-label">净重(吨)：</td>
                     <td class="form-content">
-                        <input name="netWeight" id="netWeight" class="mini-textbox" width="140" maxlength="50"/>
+                        <input name="netWeight" id="netWeight" width="140" class="mini-spinner"  decimalPlaces="0" required="true" minValue="0" maxValue="1000000000000" />
                     </td>
                     <td class="form-label">载重吨：</td>
                     <td class="form-content">
-                        <input name="loadWeight" id="loadWeight" class="mini-textbox" width="140"  maxlength="10"  />
+                        <input name="loadWeight" id="loadWeight"  width="140" decimalPlaces="0"  class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000"   />
                     </td>
 
                 </tr>
@@ -90,7 +90,7 @@
                 <tr>
                     <td class="form-label">计费吨：</td>
                     <td class="form-content">
-                        <input name="feeWeight" id="feeWeight" class="mini-textbox" maxlength="30"   width="140"   />
+                        <input name="feeWeight" id="feeWeight" class="mini-spinner" decimalPlaces="0" required="true" minValue="0" maxValue="1000000000000"  width="140"   />
                     </td>
                     <td class="form-label">建成日期：</td>
                     <td class="form-content">
@@ -137,9 +137,9 @@
                     <td class="form-content">
                         <input name="firstRegisterNo" id="firstRegisterNo" class="mini-textbox"width="140" />
                     </td>
-                    <td class="form-label">行深：</td>
+                    <td class="form-label">行深(米)：</td>
                     <td class="form-content">
-                        <input name="sailingDepth" id="sailingDepth" class="mini-textbox" width="140"/>
+                        <input name="sailingDepth" id="sailingDepth" decimalPlaces="2" required="true" class="mini-spinner"  minValue="0" maxValue="1000000000000"  width="140"/>
                     </td>
                     <td class="form-label">制造厂家：</td>
                     <td class="form-content">

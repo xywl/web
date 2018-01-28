@@ -58,7 +58,6 @@ var PageShipAdd = function(){
                      return;
                  }
             }
-            
             var me = this;
             var obj = this.shipForm.getData(true);
             var arr =obj.sailingArea.split(",") , sum = 0;
@@ -66,7 +65,7 @@ var PageShipAdd = function(){
                 sum += parseInt(arr[i])*1;
             }
             obj.sailingArea = sum;
-            return;
+            alert(JSON.stringify(obj));
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/ship/" + me.action + "?a="+Math.random(),
                type : 'POST',

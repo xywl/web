@@ -63,25 +63,25 @@ var PageCustomer = function(){
             var tmp = "";
             if (mgoodsType.charAt(8) == "1")
             {
-                tmp += "孰料;";
+                tmp += "孰料，";
             }
 
             if (mgoodsType.charAt(7) == "1")
             {
-                tmp += "电煤;";
+                tmp += "电煤，";
             }
 
             if (mgoodsType.charAt(6) == "1")
             {
-                tmp += "集装箱;";
+                tmp += "集装箱，";
             }
 
             if (mgoodsType.charAt(0) == "1")
             {
-                tmp += "其他;";
+                tmp += "其他，";
             }
 
-            return tmp;
+            return tmp.substring(0,tmp.length-1);
         },
         funOperRenderer : function(e)
         {
