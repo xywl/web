@@ -86,11 +86,13 @@
         </div>
     </div>
     <div title="生成调度结果" region="south" showSplit="true" showSplitIcon="false" height="400" showHeader="false" style="border:0 none;">
+        <input id="leftWeight" name="leftWeight" value="" class="mini-hidden" />
+        <input id="hasLeftWeight" name="hasLeftWeight" value="" class="mini-hidden" />
         <div class="mini-toolbar" style="border:0;padding:0px;height: 20px;line-height: 20px;">
             生成调度结果
         </div>
         <div class="mini-fit" style="padding-bottom: 35px;">
-            <div id="orderDetailsGrid" class="mini-datagrid" idField="id" allowResize="false" showPager="true" allowAlternating="false"  sortMode="client" allowCellEdit="true" allowCellSelect="true" multiSelect="true" editNextOnEnterKey="true" editNextRowCell="true" allowCellValid="true" style="height: 100%;" oncellbeginedit="CapcitySchedul.funOnCellBeginEdit" ondrawcell="CapcitySchedul.funOnDrawCell" showSummaryRow="true" ondrawsummarycell="CapcitySchedul.funOnDrawSummaryCell" pagesize="100" sizeList="[10,30,50,100]">
+            <div id="orderDetailsGrid" class="mini-datagrid" idField="id" allowResize="false" showPager="true" allowAlternating="false"  sortMode="client" allowCellEdit="true" allowCellSelect="true" editNextOnEnterKey="true" editNextRowCell="true" allowCellValid="true" onlyCheckSelection="true" style="height: 100%;" oncellbeginedit="CapcitySchedul.funOnCellBeginEdit" oncellendedit="CapcitySchedul.funOnCellEndEdit" ondrawcell="CapcitySchedul.funOnDrawCell" showSummaryRow="true" ondrawsummarycell="CapcitySchedul.funOnDrawSummaryCell" pagesize="100" sizeList="[10,30,50,100]">
                 <div property="columns">
                     <div field="operate" width="50" headerAlign="center" allowSort="false" align="center" renderer="CapcitySchedul.funOrderOperRenderer">操作
                     </div>

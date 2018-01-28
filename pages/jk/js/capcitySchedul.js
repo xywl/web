@@ -111,6 +111,7 @@ var CapcitySchedul = function(){
                 //shipListGrid.load({customerTaskFlowId: record.id});
                 CapcitySchedul.funSearchShipListGrid();
                 CapcitySchedul.funSearchOrderDetailsGrid();
+                $("#leftWeight").val(record.leftWeight);
                 //orderDetailsGrid.load({customerTaskFlowId: record.id, "queryParamFlag": 1});
             }
         },
@@ -149,7 +150,7 @@ var CapcitySchedul = function(){
                 return '1';
             }
         },
-        funOnCellBeginEdit: function(e) {
+        funOnCellBeginEdit: function(e) {  //行编辑开始事件
             var record = e.record, field = e.field;
             if (record.status == "2") {
                 e.cancel = true;    //如果置为删除状态则不允许编辑
@@ -158,9 +159,35 @@ var CapcitySchedul = function(){
                 e.cancel = true;
             }
         },
+        funOnCellEndEdit: function(e)  //行编辑结束事件
+        {
+            var leftWeight = $("#leftWeight").val();
+            var record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
+            if (rows) {
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    var row = rows[i];
+                    var t = Number(row.preLoad);
+                    if (isNaN(t)) continue;
+                    preLoadTotal += t;
+                }
+            }
+            if (preLoadTotal > leftWeight) {
+                mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
+                    function (action, value) {
+                        if (action == "ok") {
+                            alert(value);
+                        } else {
+                            alert("取消");
+                        }
+                    }
+                );
+                return;
+            }
+        },
         funOnDrawCell: function(e)  //计算预结算金额
         {
             var record = e.record;
+            var grid = e.sender;
 
             if (e.field == "preSettleAmount") {
                 var actualTransferPrice = record.actualTransferPrice;
@@ -181,16 +208,29 @@ var CapcitySchedul = function(){
             var grid = e.sender;
             var rows = e.data;
 
-            if (e.field == "preSettleAmount") {
-                var total = 0;
+            // if (e.field == "preSettleAmount") {
+            //     var total = 0;
+            //     for (var i = 0, l = rows.length; i < l; i++) {
+            //         var row = rows[i];
+            //         var t = Number(row.actualTransferPrice) * Number(row.preLoad);
+            //         if (isNaN(t)) continue;
+            //         total += t;
+            //     }
+
+            //     e.cellHtml = '<span style="color: red;font-size: 12px;">总计: '+total+'</span>';
+            // }
+            if (e.field == "preLoad") {
+                var leftWeight = $("#leftWeight").val();
+                var preLoadTotal = 0;
                 for (var i = 0, l = rows.length; i < l; i++) {
                     var row = rows[i];
-                    var t = row.actualTransferPrice * row.preLoad;
-                    if (isNaN(t)) continue;
-                    total += t;
+                    var preLoad = Number(row.preLoad);
+                    if (isNaN(preLoad)) continue;
+                    preLoadTotal += preLoad;
                 }
-
-                e.cellHtml = '<span style="color: red;font-size: 12px;">总计: '+total+'</span>';
+                var hasLeftWeight = leftWeight - preLoadTotal;
+                $("#hasLeftWeight").val(hasLeftWeight);
+                e.cellHtml = '<span style="color: red;font-size: 12px;">剩余未调度吨位数: '+hasLeftWeight+'</span>';
             }
         },
         funDelRow: function(row_uid)
