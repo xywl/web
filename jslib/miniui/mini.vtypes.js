@@ -25,7 +25,7 @@ mini.VTypes["ip"] = function (v) {
 /*国内 13、15、18开头*/
 mini.VTypes["cellPhoneErrorText"] = "请输入正确的手机号码";
 mini.VTypes["cellPhone"] = function (v) {
-	var re = new RegExp("^(13[0-9]|14[5|7]|15[0|1|2|3|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\\d{8}$");
+	var re = new RegExp("^(13[0-9]|14[0-9]|15[0-9]|16[0-9]|17[0-9]|18[0-9]|19[0-9])\\d{8}$");
     if (re.test(v)) return true;
     return false;
 }

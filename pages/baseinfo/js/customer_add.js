@@ -20,7 +20,6 @@ var PageCustomerAdd = function(){
         {
         	var row = data.row;
         	this.action = data.action;
-            PageMain.funDealComBitInfo(paramVal, paramLen);
             var mgoodsType = parseInt(row.goodsType).toString(2);
             mgoodsType = this.defaultOption.zero.substring(mgoodsType.length) + mgoodsType;
             var tmp = "";
