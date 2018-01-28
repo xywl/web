@@ -5,6 +5,8 @@ var PageTransferPrice = function(){
             basePath:"",
             transferFlowPriceGrid:null,
             transferPriceGrid : null,
+            customerFly : null,
+            contractFly : null,
             transferPriceId:0,
             detailGridForm:null
         },
@@ -14,16 +16,52 @@ var PageTransferPrice = function(){
             this.defaultOption.transferFlowPriceGrid = mini.get("transferFlowPriceGrid");
             this.defaultOption.transferFlowPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferFlowPrice/getList");
             this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
+            //this.defaultOption.customerCombox = mini.get("customerId");
 
             this.basePath = PageMain.basePath;
             this.transferPriceGrid = mini.get("transferPriceGrid");
             this.transferPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferPrice/getList")
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customer/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+                if(data.success)
+                {
+                    PageTransferPrice.defaultOption.customerFly = data.data;
+                }
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/contract/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+                if(data.success)
+                {
+                    PageTransferPrice.defaultOption.contractFly = data.data;
+                }
+            });
+
             this.funSearch();
         },
         funSearch : function()
         {
         	var transferPriceForm = new mini.Form("transferPriceForm");
         	this.transferPriceGrid.load(transferPriceForm.getData());
+        },
+        funCustomerRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageTransferPrice.defaultOption.customerFly.length; nItem++)
+            {
+                if(e.value == PageTransferPrice.defaultOption.customerFly[nItem].id)
+                {
+                    return PageTransferPrice.defaultOption.customerFly[nItem].fullName;
+                }
+            }
+            return e.value;
+        },
+        funContractRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageTransferPrice.defaultOption.contractFly.length; nItem++)
+            {
+                if(e.value == PageTransferPrice.defaultOption.contractFly[nItem].id)
+                {
+                    return PageTransferPrice.defaultOption.contractFly[nItem].name;
+                }
+            }
+            return e.value;
         },
         funOperRenderer : function(e)
         {
@@ -63,6 +101,8 @@ var PageTransferPrice = function(){
         funOpenInfo : function(paramData)
         {
         	var me = this;
+            paramData.row.customerFly = this.defaultOption.customerFly;
+            paramData.row.contractFly = this.defaultOption.contractFly;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/transferPrice_add.html",
                 title: paramData.title,
@@ -73,7 +113,21 @@ var PageTransferPrice = function(){
                     iframe.contentWindow.PageTransferPriceAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.transferPriceGrid.reload();
+                    if(action == "close")
+                    {
+                        return ;
+                    }
+                    else if (action == "save")
+                    {
+                        me.transferPriceGrid.reload();
+                    }
+                    else
+                    {
+                        PageTransferPrice.defaultOption.transferPriceId = action.transferPriceId;
+                        PageTransferFlowPrice.funAdd();
+                        me.transferPriceGrid.reload();
+                    }
+
                 }
             })
         },
@@ -117,7 +171,7 @@ var PageTransferPrice = function(){
                 })
             }
             else
-            { 
+            {
                 mini.alert("请先选择要删除的记录");
             }
         },

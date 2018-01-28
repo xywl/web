@@ -3,6 +3,7 @@ var PageTransferFlowPrice = function(){
     return {
         defaultOption: {
             basePath:"",
+            flowFly : null,
             transferFlowPriceGrid : null
         },
         init :function ()
@@ -10,6 +11,12 @@ var PageTransferFlowPrice = function(){
             this.basePath = PageMain.basePath;
             this.transferFlowPriceGrid = PageTransferPrice.defaultOption.transferFlowPriceGrid;
             this.transferFlowPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferFlowPrice/getList")
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+                if(data.success)
+                {
+                    PageTransferFlowPrice.defaultOption.flowFly = data.data;
+                }
+            });
         },
         funSearch : function()
         {
@@ -19,6 +26,17 @@ var PageTransferFlowPrice = function(){
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageTransferFlowPrice.funDetail()"></a>';
+        },
+        funFlowRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageTransferFlowPrice.defaultOption.flowFly.length; nItem++)
+            {
+                if(e.value == PageTransferFlowPrice.defaultOption.flowFly[nItem].id)
+                {
+                    return PageTransferFlowPrice.defaultOption.flowFly[nItem].name;
+                }
+            }
+            return e.value;
         },
         funReset : function()
         {
@@ -53,6 +71,7 @@ var PageTransferFlowPrice = function(){
         },
         funOpenInfo : function(paramData)
         {
+            paramData.row.flowFly = this.defaultOption.flowFly;
         	var me = this;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/transferFlowPrice_add.html",
@@ -64,7 +83,12 @@ var PageTransferFlowPrice = function(){
                     iframe.contentWindow.PageTransferFlowPriceAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.transferFlowPriceGrid.reload();
+
+                    if (action == "continue")
+                    {
+                        PageTransferFlowPrice.funAdd();
+                    }
+                    me.transferFlowPriceGrid.reload();
                 }
             })
         },
@@ -76,7 +100,7 @@ var PageTransferFlowPrice = function(){
             {
                 mini.confirm("确定要删除这条记录?", "提醒", function (action) {
                     if (action == "ok") 
-                    { 
+                    {
                         $.ajax({
                             url : PageMain.defaultOption.httpUrl + "/transferFlowPrice/del",
                             type: 'POST',
