@@ -8,6 +8,7 @@ var PageTransferPrice = function(){
             customerFly : null,
             contractFly : null,
             transferPriceId:0,
+            customerCombox:null,
             detailGridForm:null
         },
         init :function ()
@@ -20,11 +21,13 @@ var PageTransferPrice = function(){
 
             this.basePath = PageMain.basePath;
             this.transferPriceGrid = mini.get("transferPriceGrid");
+            this.defaultOption.customerCombox = mini.get("customerId");
             this.transferPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferPrice/getList")
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customer/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
                 if(data.success)
                 {
                     PageTransferPrice.defaultOption.customerFly = data.data;
+                    PageTransferPrice.defaultOption.customerCombox.setData(data.data);
                 }
             });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/contract/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {

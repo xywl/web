@@ -34,7 +34,7 @@
                 <tr>
                     <td class="form-label">起点港口名称：</td>
                     <td class="form-content">
-                        <input name="startPortId" id="startPortId"  class="mini-combobox"  width="280"
+                        <input name="startPortId" id="startPortId"  class="mini-combobox"
                                required="true" maxlength="20" valueField="id" textField="name"   emptyText="请选择..."
                                allowInput="true" showNullItem="true" nullItemText="请选择..."
                                requiredErrorText="起点港口名称不能为空"/>
@@ -43,7 +43,7 @@
                 <tr>
                     <td class="form-label">终点港口名称：</td>
                     <td class="form-content">
-                        <input name="endPortId" id="endPortId"  class="mini-combobox"  width="280"
+                        <input name="endPortId" id="endPortId"  class="mini-combobox"
                                required="true" maxlength="20" valueField="id" textField="name"   emptyText="请选择..."
                                allowInput="true" showNullItem="true" nullItemText="请选择..."
                                requiredErrorText="终点港口名称不能为空"/>
@@ -62,10 +62,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">测水点选择：</td>
+                    <td class="form-label">测<span style="padding: 0 4px;"></span>水<span style="padding: 0 4px;"></span>点：</td>
                     <td class="form-content">
                         <input name="waterLevelPoint" id="waterLevelPoint"  valueField="id" textField="name"
-                                class="mini-checkboxlist"/>
+                               class="mini-combobox" multiSelect="true"/>-
+                       <!-- <input name="waterLevelPoint" id="waterLevelPoint"  valueField="id" textField="name"
+                                class="mini-checkboxlist"/>-->
                     </td>
                 </tr>
                 <tr>
@@ -76,14 +78,14 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">状态：</td>
+                    <td class="form-label">状<span style="padding: 0 14px;"></span>态：</td>
                     <td class="form-content">
                         <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
-                               width="120"   required="true" maxlength="10" requiredErrorText="状态不能为空"\/>
+                                 required="true" maxlength="10" requiredErrorText="状态不能为空"\/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">备<span style="padding: 0 12px;"></span>注：</td>
+                    <td class="form-label">备<span style="padding: 0 14px;"></span>注：</td>
                     <td class="form-content">
                         <input name="description" id="description" class="mini-textarea" style="width:350px; height: 80px;"   maxlength="100"/>
                     </td>

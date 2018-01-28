@@ -13,14 +13,15 @@ var PageFlowAdd = function(){
             this.basePath = PageMain.basePath;
             this.flowForm = new mini.Form("flowFormAdd");
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}])
-            mini.get("waterLevelPoint").setData([{id:1, name:"点1"},{id:2, name:"点2"},{id:3, name:"点3"}])
-            mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:3, name:"C级"}])
+            mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}])
             this.funInitPortDate();
         },
         funSetData : function(data)
         {
         	var row = data.row;
         	this.action = data.action;
+            mini.get("waterLevelPoint").setData(row.waterFly)
+            row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
         	this.flowForm.setData(row);
             if(this.action == "oper")
             {
@@ -74,6 +75,14 @@ var PageFlowAdd = function(){
             
             var me = this;
             var obj = this.flowForm.getData(true);
+            var sailingArea = obj.sailingArea.split(",");
+            var tmp = 0;
+            sailingArea.forEach(function (obj) {
+                tmp += parseInt(obj);
+            });
+
+            obj.sailingArea = tmp;
+
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/flow/" + me.action + "?a="+Math.random(),
                type : 'POST',
