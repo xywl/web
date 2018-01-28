@@ -17,10 +17,11 @@ var PageTransferFlowPriceAdd = function(){
         {
         	var row = data.row;
         	this.action = data.action;
+            mini.get("flowId").setData(row.flowFly);
         	this.transferFlowPriceForm.setData(row);
         	if(this.action == "oper")
         	{
-        		
+
         		mini.get("layout_transferFlowPrice_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
         		var fields = this.transferFlowPriceForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
@@ -34,16 +35,16 @@ var PageTransferFlowPriceAdd = function(){
         funSave : function()
         {
         	this.transferFlowPriceForm.validate();
-            if (!this.transferFlowPriceForm.isValid()) 
+            if (!this.transferFlowPriceForm.isValid())
             {
                  var errorTexts = form.getErrorTexts();
-                 for (var i in errorTexts) 
+                 for (var i in errorTexts)
                  {
                      mini.alert(errorTexts[i]);
                      return;
                  }
             }
-            
+
             var me = this;
             var obj = this.transferFlowPriceForm.getData(true);
             $.ajax({
@@ -51,16 +52,34 @@ var PageTransferFlowPriceAdd = function(){
                type : 'POST',
                data : obj,
                dataType: 'json',
-               success: function (data) 
+               success: function (data)
                {
             	   if (data.success)
                    {
-                       mini.alert("操作成功", "提醒", function(){
-                           if(data.success)
-                           {
-                               PageMain.funCloseWindow("save");
-                           }
-                       });
+                       if(me.action == "add")
+                       {
+                           mini.confirm("操作成功是否要继续增加合同流向", "提醒",
+                               function (action, value) {
+                                   if (action == "ok")
+                                   {
+                                       PageMain.funCloseWindow("continue");
+                                   }
+                                   else
+                                   {
+                                       PageMain.funCloseWindow("save");
+                                   }
+                               }
+                           );
+                       }
+                       else
+                       {
+                           mini.alert("操作成功", "提醒", function(){
+                               if(data.success)
+                               {
+                                   PageMain.funCloseWindow("save");
+                               }
+                           });
+                       }
                    }
                    else
                    {

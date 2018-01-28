@@ -3,6 +3,7 @@ var PageTransferFlowPrice = function(){
     return {
         defaultOption: {
             basePath:"",
+            flowFly : null,
             transferFlowPriceGrid : null
         },
         init :function ()
@@ -10,6 +11,12 @@ var PageTransferFlowPrice = function(){
             this.basePath = PageMain.basePath;
             this.transferFlowPriceGrid = PageTransferPrice.defaultOption.transferFlowPriceGrid;
             this.transferFlowPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferFlowPrice/getList")
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+                if(data.success)
+                {
+                    PageTransferFlowPrice.defaultOption.flowFly = data.data;
+                }
+            });
         },
         funSearch : function()
         {
@@ -20,6 +27,17 @@ var PageTransferFlowPrice = function(){
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageTransferFlowPrice.funDetail()"></a>';
         },
+        funFlowRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageTransferFlowPrice.defaultOption.flowFly.length; nItem++)
+            {
+                if(e.value == PageTransferFlowPrice.defaultOption.flowFly[nItem].id)
+                {
+                    return PageTransferFlowPrice.defaultOption.flowFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funReset : function()
         {
         	var transferFlowPriceForm = new mini.Form("transferFlowPriceForm");
@@ -29,7 +47,7 @@ var PageTransferFlowPrice = function(){
         },
         funAdd : function()
         {
-        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId}, title:"新增数据"};
+        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId}, title:"新增运价流向信息数据"};
             this.funOpenInfo(paramData);
         },
         funModify : function()
@@ -37,7 +55,7 @@ var PageTransferFlowPrice = function(){
         	var row = this.transferFlowPriceGrid.getSelected();
             if(row)
             {
-            	var paramData = {action: "modify", row: row, title:"编辑数据"};
+            	var paramData = {action: "modify", row: row, title:"编辑运价流向信息数据"};
                 this.funOpenInfo(paramData);
             }
             else
@@ -48,11 +66,12 @@ var PageTransferFlowPrice = function(){
         funDetail : function()
         {
         	var row = this.transferFlowPriceGrid.getSelected();
-        	var paramData = {action: "oper", row:row, title:"查看详细"};
+        	var paramData = {action: "oper", row:row, title:"查看运价流向信息详细"};
         	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
         {
+            paramData.row.flowFly = this.defaultOption.flowFly;
         	var me = this;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/transferFlowPrice_add.html",
@@ -64,7 +83,12 @@ var PageTransferFlowPrice = function(){
                     iframe.contentWindow.PageTransferFlowPriceAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.transferFlowPriceGrid.reload();
+
+                    if (action == "continue")
+                    {
+                        PageTransferFlowPrice.funAdd();
+                    }
+                    me.transferFlowPriceGrid.reload();
                 }
             })
         },

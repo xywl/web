@@ -25,21 +25,21 @@
                 	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">客户id：</td>
+                    <td class="form-label">客户名称：</td>
                     <td class="form-content">
-                        <input name="customerId" id="customerId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="客户id不能为空"/>
+                        <input name="customerId" id="customerId" class="mini-combobox" valueField="id" textField="fullName"   required="true" maxlength="10" requiredErrorText="客户id不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">合同id：</td>
+                    <td class="form-label">合同信息：</td>
                     <td class="form-content">
-                        <input name="contractId" id="contractId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同id不能为空"/>
+                        <input name="contractId" id="contractId" class="mini-combobox" valueField="id" textField="name"   required="true" maxlength="10" requiredErrorText="合同id不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">运价类型：</td>
                     <td class="form-content">
-                        <input name="priceType" id="priceType" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="运价类型不能为空"/>
+                        <input name="priceType" id="priceType" class="mini-spinner"  minValue="0" value="0"  maxValue="1000000000000" format="¥#,0"   required="true" maxlength="3" requiredErrorText="运价类型不能为空"/>
                     </td>
                 </tr>
             </table>

@@ -5,7 +5,6 @@ var PageTransferPriceAdd = function(){
             basePath:"",
             action : "",
             transferPriceForm : null
-            
         },
         init :function ()
         {
@@ -17,10 +16,12 @@ var PageTransferPriceAdd = function(){
         {
         	var row = data.row;
         	this.action = data.action;
+            mini.get("customerId").setData(row.customerFly);
+            mini.get("contractId").setData(row.contractFly);
         	this.transferPriceForm.setData(row);
         	if(this.action == "oper")
         	{
-        		
+
         		mini.get("layout_transferPrice_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
         		var fields = this.transferPriceForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
@@ -34,16 +35,16 @@ var PageTransferPriceAdd = function(){
         funSave : function()
         {
         	this.transferPriceForm.validate();
-            if (!this.transferPriceForm.isValid()) 
+            if (!this.transferPriceForm.isValid())
             {
                  var errorTexts = form.getErrorTexts();
-                 for (var i in errorTexts) 
+                 for (var i in errorTexts)
                  {
                      mini.alert(errorTexts[i]);
                      return;
                  }
             }
-            
+
             var me = this;
             var obj = this.transferPriceForm.getData(true);
             $.ajax({
@@ -51,16 +52,34 @@ var PageTransferPriceAdd = function(){
                type : 'POST',
                data : obj,
                dataType: 'json',
-               success: function (data) 
+               success: function (data)
                {
             	   if (data.success)
                    {
-                       mini.alert("操作成功", "提醒", function(){
-                           if(data.success)
-                           {
-                               PageMain.funCloseWindow("save");
-                           }
-                       });
+                       if(me.action == "add")
+                       {
+                           mini.confirm("操作成功是否要继续增加合同流向", "提醒",
+                               function (action, value) {
+                                   if (action == "ok")
+                                   {
+                                       PageMain.funCloseWindow({op:"continue", transferPriceId:data.data});
+                                   }
+                                   else
+                                   {
+                                       PageMain.funCloseWindow("save");
+                                   }
+                               }
+                           );
+                       }
+                       else
+                       {
+                           mini.alert("操作成功", "提醒", function(){
+                               if(data.success)
+                               {
+                                   PageMain.funCloseWindow("save");
+                               }
+                           });
+                       }
                    }
                    else
                    {
