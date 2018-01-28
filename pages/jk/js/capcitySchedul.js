@@ -120,19 +120,14 @@ var CapcitySchedul = function(){
             var record = e.record;
             var uid = record._uid;
             var rowIndex = e.rowIndex;
-            var s = '<a class="Blue_Button" href="javascript:CapcitySchedul.funDelRow(\'' + uid + '\')">删除</a> '
-                    + '<span class="separator"></span>'
-                    + '<a class="Blue_Button" href="javascript:CapcitySchedul.funReDelRow(\'' + uid + '\')">取消删除</a> ';
             if (e.row.id && e.row.status == 0) {
                 return '<a class="Blue_Button" href="javascript:CapcitySchedul.funDelRow(\'' + uid + '\')">删除</a> ';
-                //return '<input type="radio" name="deleteOrNot" /><label>删除</label><input type="radio" name="deleteOrNot" /><label>取消删除</label>';
             }
             else if (e.row.id && e.row.status == 2) {
                 return '<a class="Blue_Button" href="javascript:CapcitySchedul.funReDelRow(\'' + uid + '\')">取消删除</a>';
             } else {
                 return '';
             }
-            //return '<a class="mini-button-icon mini-iconfont icon-remove" style="display: inline-block;  height:16px;padding:0 10px;" title="删除" href="javascript:CapcitySchedul.funRemoveRow()"></a>';
         },
         funOrderTimeRenderer: function(e)
         {
@@ -145,9 +140,6 @@ var CapcitySchedul = function(){
             } else {
                 return mini.formatDate(e.row.preArriveTime, "yyyy-MM-dd HH:mm:ss");
             }
-            // if (e.row.id) {
-            //     return PageMain.funStrToDate(e.row.preArriveTime);
-            // }
         },
         funStatusRenderer: function(e) {
             if (e.row.id) {
@@ -205,7 +197,6 @@ var CapcitySchedul = function(){
         {
             var row = orderDetailsGrid.getRowByUID(row_uid);
             if (row) {
-                var rowCell = orderDetailsGrid.getRowDetailCellEl(row);
                 orderDetailsGrid.updateRow(row, {status: 2});
                 //console.log(row);
             };
