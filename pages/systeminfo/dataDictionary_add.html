@@ -26,9 +26,9 @@
             <input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">编号：</td>
+                    <td class="form-label">编码：</td>
                     <td class="form-content">
-                        <input name="code" id="code" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="编号不能为空"/>
+                        <input name="code" id="code" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="编码不能为空"/>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +40,8 @@
                 <tr>
                     <td class="form-label">上级编号ID：</td>
                     <td class="form-content">
-                        <input name="parentId" id="parentId" class="mini-textbox" maxlength="30"/>
+                        <input name="parentId" id="parentId" class="mini-combobox" required="true" maxlength="20" valueField="id" textField="parentId"
+                               allowInput="true" showNullItem="false" requiredErrorText="上级编号ID不能为空"/>
                     </td>
                 </tr>
                 <tr>
