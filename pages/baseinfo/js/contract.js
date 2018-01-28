@@ -9,6 +9,7 @@ var PageContract = function(){
             contractGrid : null,
             contractFlowGrid : null,
             contractId:0,
+            dataDictFly : [],
             detailGridForm : null
         },
         init :function ()
@@ -20,8 +21,11 @@ var PageContract = function(){
             this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
             this.contractGrid = mini.get("contractGrid");
             this.contractGrid.setUrl(PageMain.defaultOption.httpUrl + "/contract/getList")
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"departMent"}, function (data) {
+                PageContract.defaultOption.dataDictFly = data;
+            })
+
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadCustomer",{}, function (data) {
-                console.log(data);
                 PageContract.defaultOption.customerFly = data;
                 PageContract.funSearch();
             });
@@ -38,6 +42,17 @@ var PageContract = function(){
                 if(e.value == PageContract.defaultOption.contractType[nItem].id)
                 {
                     return PageContract.defaultOption.contractType[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        funDictRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageContract.defaultOption.dataDictFly.length; nItem++)
+            {
+                if(e.value == PageContract.defaultOption.dataDictFly[nItem].id)
+                {
+                    return PageContract.defaultOption.dataDictFly[nItem].name;
                 }
             }
             return e.value;
@@ -113,6 +128,7 @@ var PageContract = function(){
             paramData.type = this.defaultOption.contractType;
             paramData.status = this.defaultOption.contractStatus;
             paramData.partyA = this.defaultOption.customerFly;
+            paramData.dataDictFly = this.defaultOption.dataDictFly;
         	var me = this;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/contract_add.html",

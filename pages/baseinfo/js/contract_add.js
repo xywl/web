@@ -18,6 +18,7 @@ var PageContractAdd = function(){
             mini.get("type").setData(data.type);
             mini.get("status").setData(data.status);
             mini.get("partyA").setData(data.partyA);
+            mini.get("signDepartment").setData(data.dataDictFly);
 
         	var row = data.row;
         	this.defaultOption.action = data.action;

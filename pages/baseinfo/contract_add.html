@@ -79,16 +79,6 @@
                 </tr>
 
                 <tr>
-                    <td class="form-label">签订部门：</td>
-                    <td class="form-content">
-                        <input name="signDepartment" id="signDepartment" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订部门不能为空"/>
-                    </td>
-                    <td class="form-label">签订人员：</td>
-                    <td class="form-content">
-                        <input name="signPerson" id="signPerson" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订人员不能为空"/>
-                    </td>
-                </tr>
-                <tr>
                     <td class="form-label">车辆运费：</td>
                     <td class="form-content">
                         <input name="cheyun" id="cheyun" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="车辆运费不能为空"/>
@@ -97,6 +87,17 @@
                     <td class="form-content">
                         <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="状态不能为空"/>
                     </td>
+                </tr>
+
+                <tr>
+                    <td class="form-label">签订部门：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="signDepartment" style="width:595px;" id="signDepartment" class="mini-combobox" valueField="id" textField="name"    required="true" maxlength="10" requiredErrorText="合同签订部门不能为空"/>
+                    </td>
+                    <!-- <td class="form-label">签订人员：</td>
+                     <td class="form-content">
+                         <input name="signPerson" id="signPerson" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="合同签订人员不能为空"/>
+                     </td>-->
                 </tr>
                 <tr>
                     <td class="form-label">描<span style="padding: 0px 14px;"></span>述：</td>
