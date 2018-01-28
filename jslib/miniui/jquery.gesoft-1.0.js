@@ -2,7 +2,8 @@ var PageMain = function(){
     return {
         defaultOption: {
             basePath:"",
-            httpUrl : "http://127.0.0.1:16721/xyl"
+            zero:"0000000000000000000000000000000000",
+            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
@@ -115,6 +116,30 @@ var PageMain = function(){
                 y: "bottom",
                 timeout: 10000
             });
+        },
+        funDealComBitInfo : function (paramVal, paramLen)
+        {
+            var paramBit = PageMain.funDealBinInfo(paramVal, paramLen);
+            var tmp = "";
+            for(var nItem=0; nItem <= paramLen; nItem++)
+            {
+                if(paramBit.charAt(nItem) == 1)
+                {
+                    if (tmp != "")
+                    {
+                        tmp += ",";
+                    }
+                    tmp += Math.pow(2, paramLen - 1 - nItem);
+                }
+            }
+            return tmp;
+        },
+        funDealBinInfo : function (paramVal, paramLen)
+        {
+            var paramBit = parseInt(paramVal).toString(2);
+            paramBit = PageMain.defaultOption.zero.substring(0, paramLen).substring(paramBit.length) + paramBit;
+            console.log(paramBit)
+            return paramBit;
         },
         //
         callAjax : function (paramUrl, paramData, callback)

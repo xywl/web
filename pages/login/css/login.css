@@ -16,6 +16,7 @@ body {
     position: relative;
 }
 
+
 /*.web-login {
     width: 100%;
     position: relative;
@@ -26,7 +27,13 @@ body {
     overflow: hidden;
 }*/
 
-*, *:after, *:before{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+*,
+*:after,
+*:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
 .login {
     border: 0;
@@ -114,7 +121,18 @@ input#login-button:hover {
     margin-bottom: 10px;
 }
 
-.operate-area >a {
+.operate-area span {
+    vertical-align: middle;
+    font: 400 13px/17px 'Open Sans', 'Helvetica Neue', helvetica, arial, verdana, sans-serif;
+}
+
+.operate-area input[type="checkbox"] {
+    vertical-align: middle;
+    height: 18px;
+    width: 18px;
+}
+
+.operate-area>a {
     float: right;
 }
 
@@ -125,5 +143,16 @@ input#login-button:hover {
 }
 
 .red {
-    color:#f4002f;
+    color: #f4002f;
+}
+
+
+/*Chrome自动填充黄色背景*/
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    /*border: 1px solid #CCC!important;
+    height: 27px!important;
+    line-height: 27px!important;
+    border-radius: 0 4px 4px 0;*/
 }

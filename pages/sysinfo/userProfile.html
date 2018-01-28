@@ -1,0 +1,82 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/userProfile.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="userProfileForm">
+                
+				<lable class="form-label">nickName：</lable>
+                <input name="nickName" id="nickName" class="mini-textbox" emptyText="nickName"  style="width:100px;"/>
+				<lable class="form-label">realName：</lable>
+                <input name="realName" id="realName" class="mini-textbox" emptyText="realName"  style="width:100px;"/>
+				<lable class="form-label">0-未知，1-男，2-女：</lable>
+                <input name="gender" id="gender" class="mini-textbox" emptyText="0-未知，1-男，2-女"  style="width:100px;"/>
+				<lable class="form-label">birthday：</lable>
+                <input name="birthday" id="birthday" class="mini-textbox" emptyText="birthday"  style="width:100px;"/>
+				<lable class="form-label">删除标记  0：未删除  1：已删除：</lable>
+                <input name="isDeleted" id="isDeleted" class="mini-textbox" emptyText="删除标记  0：未删除  1：已删除"  style="width:100px;"/>
+				<lable class="form-label">creatorName：</lable>
+                <input name="creatorName" id="creatorName" class="mini-textbox" emptyText="creatorName"  style="width:100px;"/>
+				<lable class="form-label">creator：</lable>
+                <input name="creator" id="creator" class="mini-textbox" emptyText="creator"  style="width:100px;"/>
+				<lable class="form-label">created：</lable>
+                <input name="created" id="created" class="mini-textbox" emptyText="created"  style="width:100px;"/>
+				<lable class="form-label">updater：</lable>
+                <input name="updater" id="updater" class="mini-textbox" emptyText="updater"  style="width:100px;"/>
+				<lable class="form-label">updaterName：</lable>
+                <input name="updaterName" id="updaterName" class="mini-textbox" emptyText="updaterName"  style="width:100px;"/>
+				<lable class="form-label">updated：</lable>
+                <input name="updated" id="updated" class="mini-textbox" emptyText="updated"  style="width:100px;"/>
+				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />	
+                <a class="mini-button" iconCls="icon-search" onclick="PageUserProfile.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageUserProfile.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageUserProfile.funAdd()"><label class="form-label">增加</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageUserProfile.funModify()"><label class="form-label">修改</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageUserProfile.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="userProfileGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="30" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+					 <div field="nickName" width="120" headerAlign="center" allowSort="true">nickName</div>
+					 <div field="realName" width="120" headerAlign="center" allowSort="true">realName</div>
+					 <div field="gender" width="120" headerAlign="center" allowSort="true">0-未知，1-男，2-女</div>
+					 <div field="birthday" width="120" headerAlign="center" allowSort="true">birthday</div>
+					 <div field="isDeleted" width="120" headerAlign="center" allowSort="true">删除标记  0：未删除  1：已删除</div>
+					 <div field="creatorName" width="120" headerAlign="center" allowSort="true">creatorName</div>
+					 <div field="creator" width="120" headerAlign="center" allowSort="true">creator</div>
+					 <div field="created" width="120" headerAlign="center" allowSort="true">created</div>
+					 <div field="updater" width="120" headerAlign="center" allowSort="true">updater</div>
+					 <div field="updaterName" width="120" headerAlign="center" allowSort="true">updaterName</div>
+					 <div field="updated" width="120" headerAlign="center" allowSort="true">updated</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false"
+                         align="center" renderer="PageUserProfile.funOperRenderer">操作
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

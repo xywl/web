@@ -4,6 +4,8 @@ var PageFlow = function(){
         defaultOption: {
             basePath:"",
             flowGrid : null,
+            waterFly : null,
+            sailingAreaFly : [{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}],
             portData:[]
         },
         init :function ()
@@ -11,7 +13,13 @@ var PageFlow = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.flowGrid = mini.get("flowGrid");
-            this.flowGrid.setUrl(PageMain.defaultOption.httpUrl + "/flow/getList")
+            this.flowGrid.setUrl(PageMain.defaultOption.httpUrl + "/flow/getList");
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/waterLevel/getList",{queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+                if (data.success)
+                {
+                    PageFlow.defaultOption.waterFly = data.data;
+                }
+            })
             this.funSearch();
             this.funInitPortDate();
         },
@@ -47,35 +55,41 @@ var PageFlow = function(){
         },
         funRendererFlowWaterLevelPoint : function (e)
         {
-            if (e.value == 1)
+            var tmp = "";
+            var tmpFly = e.value.split(",");
+            tmpFly.forEach(function (flowId)
             {
-                return "点1"
-            }
-            else if (e.value == 2)
-            {
-                return "点2"
-            }
-            else if (e.value == 3)
-            {
-                return "点3"
-            }
-            return e.value;
+                PageFlow.defaultOption.waterFly.forEach(function (obj) {
+                    if (flowId == obj.id)
+                    {
+                        if(tmp != "")
+                        {
+                            tmp += ";";
+                        }
+                        tmp += obj.name;
+                        return;
+                    }
+                })
+            })
+            return tmp;
         },
         funRendererFlowSailingArea : function (e)
         {
-            if (e.value == 1)
+            var sailingArea = PageMain.funDealBinInfo(e.value, 4);
+            var tmp = "";
+            if (sailingArea.charAt(1) == "1")
             {
-                return "A级"
+                tmp += "C级;";
             }
-            else if (e.value == 2)
+            if (sailingArea.charAt(2) == "1")
             {
-                return "B级"
+                tmp += "B级"
             }
-            else if (e.value == 3)
+            if (sailingArea.charAt(3) == "1")
             {
-                return "C级"
+                tmp += "A级"
             }
-            return e.value;
+            return tmp;
         },
         funRendererFlowStatus : function (e)
         {
@@ -111,6 +125,7 @@ var PageFlow = function(){
         },
         funOpenInfo : function(paramData)
         {
+            paramData.row.waterFly = this.defaultOption.waterFly;
             var me = this;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/flow_add.html",
