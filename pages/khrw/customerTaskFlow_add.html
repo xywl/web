@@ -33,7 +33,7 @@
                     </td>
                     <td class="form-label">总吨位：</td>
                     <td class="form-content">
-                        <input name="totalWeight" id="totalWeight" class="mini-textbox"
+                        <input name="totalWeight" id="totalWeight" decimalPlaces="0" class="mini-spinner" minValue="0" maxValue="1000000000000"
                                required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
                     </td>
                 </tr>
@@ -109,8 +109,7 @@
                     </td>
                     <td class="form-label">总载重：</td>
                     <td class="form-content">
-                        <input name="totalLoad" id="totalLoad" class="mini-textbox"
-                                maxlength="20" />
+                        <input name="totalLoad" id="totalLoad" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="1000000000000"  />
                     </td>
                 </tr>
                 <tr>
@@ -146,7 +145,7 @@
                     </td>
                     <td class="form-label">船户参考运价：</td>
                     <td class="form-content">
-                        <input name="shipSuggestUnitPrice" id="shipSuggestUnitPrice" class="mini-textbox"
+                        <input name="shipSuggestUnitPrice" id="shipSuggestUnitPrice"  decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="1000000000000"
                                required="true" maxlength="10" requiredErrorText="船户参考运价不能为空"/>
                     </td>
                 </tr>

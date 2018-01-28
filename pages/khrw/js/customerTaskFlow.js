@@ -21,7 +21,7 @@ var PageCustomerTaskFlow = function(){
             this.customerTaskFlowGrid = PageCustomerTask.defaultOption.customerTaskFlowGrid;
             //this.customerTaskFlowGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTaskFlow/getList?id")
 
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadPortAll",{}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadPortAll",{pageSize:100000}, function (data) {
                     PageCustomerTaskFlow.defaultOption.portData = data;
             });
         },
@@ -140,11 +140,11 @@ var PageCustomerTaskFlow = function(){
         //流向信息
         funFlowRenderer : function (e)
         {
-            for(var nItem = 0; nItem < PageCustomerTask.defaultOption.flowFly.length; nItem++)
+            for(var nItem = 0; nItem < PageCustomerTask.defaultOption.flowSelect.length; nItem++)
             {
-                if(e.value == PageCustomerTask.defaultOption.flowFly[nItem].id)
+                if(e.value == PageCustomerTask.defaultOption.flowSelect[nItem].id)
                 {
-                    return PageCustomerTask.defaultOption.flowFly[nItem].name;
+                    return PageCustomerTask.defaultOption.flowSelect[nItem].name;
                 }
             }
             return e.value;
