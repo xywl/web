@@ -124,7 +124,8 @@ var PageContract = function(){
                     iframe.contentWindow.PageContractAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                    if(action == "close")
+                    console.log(action)
+                    if(action == "close" || action == "cancel")
                     {
                         return ;
                     }

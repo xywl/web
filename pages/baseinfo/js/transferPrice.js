@@ -116,7 +116,7 @@ var PageTransferPrice = function(){
                     iframe.contentWindow.PageTransferPriceAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                    if(action == "close")
+                    if(action == "close" || action == "cancel")
                     {
                         return ;
                     }

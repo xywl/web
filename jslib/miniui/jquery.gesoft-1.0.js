@@ -32,6 +32,14 @@ var PageMain = function(){
                 html: tmp
             });
         },
+        funOpenDateInfo : function (e)
+        {
+            var date = e.date;
+            var d = new Date();
+            if (date.getTime() < d.getTime()) {
+                e.allowSelect = false;
+            }
+        },
         IsNull:function (paramId, paramTip)
         {
             var tmp = "";
@@ -49,6 +57,10 @@ var PageMain = function(){
                 return true;
             }
             return false;
+        },
+        funFromDateInfo : function (e)
+        {
+            return mini.formatDate (new Date(e.value * 1000), "yyyy-MM-dd HH:mm:ss");
         },
         funStrToDate :function ()
         {
@@ -89,7 +101,8 @@ var PageMain = function(){
             var pathName = window.location.pathname.substring(1);
             var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
             var path = "";
-            if (webName == "") {
+            if (webName == "")
+            {
                 path = window.location.protocol + '//' + window.location.host;
             }
             else {
