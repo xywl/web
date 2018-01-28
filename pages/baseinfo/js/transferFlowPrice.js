@@ -47,7 +47,7 @@ var PageTransferFlowPrice = function(){
         },
         funAdd : function()
         {
-        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId}, title:"新增数据"};
+        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId}, title:"新增运价流向信息数据"};
             this.funOpenInfo(paramData);
         },
         funModify : function()
@@ -55,7 +55,7 @@ var PageTransferFlowPrice = function(){
         	var row = this.transferFlowPriceGrid.getSelected();
             if(row)
             {
-            	var paramData = {action: "modify", row: row, title:"编辑数据"};
+            	var paramData = {action: "modify", row: row, title:"编辑运价流向信息数据"};
                 this.funOpenInfo(paramData);
             }
             else
@@ -66,7 +66,7 @@ var PageTransferFlowPrice = function(){
         funDetail : function()
         {
         	var row = this.transferFlowPriceGrid.getSelected();
-        	var paramData = {action: "oper", row:row, title:"查看详细"};
+        	var paramData = {action: "oper", row:row, title:"查看运价流向信息详细"};
         	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
