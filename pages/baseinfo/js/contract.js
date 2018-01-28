@@ -134,7 +134,7 @@ var PageContract = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/contract_add.html",
                 title: paramData.title,
                 width: 850,
-                height: 30 *  10 + 65,
+                height: 30 *  11 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageContractAdd.funSetData(paramData);
