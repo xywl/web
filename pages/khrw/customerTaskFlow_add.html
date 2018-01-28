@@ -28,12 +28,13 @@
                 <tr>
                     <td class="form-label">流向：</td>
                     <td class="form-content">
-                        <input name="flowId" id="flowId" class="mini-combobox" valueField="id"
+                        <input name="flowId" id="flowId" class="mini-combobox" valueField="id" onvaluechanged="PageCustomerTaskFlowAdd.funPortNameCustomer()"
                                textField="name"  required="true"  requiredErrorText="流向不能为空"/>
                     </td>
-                    <td class="form-label">货物名称：</td>
+                    <td class="form-label">总吨位：</td>
                     <td class="form-content">
-                        <input name="goodsName" id="goodsName" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="货物名称不能为空"/>
+                        <input name="totalWeight" id="totalWeight" class="mini-textbox"
+                               required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
                     </td>
                 </tr>
                 <tr>
@@ -44,11 +45,11 @@
                         <input name="goodsSubType" id="goodsSubType" class="mini-combobox" width="45%"
                                valueField="id" textField="name" />
                     </td>
-                    <td class="form-label">总吨位：</td>
+                    <td class="form-label">货物名称：</td>
                     <td class="form-content">
-                        <input name="totalWeight" id="totalWeight" class="mini-textbox"
-                               required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
+                        <input name="goodsName" id="goodsName" class="mini-textbox"  required="true" maxlength="50" requiredErrorText="货物名称不能为空"/>
                     </td>
+
                 </tr>
                 <tr>
                     <td class="form-label">方向：</td>

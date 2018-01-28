@@ -3,7 +3,7 @@ var PageMain = function(){
         defaultOption: {
             basePath:"",
             zero:"0000000000000000000000000000000000",
-            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
+            httpUrl : "http://127.0.0.1:16722/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;

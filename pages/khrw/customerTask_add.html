@@ -15,10 +15,10 @@
             font-size: 12px;
             overflow: hidden;
         }
-        .mini-textbox, .mini-combobox, .mini-buttonedit{
+       /* .mini-textbox, .mini-combobox, .mini-buttonedit{
             height: 27px;
             width:180px;
-        }
+        }*/
     </style>
 </head>
 <body>
@@ -31,8 +31,11 @@
                     <td class="form-label">合同名称：</td>
                     <td class="form-content">
                         <input name="contractId" id="contractId" class="mini-combobox" valueField="id"
-                                textField="name"  required="true" onvaluechanged="PageCustomerTaskAdd.funSetCustomer()"   requiredErrorText="合同名称不能为空"/>
+                                textField="name"  required="true" onvaluechanged="PageCustomerTaskAdd.funSetCustomer()"
+                               requiredErrorText="合同名称不能为空"/>
                     </td>
+                </tr>
+                <tr>
                     <td class="form-label">客户名称：</td>
                     <td class="form-content">
                         <input name="customerId" id="customerId" class="mini-combobox" valueField="id"
@@ -45,10 +48,11 @@
                         <input name="totalLoad" id="totalLoad" class="mini-textbox"
                                required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
                     </td>
-                    <td class="form-label">备注：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="description" id="description" class="mini-textarea"
-                               style="width:185px; height: 80px;"   maxlength="100" />
+                </tr>
+                <tr>
+                    <td class="form-label">备注1：</td>
+                    <td class="form-content">
+                        <input name="description" id="description" class="mini-textarea"  maxlength="100" />
                     </td>
                 </tr>
             </table>

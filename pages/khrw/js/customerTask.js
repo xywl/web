@@ -21,7 +21,7 @@ var PageCustomerTask = function(){
             this.customerTaskGrid = mini.get("customerTaskGrid");
             this.customerTaskGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTask/getList");
             //加载合同
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{}, function (data) {
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{}, function (data) {
                 PageCustomerTask.defaultOption.customerFly = data;
             });
             //加载所有客户信息
@@ -81,7 +81,7 @@ var PageCustomerTask = function(){
             PageCustomerTask.defaultOption.customerTaskFlowGrid.load({ key: row.id, queryParamFlag: 1 });
 
             //根据合同id加载流向信息
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.id,{}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{}, function (data) {
                 PageCustomerTask.defaultOption.flowFly = data;
             });
         },

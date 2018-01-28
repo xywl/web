@@ -145,8 +145,10 @@ var PageCustomerTaskFlowAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
-        },funSetGoodsSubType:function () {
+        },
+        funSetGoodsSubType:function () {
             var goodsVal = mini.get("goodsType").getValue();
+            var goodsText =  mini.get("goodsType").getText();
             if(goodsVal == 2) {
                 //alert(goodsVal);
                 mini.get("goodsSubType").setData(PageCustomerTaskFlowAdd.goodsSubType);
@@ -155,6 +157,14 @@ var PageCustomerTaskFlowAdd = function(){
                 mini.get("goodsSubType").setData([]);
                 mini.get("goodsSubType").required =false;
             }
+            mini.get("goodsName").setValue(goodsText);
+        },
+        funPortNameCustomer:function () {
+            var flowId = mini.get("flowId").getValue();
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getById?id="+flowId,{pageSize:1000000}, function (data) {
+                mini.get("startPortId").setValue(data.data.startPortId);
+                mini.get("endPortId").setValue(data.data.endPortId);
+            });
         }
     }
 }();
