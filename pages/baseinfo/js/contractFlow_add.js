@@ -4,6 +4,7 @@ var PageContractFlowAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
+            customerId:0,
             contractFlowForm : null
         },
         init :function ()
@@ -11,6 +12,20 @@ var PageContractFlowAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.contractFlowForm = new mini.Form("contractFlowFormAdd");
+            mini.get("lastUnitPrice").setReadOnly(true);
+        },
+        funChangeFlowInfo : function (e)
+        {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadContractFlowLastInfo", {contractId:mini.get("contractId").getValue(), flowId:mini.get("flowId").getValue()}, function (data) {
+               console.log(data)
+                if (data.length > 0)
+                {
+                    mini.get("lastUnitPrice").setValue(data[0].id);
+                }
+                else {
+                    mini.get("lastUnitPrice").setValue(0);
+                }
+            });
         },
         funSetData : function(data)
         {

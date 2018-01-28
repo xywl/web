@@ -22,7 +22,12 @@ var PageFlowAdd = function(){
         	this.action = data.action;
             mini.get("waterLevelPoint").setData(row.waterFly)
             row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
+            if (this.action == "add")
+            {
+                row.status = 1;
+            }
         	this.flowForm.setData(row);
+
             if(this.action == "oper")
             {
                 mini.get("layout_flow_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

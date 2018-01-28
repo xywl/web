@@ -92,7 +92,7 @@ var PageContractFlow = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/contractFlow_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  5 + 65,
+                height: 30 *  6 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageContractFlowAdd.funSetData(paramData);
