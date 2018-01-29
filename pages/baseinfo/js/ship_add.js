@@ -65,7 +65,6 @@ var PageShipAdd = function(){
                 sum += parseInt(arr[i])*1;
             }
             obj.sailingArea = sum;
-            alert(JSON.stringify(obj));
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/ship/" + me.action + "?a="+Math.random(),
                type : 'POST',
