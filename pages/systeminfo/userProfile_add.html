@@ -47,8 +47,15 @@
                 <tr>
                     <td class="form-label">出生年月：</td>
                     <td class="form-content">
-                        <input name="birthday" id="birthday" class="mini-datepicker" valueField="id" textField="name"
+                        <input name="birthDay" id="birthDay" class="mini-datepicker" valueField="id" textField="name"
                                required="true" maxlength="30" requiredErrorText="出生年月不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">部门：</td>
+                    <td class="form-content">
+                        <input name="department" id="department" class="mini-combobox" valueField="id" textField="name"
+                               required="true" maxlength="3" requiredErrorText="状态 1：市场部  2：运营部 不能为空"/>
                     </td>
                 </tr>
             </table>

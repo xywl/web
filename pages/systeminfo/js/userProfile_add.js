@@ -12,7 +12,8 @@ var PageUserProfileAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.userProfileForm = new mini.Form("userProfileFormAdd");
-            mini.get("gender").setData([{id:0,name:"未知"},{id:1, name:"男"},{id:2, name:"女"}])
+            mini.get("gender").setData([{id:0,name:"未知"},{id:1, name:"男"},{id:2, name:"女"}]);
+            mini.get("department").setData([{id:1, name:"市场部"},{id:2, name:"运营部"}])
         },
         funSetData : function(data)
         {

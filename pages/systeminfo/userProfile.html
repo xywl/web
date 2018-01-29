@@ -13,7 +13,7 @@
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="userProfileForm">
                 <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入姓名"  style="width:160px;"/>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入查询内容"  style="width:160px;"/>
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageUserProfile.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageUserProfile.funReset()" plain="true"><label>重置</label></a>
@@ -41,7 +41,8 @@
                     <div field="nickName" width="120" headerAlign="center" allowSort="true">昵称</div>
                     <div field="realName" width="120" headerAlign="center" allowSort="true">真实姓名</div>
                     <div field="gender" width="120" headerAlign="center" allowSort="true" renderer="gender">性别</div>
-                    <div field="birthday" width="120" headerAlign="center" allowSort="true" >出生日期</div>
+                    <div field="birthDay" width="120" headerAlign="center" allowSort="true" >出生日期</div>
+                    <div field="department" width="120" headerAlign="center" allowSort="true" renderer="gender">部门</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageUserProfile.funOperRenderer">操作
                     </div>
                 </div>
