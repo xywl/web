@@ -33,6 +33,7 @@ var PageShipAdd = function(){
             {
                 row.sailingArea = "1,2,4";
             }
+            mini.get("shipLevel").setData(data.shipLevel);
         	this.shipForm.setData(row);
             if(this.action == "oper")
             {
