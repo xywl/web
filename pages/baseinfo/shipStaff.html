@@ -38,7 +38,7 @@
                  pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-					 <div field="shipId" width="120" headerAlign="center" allowSort="true">船号</div>
+					 <div field="shipId" width="120" headerAlign="center" allowSort="true" renderer="PageShipStaff.funShipIdRenderer">船号</div>
 					 <div field="name" width="120" headerAlign="center" allowSort="true">姓名</div>
 					 <div field="gender" width="120" headerAlign="center" allowSort="true" renderer="PageShipStaff.funRendererShipStaffGender">性别</div>
 					 <div field="identity" width="120" headerAlign="center" allowSort="true">身份证号码</div>
