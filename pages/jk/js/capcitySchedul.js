@@ -168,19 +168,24 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var t = Number(row.preLoad);
                     if (isNaN(t)) continue;
-                    preLoadTotal += t;
+                    if (t > row.preWeight) {
+                        mini.alert("预发吨位不能大于预报吨位,请重新编编辑");
+                    } else {
+                        preLoadTotal += t;
+                    }
                 }
             }
             if (preLoadTotal > leftWeight) {
-                mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
-                    function (action, value) {
-                        if (action == "ok") {
-                            alert(value);
-                        } else {
-                            alert("取消");
-                        }
-                    }
-                );
+                mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+                // mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
+                //     function (action, value) {
+                //         if (action == "ok") {
+                //             alert(value);
+                //         } else {
+                //             alert("取消");
+                //         }
+                //     }
+                // );
                 return;
             }
         },
@@ -226,7 +231,11 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var preLoad = Number(row.preLoad);
                     if (isNaN(preLoad)) continue;
-                    preLoadTotal += preLoad;
+                    if (row.status != 2) {
+                        preLoadTotal += preLoad;
+                    } else {
+                        preLoadTotal += 0;
+                    }
                 }
                 var hasLeftWeight = leftWeight - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
@@ -272,6 +281,8 @@ var CapcitySchedul = function(){
             }
             var plans = [];
             var submitData = orderDetailsGrid.getChanges();
+            var totalPreLoad = 0;
+            var leftWeight = $("#leftWeight").val();
             for (var i = 0; i < submitData.length; i++) {
                 var plansData = {};
                 if (submitData[i].id) {
@@ -280,6 +291,7 @@ var CapcitySchedul = function(){
                 plansData.shipId = submitData[i].shipId;
                 plansData.preWeight = submitData[i].preWeight;
                 plansData.preLoad = submitData[i].preLoad;
+                totalPreLoad += Number(submitData[i].preLoad);
                 plansData.actualTransferPrice = submitData[i].actualTransferPrice;
                 if (submitData[i].id) {
                     plansData.preArriveTime = submitData[i].preArriveTime
@@ -299,6 +311,10 @@ var CapcitySchedul = function(){
                 plans.push(plansData);
             }
             param.plans = plans;
+            if (totalPreLoad > leftWeight) {
+                mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+                return;
+            }
 
             //orderDetailsGrid.loading("保存中，请稍后......");
             if (plans.length > 0)
