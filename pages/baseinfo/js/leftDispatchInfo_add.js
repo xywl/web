@@ -15,6 +15,7 @@ var PageLeftDispatchInfoAdd = function(){
             this.basePath = PageMain.basePath;
             this.leftDispatchInfoForm = new mini.Form("leftDispatchInfoFormAdd");
             mini.get("status").setData([{id:1, name:"待发布"},{id:2, name:"已发布"},{id:3, name:"已取消"}])
+            mini.get("taskStatus").setData([{id:0, name:"待审核"},{id:1, name:"部分审核"},{id:2, name:"已审核"}])
             this.funInitPortDate();
         },
         funSetData : function(data)

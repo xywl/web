@@ -154,7 +154,7 @@ function formatData (e) {
 
         result = year + "-" + mon + "-" + sDate + "  " + hours + ":" + min + ":" + sec;
     }
-    //转换"状态"
+    //转换"发布状态"
     if("status" == field){
         if(1 == e.value){
             result = "待发布";
@@ -164,6 +164,18 @@ function formatData (e) {
             result = "已取消";
         }
     }
+
+    //转换"状态"
+    if("taskStatus" == field){
+        if(0 == e.value){
+            result = "待审核";
+        }else if(1 == e.value){
+            result = "部分审核";
+        }else if(2 == e.value){
+            result = "已审核";
+        }
+    }
+
     return result;
 }
 
