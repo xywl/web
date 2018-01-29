@@ -133,6 +133,17 @@ function gender(e) {
             result = "女";
         }
     }
+
+    //转换部门
+    if("department" == field){
+        if(1 == e.value){
+            result = "市场部";
+        }else if(2 == e.value){
+            result = "运营部";
+        }else if(null == e.value){
+            result = "";
+        }
+    }
     return result;
 }
 

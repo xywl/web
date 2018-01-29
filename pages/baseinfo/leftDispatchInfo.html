@@ -38,16 +38,17 @@
                 sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                    <div field="customerTaksFlowId" width="120" headerAlign="center" allowSort="true">客户任务流向ID</div>
+                    <div field="customerTaskFlowId" width="120" headerAlign="center" allowSort="true">客户任务流向ID</div>
                     <div field="dispatchWeight" width="120" headerAlign="center" allowSort="true">调度吨位</div>
                     <div field="bookSTime" width="120" headerAlign="center" allowSort="true" renderer="formatData">预约抢单有效开始日期</div>
                     <div field="bookETime" width="120" headerAlign="center" allowSort="true" renderer="formatData">预约抢单有效截止日期</div>
                     <div field="specialTip" width="120" headerAlign="center" allowSort="true">特殊要求</div>
                     <div field="minShipWeight" width="120" headerAlign="center" allowSort="true">最小船舶吨位</div>
                     <div field="maxShipWeight" width="120" headerAlign="center" allowSort="true">最大船舶吨位</div>
-                    <div field="maxshipnum" width="120" headerAlign="center" allowSort="true">船舶最多个数</div>
+                    <div field="maxShipNum" width="120" headerAlign="center" allowSort="true">船舶预约最大个数</div>
                     <div field="waterLevel" width="120" headerAlign="center" allowSort="true">水位</div>
-                    <div field="status" width="120" headerAlign="center" allowSort="true" renderer="formatData">状态</div>
+                    <div field="status" width="120" headerAlign="center" allowSort="true" renderer="formatData">发布状态</div>
+                    <div field="taskStatus" width="120" headerAlign="center" allowSort="true" renderer="formatData">状态</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageLeftDispatchInfo.funOperRenderer">操作
                     </div>
                 </div>

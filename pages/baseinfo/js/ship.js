@@ -3,7 +3,8 @@ var PageShip = function(){
     return {
         defaultOption: {
             basePath:"",
-            shipGrid : null
+            shipGrid : null,
+            shipLevelFly:[{id:1, name:"650吨以上"},{id:2, name:"650吨以下"},{id:3, name:"碎石船"},{id:4, name:"兴能散装船"},{id:5, name:"兴能集装箱船"},{id:6, name:"兴一航运散装船"},{id:7, name:"兴一航运集装箱船"}],
         },
         init :function ()
         {
@@ -72,26 +73,17 @@ var PageShip = function(){
             }
             return e.value;
         },
-        /* funRendererGoodsType : function (e)
-         {
-             if (e.value == 1)
-             {
-                 return "孰料"
-             }
-             else if (e.value == 2)
-             {
-                 return "电煤"
-             }
-             else if (e.value == 3)
-             {
-                 return "集装箱"
-             }
-             else if (e.value == 4)
-             {
-                 return "其他"
-             }
-             return e.value;
-         },*/
+        funRendererShipLevel : function (e)
+        {
+            for(var nItem = 0; nItem < PageShip.defaultOption.shipLevelFly.length; nItem++)
+            {
+                if(e.value == PageShip.defaultOption.shipLevelFly[nItem].id)
+                {
+                    return PageShip.defaultOption.shipLevelFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageShip.funDetail()"></a>';
@@ -105,6 +97,7 @@ var PageShip = function(){
         funOpenInfo : function(paramData)
         {
         	var me = this;
+            paramData.shipLevel = this.defaultOption.shipLevelFly;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/ship_add.html",
                 title: paramData.title,

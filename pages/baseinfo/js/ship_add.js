@@ -33,6 +33,7 @@ var PageShipAdd = function(){
             {
                 row.sailingArea = "1,2,4";
             }
+            mini.get("shipLevel").setData(data.shipLevel);
         	this.shipForm.setData(row);
             if(this.action == "oper")
             {
@@ -65,7 +66,6 @@ var PageShipAdd = function(){
                 sum += parseInt(arr[i])*1;
             }
             obj.sailingArea = sum;
-            alert(JSON.stringify(obj));
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/ship/" + me.action + "?a="+Math.random(),
                type : 'POST',

@@ -31,27 +31,27 @@
                 <tr>
                     <td class="form-label">船号：</td>
                     <td class="form-content">
-                        <input name="shipNo" id="shipNo" class="mini-textbox"
+                        <input name="shipNo" id="shipNo" class="mini-textbox" required="true"
                                maxlength="10" requiredErrorText="船号不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">姓名：</td>
                     <td class="form-content">
-                        <input name="name" id="name"  class="mini-textbox"   maxlength="100"/>
+                        <input name="name" id="name"  class="mini-textbox" required="true"  maxlength="100"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">手机号：</td>
                     <td class="form-content">
-                        <input name="mobile" id="mobile"  class="mini-textbox"  maxlength="30" />
+                        <input name="mobile" id="mobile"  class="mini-textbox" maxlength="15" required="true"  maxlength="30" />
                     </td>
 
                 </tr>
                 <tr>
                     <td class="form-label">预报吨位：</td>
                     <td class="form-content">
-                        <input name="preLoad" id="preLoad"  class="mini-textbox"   maxlength="30" />
+                        <input name="preLoad" id="preLoad"  decimalPlaces="0" class="mini-spinner" required="true" minValue="0" maxValue="10000000000"   maxlength="11" />
                     </td>
                     <td></td>
                     <td></td>

@@ -30,7 +30,8 @@
                 <tr>
                     <td width="10%" align="right">船号：</td>
                     <td width="20%"  class="form-content">
-                        <input name="shipNo" id="shipNo"  class="mini-textbox"  width="140" required="true" maxlength="20" requiredErrorText="船号不能为空"/>
+                        <input name="shipNo" id="shipNo"  class="mini-textbox"  width="140" required="true"  maxValue="30"
+                               maxlength="20" requiredErrorText="船号不能为空"/>
                     </td>
                     <td width="10%" align="right">船舶种类：</td>
                     <td width="20%" class="form-content">
@@ -46,41 +47,41 @@
                 <tr>
                     <td class="form-label">长(米)：</td>
                     <td class="form-content">
-                        <input name="length" id="length" width="140" decimalPlaces="2" class="mini-spinner" required="true" minValue="0" maxValue="1000000000000" />
+                        <input name="length" id="length" width="140" decimalPlaces="2" class="mini-spinner" required="true" minValue="0" maxValue="10000000000" />
                     </td>
 
                     <td class="form-label">宽(米)：</td>
                     <td class="form-content">
-                        <input name="width" id="width" width="140" decimalPlaces="2" class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000"  />
+                        <input name="width" id="width" width="140" decimalPlaces="2" class="mini-spinner" required="true"  minValue="0" maxValue="10000000000"  />
                     </td>
                     <td class="form-label">型深(米)：</td>
                     <td class="form-content">
-                        <input name="depth" id="depth" width="140" decimalPlaces="2" class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000"  />
+                        <input name="depth" id="depth" width="140" decimalPlaces="2" class="mini-spinner" required="true"  minValue="0" maxValue="10000000000"  />
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">总吨：</td>
                     <td class="form-content">
-                        <input name="totalWeight" id="totalWeight" decimalPlaces="0" width="140"  class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000" />
+                        <input name="totalWeight" id="totalWeight" decimalPlaces="0" width="140"  class="mini-spinner" required="true"  minValue="0" maxValue="10000000000" />
                     </td>
                     <td class="form-label">净重(吨)：</td>
                     <td class="form-content">
-                        <input name="netWeight" id="netWeight" width="140" class="mini-spinner"  decimalPlaces="0" required="true" minValue="0" maxValue="1000000000000" />
+                        <input name="netWeight" id="netWeight" width="140" class="mini-spinner"  decimalPlaces="0" required="true" minValue="0" maxValue="10000000000" />
                     </td>
                     <td class="form-label">载重吨：</td>
                     <td class="form-content">
-                        <input name="loadWeight" id="loadWeight"  width="140" decimalPlaces="0"  class="mini-spinner" required="true"  minValue="0" maxValue="1000000000000"   />
+                        <input name="loadWeight" id="loadWeight"  width="140" decimalPlaces="0"  class="mini-spinner" required="true"  minValue="0" maxValue="10000000000"   />
                     </td>
 
                 </tr>
                 <tr>
                     <td class="form-label">A级-长江：</td>
                     <td class="form-content">
-                        <input name="levelAWeight" id="levelAWeight" class="mini-textbox" width="140" maxlength="10" />
+                        <input name="levelAWeight" id="levelAWeight" class="mini-textbox" width="140" maxlength="30" />
                     </td>
                     <td class="form-label">B级-黄浦江：</td>
                     <td class="form-content">
-                        <input name="levelBWeight" id="levelBWeight" class="mini-textbox" width="140" maxlength="10" />
+                        <input name="levelBWeight" id="levelBWeight" class="mini-textbox" width="140" maxlength="30" />
                     </td>
                     <td class="form-label">C级-内河：</td>
                     <td class="form-content" colspan="3">
@@ -88,13 +89,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td width="10%" align="right">船级：</td>
+                    <td width="20%" class="form-content">
+                        <input name="shipLevel" id="shipLevel"  class="mini-combobox" valueField="id" textField="name" required="true"
+                               width="140" requiredErrorText="船级不能为空"  />
+                    </td>
                     <td class="form-label">计费吨：</td>
                     <td class="form-content">
                         <input name="feeWeight" id="feeWeight" class="mini-spinner" decimalPlaces="0" required="true" minValue="0" maxValue="1000000000000"  width="140"   />
-                    </td>
-                    <td class="form-label">建成日期：</td>
-                    <td class="form-content">
-                        <input name="buildDate" id="buildDate" required="true" class="mini-datepicker" width="140"  />
                     </td>
                     <td class="form-label">单位名称：</td>
                     <td class="form-content" colspan="3">
@@ -102,6 +104,7 @@
                     </td>
                 </tr>
                 <tr>
+
                     <td class="form-label">船检登记号：</td>
                     <td class="form-content">
                         <input name="checkRegisterNo" id="checkRegisterNo" width="140" class="mini-textbox"  maxlength="30" />
@@ -143,7 +146,7 @@
                     </td>
                     <td class="form-label">制造厂家：</td>
                     <td class="form-content">
-                        <input name="buildFactory" id="buildFactory" class="mini-textbox" width="140"/>
+                        <input name="buildFactory" id="buildFactory" class="mini-textbox" width="140"  maxValue="30"/>
                     </td>
                 </tr>
                 <tr>
@@ -157,33 +160,38 @@
                     </td>
                     <td class="form-label">营运类型：</td>
                     <td class="form-content">
-                        <input name="runType" id="runType"  class="mini-combobox"
+                        <input name="runType" id="runType"  class="mini-combobox" required="true"
                                width="140"class="mini-combobox" valueField="id" textField="name"  maxlength="3" />
                     </td>
                 </tr>
 
                 <tr>
+                    <td class="form-label">建成日期：</td>
+                    <td class="form-content">
+                        <input name="buildDate" id="buildDate" required="true" class="mini-datepicker" width="140"  emptyText="建成日期" allowInput="false"  />
+                    </td>
                     <td class="form-label">改建日期：</td>
                     <td class="form-content">
-                        <input name="rebuildDate" id="rebuildDate" required="true" class="mini-datepicker" width="140"  />
+                        <input name="rebuildDate" id="rebuildDate" required="true" class="mini-datepicker" width="140" emptyText="改建日期" allowInput="false"  />
                     </td>
                     <td class="form-label">GPS设备编号：</td>
                     <td class="form-content">
                         <input name="gpsDeviceId" id="gpsDeviceId"  class="mini-textbox" width="140"/>
                     </td>
-                    <td class="form-label">保险日期：</td>
-                    <td class="form-content">
-                        <input name="insuranceDate" required="true" id="insuranceDate" class="mini-datepicker" width="140"  />
-                    </td>
+
                 </tr>
                 <tr>
+                    <td class="form-label">保险日期：</td>
+                    <td class="form-content">
+                        <input name="insuranceDate" required="true" id="insuranceDate" class="mini-datepicker" width="140" emptyText="保险日期" allowInput="false" />
+                    </td>
                     <td class="form-label">检验日期：</td>
                     <td class="form-content">
-                        <input name="checkDate" id="checkDate" required="true" class="mini-datepicker" width="140"  />
+                        <input name="checkDate" id="checkDate" required="true" class="mini-datepicker" width="140" emptyText="检验日期" allowInput="false"  />
                     </td>
                     <td class="form-label">维修/保养日期：</td>
                     <td class="form-content">
-                        <input name="repairDate" id="repairDate" required="true" class="mini-datepicker" width="140"  />
+                        <input name="repairDate" id="repairDate" required="true" class="mini-datepicker" width="140" emptyText="维修/保养日期" allowInput="false"  />
                     </td>
                     <td></td>
                     <td></td>

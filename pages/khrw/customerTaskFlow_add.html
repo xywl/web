@@ -71,17 +71,17 @@
                     </td>
                     <td class="form-label">装货时间：</td>
                     <td class="form-content">
-                        <input name="loadingTime" id="loadingTime" required="true" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
-                               showOkButton="true" showClearButton="false"    emptyText="装货时间" />
+                        <input name="loadingTime" id="loadingTime" class="mini-datepicker" showOkButton="true"
+                               showClearButton="false"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
+                               nullValue="null" showTime="true"   emptyText="装货时间" allowInput="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">卸货时间：</td>
                     <td class="form-content">
-                        <input name="dischargeTime" id="dischargeTime" required="true" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false"
-                               showOkButton="true" showClearButton="false"   emptyText="预计卸货时间"/>
+                        <input name="dischargeTime" id="dischargeTime" class="mini-datepicker" showOkButton="true"
+                               showClearButton="false"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
+                               nullValue="null" showTime="true"    emptyText="预计卸货时间" allowInput="false"/>
                     </td>
                     <td class="form-label">装货点：</td>
                     <td class="form-content">
@@ -120,16 +120,17 @@
                     </td>
                     <td class="form-label">大轮预计到达时间：</td>
                     <td class="form-content">
-                        <input name="bigShipArriveTime" id="bigShipArriveTime" class="mini-datepicker"
-                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowInput="false" required="true"
-                               showOkButton="true" showClearButton="false"   emptyText="大轮预计到达时间" />
+                        <input name="bigShipArriveTime" id="bigShipArriveTime" class="mini-datepicker" showOkButton="true"
+                               showClearButton="false"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
+                               nullValue="null" showTime="true"   emptyText="大轮预计到达时间" allowInput="false"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">大轮预计离开时间：</td>
                     <td class="form-content">
-                        <input name="bigShipDepartTime" id="bigShipDepartTime" class="mini-datepicker" showOkButton="true" showClearButton="true"
-                               format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"  nullValue="null" showTime="true"   emptyText="大轮预计离开时间" allowInput="false"/>
+                        <input name="bigShipDepartTime" id="bigShipDepartTime" class="mini-datepicker" showOkButton="true"
+                               showClearButton="false"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
+                               nullValue="null" showTime="true"   emptyText="大轮预计离开时间" allowInput="false"/>
                     </td>
                     <td class="form-label">是否自提：</td>
                     <td class="form-content">
@@ -153,7 +154,7 @@
                     <td class="form-label">航次标识：</td>
                     <td class="form-content">
                         <input name="sailingFlag" id="sailingFlag"  valueField="id" textField="name"
-                               class="mini-checkboxlist" required="true"  requiredErrorText="航次标识不能为空"/>
+                               class="mini-radiobuttonlist" required="true"  requiredErrorText="航次标识不能为空"/>
                     </td>
                     <td class="form-label">是否扣网片：</td>
                     <td class="form-content">
