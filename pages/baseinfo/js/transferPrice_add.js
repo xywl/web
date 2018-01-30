@@ -18,6 +18,7 @@ var PageTransferPriceAdd = function(){
         	this.action = data.action;
             mini.get("customerId").setData(row.customerFly);
             mini.get("contractId").setData(row.contractFly);
+            mini.get("priceType").setData(row.priceTypeFly);
         	this.transferPriceForm.setData(row);
         	if(this.action == "oper")
         	{
