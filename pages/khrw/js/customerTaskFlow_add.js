@@ -36,7 +36,7 @@ var PageCustomerTaskFlowAdd = function(){
             this.defaultOption.currentWeight = row.totalWeight;
             this.defaultOption.sumLoad = row.sumLoad;
             PageCustomerTaskFlowAdd.funLoadDwInfo(row.taskId);
-            if (row.sailingArea == 3)
+           /* if (row.sailingArea == 3)
             {
                 row.sailingArea = "1,2";
             } else if (row.sailingArea == 5)
@@ -48,7 +48,8 @@ var PageCustomerTaskFlowAdd = function(){
             } else if (row.sailingArea == 7)
             {
                 row.sailingArea = "1,2,4";
-            }
+            }*/
+            row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
             PageCustomerTaskFlowAdd.goodsSubType = row.goodsSubTypeFly;
            // row.goodsType=null;row.loadType=null;row.selfPick=null;row.status=null;row.sailingFlag=null;
             this.defaultOption.action = data.action;
@@ -59,6 +60,10 @@ var PageCustomerTaskFlowAdd = function(){
                 row.dischargeTime = new Date(row.dischargeTime);
                 row.bigShipArriveTime = new Date(row.bigShipArriveTime);
                 row.bigShipDepartTime = new Date(row.bigShipDepartTime);
+                /*console.log("sailingArea---------------" + row.sailingArea)
+                row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
+                console.log("---------------")
+                console.log(PageMain.funDealComBitInfo(row.sailingArea, 4))*/
             }
 
             this.customerTaskFlowForm.setData(row);
@@ -75,6 +80,32 @@ var PageCustomerTaskFlowAdd = function(){
                 }
         	}
         },
+        funDischargeTime : function (e)
+        {
+            var date = e.date;
+            var zhData = mini.get("loadingTime").getValue();
+            if (zhData == null)
+            {
+                e.allowSelect = true;
+            }
+            else if (Math.ceil(date.getTime()/3600000/24) < Math.ceil(zhData.getTime()/3600000/24))
+            {
+                e.allowSelect = false;
+            }
+        },
+        funLoadingTime : function (e)
+        {
+            var date = e.date;
+            var zhData = mini.get("dischargeTime").getValue();
+            if (zhData == null)
+            {
+                e.allowSelect = true;
+            }
+            else if (Math.ceil(date.getTime()/3600000/24) > Math.ceil(zhData.getTime()/3600000/24))
+            {
+                e.allowSelect = false;
+            }
+        },
         funSave : function()
         {
         	this.customerTaskFlowForm.validate();
@@ -86,6 +117,11 @@ var PageCustomerTaskFlowAdd = function(){
                      mini.alert(errorTexts[i]);
                      return;
                  }
+            }
+            if (mini.get("loadingTime").getValue() > mini.get("dischargeTime").getValue())
+            {
+                PageMain.funShowMessageBox("装货时间不能大于卸货时间");
+                return ;
             }
             
             var me = this;

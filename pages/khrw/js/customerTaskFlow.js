@@ -10,7 +10,7 @@ var PageCustomerTaskFlow = function(){
             selfPick: [{id:1, name:"是"},{id:2, name:"否"}],
             status: [{id:1, name:"启用"},{id:2, name:"禁用"}],
             sailingFlag: [{id:1, name:"正常"},{id:2, name:"散装回程货"},{id:3, name:"安吉货"}],
-            sailingArea: [{id:1, name:"A级"},{id:2, name:"B级"},{id:3, name:"C级"}],
+            sailingArea: [{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}],
             portData:[],
             customerTaskFlowGrid : null
         },

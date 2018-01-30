@@ -23,8 +23,10 @@ var PageCustomerTask = function(){
             this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
             this.customerTaskGrid = mini.get("customerTaskGrid");
             this.customerTaskGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTask/getList");
+            PageMain.funUserProfileInfo();
             //加载合同
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000}, function (data) {
+
                 PageCustomerTask.defaultOption.customerFly = data;
             });
             //加载所有客户信息
@@ -154,6 +156,7 @@ var PageCustomerTask = function(){
             }
             return e.value;
         },
+        
         funContractRenderer : function (e)//合同转码
         {
             for(var nItem = 0; nItem < PageCustomerTask.defaultOption.customerFly.length; nItem++)
