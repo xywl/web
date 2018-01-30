@@ -57,16 +57,22 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">状<span style="padding: 0 12px;"></span>态：</td>
+                    <td class="form-label">消息模版：</td>
                     <td class="form-content">
-                        <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
-                          required="true" maxlength="10" requiredErrorText="状态不能为空"\/>
+                        <input  id="msgId" name="msgId" class="mini-combobox" valueField="id" textField="title"  onvaluechanged="PageDangerZoneAdd.funMsgChangeInfo"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">短信模版：</td>
+                    <td class="form-label">模版内容：</td>
                     <td class="form-content">
-                        <input  class="mini-textbox" />
+                        <input name="msgTemplate" id="msgTemplate" class="mini-textarea" style="width:350px; height: 100px;"  maxlength="100"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">状<span style="padding: 0 12px;"></span>态：</td>
+                    <td class="form-content">
+                        <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
+                               required="true" maxlength="10" requiredErrorText="状态不能为空"\/>
                     </td>
                 </tr>
                 <tr>
