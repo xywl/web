@@ -33,7 +33,7 @@
             <div class="mini-fit">
                 <div id="orderGrid" class="mini-datagrid"
                       idField="id" allowResize="false"
-                      onselectionchanged="CapcitySchedul.funOnSelectionChanged"
+                      onselectionchanged="CapcitySchedul.funOnSelectionChanged" showPager="false"
                      pagesize="10" sizeList="[10,30,50,100]" allowAlternating="false"  sortMode="client" style="height: 100%;">
                     <div property="columns">
                         <div type="checkcolumn"></div>
@@ -65,11 +65,12 @@
                 <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="3" hideFocus/>临调船舶</label>
             </div>
             <div class="mini-fit">
-                <div id="shipListGrid" class="mini-datagrid"
-                      idField="id" allowResize="false" showPager="false" allowAlternating="false"  sortMode="client" onlyCheckSelection="true" allowCellSelect="false" multiSelect="true" style="height: 100%;">
+                <div id="shipListGrid" class="mini-datagrid" pagesize="10" sizeList="[10,30,50,100]" onload="CapcitySchedul.funShipListOnLoad" allowUnselect="true"
+                      idField="id" allowResize="false" showPager="true" allowAlternating="false"  sortMode="client" onlyCheckSelection="false" allowCellSelect="false" multiSelect="true" style="height: 100%;">
                     <div property="columns">
                         <div type="checkcolumn"></div>
-                        <div name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船号</div>
+                        <div visible="false" name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船号</div>
+                        <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="false">船号</div>
                         <div name="PreWeight" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位</div>
                         <div name="PreArriveTime" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">预计到港时间</div>
                         <div name="ArriveTime" field="arriveTime" width="100" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">到达港口</div>
@@ -92,19 +93,18 @@
             生成调度结果
         </div>
         <div class="mini-fit" style="padding-bottom: 35px;">
-            <div id="orderDetailsGrid" class="mini-datagrid" idField="id" allowResize="false" allowAlternating="false"  sortMode="client" allowCellEdit="true" allowCellSelect="true" editNextOnEnterKey="true" editNextRowCell="true" allowCellValid="true" onlyCheckSelection="true" style="height: 100%;" oncellbeginedit="CapcitySchedul.funOnCellBeginEdit" oncellendedit="CapcitySchedul.funOnCellEndEdit" ondrawcell="CapcitySchedul.funOnDrawCell" showSummaryRow="true" ondrawsummarycell="CapcitySchedul.funOnDrawSummaryCell" oncellcommitedit="CapcitySchedul.funOnCellCommitEdit" showPager="false">
+            <div id="orderDetailsGrid" class="mini-datagrid" idField="id" allowResize="false" allowAlternating="false"  sortMode="client"
+            allowCellEdit="true" allowCellSelect="true" editNextOnEnterKey="true" editNextRowCell="true" allowCellValid="true" onlyCheckSelection="true"
+            style="height: 100%;" oncellbeginedit="CapcitySchedul.funOnCellBeginEdit" oncellendedit="CapcitySchedul.funOnCellEndEdit"
+            ondrawcell="CapcitySchedul.funOnDrawCell" showSummaryRow="true" ondrawsummarycell="CapcitySchedul.funOnDrawSummaryCell"
+            oncellcommitedit="CapcitySchedul.funOnCellCommitEdit" showPager="false"  onload="CapcitySchedul.funOrderDetailsOnLoad">
                 <div property="columns">
                     <div field="operate" width="50" headerAlign="center" allowSort="false" align="center" renderer="CapcitySchedul.funOrderOperRenderer">操作
                     </div>
-                    <div name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船号
-                        <input property="editor" class="mini-textbox" style="width:100%;" />
-                    </div>
-                    <div name="ShipType" field="shipType" width="100" headerAlign="center" allowSort="false">船舶类型
-                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
-                    </div>
-                    <div name="PreWeight" vtype="required" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位
-                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
-                    </div>
+                    <div visible="false" name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船id</div>
+                    <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="false">船号</div>
+                    <div name="ShipType" field="shipType" width="100" headerAlign="center" allowSort="false">船舶类型</div>
+                    <div name="PreWeight" vtype="required" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位</div>
                     <div name="ActualTransferPrice" vtype="required" field="actualTransferPrice" width="100" headerAlign="center" allowSort="false">船户实际运价
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
                     </div>
