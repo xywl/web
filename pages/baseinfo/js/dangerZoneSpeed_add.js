@@ -4,6 +4,7 @@ var PageDangerZoneSpeedAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
+            msgTemplateFly:[],
             dangerZoneSpeedForm : null
 
         },
@@ -13,12 +14,34 @@ var PageDangerZoneSpeedAdd = function(){
             this.basePath = PageMain.basePath;
             this.dangerZoneSpeedForm = new mini.Form("dangerZoneSpeedFormAdd");
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}])
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/msgTemplate/getList", {pageIndex:0, pageSize:1000000000, queryParamFlag:1}, function (data) {
+                if (data.success)
+                {
+                    PageDangerZoneSpeedAdd.defaultOption.msgTemplateFly = data.data;
+                    mini.get("msgId").setData(PageDangerZoneSpeedAdd.defaultOption.msgTemplateFly);
+                }
+            });
+        },
+        funMsgChangeInfo : function ()
+        {
+            var id = mini.get("msgId").getValue();
+            PageDangerZoneSpeedAdd.defaultOption.msgTemplateFly.forEach(function (obj) {
+                if(obj.id == id)
+                {
+                    mini.get("msgTemplate").setValue(obj.content);
+                    return ;
+                }
+            })
         },
         funSetData : function(data)
         {
             var row = data.row;
             this.action = data.action;
             this.dangerZoneSpeedForm.setData(row);
+            if(this.action == "add")
+            {
+                mini.get("status").select(0)
+            }
             if(this.action == "oper")
             {
                 mini.get("layout_dangerZoneSpeed_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

@@ -51,6 +51,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="form-label">消息模版：</td>
+                    <td class="form-content">
+                        <input  id="msgId" name="msgId" class="mini-combobox" valueField="id" textField="title"  onvaluechanged="PageDangerZoneSpeedAdd.funMsgChangeInfo"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">模版内容：</td>
+                    <td class="form-content">
+                        <input name="msgTemplate" id="msgTemplate" class="mini-textarea" style="width:350px; height: 100px;"  maxlength="100"/>
+                    </td>
+                </tr>
+                <tr>
                     <td class="form-label">状<span style="padding: 0 16px;"></span>态：</td>
                     <td class="form-content">
                         <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
