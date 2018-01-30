@@ -10,7 +10,7 @@ var PageDangerZone = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.dangerZoneGrid = mini.get("dangerZoneGrid");
-            this.dangerZoneGrid.setUrl(PageMain.defaultOption.httpUrl + "/dangerZone/getList")
+            this.dangerZoneGrid.setUrl(PageMain.defaultOption.httpUrl + "/dangerZone/getPage")
             this.funSearch();
         },
         funSearch : function()
@@ -72,7 +72,7 @@ var PageDangerZone = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/dangerZone_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  11 + 65,
+                height: 30 *  14 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageDangerZoneAdd.funSetData(paramData);

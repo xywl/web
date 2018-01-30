@@ -70,7 +70,7 @@ var PageCustomerTaskAdd = function(){
                                function (action, value) {
                                    if (action == "ok")
                                    {
-                                       PageMain.funCloseWindow({op:"continue", taskId:data.data});
+                                       PageMain.funCloseWindow({op:"continue", taskId:data.data, contractId:mini.get("contractId").getValue(), totalLoad:mini.get("totalLoad").getValue()});
                                    }
                                    else
                                    {

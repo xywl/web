@@ -121,7 +121,7 @@ var PageFlowAdd = function(){
         },
         funInitPortDate:function () {
             $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/port/getList",
+                url : PageMain.defaultOption.httpUrl + "/port/getPage",
                 type : 'POST',
                 dataType: 'json',
                 success: function (data)

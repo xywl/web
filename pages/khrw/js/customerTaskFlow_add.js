@@ -4,14 +4,20 @@ var PageCustomerTaskFlowAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
+            sumLoad:0,
             customerTaskFlowForm : null,
-            goodsSubType : []
+            goodsSubType : [],
+            currentWeight:0
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
             this.customerTaskFlowForm = new mini.Form("customerTaskFlowFormAdd");
+        },
+        funLoadTypeInfo : function ()
+        {
+
         },
         funSetData : function(data)
         {
@@ -26,6 +32,10 @@ var PageCustomerTaskFlowAdd = function(){
             mini.get("endPortId").setData(row.portData);
             mini.get("sailingArea").setData(row.sailingAreaFly);
             mini.get("selfBuckle").setData(row.selfPickFly);
+
+            this.defaultOption.currentWeight = row.totalWeight;
+            this.defaultOption.sumLoad = row.sumLoad;
+            PageCustomerTaskFlowAdd.funLoadDwInfo(row.taskId);
             if (row.sailingArea == 3)
             {
                 row.sailingArea = "1,2";
@@ -152,18 +162,39 @@ var PageCustomerTaskFlowAdd = function(){
             if(goodsVal == 2) {
                 //alert(goodsVal);
                 mini.get("goodsSubType").setData(PageCustomerTaskFlowAdd.goodsSubType);
-                mini.get("goodsSubType").required =true;
+                //mini.get("goodsSubType").required =true;
             } else {
                 mini.get("goodsSubType").setData([]);
-                mini.get("goodsSubType").required =false;
+                //mini.get("goodsSubType").required =false;
             }
             mini.get("goodsName").setValue(goodsText);
         },
-        funPortNameCustomer:function () {
+        //加载总吨位
+        funLoadDwInfo : function (taskId)
+        {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTaskFlow/loadWeight", {taskId:taskId}, function (data) {
+                if (PageCustomerTaskFlowAdd.defaultOption.action == "add")
+                {
+                    mini.get("totalWeight").setMaxValue(PageCustomerTaskFlowAdd.defaultOption.sumLoad - data.data);
+                }
+                else if (PageCustomerTaskFlowAdd.defaultOption.action == "modify")
+                {
+                    mini.get("totalWeight").setMaxValue(PageCustomerTaskFlowAdd.defaultOption.sumLoad - data.data + PageCustomerTaskFlowAdd.defaultOption.currentWeight);
+                }
+            });
+        },
+        funPortNameCustomer:function ()
+        {
             var flowId = mini.get("flowId").getValue();
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getById?id="+flowId,{pageSize:1000000}, function (data) {
-                mini.get("startPortId").setValue(data.data.startPortId);
-                mini.get("endPortId").setValue(data.data.endPortId);
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getById?id="+flowId,{pageSize:1000000}, function (result) {
+                if(result.success)
+                {
+                    var data = result.data;
+                    mini.get("startPortId").setValue(data.startPortId);
+                    mini.get("endPortId").setValue(data.endPortId);
+
+                    mini.get("sailingArea").setValue(PageMain.funDealComBitInfo(data.sailingArea, 4));
+                }
             });
         }
     }

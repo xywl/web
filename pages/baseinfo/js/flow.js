@@ -105,10 +105,10 @@ var PageFlow = function(){
         },
         funRendererPortType : function (e)
         {
-            for(var i =0 ;  i< (PageFlow.portData.list).length;i++) {
+            for(var i =0 ;  i< PageFlow.portData.length;i++) {
 
-                if(PageFlow.portData.list[i].id == e.value){
-                    return PageFlow.portData.list[i].name;
+                if(PageFlow.portData[i].id == e.value){
+                    return PageFlow.portData[i].name;
                 }
 
             }
@@ -187,7 +187,7 @@ var PageFlow = function(){
         },
         funInitPortDate:function () {
             $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/port/getList",
+                url : PageMain.defaultOption.httpUrl + "/port/getPage",
                 type : 'POST',
                 dataType: 'json',
                 success: function (data)

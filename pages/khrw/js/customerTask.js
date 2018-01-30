@@ -8,6 +8,8 @@ var PageCustomerTask = function(){
             customerTaskGrid : null,
             customerTaskFlowGrid : null,
             taskId:0,
+            contractId:0,
+            totalLoad:0,
             flowFly :[], //流向JSON
             flowSelect : [], //流向选择
             detailGridForm : null
@@ -29,6 +31,11 @@ var PageCustomerTask = function(){
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadCustomer",{pageSize:10000}, function (data) {
                 PageCustomerTask.defaultOption.contractFly = data;
             });
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{pageSize:100000}, function (data) {
+                PageCustomerTask.defaultOption.flowSelect = data;
+            });
+
             PageCustomerTask.funSearch();
         },
         funSearch : function()
@@ -82,10 +89,20 @@ var PageCustomerTask = function(){
             PageCustomerTask.defaultOption.customerTaskFlowGrid.load({ key: row.id, queryParamFlag: 1 });
 
             //根据合同id加载流向信息
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{customerId:row.id,pageSize:100000}, function (data) {
+            /*PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{customerId:row.id,pageSize:100000}, function (data) {
                 PageCustomerTask.defaultOption.flowSelect = data;
-            });
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{pageSize:100000}, function (data) {
+            });*/
+
+            PageCustomerTask.defaultOption.contractId = row.contractId;
+            PageCustomerTask.defaultOption.totalLoad = row.totalLoad;
+            PageCustomerTask.funLoadContractInfo();
+          /*  PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{pageSize:100000}, function (data) {
+                PageCustomerTask.defaultOption.flowFly = data;
+            });*/
+        },
+        funLoadContractInfo : function ()
+        {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{key:PageCustomerTask.defaultOption.contractId, pageSize:100000}, function (data) {
                 PageCustomerTask.defaultOption.flowFly = data;
             });
         },
@@ -114,7 +131,13 @@ var PageCustomerTask = function(){
                     else
                     {
                         PageCustomerTask.defaultOption.taskId = action.taskId;
-                        PageCustomerTaskFlow.funAdd();
+                        PageCustomerTask.defaultOption.contractId = action.contractId;
+                        PageCustomerTask.defaultOption.totalLoad = action.totalLoad;
+                        PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{key:PageCustomerTask.defaultOption.contractId, pageSize:100000}, function (data) {
+                            PageCustomerTask.defaultOption.flowFly = data;
+                            PageCustomerTaskFlow.funAdd();
+                        });
+
                         me.customerTaskGrid.reload();
                     }
                 }
