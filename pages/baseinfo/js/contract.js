@@ -9,6 +9,7 @@ var PageContract = function(){
             contractGrid : null,
             contractFlowGrid : null,
             contractId:0,
+            operCnt : 0,
             dataDictFly : [],
             detailGridForm : null
         },
@@ -23,12 +24,21 @@ var PageContract = function(){
             this.contractGrid.setUrl(PageMain.defaultOption.httpUrl + "/contract/getList")
             PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"departMent"}, function (data) {
                 PageContract.defaultOption.dataDictFly = data;
+                PageContract.funLoadSearchInfo();
             })
 
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadCustomer",{}, function (data) {
                 PageContract.defaultOption.customerFly = data;
-                PageContract.funSearch();
+                PageContract.funLoadSearchInfo();
             });
+        },
+        funLoadSearchInfo : function ()
+        {
+            PageContract.defaultOption.operCnt += 1;
+            if (PageContract.defaultOption.operCnt == 2)
+            {
+                PageContract.funSearch();
+            }
         },
         funSearch : function()
         {
@@ -57,7 +67,8 @@ var PageContract = function(){
             }
             return e.value;
         },
-        funARenderer : function (e) {
+        funARenderer : function (e)
+        {
             for(var nItem = 0; nItem < PageContract.defaultOption.customerFly.length; nItem++)
             {
                 if(e.value == PageContract.defaultOption.customerFly[nItem].id)
