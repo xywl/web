@@ -195,23 +195,6 @@ var PageCustomerTaskFlow = function(){
             paramData.row.sailingAreaFly = me.defaultOption.sailingArea;
             paramData.row.portData = me.defaultOption.portData;
             paramData.row.goodsSubTypeFly =  me.defaultOption.goodsSubType;
-            var e =[];
-            e.field ="loadingTime";
-            e.value = paramData.row.loadingTime;
-            paramData.row.loadingTime = PageCustomerTask.formatData(e);
-            var e =[];
-            e.field ="dischargeTime";
-            e.value = paramData.row.dischargeTime;
-            paramData.row.dischargeTime = PageCustomerTask.formatData(e);
-            var e =[];
-            e.field ="bigShipArriveTime";
-            e.value = paramData.row.bigShipArriveTime;
-            paramData.row.bigShipArriveTime = PageCustomerTask.formatData(e);
-            var e =[];
-            e.field ="bigShipDepartTime";
-            e.value = paramData.row.bigShipDepartTime;
-            paramData.row.bigShipDepartTime = PageCustomerTask.formatData(e);
-
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTaskFlow_add.html",
                 title: paramData.title,

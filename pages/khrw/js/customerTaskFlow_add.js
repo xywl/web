@@ -14,10 +14,28 @@ var PageCustomerTaskFlowAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.customerTaskFlowForm = new mini.Form("customerTaskFlowFormAdd");
+            $("tr[name='dr']").hide();
         },
         funLoadTypeInfo : function ()
         {
-
+            if (mini.get("loadType").getValue() == 1)
+            {
+                $("tr[name='dr']").show();
+                mini.get("bigShipPC").required =true;
+                mini.get("totalLoad").required =true;
+                mini.get("arriveLocation").required =true;
+                mini.get("bigShipArriveTime").required =true;
+                mini.get("bigShipDepartTime").required =true;
+            }
+            else
+            {
+                mini.get("bigShipPC").required =false;
+                mini.get("totalLoad").required =false;
+                mini.get("arriveLocation").required =false;
+                mini.get("bigShipArriveTime").required =false;
+                mini.get("bigShipDepartTime").required =false;
+                $("tr[name='dr']").hide();
+            }
         },
         funSetData : function(data)
         {
@@ -36,19 +54,7 @@ var PageCustomerTaskFlowAdd = function(){
             this.defaultOption.currentWeight = row.totalWeight;
             this.defaultOption.sumLoad = row.sumLoad;
             PageCustomerTaskFlowAdd.funLoadDwInfo(row.taskId);
-           /* if (row.sailingArea == 3)
-            {
-                row.sailingArea = "1,2";
-            } else if (row.sailingArea == 5)
-            {
-                row.sailingArea = "1,4";
-            } else if (row.sailingArea == 6)
-            {
-                row.sailingArea = "2,4";
-            } else if (row.sailingArea == 7)
-            {
-                row.sailingArea = "1,2,4";
-            }*/
+
             row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
             PageCustomerTaskFlowAdd.goodsSubType = row.goodsSubTypeFly;
            // row.goodsType=null;row.loadType=null;row.selfPick=null;row.status=null;row.sailingFlag=null;
@@ -56,17 +62,23 @@ var PageCustomerTaskFlowAdd = function(){
 
             if(this.defaultOption.action != "add")
             {
-                row.loadingTime = new Date(row.loadingTime);
-                row.dischargeTime = new Date(row.dischargeTime);
-                row.bigShipArriveTime = new Date(row.bigShipArriveTime);
-                row.bigShipDepartTime = new Date(row.bigShipDepartTime);
-                /*console.log("sailingArea---------------" + row.sailingArea)
-                row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
-                console.log("---------------")
-                console.log(PageMain.funDealComBitInfo(row.sailingArea, 4))*/
+                row.loadingTime = PageMain.funStrToDate(row.loadingTime);
+                row.dischargeTime = PageMain.funStrToDate(row.dischargeTime);//new Date(row.dischargeTime);
+                row.bigShipArriveTime = PageMain.funStrToDate(row.bigShipArriveTime);//new Date(row.bigShipArriveTime);
+                row.bigShipDepartTime = PageMain.funStrToDate(row.bigShipDepartTime);//new Date(row.bigShipDepartTime);
+                if(row.loadType == 1)
+                {
+                    $("tr[name='dr']").show();
+                }
             }
 
             this.customerTaskFlowForm.setData(row);
+            if (this.defaultOption.action == "add")
+            {
+                mini.get("selfBuckle").select(0);
+                mini.get("selfPick").select(0);
+                mini.get("status").select(0);
+            }
         	if(this.defaultOption.action == "oper")
         	{
         		

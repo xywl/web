@@ -156,7 +156,7 @@ var PageCustomerTask = function(){
             }
             return e.value;
         },
-        
+
         funContractRenderer : function (e)//合同转码
         {
             for(var nItem = 0; nItem < PageCustomerTask.defaultOption.customerFly.length; nItem++)
@@ -211,44 +211,6 @@ var PageCustomerTask = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
-        },
-        formatData : function(e) {
-
-            var field = e.field;
-            var value = e.value;
-            var result = "--";
-            //转换"创建时间"
-            if("loadingTime" == field || "dischargeTime" == field ||"bigShipArriveTime" == field|| "bigShipDepartTime" == field){
-                var createdTime = new Date(1000 * value);
-                var year = createdTime.getFullYear();
-                var mon = createdTime.getMonth() + 1;
-                if(10 > mon){
-                    mon = "0" + mon;
-                }
-
-                var sDate = createdTime.getDate();
-                if(10 > sDate){
-                    sDate = "0" + sDate;
-                }
-
-                var hours = createdTime.getHours();
-                if(10 > hours){
-                    hours = "0" + hours;
-                }
-
-                var min = createdTime.getMinutes();
-                if(10 > min){
-                    min = "0" + min;
-                }
-
-                var sec = createdTime.getSeconds();
-                if(10 > sec){
-                    sec = "0" + sec;
-                }
-
-                result = year + "-" + mon + "-" + sDate + "  " + hours + ":" + min + ":" + sec;
-            }
-            return result;
         }
     }
 }();
