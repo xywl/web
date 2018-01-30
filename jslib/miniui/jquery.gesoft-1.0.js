@@ -4,7 +4,7 @@ var PageMain = function(){
             basePath:"",
             userProfileFly:[],
             zero:"0000000000000000000000000000000000",
-            httpUrl : "http://127.0.0.1:16721/xyl"
+            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
@@ -157,7 +157,7 @@ var PageMain = function(){
         },
         funUserProfileRenderer : function (e)
         {
-          
+
             for(var nItem = 0; nItem < PageMain.defaultOption.userProfileFly.length; nItem++)
             {
                 if(e.value == PageMain.defaultOption.userProfileFly[nItem].id)
