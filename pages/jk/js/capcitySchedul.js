@@ -47,6 +47,11 @@ var CapcitySchedul = function(){
                 if (record.status == 2) {
                     e.rowStyle = "background: #fceee2 !important;";
                 }
+                if ((field == "shipId" || field == "shipType" || field == "preWeight" || field == "preSettleAmount") && record.status != 2) {
+                    e.cellStyle = "background: #eee;";
+                } else {
+                    e.cellStyle = "background: transparent;"
+                }
             });
 
             shipListGrid.on("select", function (e) {  //船舶列表选中事件
@@ -159,6 +164,17 @@ var CapcitySchedul = function(){
                 e.cancel = true;
             }
         },
+        funOnCellCommitEdit: function(e)
+        {
+            var record = e.record, field = e.field, preLoadTotal = 0;
+            if (e.value > record.preWeight) {
+                mini.alert("预发吨位不得大于预报吨位，请重新输入");
+                e.value = e.oldValue == undefined ? '' : e.oldValue;
+                e.editor._IsValid = false;
+            }
+
+
+        },
         funOnCellEndEdit: function(e)  //行编辑结束事件
         {
             var leftWeight = $("#leftWeight").val();
@@ -168,11 +184,7 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var t = Number(row.preLoad);
                     if (isNaN(t)) continue;
-                    if (t > row.preWeight) {
-                        mini.alert("预发吨位不能大于预报吨位,请重新编编辑");
-                    } else {
-                        preLoadTotal += t;
-                    }
+                    preLoadTotal += t;
                 }
             }
             if (preLoadTotal > leftWeight) {
@@ -198,8 +210,8 @@ var CapcitySchedul = function(){
                 var actualTransferPrice = record.actualTransferPrice;
                 var preLoad = record.preLoad;
                 if (actualTransferPrice == undefined || preLoad == undefined) {
-                    e.cellHtml = 0;
-                    e.record.preSettleAmount = 0;
+                    e.cellHtml = '';
+                    e.record.preSettleAmount = '';
                 } else {
                     //e.cellHtml = actualTransferPrice * preLoad;
                     e.cellHtml = CapcitySchedul.funNumMulti(actualTransferPrice, preLoad);
@@ -246,6 +258,7 @@ var CapcitySchedul = function(){
         {
             var row = orderDetailsGrid.getRowByUID(row_uid);
             if (row) {
+                orderDetailsGrid.rejectRecord(row);
                 orderDetailsGrid.updateRow(row, {status: 2});
                 //console.log(row);
             };
