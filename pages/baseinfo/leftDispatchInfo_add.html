@@ -33,7 +33,7 @@
                     <td class="form-label">客户任务单号：</td>
                     <td class="form-content">
                         <input name="taskNo" id="taskNo"  class="mini-combobox"
-                           required="true" maxlength="20" valueField="id" textField="taskNo" emptyText="请选择..."
+                           required="true" maxlength="20" valueField="id" textField="goodsName" emptyText="请选择..."
                            allowInput="true" showNullItem="true" nullItemText="请选择..."
                            requiredErrorText="客户任务单号不能为空"/>
                     </td>
@@ -94,11 +94,17 @@
                 <tr>
                     <td class="form-label">预约抢单开始时间：</td>
                     <td class="form-content">
-                        <input name="bookSTime" id="bookSTime" class="mini-datepicker"  format="yyyy-MM-dd hh:mm:ss"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
+                        <input name="bookSTime" id="bookSTime" required="true" class="mini-datepicker" nullValue="null"
+                               format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true"
+                               showOkButton="true" showClearButton="false"  />
+                        <!--<input name="bookSTime" id="bookSTime" class="mini-datepicker"  format="yyyy-MM-dd hh:mm:ss"  nullValue="null"  emptyText="开始时间" allowInput="false"/>-->
                     </td>
                     <td class="form-label">预约抢单截止时间：</td>
                     <td class="form-content">
-                        <input name="bookETime" id="bookETime" class="mini-datepicker"  format="yyyy-MM-dd hh:mm:ss"  nullValue="null"  emptyText="截止时间" allowInput="false"/>
+                        <input name="bookETime" id="bookETime" required="true" class="mini-datepicker" nullValue="null"
+                               format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true"
+                               showOkButton="true" showClearButton="false"  />
+                        <!--<input name="bookETime" id="bookETime" class="mini-datepicker"  format="yyyy-MM-dd hh:mm:ss"  nullValue="null"  emptyText="截止时间" allowInput="false"/>-->
                     </td>
                 </tr>
                 <tr>
@@ -125,6 +131,11 @@
                     <td class="form-label">船舶最多个数：</td>
                     <td class="form-content">
                         <input name="maxshipnum" id="maxshipnum" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="船舶最多个数不能为空"/>
+                    </td>
+                    <td class="form-label">状态：</td>
+                    <td class="form-content">
+                        <input name="taskStatus" id="taskStatus" class="mini-combobox" valueField="id" textField="name"
+                               required="true" maxlength="3" requiredErrorText="状态 0: 待审核  1：部分审核  2：已审核  不能为空"/>
                     </td>
 
                 </tr>

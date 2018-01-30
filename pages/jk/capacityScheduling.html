@@ -60,9 +60,9 @@
                 <input id="shipListParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <input id="shipListKey" name="shipNo" class="mini-textbox" emptyText="请输入查询内容" style="width:150px;" />
                 <a class="mini-button" iconCls="icon-search" onclick="CapcitySchedul.funSearchShipListGrid()" plain="true"><label>查询</label></a>
-                <label style="font-size: 12px;color: #444;"><input onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="1" hideFocus/>自有船舶</label>
-                <label style="font-size: 12px;color: #444;"><input onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="2" hideFocus/>挂靠船舶</label>
-                <label style="font-size: 12px;color: #444;"><input onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="3" hideFocus/>临调船舶</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="1" hideFocus/>自有船舶</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="2" hideFocus/>挂靠船舶</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="3" hideFocus/>临调船舶</label>
             </div>
             <div class="mini-fit">
                 <div id="shipListGrid" class="mini-datagrid"
@@ -85,14 +85,14 @@
             </div>
         </div>
     </div>
-    <div title="生成调度结果" region="south" showSplit="true" showSplitIcon="false" height="400" showHeader="false" style="border:0 none;">
+    <div title="生成调度结果" region="south" showSplit="true" showSplitIcon="false" height="350" showHeader="false" style="border:0 none;">
         <input id="leftWeight" name="leftWeight" value="" class="mini-hidden" />
         <input id="hasLeftWeight" name="hasLeftWeight" value="" class="mini-hidden" />
         <div class="mini-toolbar" style="border:0;padding:0px;height: 20px;line-height: 20px;">
             生成调度结果
         </div>
         <div class="mini-fit" style="padding-bottom: 35px;">
-            <div id="orderDetailsGrid" class="mini-datagrid" idField="id" allowResize="false" showPager="true" allowAlternating="false"  sortMode="client" allowCellEdit="true" allowCellSelect="true" editNextOnEnterKey="true" editNextRowCell="true" allowCellValid="true" onlyCheckSelection="true" style="height: 100%;" oncellbeginedit="CapcitySchedul.funOnCellBeginEdit" oncellendedit="CapcitySchedul.funOnCellEndEdit" ondrawcell="CapcitySchedul.funOnDrawCell" showSummaryRow="true" ondrawsummarycell="CapcitySchedul.funOnDrawSummaryCell" pagesize="100" sizeList="[10,30,50,100]">
+            <div id="orderDetailsGrid" class="mini-datagrid" idField="id" allowResize="false" allowAlternating="false"  sortMode="client" allowCellEdit="true" allowCellSelect="true" editNextOnEnterKey="true" editNextRowCell="true" allowCellValid="true" onlyCheckSelection="true" style="height: 100%;" oncellbeginedit="CapcitySchedul.funOnCellBeginEdit" oncellendedit="CapcitySchedul.funOnCellEndEdit" ondrawcell="CapcitySchedul.funOnDrawCell" showSummaryRow="true" ondrawsummarycell="CapcitySchedul.funOnDrawSummaryCell" oncellcommitedit="CapcitySchedul.funOnCellCommitEdit" showPager="false">
                 <div property="columns">
                     <div field="operate" width="50" headerAlign="center" allowSort="false" align="center" renderer="CapcitySchedul.funOrderOperRenderer">操作
                     </div>
@@ -114,13 +114,11 @@
                     <div name="PreArriveTime" vtype="required" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss"  renderer="CapcitySchedul.funOrderDetailsTimeRenderer">空船预计到港时间
                         <input property="editor" class="mini-datepicker" format="yyyy-MM-dd HH:mm:ss" showTime="true" style="width:100%;" />
                     </div>
-                    <div name="PreSettleAmount" vtype="required" field="preSettleAmount" width="120" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funPreSettleAmountRenderer">预结算金额
-                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
-                    </div>
                     <div type="comboboxcolumn" vtype="required" autoShowPopup="true" name="SettleType" field="settleType" width="120" headerAlign="center" allowSort="false">结算吨位方式
                         <input property="editor" class="mini-combobox" style="width:100%;" data="SettleTypes" />
                     </div>
                     <div field="status" width="120" headerAlign="center" visible="false" allowSort="true" renderer="CapcitySchedul.funStatusRenderer">状态</div>
+                    <div name="PreSettleAmount" vtype="required" field="preSettleAmount" width="120" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funPreSettleAmountRenderer">预结算金额</div>
                 </div>
                 <script type="text/javascript">
                     var SettleTypes = [{id: 1, text: '按实发吨位'}, {id: 2, text: '按实收吨位'}, {id: 11, text: '现金结算'}, {id: 12, text: '定期结算'}];
@@ -128,7 +126,7 @@
             </div>
         </div>
         <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
-            <a class="mini-button cursor" onclick="CapcitySchedul.funSubmitData()">确认下单</a>
+            <a class="mini-button cursor" iconCls="icon-save" onclick="CapcitySchedul.funSubmitData()">确认下单</a>
         </div>
     </div>
 </div>

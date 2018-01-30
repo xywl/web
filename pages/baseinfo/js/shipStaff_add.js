@@ -4,8 +4,7 @@ var PageShipStaffAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
-            shipStaffForm : null,
-            shipNoData:[]
+            shipStaffForm : null
         },
         init :function ()
         {
@@ -16,12 +15,13 @@ var PageShipStaffAdd = function(){
             mini.get("title").setData([{id:1, name:"船长"},{id:2, name:"驾驶员"},{id:1, name:"轮机员"},{id:2, name:"水手"}]);
             mini.get("isOwner").setData([{id:1, name:"是"},{id:2, name:"否"}]);
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}]);
-            this.funInitShipNoDate();
+
         },
         funSetData : function(data)
         {
             var row = data.row;
             this.action = data.action;
+            mini.get("shipId").setData(row.shipIdFly)
             this.shipStaffForm.setData(row);
             if(this.action == "oper")
             {
@@ -50,55 +50,62 @@ var PageShipStaffAdd = function(){
 
             var me = this;
             var obj = this.shipStaffForm.getData(true);
-            $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/shipStaff/" + me.action + "?a="+Math.random(),
-                type : 'POST',
-                data : obj,
-                dataType: 'json',
-                success: function (data)
-                {
-                    if (data.success)
+            var flag = false;
+            if(obj.title == "1"){
+                $.ajax({
+                    url : PageMain.defaultOption.httpUrl + "/shipStaff/judege?a="+Math.random(),
+                    type : 'POST',
+                    data : obj,
+                    dataType: 'json',
+                    async:false,
+                    success: function (data)
                     {
-                        mini.alert("操作成功", "提醒", function(){
-                            if(data.success)
-                            {
-                                PageMain.funCloseWindow("save");
-                            }
-                        });
-                    }
-                    else
+                        if(data.data > 0){
+                            PageMain.funShowMessageBox("该穿号已有船长，请重新添加！");
+                        }else {
+                            flag=true;
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
                     {
-                        PageMain.funShowMessageBox(data.msg);
+                        PageMain.funShowMessageBox("操作出现异常");
                     }
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    PageMain.funShowMessageBox("操作出现异常");
-                }
-            });
+                });
+            } else {
+                flag =true;
+            }
+            if(flag){
+                $.ajax({
+                    url : PageMain.defaultOption.httpUrl + "/shipStaff/" + me.action + "?a="+Math.random(),
+                    type : 'POST',
+                    data : obj,
+                    dataType: 'json',
+                    success: function (data)
+                    {
+                        if (data.success)
+                        {
+                            mini.alert("操作成功", "提醒", function(){
+                                if(data.success)
+                                {
+                                    PageMain.funCloseWindow("save");
+                                }
+                            });
+                        }
+                        else
+                        {
+                            PageMain.funShowMessageBox(data.msg);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+                        PageMain.funShowMessageBox("操作出现异常");
+                    }
+                });
+            }
         },
         funCancel : function()
         {
             PageMain.funCloseWindow("cancel");
-        },
-        funInitShipNoDate:function () {
-            $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/ship/getList",
-                type : 'POST',
-                dataType: 'json',
-                success: function (data)
-                {
-                    if (data.success)
-                    {
-                        PageShipStaffAdd.shipNoData = data.data.list;
-                        mini.get("shipId").setData(PageShipStaffAdd.shipNoData);
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    PageMain.funShowMessageBox("获取船号失败");
-                }
-            });
         },
         funSetOther:function () {
             var ideVal = mini.get("identity").getValue();

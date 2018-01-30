@@ -47,6 +47,11 @@ var CapcitySchedul = function(){
                 if (record.status == 2) {
                     e.rowStyle = "background: #fceee2 !important;";
                 }
+                if ((field == "shipId" || field == "shipType" || field == "preWeight" || field == "preSettleAmount") && record.status != 2) {
+                    e.cellStyle = "background: #eee;";
+                } else {
+                    e.cellStyle = "background: transparent;"
+                }
             });
 
             shipListGrid.on("select", function (e) {  //船舶列表选中事件
@@ -159,6 +164,17 @@ var CapcitySchedul = function(){
                 e.cancel = true;
             }
         },
+        funOnCellCommitEdit: function(e)
+        {
+            var record = e.record, field = e.field, preLoadTotal = 0;
+            if (e.value > record.preWeight) {
+                mini.alert("预发吨位不得大于预报吨位，请重新输入");
+                e.value = e.oldValue == undefined ? '' : e.oldValue;
+                e.editor._IsValid = false;
+            }
+
+
+        },
         funOnCellEndEdit: function(e)  //行编辑结束事件
         {
             var leftWeight = $("#leftWeight").val();
@@ -172,15 +188,16 @@ var CapcitySchedul = function(){
                 }
             }
             if (preLoadTotal > leftWeight) {
-                mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
-                    function (action, value) {
-                        if (action == "ok") {
-                            alert(value);
-                        } else {
-                            alert("取消");
-                        }
-                    }
-                );
+                mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+                // mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
+                //     function (action, value) {
+                //         if (action == "ok") {
+                //             alert(value);
+                //         } else {
+                //             alert("取消");
+                //         }
+                //     }
+                // );
                 return;
             }
         },
@@ -193,8 +210,8 @@ var CapcitySchedul = function(){
                 var actualTransferPrice = record.actualTransferPrice;
                 var preLoad = record.preLoad;
                 if (actualTransferPrice == undefined || preLoad == undefined) {
-                    e.cellHtml = 0;
-                    e.record.preSettleAmount = 0;
+                    e.cellHtml = '';
+                    e.record.preSettleAmount = '';
                 } else {
                     //e.cellHtml = actualTransferPrice * preLoad;
                     e.cellHtml = CapcitySchedul.funNumMulti(actualTransferPrice, preLoad);
@@ -226,7 +243,11 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var preLoad = Number(row.preLoad);
                     if (isNaN(preLoad)) continue;
-                    preLoadTotal += preLoad;
+                    if (row.status != 2) {
+                        preLoadTotal += preLoad;
+                    } else {
+                        preLoadTotal += 0;
+                    }
                 }
                 var hasLeftWeight = leftWeight - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
@@ -237,6 +258,7 @@ var CapcitySchedul = function(){
         {
             var row = orderDetailsGrid.getRowByUID(row_uid);
             if (row) {
+                orderDetailsGrid.rejectRecord(row);
                 orderDetailsGrid.updateRow(row, {status: 2});
                 //console.log(row);
             };
@@ -272,6 +294,8 @@ var CapcitySchedul = function(){
             }
             var plans = [];
             var submitData = orderDetailsGrid.getChanges();
+            var totalPreLoad = 0;
+            var leftWeight = $("#leftWeight").val();
             for (var i = 0; i < submitData.length; i++) {
                 var plansData = {};
                 if (submitData[i].id) {
@@ -280,6 +304,7 @@ var CapcitySchedul = function(){
                 plansData.shipId = submitData[i].shipId;
                 plansData.preWeight = submitData[i].preWeight;
                 plansData.preLoad = submitData[i].preLoad;
+                totalPreLoad += Number(submitData[i].preLoad);
                 plansData.actualTransferPrice = submitData[i].actualTransferPrice;
                 if (submitData[i].id) {
                     plansData.preArriveTime = submitData[i].preArriveTime
@@ -299,6 +324,10 @@ var CapcitySchedul = function(){
                 plans.push(plansData);
             }
             param.plans = plans;
+            if (totalPreLoad > leftWeight) {
+                mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+                return;
+            }
 
             //orderDetailsGrid.loading("保存中，请稍后......");
             if (plans.length > 0)

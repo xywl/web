@@ -13,7 +13,9 @@ var PageShipStaff = function(){
             this.shipStaffGrid = mini.get("shipStaffGrid");
             this.shipStaffGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipStaff/getList")
             this.funSearch();
-            this.funInitShipNoDate();
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
+                PageShipStaff.defaultOption.shipNoData = data.data.list;
+            });
         },
         funSearch : function()
         {
@@ -89,6 +91,17 @@ var PageShipStaff = function(){
             }
             return e.value;
         },
+        funShipIdRenderer : function (e)//船号转码
+        {
+            for(var nItem = 0; nItem < PageShipStaff.defaultOption.shipNoData.length; nItem++)
+            {
+                if(e.value == PageShipStaff.defaultOption.shipNoData[nItem].id)
+                {
+                    return PageShipStaff.defaultOption.shipNoData[nItem].shipNo;
+                }
+            }
+            return e.value;
+        },
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageShipStaff.funDetail()"></a>';
@@ -102,6 +115,7 @@ var PageShipStaff = function(){
         funOpenInfo : function(paramData)
         {
             var me = this;
+            paramData.row.shipIdFly = me.defaultOption.shipNoData;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/shipStaff_add.html",
                 title: paramData.title,
@@ -159,24 +173,6 @@ var PageShipStaff = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
-        },
-        funInitShipNoDate:function () {
-            $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/ship/getList",
-                type : 'POST',
-                dataType: 'json',
-                success: function (data)
-                {
-                    if (data.success)
-                    {
-                        PageShipStaff.shipNoData = data.data;
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    PageMain.funShowMessageBox("获取船号失败");
-                }
-            });
         }
     }
 }();
