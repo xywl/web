@@ -5,6 +5,7 @@ var PageShip = function(){
             basePath:"",
             shipGrid : null,
             shipLevelFly:[{id:1, name:"650吨以上"},{id:2, name:"650吨以下"},{id:3, name:"碎石船"},{id:4, name:"兴能散装船"},{id:5, name:"兴能集装箱船"},{id:6, name:"兴一航运散装船"},{id:7, name:"兴一航运集装箱船"}],
+            shipFlagFly:[{id:1, name:"自有船舶"},{id:2, name:"挂靠船舶"},{id:3, name:"临调船"}],
         },
         init :function ()
         {
@@ -73,6 +74,18 @@ var PageShip = function(){
             }
             return e.value;
         },
+        funRendererShipType : function (e)
+        {
+            if (e.value ==1 )
+            {
+                return "干货船";
+            } else if (e.value == 2)
+            {
+                return "多用途船";
+            }
+
+            return e.value;
+        },
         funRendererShipLevel : function (e)
         {
             for(var nItem = 0; nItem < PageShip.defaultOption.shipLevelFly.length; nItem++)
@@ -80,6 +93,17 @@ var PageShip = function(){
                 if(e.value == PageShip.defaultOption.shipLevelFly[nItem].id)
                 {
                     return PageShip.defaultOption.shipLevelFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        funRendererShipFlag: function (e)
+        {
+            for(var nItem = 0; nItem < PageShip.defaultOption.shipFlagFly.length; nItem++)
+            {
+                if(e.value == PageShip.defaultOption.shipFlagFly[nItem].id)
+                {
+                    return PageShip.defaultOption.shipFlagFly[nItem].name;
                 }
             }
             return e.value;
@@ -98,6 +122,7 @@ var PageShip = function(){
         {
         	var me = this;
             paramData.shipLevel = this.defaultOption.shipLevelFly;
+            paramData.shipFlag = this.defaultOption.shipFlagFly;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/ship_add.html",
                 title: paramData.title,

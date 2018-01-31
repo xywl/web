@@ -19,6 +19,10 @@ var PageMsgTemplateAdd = function(){
         	var row = data.row;
         	this.action = data.action;
         	this.msgTemplateForm.setData(row);
+            if(this.action == "add")
+            {
+                mini.get("status").setValue(1);
+            }
             if(this.action == "oper")
             {
                 mini.get("layout_msgTemplate_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

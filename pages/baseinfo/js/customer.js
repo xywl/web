@@ -11,7 +11,7 @@ var PageCustomer = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.customerGrid = mini.get("customerGrid");
-            this.customerGrid.setUrl(PageMain.defaultOption.httpUrl + "/customer/getList")
+            this.customerGrid.setUrl(PageMain.defaultOption.httpUrl + "/customer/getList");
             this.funSearch();
         },
         funSearch : function()

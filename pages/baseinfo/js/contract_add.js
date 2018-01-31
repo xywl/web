@@ -24,7 +24,7 @@ var PageContractAdd = function(){
         	this.contractForm.setData(row);
             if(this.defaultOption.action == "add")
             {
-                mini.get("partyB").setValue("兴一物流");
+                mini.get("partyB").setValue("浙江兴一物流有限公司");
                 mini.get("type").setValue(1);
                 mini.get("status").setValue(1);
             }
