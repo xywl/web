@@ -15,7 +15,6 @@ var PageSailingInfoAdd = function(){
         },
         init :function ()
         {
-            console.log("===2====================")
             mini.parse();
             this.basePath = PageMain.basePath;
             this.sailingInfoForm = new mini.Form("sailingInfoFormAdd");
@@ -32,7 +31,6 @@ var PageSailingInfoAdd = function(){
         },
         funSetData : function(data)
         {
-            console.log("=====1==================")
         	var row = data.row;
             this.operType = data.operType;
         	this.action = data.action;

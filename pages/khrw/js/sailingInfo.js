@@ -38,6 +38,7 @@ var PageSailingInfo = function(){
             
             if(arguments[0] == "kqdgdj")
             {
+                paramData.row = {};
                 this.funOpenInfo(paramData);
             }
             else
