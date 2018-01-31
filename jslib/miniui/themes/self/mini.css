@@ -34,3 +34,13 @@
 .mini-checkboxlist table label{
     font-size: 12px;
 }
+.mini-panel-border{
+    /*border:0px !important;*/
+}
+body{
+    margin: 0px;
+    padding:0px;
+}
+.mini-radiobuttonlist table label{
+    line-height: 16px !important;
+}

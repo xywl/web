@@ -2,6 +2,7 @@ var PageMain = function(){
     return {
         defaultOption: {
             basePath:"",
+            userProfileFly:[],
             zero:"0000000000000000000000000000000000",
             httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
         },
@@ -153,6 +154,24 @@ var PageMain = function(){
             paramBit = PageMain.defaultOption.zero.substring(0, paramLen).substring(paramBit.length) + paramBit;
             console.log(paramBit)
             return paramBit;
+        },
+        funUserProfileRenderer : function (e)
+        {
+
+            for(var nItem = 0; nItem < PageMain.defaultOption.userProfileFly.length; nItem++)
+            {
+                if(e.value == PageMain.defaultOption.userProfileFly[nItem].id)
+                {
+                    return PageMain.defaultOption.userProfileFly[nItem].name;
+                }
+            }
+           return e.value;
+        },
+        funUserProfileInfo : function ()
+        {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadUserProfile", {}, function (data) {
+                PageMain.defaultOption.userProfileFly = data;
+            });
         },
         //
         callAjax : function (paramUrl, paramData, callback)

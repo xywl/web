@@ -8,6 +8,8 @@ var PageCustomerTask = function(){
             customerTaskGrid : null,
             customerTaskFlowGrid : null,
             taskId:0,
+            contractId:0,
+            totalLoad:0,
             flowFly :[], //流向JSON
             flowSelect : [], //流向选择
             detailGridForm : null
@@ -21,14 +23,21 @@ var PageCustomerTask = function(){
             this.defaultOption.detailGridForm  = document.getElementById("detailGrid_Form");
             this.customerTaskGrid = mini.get("customerTaskGrid");
             this.customerTaskGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTask/getList");
+            PageMain.funUserProfileInfo();
             //加载合同
-                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000}, function (data) {
+
                 PageCustomerTask.defaultOption.customerFly = data;
             });
             //加载所有客户信息
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadCustomer",{pageSize:10000}, function (data) {
                 PageCustomerTask.defaultOption.contractFly = data;
             });
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{pageSize:100000}, function (data) {
+                PageCustomerTask.defaultOption.flowSelect = data;
+            });
+
             PageCustomerTask.funSearch();
         },
         funSearch : function()
@@ -82,10 +91,20 @@ var PageCustomerTask = function(){
             PageCustomerTask.defaultOption.customerTaskFlowGrid.load({ key: row.id, queryParamFlag: 1 });
 
             //根据合同id加载流向信息
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{customerId:row.id,pageSize:100000}, function (data) {
+            /*PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{customerId:row.id,pageSize:100000}, function (data) {
                 PageCustomerTask.defaultOption.flowSelect = data;
-            });
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{pageSize:100000}, function (data) {
+            });*/
+
+            PageCustomerTask.defaultOption.contractId = row.contractId;
+            PageCustomerTask.defaultOption.totalLoad = row.totalLoad;
+            PageCustomerTask.funLoadContractInfo();
+          /*  PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{pageSize:100000}, function (data) {
+                PageCustomerTask.defaultOption.flowFly = data;
+            });*/
+        },
+        funLoadContractInfo : function ()
+        {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{key:PageCustomerTask.defaultOption.contractId, pageSize:100000}, function (data) {
                 PageCustomerTask.defaultOption.flowFly = data;
             });
         },
@@ -114,7 +133,13 @@ var PageCustomerTask = function(){
                     else
                     {
                         PageCustomerTask.defaultOption.taskId = action.taskId;
-                        PageCustomerTaskFlow.funAdd();
+                        PageCustomerTask.defaultOption.contractId = action.contractId;
+                        PageCustomerTask.defaultOption.totalLoad = action.totalLoad;
+                        PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{key:PageCustomerTask.defaultOption.contractId, pageSize:100000}, function (data) {
+                            PageCustomerTask.defaultOption.flowFly = data;
+                            PageCustomerTaskFlow.funAdd();
+                        });
+
                         me.customerTaskGrid.reload();
                     }
                 }
@@ -131,6 +156,7 @@ var PageCustomerTask = function(){
             }
             return e.value;
         },
+
         funContractRenderer : function (e)//合同转码
         {
             for(var nItem = 0; nItem < PageCustomerTask.defaultOption.customerFly.length; nItem++)
@@ -185,44 +211,6 @@ var PageCustomerTask = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
-        },
-        formatData : function(e) {
-
-            var field = e.field;
-            var value = e.value;
-            var result = "--";
-            //转换"创建时间"
-            if("loadingTime" == field || "dischargeTime" == field ||"bigShipArriveTime" == field|| "bigShipDepartTime" == field){
-                var createdTime = new Date(1000 * value);
-                var year = createdTime.getFullYear();
-                var mon = createdTime.getMonth() + 1;
-                if(10 > mon){
-                    mon = "0" + mon;
-                }
-
-                var sDate = createdTime.getDate();
-                if(10 > sDate){
-                    sDate = "0" + sDate;
-                }
-
-                var hours = createdTime.getHours();
-                if(10 > hours){
-                    hours = "0" + hours;
-                }
-
-                var min = createdTime.getMinutes();
-                if(10 > min){
-                    min = "0" + min;
-                }
-
-                var sec = createdTime.getSeconds();
-                if(10 > sec){
-                    sec = "0" + sec;
-                }
-
-                result = year + "-" + mon + "-" + sDate + "  " + hours + ":" + min + ":" + sec;
-            }
-            return result;
         }
     }
 }();

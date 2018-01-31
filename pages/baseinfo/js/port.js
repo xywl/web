@@ -10,7 +10,7 @@ var PagePort = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.portGrid = mini.get("portGrid");
-            this.portGrid.setUrl(PageMain.defaultOption.httpUrl + "/port/getList")
+            this.portGrid.setUrl(PageMain.defaultOption.httpUrl + "/port/getPage")
             this.funSearch();
         },
         funSearch : function()

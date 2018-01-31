@@ -6,11 +6,11 @@ var PageCustomerTaskFlow = function(){
             ticketStatusFly:[{id:1, name:"开"},{id:2, name:"不开"}],
             goodsType : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}],
             goodsSubType : [{id:1, name:"碎石"},{id:2, name:"市场煤炭"},{id:3, name:"华能电煤"},{id:4, name:"浙能电煤"},{id:5, name:"铜精矿"},{id:6, name:"PAT"},{id:7, name:"经营业务"},{id:8, name:"其他业务"}],
-            loadType :[{id:1, name:"大轮"},{id:2, name:"场地"}],
+            loadType :[{id:2, name:"场地"},{id:1, name:"大轮"}],
             selfPick: [{id:1, name:"是"},{id:2, name:"否"}],
             status: [{id:1, name:"启用"},{id:2, name:"禁用"}],
             sailingFlag: [{id:1, name:"正常"},{id:2, name:"散装回程货"},{id:3, name:"安吉货"}],
-            sailingArea: [{id:1, name:"A级"},{id:2, name:"B级"},{id:3, name:"C级"}],
+            sailingArea: [{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}],
             portData:[],
             customerTaskFlowGrid : null
         },
@@ -185,6 +185,7 @@ var PageCustomerTaskFlow = function(){
         {
         	var me = this;
             paramData.row.ticketStatusFly = me.defaultOption.ticketStatusFly;
+            paramData.row.sumLoad = PageCustomerTask.defaultOption.totalLoad;
             paramData.row.flowFly = PageCustomerTask.defaultOption.flowFly;
             paramData.row.goodsTypeFly = me.defaultOption.goodsType;
             paramData.row.loadTypeFly = me.defaultOption.loadType;
@@ -194,23 +195,6 @@ var PageCustomerTaskFlow = function(){
             paramData.row.sailingAreaFly = me.defaultOption.sailingArea;
             paramData.row.portData = me.defaultOption.portData;
             paramData.row.goodsSubTypeFly =  me.defaultOption.goodsSubType;
-            var e =[];
-            e.field ="loadingTime";
-            e.value = paramData.row.loadingTime;
-            paramData.row.loadingTime = PageCustomerTask.formatData(e);
-            var e =[];
-            e.field ="dischargeTime";
-            e.value = paramData.row.dischargeTime;
-            paramData.row.dischargeTime = PageCustomerTask.formatData(e);
-            var e =[];
-            e.field ="bigShipArriveTime";
-            e.value = paramData.row.bigShipArriveTime;
-            paramData.row.bigShipArriveTime = PageCustomerTask.formatData(e);
-            var e =[];
-            e.field ="bigShipDepartTime";
-            e.value = paramData.row.bigShipDepartTime;
-            paramData.row.bigShipDepartTime = PageCustomerTask.formatData(e);
-
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTaskFlow_add.html",
                 title: paramData.title,

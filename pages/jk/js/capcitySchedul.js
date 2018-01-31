@@ -57,11 +57,35 @@ var CapcitySchedul = function(){
             shipListGrid.on("select", function (e) {  //船舶列表选中事件
                 var record = e.record,
                 shipId = record.shipId,
+                shipNo = record.shipNo,
                 preWeight = record.preWeight,
                 shipType = record.shipType;
+                var datas = orderDetailsGrid.getData();
+                var idArray = [];
                 //console.log(record);
-                var newRow = {shipId: shipId, shipType: shipType, preWeight: preWeight};
-                orderDetailsGrid.addRow(newRow, 0);
+                var newRow = {shipId: shipId, shipNo: shipNo, shipType: shipType, preWeight: preWeight};
+                for(var i = 0; i < datas.length; i++)
+                {
+                    idArray.push(datas[i].shipId);
+                }
+                if(!CapcitySchedul.funInArray(idArray, newRow.shipId))
+                {
+                    orderDetailsGrid.addRow(newRow, 0);
+                }
+                //orderDetailsGrid.addRow(newRow, 0);
+                // if(datas.length == 0)
+                // {
+                //     orderDetailsGrid.addRow(newRow, 0);
+                // } else {
+                //     for(var i = 0; i < datas.length; i++)
+                //     {
+                //         if (newRow.shipId != datas[i].shipId) {
+                //             orderDetailsGrid.addRow(newRow, 0);
+                //         } else {
+                //             //continue;
+                //         }
+                //     }
+                // }
             });
 
             shipListGrid.on("deselect", function (e) {  //船舶列表取消选择事件
@@ -84,6 +108,24 @@ var CapcitySchedul = function(){
             var capcitySchedulForm = new mini.Form("capcitySchedulForm");
             this.orderGrid.load(capcitySchedulForm.getData());
         },
+        funShipListOnLoad: function(e)
+        {
+            var shipListData = e.data;
+            var orderDetailsData = orderDetailsGrid.getData();
+            for(var j = 0; j < shipListData.length; j++)
+            {
+                for(var i = 0; i < orderDetailsData.length; i++)
+                {
+                    if (shipListData[j].shipId == orderDetailsData[i].shipId) {
+                        shipListGrid.setSelected(shipListData[j]);
+                    }
+                }
+            }
+        },
+        funOrderDetailsOnLoad: function(e)
+        {
+            CapcitySchedul.funSearchShipListGrid();
+        },
         funSearchShipListGrid : function()
         {
             var customerTaskFlowData = this.orderGrid.getSelected();
@@ -101,7 +143,7 @@ var CapcitySchedul = function(){
                 searchParam.customerTaskFlowId = customerTaskFlowData.id;
             }
             shipListGrid.load(searchParam);
-            CapcitySchedul.funSearchOrderDetailsGrid();
+            //CapcitySchedul.funSearchOrderDetailsGrid();
         },
         funSearchOrderDetailsGrid : function()  //查询生成调度结果
         {
@@ -114,7 +156,7 @@ var CapcitySchedul = function(){
             var record = orderGrid.getSelected();
             if (record) {
                 //shipListGrid.load({customerTaskFlowId: record.id});
-                CapcitySchedul.funSearchShipListGrid();
+                //CapcitySchedul.funSearchShipListGrid();
                 CapcitySchedul.funSearchOrderDetailsGrid();
                 $("#leftWeight").val(record.leftWeight);
                 //orderDetailsGrid.load({customerTaskFlowId: record.id, "queryParamFlag": 1});
@@ -126,13 +168,10 @@ var CapcitySchedul = function(){
             var record = e.record;
             var uid = record._uid;
             var rowIndex = e.rowIndex;
-            if (e.row.id && e.row.status == 0) {
-                return '<a class="Blue_Button" href="javascript:CapcitySchedul.funDelRow(\'' + uid + '\')">删除</a> ';
-            }
-            else if (e.row.id && e.row.status == 2) {
+            if (e.row.id && e.row.status == 2) {
                 return '<a class="Blue_Button" href="javascript:CapcitySchedul.funReDelRow(\'' + uid + '\')">取消删除</a>';
             } else {
-                return '';
+                return '<a class="Blue_Button" href="javascript:CapcitySchedul.funDelRow(\'' + uid + '\')">删除</a> ';
             }
         },
         funOrderTimeRenderer: function(e)
@@ -167,7 +206,7 @@ var CapcitySchedul = function(){
         funOnCellCommitEdit: function(e)
         {
             var record = e.record, field = e.field, preLoadTotal = 0;
-            if (e.value > record.preWeight) {
+            if (field == "preWeight" && (e.value > record.preWeight)) {
                 mini.alert("预发吨位不得大于预报吨位，请重新输入");
                 e.value = e.oldValue == undefined ? '' : e.oldValue;
                 e.editor._IsValid = false;
@@ -258,8 +297,21 @@ var CapcitySchedul = function(){
         {
             var row = orderDetailsGrid.getRowByUID(row_uid);
             if (row) {
-                orderDetailsGrid.rejectRecord(row);
-                orderDetailsGrid.updateRow(row, {status: 2});
+                if(!row.customerTaskFlowId) {
+                    var shipListData = shipListGrid.getData();
+                    for(var i = 0; i < shipListData.length; i++)
+                    {
+                        if(shipListData[i].shipId == row.shipId)
+                        {
+                            orderDetailsGrid.removeRow(row,true);
+                            orderDetailsGrid.rejectRecord(row);
+                            shipListGrid.deselect(shipListData[i], true);
+                        }
+                    }
+                } else {
+                    orderDetailsGrid.rejectRecord(row);
+                    orderDetailsGrid.updateRow(row, {status: 2});
+                }
                 //console.log(row);
             };
         },
@@ -380,6 +432,17 @@ var CapcitySchedul = function(){
         {
             var secondDate = (new Date(date)).getTime() / 1000;
             return secondDate;
+        },
+        funInArray: function(arr,obj){
+            if(arr){
+                var i = arr.length;
+                while (i--) {
+                    if (arr[i] === obj) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }();

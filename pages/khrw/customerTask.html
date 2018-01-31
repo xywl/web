@@ -14,7 +14,7 @@
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="customerTaskForm">
                 <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入港口编号或名称"  style="width:160px;"/>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入合同名称或者合同编号"  style="width:160px;"/>
 				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />	
                 <a class="mini-button" iconCls="icon-search" onclick="PageCustomerTask.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageCustomerTask.funReset()" plain="true"><label>重置</label></a>
@@ -37,13 +37,16 @@
             <div id="customerTaskGrid" class="mini-datagrid"
                   idField="id" allowResize="false"
                  onshowrowdetail="PageCustomerTask.onShowRowDetail"  idField="id"
-                 pagesize="30" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                 pagesize="15" sizeList="[15,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="expandcolumn"></div>
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                    <div field="contractId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.funContractRenderer">合同名称</div>
+                    <div field="contractNo" width="120" headerAlign="center" allowSort="true">合同编号</div>
+                    <div field="contractName" width="120" headerAlign="center" allowSort="true">合同名称</div>
 					 <div field="customerId" width="120" headerAlign="center" allowSort="true" renderer="PageCustomerTask.funCustomerRenderer">客户名称</div>
 					 <div field="totalLoad" width="120" headerAlign="center" allowSort="true" >总载重</div>
+					 <div field="creator" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funUserProfileRenderer">创建人</div>
+					 <div field="created" width="120" headerAlign="center" allowSort="true"  renderer="PageMain.funFromDateInfo">创建时间</div>
                     <div field="show_plan" width="60" headerAlign="center" allowSort="false"
                          align="center" renderer="PageCustomerTask.funOperRenderer">操作
                     </div>
