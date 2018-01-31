@@ -19,7 +19,7 @@
 </head>
 <body>
 <div class="mini-layout" id="layout_transferFlowPrice_add" style="width: 100%;height: 100%;" allowResize="false">
-        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:8px;">
         <div id="transferFlowPriceFormAdd">
        
                 	<input id="id" name="id"  class="mini-hidden" />
@@ -32,6 +32,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="form-label">执行开始日期：</td>
+                    <td class="form-content">
+                    	<input name="startDate" id="startDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="执行开始日期" allowInput="false"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">执行结束日期：</td>
+                    <td class="form-content">
+                    	<input name="endDate" id="endDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="执行结束日期" allowInput="false"/>
+                    </td>
+                </tr>
+                <tr>
                     <td class="form-label">运<span style="padding: 0 14px;"></span>价：</td>
                     <td class="form-content">
                         <input name="unitPrice" id="unitPrice"  class="mini-spinner"  minValue="0" value="0"  maxValue="1000000000000" format="¥#,0"  required="true" maxlength="10" requiredErrorText="运价不能为空"/>
@@ -41,21 +53,6 @@
                     <td class="form-label">参考运价：</td>
                     <td class="form-content">
                         <input name="suggestUnitPrice" id="suggestUnitPrice" class="mini-spinner"  minValue="0" value="0"  maxValue="1000000000000" format="¥#,0"   required="true" maxlength="10" requiredErrorText="参考运价不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">执行开始日期：</td>
-                    <td class="form-content">
-                    	<input name="startDate" id="startDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
-                    </td>
-                    
-                    
-                    
-                </tr>
-                <tr>
-                    <td class="form-label">执行结束日期：</td>
-                    <td class="form-content">
-                    	<input name="endDate" id="endDate" class="mini-datepicker"  format="yyyy-MM-dd"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
                     </td>
                 </tr>
             </table>

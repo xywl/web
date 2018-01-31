@@ -15,6 +15,9 @@
             font-size: 12px;
             overflow: hidden;
         }
+        .mini-listbox-view{
+            max-height: 170px!important;
+        }
        /* .mini-textbox, .mini-combobox, .mini-buttonedit{
             height: 27px;
             width:180px;
@@ -43,16 +46,16 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">总吨位：</td>
+                    <td class="form-label">总<span style="padding: 0 4px;"></span>吨<span style="padding: 0 4px;"></span>位：</td>
                     <td class="form-content">
                         <input name="totalLoad" id="totalLoad" class="mini-textbox"
                                required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">备注：</td>
+                    <td class="form-label">备<span style="padding: 0 14px;"></span>注：</td>
                     <td class="form-content">
-                        <input name="description" id="description" class="mini-textarea"  maxlength="100" />
+                        <input name="description" id="description" class="mini-textarea"  maxlength="100" style="height: 90px;"/>
                     </td>
                 </tr>
             </table>

@@ -77,7 +77,7 @@ var PageTransferFlowPrice = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/transferFlowPrice_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  10 + 65,
+                height: 30 *  8 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageTransferFlowPriceAdd.funSetData(paramData);

@@ -194,11 +194,13 @@ var PageCustomerTaskFlow = function(){
             paramData.row.sailingFlagFly = me.defaultOption.sailingFlag;
             paramData.row.sailingAreaFly = me.defaultOption.sailingArea;
             paramData.row.portData = me.defaultOption.portData;
+            paramData.row.contractId = PageCustomerTask.defaultOption.contractId;
+            paramData.row.customerId = PageCustomerTask.defaultOption.customerId;
             paramData.row.goodsSubTypeFly =  me.defaultOption.goodsSubType;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTaskFlow_add.html",
                 title: paramData.title,
-                width: 1100,
+                width: 900,
                 height: 45 *  10 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();

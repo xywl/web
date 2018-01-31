@@ -9,6 +9,7 @@ var PageCustomerTask = function(){
             customerTaskFlowGrid : null,
             taskId:0,
             contractId:0,
+            customerId:0,
             totalLoad:0,
             flowFly :[], //流向JSON
             flowSelect : [], //流向选择
@@ -96,6 +97,7 @@ var PageCustomerTask = function(){
             });*/
 
             PageCustomerTask.defaultOption.contractId = row.contractId;
+            PageCustomerTask.defaultOption.customerId = row.customerId;
             PageCustomerTask.defaultOption.totalLoad = row.totalLoad;
             PageCustomerTask.funLoadContractInfo();
           /*  PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId?key=" + row.contractId,{pageSize:100000}, function (data) {
@@ -134,6 +136,7 @@ var PageCustomerTask = function(){
                     {
                         PageCustomerTask.defaultOption.taskId = action.taskId;
                         PageCustomerTask.defaultOption.contractId = action.contractId;
+                        PageCustomerTask.defaultOption.customerId = action.customerId;
                         PageCustomerTask.defaultOption.totalLoad = action.totalLoad;
                         PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadContractFlowByContractId",{key:PageCustomerTask.defaultOption.contractId, pageSize:100000}, function (data) {
                             PageCustomerTask.defaultOption.flowFly = data;

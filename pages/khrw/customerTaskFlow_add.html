@@ -15,6 +15,10 @@
             font-size: 12px;
             overflow: hidden;
         }
+         .mini-textbox, .mini-combobox, .mini-buttonedit{
+            height: 27px;
+            width:260px;
+        }
     </style>
 </head>
 <body>
@@ -26,12 +30,12 @@
                 	<input id="taskId" name="taskId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">流向：</td>
+                    <td class="form-label">流<span style="padding: 0 14px;"></span>向：</td>
                     <td class="form-content">
                         <input name="flowId" id="flowId" class="mini-combobox" valueField="id" onvaluechanged="PageCustomerTaskFlowAdd.funPortNameCustomer()"
                                textField="name"  required="true"  requiredErrorText="流向不能为空"/>
                     </td>
-                    <td class="form-label">总吨位：</td>
+                    <td class="form-label">总<span style="padding: 0 4px;"></span>吨<span style="padding: 0 4px;"></span>位：</td>
                     <td class="form-content">
                         <input name="totalWeight" id="totalWeight" decimalPlaces="0" class="mini-spinner" minValue="0" maxValue="1000000000000"
                                required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
@@ -52,7 +56,7 @@
 
                 </tr>
                 <tr>
-                    <td class="form-label">方向：</td>
+                    <td class="form-label">方<span style="padding: 0 14px;"></span>向：</td>
                     <td class="form-content">
                         <input name="direction" id="direction" class="mini-textbox"
                                required="true" maxlength="10" requiredErrorText="方向不能为空"/>
@@ -72,7 +76,7 @@
                     <td class="form-label">装货时间：</td>
                     <td class="form-content">
                         <input name="loadingTime" id="loadingTime" class="mini-datepicker"   ondrawdate="PageCustomerTaskFlowAdd.funLoadingTime"
-                               showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
+                               showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"  onvaluechanged="PageCustomerTaskFlowAdd.funLoadUnitPriceInfo()"
                                nullValue="null" showTime="true"   emptyText="装货时间" allowInput="false"/>
                     </td>
                 </tr>
@@ -83,14 +87,14 @@
                                showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
                                nullValue="null" showTime="true"    emptyText="预计卸货时间" allowInput="false"/>
                     </td>
-                    <td class="form-label">装货点：</td>
+                    <td class="form-label">装<span style="padding: 0 4px;"></span>货<span style="padding: 0 4px;"></span>点：</td>
                     <td class="form-content">
                         <input name="startPortId" id="startPortId" class="mini-combobox"
                                valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="装货点不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">卸货点：</td>
+                    <td class="form-label">卸<span style="padding: 0 4px;"></span>货<span style="padding: 0 4px;"></span>点：</td>
                     <td class="form-content">
                         <input name="endPortId" id="endPortId" class="mini-combobox"
                                valueField="id" textField="name"  required="true" maxlength="3" requiredErrorText="卸货点不能为空"/>
@@ -163,7 +167,7 @@
                         <input name="selfPick" id="selfPick"  class="mini-combobox"
                                valueField="id" textField="name"  required="true"  requiredErrorText="是否自提不能为空"/>
                     </td>
-                    <td class="form-label">状态：</td>
+                    <td class="form-label">状<span style="padding: 0 14px;"></span>态：</td>
                     <td class="form-content">
                         <input name="status" id="status"  class="mini-combobox"
                                valueField="id" textField="name"  required="true"  requiredErrorText="状态不能为空"/>
@@ -172,7 +176,7 @@
                 <tr>
                     <td class="form-label">描<span style="padding: 0px 14px;"></span>述：</td>
                     <td class="form-content" colspan="3">
-                        <input name="description" id="description" class="mini-textarea" style="width:595px; height: 80px;"   maxlength="100" />
+                        <input name="description" id="description" class="mini-textarea" style="width:698px; height: 80px;"   maxlength="100" />
                     </td>
                 </tr>
             </table>
