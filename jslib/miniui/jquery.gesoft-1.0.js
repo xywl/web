@@ -4,7 +4,7 @@ var PageMain = function(){
             basePath:"",
             userProfileFly:[],
             zero:"0000000000000000000000000000000000",
-            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"
+            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"//"http://127.0.0.1:16721/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
@@ -61,6 +61,13 @@ var PageMain = function(){
         },
         funFromDateInfo : function (e)
         {
+            if (e.value == "0"
+                || e.value == 0
+                || e.value == null
+                || e.value == "null")
+            {
+                return "";
+            }
             return mini.formatDate (new Date(e.value * 1000), "yyyy-MM-dd HH:mm:ss");
         },
         funStrToDate :function ()
@@ -78,6 +85,10 @@ var PageMain = function(){
                 paramFormat = arguments[1];
             }
             var tmp = parseInt(arguments[0]) * 1000;
+            if (tmp == 0)
+            {
+                return "";
+            }
             return mini.formatDate(new Date(tmp), paramFormat);
         },
         funStrinfo : function (text)
@@ -165,7 +176,7 @@ var PageMain = function(){
                     return PageMain.defaultOption.userProfileFly[nItem].name;
                 }
             }
-           return e.value;
+           return "";
         },
         funUserProfileInfo : function ()
         {

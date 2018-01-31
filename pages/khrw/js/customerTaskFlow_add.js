@@ -5,6 +5,8 @@ var PageCustomerTaskFlowAdd = function(){
             basePath:"",
             action : "",
             sumLoad:0,
+            customerId:0,
+            contractId:0,
             customerTaskFlowForm : null,
             goodsSubType : [],
             currentWeight:0
@@ -40,6 +42,8 @@ var PageCustomerTaskFlowAdd = function(){
         funSetData : function(data)
         {
             var row = data.row;
+            this.defaultOption.contractId = row.contractId;
+            this.defaultOption.customerId = row.customerId;
             mini.get("flowId").setData(row.flowFly);
             mini.get("goodsType").setData(row.goodsTypeFly);
             mini.get("loadType").setData(row.loadTypeFly);
@@ -91,6 +95,20 @@ var PageCustomerTaskFlowAdd = function(){
                     if (c.setIsValid) c.setIsValid(true);      //去除错误提示
                 }
         	}
+        },
+        funLoadUnitPriceInfo : function ()
+        {
+            console.log(mini.get("loadingTime").getValue())
+            if (mini.get("flowId").getValue() != "" && mini.get("loadingTime").getValue() != null)
+            {
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTaskFlow/loadUnitPrice", {flowId:mini.get("flowId").getValue(), customerId:this.defaultOption.customerId, contractId:this.defaultOption.contractId, loadingTime:mini.get("loadingTime").getValue().getTime()/1000}, function (data) {
+                   console.log(data)
+                    if (data.length > 0)
+                    {
+                        mini.get("shipSuggestUnitPrice").setValue(data[0].id);
+                    }
+                })
+            }
         },
         funDischargeTime : function (e)
         {
@@ -233,6 +251,8 @@ var PageCustomerTaskFlowAdd = function(){
         },
         funPortNameCustomer:function ()
         {
+            this.funLoadUnitPriceInfo();
+            
             var flowId = mini.get("flowId").getValue();
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getById?id="+flowId,{pageSize:1000000}, function (result) {
                 if(result.success)
