@@ -41,6 +41,15 @@ var PageMain = function(){
                 e.allowSelect = false;
             }
         },
+        funGetTimeMiniInfo : function (paramId)
+        {
+            var tmp = mini.get(paramId).getValue();
+            if (tmp == "" || tmp == null)
+            {
+                return 0;
+            }
+            return tmp.getTime()/1000;
+        },
         IsNull:function (paramId, paramTip)
         {
             var tmp = "";
@@ -91,6 +100,7 @@ var PageMain = function(){
             }
             return mini.formatDate(new Date(tmp), paramFormat);
         },
+
         funStrinfo : function (text)
         {
             if (text == null || text == "null")
@@ -121,6 +131,33 @@ var PageMain = function(){
                 path = window.location.protocol + '//' + window.location.host + '/' + webName;
             }
             return path;
+        },
+        //处理公共验证部分
+        funDealSubmitValidate : function (paramForm)
+        {
+            paramForm.validate();
+            if (!paramForm.isValid())
+            {
+                var errorTexts = paramForm.getErrorTexts();
+                for (var i in errorTexts)
+                {
+                    mini.alert(errorTexts[i]);
+                    return true;
+                }
+            }
+            return false;
+        },
+        //公共部分不可见
+        funDealDetailInfo : function (paramId, paramForm)
+        {
+            mini.get(paramId).updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
+            var fields = paramForm.getFields();
+            for (var i = 0, l = fields.length; i < l; i++)
+            {
+                var c = fields[i];
+                if (c.setReadOnly) c.setReadOnly(true);     //只读
+                if (c.setIsValid) c.setIsValid(true);      //去除错误提示
+            }
         },
         funGetUrlInfo : function ()
         {
