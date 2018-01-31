@@ -54,7 +54,10 @@ var PageCustomerTaskFlowAdd = function(){
             mini.get("endPortId").setData(row.portData);
             mini.get("sailingArea").setData(row.sailingAreaFly);
             mini.get("selfBuckle").setData(row.selfPickFly);
-
+            if (row.goodsSubType == 0)
+            {
+                row.goodsSubType = "";
+            }
             this.defaultOption.currentWeight = row.totalWeight;
             this.defaultOption.sumLoad = row.sumLoad;
             PageCustomerTaskFlowAdd.funLoadDwInfo(row.taskId);

@@ -21,14 +21,7 @@ var PagePortAdd = function(){
         	this.portForm.setData(row);
             if(this.action == "oper")
             {
-                mini.get("layout_port_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
-                var fields = this.portForm.getFields();
-                for (var i = 0, l = fields.length; i < l; i++)
-                {
-                    var c = fields[i];
-                    if (c.setReadOnly) c.setReadOnly(true);     //只读
-                    if (c.setIsValid) c.setIsValid(true);      //去除错误提示
-                }
+                PageMain.funDealDetailInfo("layout_port_add", this.portForm);
             }
         },
         funOpenLngLat : function ()
@@ -58,17 +51,11 @@ var PagePortAdd = function(){
         },
         funSave : function()
         {
-        	this.portForm.validate();
-            if (!this.portForm.isValid()) 
+            if (PageMain.funDealSubmitValidate(this.portForm))
             {
-                 var errorTexts = form.getErrorTexts();
-                 for (var i in errorTexts) 
-                 {
-                     mini.alert(errorTexts[i]);
-                     return;
-                 }
+                return ;
             }
-            
+
             var me = this;
             var obj = this.portForm.getData(true);
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/port/" + me.action + "?a="+Math.random(), obj, function (data) {

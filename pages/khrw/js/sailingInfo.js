@@ -29,9 +29,33 @@ var PageSailingInfo = function(){
         	mini.get("queryParamFlag").setValue("1");
             this.sailingInfoGrid.load(sailingInfoForm.getData());
         },
+
+        //空船到港登记
+        funKqdgdj : function ()
+        {
+            var row = this.sailingInfoGrid.getSelected();
+            var paramData = {action: "add", operType : arguments[0], row: row, title:arguments[1], url:"/pages/khrw/sailingInfo_add.html", mWidth:arguments[2], mHeight:arguments[3]};
+            
+            if(arguments[0] == "kqdgdj")
+            {
+                this.funOpenInfo(paramData);
+            }
+            else
+            {
+                if(row)
+                {
+                    paramData.action = "modify";
+                    this.funOpenInfo(paramData);
+                }
+                else
+                {
+                    PageMain.funShowMessageBox("请选择一条记录");
+                }
+            }
+        },
         funAdd : function()
         {
-        	var paramData = {action: "add", row:{}, title:"新增数据"};
+        	var paramData = {action: "add", row:{}, title:"空船到港登记"};
             this.funOpenInfo(paramData);
         },
         funModify : function()
@@ -57,10 +81,10 @@ var PageSailingInfo = function(){
         {
         	var me = this;
         	mini.open({
-                url: PageMain.funGetRootPath() + "/pages/khrw/sailingInfo_add.html",
+                url: PageMain.funGetRootPath() + paramData.url,
                 title: paramData.title,
-                width: 650,
-                height: 30 *  19 + 65,
+                width: paramData.mWidth,
+                height: paramData.mHeight,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageSailingInfoAdd.funSetData(paramData);
