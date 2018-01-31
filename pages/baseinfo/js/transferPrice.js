@@ -7,7 +7,6 @@ var PageTransferPrice = function(){
             transferPriceGrid : null,
             customerFly : null,
             contractFly : null,
-            userProfileFly : [],
             transferPriceId:0,
             customerCombox:null,
             priceTypeFly : [{id:1, name:"客户"},{id:2, name:"船户"}],
@@ -26,9 +25,7 @@ var PageTransferPrice = function(){
             this.defaultOption.customerCombox = mini.get("customerId");
             this.transferPriceGrid.setUrl(PageMain.defaultOption.httpUrl + "/transferPrice/getList");
 
-            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadUserProfile", {}, function (data) {
-                PageTransferPrice.defaultOption.userProfileFly = data;
-            });
+            PageMain.funUserProfileInfo();
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customer/getList", {queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
                 if(data.success)
                 {
@@ -79,17 +76,6 @@ var PageTransferPrice = function(){
                 if(e.value == PageTransferPrice.defaultOption.priceTypeFly[nItem].id)
                 {
                     return PageTransferPrice.defaultOption.priceTypeFly[nItem].name;
-                }
-            }
-            return e.value;
-        },
-        funComboxUserProfileInfo : function (e)
-        {
-            for(var nItem = 0; nItem < PageTransferPrice.defaultOption.userProfileFly.length; nItem++)
-            {
-                if(e.value == PageTransferPrice.defaultOption.userProfileFly[nItem].id)
-                {
-                    return PageTransferPrice.defaultOption.userProfileFly[nItem].name;
                 }
             }
             return e.value;
