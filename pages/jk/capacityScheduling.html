@@ -33,19 +33,19 @@
             <div class="mini-fit">
                 <div id="orderGrid" class="mini-datagrid"
                       idField="id" allowResize="false"
-                      onselectionchanged="CapcitySchedul.funOnSelectionChanged" showPager="false"
+                      onselectionchanged="CapcitySchedul.funOnSelectionChanged" showPager="true"
                      pagesize="10" sizeList="[10,30,50,100]" allowAlternating="false"  sortMode="client" style="height: 100%;">
                     <div property="columns">
                         <div type="checkcolumn"></div>
                         <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                        <div field="portNo" width="120" headerAlign="center" allowSort="true">客户单号</div>
-                        <div field="name" width="120" headerAlign="center" allowSort="true">流向</div>
-                        <div field="goodsName" width="120" headerAlign="center" allowSort="true">货物名称</div>
-                        <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funOrderTimeRenderer">发货时间</div>
-                        <div field="startPortName" width="120" headerAlign="center" allowSort="true">装货点</div>
-                        <div field="endPortName" width="120" headerAlign="center" allowSort="true">卸货点</div>
-                        <div field="leftWeight" width="120" headerAlign="center" allowSort="true">余调吨位</div>
-                        <div field="goodsType" width="120" headerAlign="center" allowSort="true">货物类型</div>
+                        <div field="leftWeight" width="80" headerAlign="center" allowSort="true">余调吨位</div>
+                        <!-- <div field="portNo" width="120" headerAlign="center" allowSort="true">客户单号</div> -->
+                        <div field="flowName" width="120" headerAlign="center" allowSort="true">流向名称</div>
+                        <div field="goodsName" width="80" headerAlign="center" allowSort="true">货物名称</div>
+                        <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funOrderTimeRenderer">装货时间</div>
+                        <div field="startPortName" width="80" headerAlign="center" allowSort="true">装货点</div>
+                        <div field="endPortName" width="80" headerAlign="center" allowSort="true">卸货点</div>
+                        <!-- <div field="goodsType" width="120" headerAlign="center" allowSort="true">货物类型</div> -->
                         <div field="sailingArea" width="120" headerAlign="center" allowSort="true">航行区域</div>
                         <div field="radius" width="120" headerAlign="center" allowSort="true">备注</div>
                     </div>
@@ -60,9 +60,9 @@
                 <input id="shipListParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <input id="shipListKey" name="shipNo" class="mini-textbox" emptyText="请输入查询内容" style="width:150px;" />
                 <a class="mini-button" iconCls="icon-search" onclick="CapcitySchedul.funSearchShipListGrid()" plain="true"><label>查询</label></a>
-                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="1" hideFocus/>自有船舶</label>
-                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="2" hideFocus/>挂靠船舶</label>
-                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipType" value="3" hideFocus/>临调船舶</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipFlag" value="1" hideFocus/>自有船舶</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipFlag" value="2" hideFocus/>挂靠船舶</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchShipListGrid()" type="checkbox" name="shipFlag" value="3" hideFocus/>临调船舶</label>
             </div>
             <div class="mini-fit">
                 <div id="shipListGrid" class="mini-datagrid" pagesize="10" sizeList="[10,30,50,100]" onload="CapcitySchedul.funShipListOnLoad" allowUnselect="true"
@@ -71,11 +71,11 @@
                         <div type="checkcolumn"></div>
                         <div visible="false" name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船号</div>
                         <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="false">船号</div>
+                        <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipFlagRenderer">船舶类型</div>
                         <div name="PreWeight" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位</div>
-                        <div name="PreArriveTime" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">预计到港时间</div>
-                        <div name="ArriveTime" field="arriveTime" width="100" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss">到达港口</div>
+                        <div name="PreArriveTime" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss" renderer="CapcitySchedul.funPreArriveTimeRenderer">预计到港时间</div>
+                        <div name="ArrivalPort" field="arrivalPort" width="100" headerAlign="center" allowSort="false">到达港口</div>
                         <div name="ShipStatus" field="shipStatus" width="100" headerAlign="center" allowSort="false">船舶状态</div>
-                        <div name="ShipType" field="shipType" width="100" headerAlign="center" allowSort="false">船舶类型</div>
                         <div name="Position" field="position" width="80" headerAlign="center" allowSort="false">位置</div>
                         <div name="Captain" field="captain" width="80" headerAlign="center" allowSort="false">船长</div>
                         <div name="Mobile" field="mobile" width="100" headerAlign="center" allowSort="false">联系电话</div>
@@ -89,6 +89,7 @@
     <div title="生成调度结果" region="south" showSplit="true" showSplitIcon="false" height="350" showHeader="false" style="border:0 none;">
         <input id="leftWeight" name="leftWeight" value="" class="mini-hidden" />
         <input id="hasLeftWeight" name="hasLeftWeight" value="" class="mini-hidden" />
+        <input id="totalLoad" name="totalLoad" value="" class="mini-hidden" />
         <div class="mini-toolbar" style="border:0;padding:0px;height: 20px;line-height: 20px;">
             生成调度结果
         </div>
@@ -102,13 +103,14 @@
                     <div field="operate" width="50" headerAlign="center" allowSort="false" align="center" renderer="CapcitySchedul.funOrderOperRenderer">操作
                     </div>
                     <div visible="false" name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船id</div>
+                    <div name="ShipStatus" field="shipStatus" width="80" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipStatusRenderer">调度状态</div>
                     <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="false">船号</div>
-                    <div name="ShipType" field="shipType" width="100" headerAlign="center" allowSort="false">船舶类型</div>
+                    <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipTypeRenderer">船舶类型</div>
                     <div name="PreWeight" vtype="required" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位</div>
-                    <div name="ActualTransferPrice" vtype="required" field="actualTransferPrice" width="100" headerAlign="center" allowSort="false">船户实际运价
+                    <div name="ActualTransferPrice" vtype="required, float" field="actualTransferPrice" width="100" headerAlign="center" allowSort="false">船户实际运价
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
                     </div>
-                    <div name="PreLoad" vtype="required" field="preLoad" width="120" headerAlign="center" allowSort="false">预发吨位
+                    <div name="PreLoad" vtype="required, float" field="preLoad" width="120" headerAlign="center" allowSort="false">预发吨位
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
                     </div>
                     <div name="PreArriveTime" vtype="required" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss"  renderer="CapcitySchedul.funOrderDetailsTimeRenderer">空船预计到港时间

@@ -47,7 +47,7 @@ var CapcitySchedul = function(){
                 if (record.status == 2) {
                     e.rowStyle = "background: #fceee2 !important;";
                 }
-                if ((field == "shipId" || field == "shipType" || field == "preWeight" || field == "preSettleAmount") && record.status != 2) {
+                if ((field == "shipType" || field == "shipNo" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") && record.status != 2) {
                     e.cellStyle = "background: #eee;";
                 } else {
                     e.cellStyle = "background: transparent;"
@@ -59,11 +59,11 @@ var CapcitySchedul = function(){
                 shipId = record.shipId,
                 shipNo = record.shipNo,
                 preWeight = record.preWeight,
-                shipType = record.shipType;
+                shipFlag = record.shipFlag;
                 var datas = orderDetailsGrid.getData();
                 var idArray = [];
                 //console.log(record);
-                var newRow = {shipId: shipId, shipNo: shipNo, shipType: shipType, preWeight: preWeight};
+                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preWeight: preWeight};
                 for(var i = 0; i < datas.length; i++)
                 {
                     idArray.push(datas[i].shipId);
@@ -131,13 +131,14 @@ var CapcitySchedul = function(){
             var customerTaskFlowData = this.orderGrid.getSelected();
             var shipListForm = new mini.Form("shipListForm");
             var searchParam = shipListForm.getData();
-            var shipTypeList = $("input[name='shipType']:checked");
-            var shipType = '';
-            if (shipTypeList.length > 0) {
-                for (var i =0; i < shipTypeList.length; i++) {
-                    shipType += shipTypeList[i].value + ",";
+            var shipFlagList = $("input[name='shipFlag']:checked");
+            var shipFlag = '';
+            if (shipFlagList.length > 0) {
+                for (var i =0; i < shipFlagList.length; i++) {
+                    shipFlag += shipFlagList[i].value + ",";
                 }
-                searchParam.shipType = shipType;
+                var shipFlags = shipFlag.substring(0, shipFlag.length - 1);
+                searchParam.shipFlag = shipFlags;
             }
             if (customerTaskFlowData) {
                 searchParam.customerTaskFlowId = customerTaskFlowData.id;
@@ -159,7 +160,44 @@ var CapcitySchedul = function(){
                 //CapcitySchedul.funSearchShipListGrid();
                 CapcitySchedul.funSearchOrderDetailsGrid();
                 $("#leftWeight").val(record.leftWeight);
+                $("#totalLoad").val(record.totalLoad);
                 //orderDetailsGrid.load({customerTaskFlowId: record.id, "queryParamFlag": 1});
+            }
+        },
+        funShipStatusRenderer: function(e)
+        {
+            var record = e.record;
+            if(record.customerTaskFlowId)
+            {
+                return '已调度';
+            } else {
+                return '未调度';
+            }
+        },
+        funShipFlagRenderer: function(e) //船舶类型
+        {
+            if(e.value == 1)
+            {
+                return '自有船舶';
+            } else if(e.value == 2) 
+            {
+                return '挂靠船舶';
+            } else if(e.value == 3)
+            {
+                return '临调船舶';
+            }
+        },
+        funShipTypeRenderer: function(e) //船舶类型
+        {
+            if(e.value == 1)
+            {
+                return '自有船舶';
+            } else if(e.value == 2) 
+            {
+                return '挂靠船舶';
+            } else if(e.value == 3)
+            {
+                return '临调船舶';
             }
         },
         funOrderOperRenderer : function(e)
@@ -177,6 +215,10 @@ var CapcitySchedul = function(){
         funOrderTimeRenderer: function(e)
         {
             return PageMain.funStrToDate(e.row.loadingTime);
+        },
+        funPreArriveTimeRenderer: function(e)
+        {
+            return PageMain.funStrToDate(e.row.preArriveTime);
         },
         funOrderDetailsTimeRenderer: function(e)
         {
@@ -199,25 +241,14 @@ var CapcitySchedul = function(){
             if (record.status == "2") {
                 e.cancel = true;    //如果置为删除状态则不允许编辑
             }
-            if (field == "shipId" || field == "shipType" || field == "preWeight" || field == "preSettleAmount") {
+            if (field == "shipType" || field == "shipId" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") {
                 e.cancel = true;
             }
         },
-        funOnCellCommitEdit: function(e)
+        funOnCellCommitEdit: function(e)  //行编辑提交前事件
         {
-            var record = e.record, field = e.field, preLoadTotal = 0;
-            if (field == "preWeight" && (e.value > record.preWeight)) {
-                mini.alert("预发吨位不得大于预报吨位，请重新输入");
-                e.value = e.oldValue == undefined ? '' : e.oldValue;
-                e.editor._IsValid = false;
-            }
-
-
-        },
-        funOnCellEndEdit: function(e)  //行编辑结束事件
-        {
-            var leftWeight = $("#leftWeight").val();
-            var record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
+            var leftWeight = Number($("#leftWeight").val());
+            var  record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
             if (rows) {
                 for (var i = 0, l = rows.length; i < l; i++) {
                     var row = rows[i];
@@ -226,20 +257,47 @@ var CapcitySchedul = function(){
                     preLoadTotal += t;
                 }
             }
-            if (preLoadTotal > leftWeight) {
-                mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
-                // mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
-                //     function (action, value) {
-                //         if (action == "ok") {
-                //             alert(value);
-                //         } else {
-                //             alert("取消");
-                //         }
-                //     }
-                // );
-                return;
+            if (field == "preLoad") { 
+                // if (e.value > record.preWeight) {  //预发吨位不能大于预报吨位
+                //     mini.alert("预发吨位不得大于预报吨位，请重新输入");
+                //     e.value = e.oldValue == undefined ? '' : e.oldValue;
+                //     e.editor._IsValid = false;
+                // }
+                preLoadTotal += Number(e.value);
+                if (preLoadTotal > leftWeight) {  //当前调度吨位不能大于余调吨位
+                    mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+                    e.value = e.oldValue == undefined ? '' : e.oldValue;
+                    e.editor._IsValid = false;
+                }
+                
             }
         },
+        // funOnCellEndEdit: function(e)  //行编辑结束事件
+        // {
+        //     var leftWeight = $("#leftWeight").val();
+        //     var record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
+        //     if (rows) {
+        //         for (var i = 0, l = rows.length; i < l; i++) {
+        //             var row = rows[i];
+        //             var t = Number(row.preLoad);
+        //             if (isNaN(t)) continue;
+        //             preLoadTotal += t;
+        //         }
+        //     }
+        //     if (preLoadTotal > leftWeight) {
+        //         mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+        //         // mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
+        //         //     function (action, value) {
+        //         //         if (action == "ok") {
+        //         //             alert(value);
+        //         //         } else {
+        //         //             alert("取消");
+        //         //         }
+        //         //     }
+        //         // );
+        //         return;
+        //     }
+        // },
         funOnDrawCell: function(e)  //计算预结算金额
         {
             var record = e.record;
@@ -277,6 +335,7 @@ var CapcitySchedul = function(){
             // }
             if (e.field == "preLoad") {
                 var leftWeight = $("#leftWeight").val();
+                var totalLoad = $("#totalLoad").val();              
                 var preLoadTotal = 0;
                 for (var i = 0, l = rows.length; i < l; i++) {
                     var row = rows[i];
@@ -288,7 +347,7 @@ var CapcitySchedul = function(){
                         preLoadTotal += 0;
                     }
                 }
-                var hasLeftWeight = leftWeight - preLoadTotal;
+                var hasLeftWeight = totalLoad - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
                 e.cellHtml = '<span style="color: red;font-size: 12px;">剩余未调度吨位数: '+hasLeftWeight+'</span>';
             }
