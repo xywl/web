@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
-    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="72" showHeader="false">
         <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="rolesForm">
@@ -28,14 +28,14 @@
                         <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageRoles.funAdd()"><label class="form-label">增加</label></a>
                         <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageRoles.funModify()"><label class="form-label">修改</label></a>
                         <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageRoles.funDelete()"><label class="form-label">删除</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="pro" onclick="PageRoles.funSetPrower()"><label class="form-label">设置权限</label></a>
                     </td>
                 </tr>
             </table>
         </div>
         <div class="mini-fit">
-            <div id="rolesGrid" class="mini-datagrid"
-                 idField="id" allowResize="false"
-                 sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+            <div id="rolesGrid" class="mini-datagrid"  onselectionchanged="PageRoles.funSelectionChanged"
+                 idField="id" allowResize="false"  sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%; border:none;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
                     <div field="code" width="120" headerAlign="center" allowSort="true">角色编号</div>
@@ -45,6 +45,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div title="east" region="east"  width="200" showSplit="false" showSplitIcon="false"  showHeader="false" style="border: none">
+        <div class="mini-panel" title="角色权限" style="width: 100%;height:100%"  showCloseButton="false">
+            <div id="powerTree" class="mini-tree"  showTreeIcon="true" expandOnLoad="true" parentField="parentId" resultAsTree="false" textField="name" idField="id" showCheckBox="true" checkRecursive="false" autoCheckParent="true" ></div>
+
         </div>
     </div>
 </div>

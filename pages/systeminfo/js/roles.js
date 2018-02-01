@@ -3,14 +3,19 @@ var PageRoles = function(){
     return {
         defaultOption: {
             basePath:"",
+            resourcesFly : [],
+            powerTree:null,
             rolesGrid : null
         },
         init :function ()
         {
             mini.parse();
+            this.defaultOption.powerTree = mini.get("powerTree");
             this.basePath = PageMain.basePath;
             this.rolesGrid = mini.get("rolesGrid");
             this.rolesGrid.setUrl(PageMain.defaultOption.httpUrl + "/roles/getList");
+            this.defaultOption.powerTree.setUrl(PageMain.defaultOption.httpUrl + "/action/loadResources");
+            this.defaultOption.powerTree.load();
             this.funSearch();
         },
         funSearch : function()
@@ -32,7 +37,7 @@ var PageRoles = function(){
         },
         funModify : function()
         {
-            var row = this.rolesGrid.getSelected();
+            var row = PageRoles.rolesGrid.getSelected();
             if(row)
             {
                 var paramData = {action: "modify", row: row, title:"编辑数据"};
@@ -41,6 +46,43 @@ var PageRoles = function(){
             else
             {
                 PageMain.funShowMessageBox("请选择一条记录");
+            }
+        },
+        funSetPrower : function ()
+        {
+            var row = this.rolesGrid.getSelected();
+            if(row)
+            {
+                var pids = this.defaultOption.powerTree.getValue();
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/roleResources/addfly", {pids:pids, roleId:row.id}, function (data) {
+                    if (data.success)
+                    {
+                        PageMain.funShowMessageBox("分配成功")
+                    }
+                });
+            }
+            else
+            {
+                PageMain.funShowMessageBox("请选择一条角色记录")
+            }
+        },
+        funSelectionChanged : function ()
+        {
+            var record = PageRoles.rolesGrid.getSelected();
+            if(record)
+            {
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/roleResources/loadResourceByRole", {roleId:record.id}, function (data) {
+                    var tmp = "";
+                    for(var nItem=0; nItem<data.length; nItem ++)
+                    {
+                        if(tmp != "")
+                        {
+                            tmp += ",";
+                        }
+                        tmp += data[nItem].resourceId;
+                    }
+                    PageRoles.defaultOption.powerTree.setValue(tmp);
+                });
             }
         },
         funOperRenderer : function(e)
@@ -59,8 +101,8 @@ var PageRoles = function(){
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/systeminfo/roles_add.html",
                 title: paramData.title,
-                width: 650,
-                height: 30 *  11 + 65,
+                width: 600,
+                height: 30 *  6 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageRolesAdd.funSetData(paramData);
