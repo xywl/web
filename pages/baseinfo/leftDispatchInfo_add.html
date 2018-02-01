@@ -18,7 +18,7 @@
         }
         .mini-textbox, .mini-combobox, .mini-buttonedit{
             height: 30px;
-            width:150px;
+            width:200px;
         }
     </style>
 </head>
@@ -28,57 +28,54 @@
         <div id="leftDispatchInfoFormAdd">
 
             <input id="id" name="id"  class="mini-hidden" />
-            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+            <table class="form-table" border="0" cellpadding="1" cellspacing="1" style="width:100%;table-layout:fixed;">
                 <tr>
                     <td class="form-label">客户任务单号：</td>
                     <td class="form-content">
-                        <input name="taskNo" id="taskNo"  class="mini-combobox"
-                           required="true" maxlength="20" valueField="id" textField="goodsName" emptyText="请选择..."
-                           allowInput="true" showNullItem="true" nullItemText="请选择..."
-                           requiredErrorText="客户任务单号不能为空"/>
+                        <input name="customerTaskFlowId" id="customerTaskFlowId"  class="mini-combobox"  required="true" maxlength="20" valueField="id" textField="goodsName"   onvaluechanged="PageLeftDispatchInfoAdd.funCustomerTaskFlowId"
+                               allowInput="true"    requiredErrorText="客户任务单号不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">货物名称：</td>
                     <td class="form-content">
-                        <input name="goodsname" id="goodsname" class="mini-textbox"  required="true" readonly/>
+                        <input name="goodsName" id="goodsName" class="mini-textbox" readonly/>
                     </td>
                     <td class="form-label">剩余吨位：</td>
                     <td class="form-content">
-                        <input name="restWeight" id="restWeight" class="mini-textbox"  required="true" readonly/>
+                        <input name="leftWeight" id="leftWeight" class="mini-textbox" readonly/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">装货港口：</td>
                     <td class="form-content">
-                        <input name="startportid" id="startportid" class="mini-textbox"  required="true" readonly/>
+                        <input name="startPortName" id="startPortName" class="mini-textbox" readonly/>
                     </td>
-                    <td class="form-label">装货港口名：</td>
+                    <td class="form-label">卸货港口：</td>
                     <td class="form-content">
-                        <input name="startportname" id="startportname" class="mini-textbox"  required="true" readonly/>
+                        <input name="endPortName" id="endPortName" class="mini-textbox" readonly/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">卸货港口id：</td>
+                    <td class="form-label">客户名称：</td>
                     <td class="form-content">
-                        <input name="endportid" id="endportid" class="mini-textbox"  required="true" readonly/>
+                        <input name="customerName" id="customerName" class="mini-textbox" readonly/>
                     </td>
-                    <td class="form-label">卸货港口名：</td>
+                    <td class="form-label">流<span style="padding: 0 14px;"></span>向：</td>
                     <td class="form-content">
-                        <input name="endportname" id="endportname" class="mini-textbox"  required="true" readonly/>
+                        <input name="flowName" id="flowName" class="mini-textbox" readonly/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">装货时间：</td>
                     <td class="form-content">
-                        <input name="loadingTime" id="loadingTime" class="mini-textbox"  format="yyyy-MM-dd"  nullValue="null" allowInput="false" readonly/>
+                        <input name="loadingTime" id="loadingTime" class="mini-textbox" readonly/>
                     </td>
                     <td class="form-label">卸货时间：</td>
                     <td class="form-content">
-                        <input name="dischargeTime" id="dischargeTime" class="mini-textbox"  format="yyyy-MM-dd"  nullValue="null" allowInput="false" readonly/>
+                        <input name="xh" id="xh" class="mini-textbox" readonly/>
                     </td>
                 </tr>
-
                 <tr>
                     <td class="form-label">发布状态：</td>
                     <td class="form-content">
@@ -88,56 +85,54 @@
                     </td>
                     <td class="form-label">发布吨位：</td>
                     <td class="form-content">
-                        <input name="dispatchWeight" id="dispatchWeight" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="调度吨位不能为空"/>
+                        <input name="dispatchWeight" id="dispatchWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="100000000"  required="true" maxlength="11" requiredErrorText="发布吨位不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">预约抢单开始时间：</td>
                     <td class="form-content">
                         <input name="bookSTime" id="bookSTime" required="true" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true"
+                               format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true"    ondrawdate="PageLeftDispatchInfoAdd.funBookSTime"
                                showOkButton="true" showClearButton="false"  />
-                        <!--<input name="bookSTime" id="bookSTime" class="mini-datepicker"  format="yyyy-MM-dd hh:mm:ss"  nullValue="null"  emptyText="开始时间" allowInput="false"/>-->
                     </td>
                     <td class="form-label">预约抢单截止时间：</td>
                     <td class="form-content">
                         <input name="bookETime" id="bookETime" required="true" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true"
+                               format="yyyy-MM-dd HH:mm:ss" timeFormat="HH:mm:ss" showTime="true"    ondrawdate="PageLeftDispatchInfoAdd.funBookETime"
                                showOkButton="true" showClearButton="false"  />
-                        <!--<input name="bookETime" id="bookETime" class="mini-datepicker"  format="yyyy-MM-dd hh:mm:ss"  nullValue="null"  emptyText="截止时间" allowInput="false"/>-->
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">特殊要求：</td>
-                    <td class="form-content">
-                        <input name="specialTip" id="specialTip" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="特殊要求不能为空"/>
-                    </td>
-                    <td class="form-label">水位：</td>
-                    <td class="form-content">
-                        <input name="waterLevel" id="waterLevel" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="水位不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">最小船舶吨位：</td>
-                    <td class="form-content">
-                        <input name="minShipWeight" id="minShipWeight" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="最小船舶吨位不能为空"/>
-                    </td>
-                    <td class="form-label">最大船舶吨位：</td>
-                    <td class="form-content">
-                        <input name="maxShipWeight" id="maxShipWeight" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="最大船舶吨位不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">船舶最多个数：</td>
                     <td class="form-content">
-                        <input name="maxshipnum" id="maxshipnum" class="mini-textbox"  required="true" maxlength="11" requiredErrorText="船舶最多个数不能为空"/>
+                        <input name="maxShipNum" id="maxShipNum"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true" maxlength="11" requiredErrorText="船舶最多个数不能为空"/>
                     </td>
-                    <td class="form-label">状态：</td>
+                    <td class="form-label">水<span style="padding: 0 14px;"></span>位：</td>
                     <td class="form-content">
-                        <input name="taskStatus" id="taskStatus" class="mini-combobox" valueField="id" textField="name"
-                               required="true" maxlength="3" requiredErrorText="状态 0: 待审核  1：部分审核  2：已审核  不能为空"/>
+                        <input name="waterLevel" id="waterLevel" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true"  requiredErrorText="水位不能为空"/>
                     </td>
-
+                </tr>
+                <tr>
+                    <td class="form-label">最小船舶吨位：</td>
+                    <td class="form-content">
+                        <input name="minShipWeight" id="minShipWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true" maxlength="11" requiredErrorText="最小船舶吨位不能为空"/>
+                    </td>
+                    <td class="form-label">最大船舶吨位：</td>
+                    <td class="form-content">
+                        <input name="maxShipWeight" id="maxShipWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true" maxlength="11" requiredErrorText="最大船舶吨位不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">审核状态：</td>
+                    <td class="form-content">
+                        <input name="taskStatus" id="taskStatus" class="mini-combobox" valueField="id" textField="name" required="true" maxlength="3" requiredErrorText="状态不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">特殊要求：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="specialTip" id="specialTip" class="mini-textarea" style="width: 670px; height: 60px;"  required="true" maxlength="80"  requiredErrorText="特殊要求不能为空"/>
+                    </td>
                 </tr>
             </table>
         </div>

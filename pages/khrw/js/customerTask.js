@@ -118,7 +118,7 @@ var PageCustomerTask = function(){
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTask_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 20 *  10 + 65,
+                height: 280,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageCustomerTaskAdd.funSetData(paramData);

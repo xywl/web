@@ -8,12 +8,12 @@
 </head>
 <body>
 <div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
-    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="73" showHeader="false">
         <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="leftDispatchInfoForm">
                 <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入客户任务流向ID"  style="width:160px;"/>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入客户名称或者货物名称"  style="width:160px;"/>
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageLeftDispatchInfo.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageLeftDispatchInfo.funReset()" plain="true"><label>重置</label></a>
@@ -38,7 +38,12 @@
                 sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                    <div field="customerTaskFlowId" width="120" headerAlign="center" allowSort="true">客户任务流向ID</div>
+    <!--                <div field="customerTaskFlowId" width="120" headerAlign="center" allowSort="true">订单</div>-->
+                    <div field="customerName" width="120" headerAlign="center" allowSort="true">客户名称</div>
+                    <div field="flowName" width="120" headerAlign="center" allowSort="true">流向</div>
+                    <div field="startPortName" width="120" headerAlign="center" allowSort="true">装货港口</div>
+                    <div field="endPortName" width="120" headerAlign="center" allowSort="true">卸货港口</div>
+                    <div field="goodsName" width="120" headerAlign="center" allowSort="true">货物名称</div>
                     <div field="dispatchWeight" width="120" headerAlign="center" allowSort="true">调度吨位</div>
                     <div field="bookSTime" width="120" headerAlign="center" allowSort="true" renderer="formatData">预约抢单有效开始日期</div>
                     <div field="bookETime" width="120" headerAlign="center" allowSort="true" renderer="formatData">预约抢单有效截止日期</div>

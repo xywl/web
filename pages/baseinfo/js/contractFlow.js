@@ -14,7 +14,6 @@ var PageContractFlow = function(){
             this.contractFlowGrid = PageContract.defaultOption.contractFlowGrid;
             this.contractFlowGrid.setUrl(PageMain.defaultOption.httpUrl + "/contractFlow/getList?id=1")
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getList?pageIndex=0&pageSize=1000000000&queryParamFlag=1",{}, function (data) {
-                console.log(data);
                 if (data.total > 0)
                 {
                     PageContractFlow.defaultOption.flowFly = data.data;

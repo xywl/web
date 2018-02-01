@@ -20,7 +20,7 @@ var PageSailingInfoAdd = function(){
             this.sailingInfoForm = new mini.Form("sailingInfoFormAdd");
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDsipatchShip", {}, function (data) {
                 PageSailingInfoAdd.defaultOption.dispatchShipFly = data;
-                mini.get("shipId").setData(data);
+                mini.get("orderId").setData(data);
             });
 
 
@@ -47,15 +47,16 @@ var PageSailingInfoAdd = function(){
             {
                 console.log("-----------------")
                 console.log(PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly)
-                mini.get("shipId").setData(PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly);
+                mini.get("orderId").setData(PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly);
             }
 
             PageSailingInfoAdd.defaultOption.globelRow = row;
+            this.funDealShowInfo();
             if (this.action == "add")
             {
                 PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadUnDealDsipatchShip", {}, function (data) {
                     PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly = data;
-                    mini.get("shipId").setData(data);
+                    mini.get("orderId").setData(data);
                     PageSailingInfoAdd.funDealSetDataInfo();
                 });
             }
@@ -64,16 +65,8 @@ var PageSailingInfoAdd = function(){
                 this.funDealSetDataInfo();
             }
         },
-        funDealSetDataInfo: function ()
+        funDealShowInfo : function ()
         {
-            this.sailingInfoForm.setData(PageSailingInfoAdd.defaultOption.globelRow);
-            if (this.action != "add")
-            {
-                window.setTimeout(function () {
-                    PageSailingInfoAdd.funDealShipNoChangeInfo(PageSailingInfoAdd.defaultOption.globelRow.shipId);
-                },1000)
-            }
-
             var fields = this.sailingInfoForm.getFields();
             for (var i = 0, l = fields.length; i < l; i++)
             {
@@ -82,10 +75,15 @@ var PageSailingInfoAdd = function(){
             }
             if (this.operType == "kqdgdj" || this.operType == "bjkqdgdj")
             {
-                mini.get("shipId").setReadOnly(false);
+                if(this.operType == "kqdgdj")
+                {
+                    mini.get("orderId").required =true;
+                    mini.get("orderId").setReadOnly(false);
+                }
+
                 mini.get("arriveSPortTime").setReadOnly(false);
-                mini.get("shipId").required =true;
                 mini.get("arriveSPortTime").required =true;
+
                 $("tr[name='kqzhdj']").hide();
                 $("tr[name='zqxhsj']").hide();
                 $("tr[name='zqdgsj']").hide();
@@ -129,16 +127,26 @@ var PageSailingInfoAdd = function(){
                 mini.get("allowance").required =true;
             }
         },
+        funDealSetDataInfo: function ()
+        {
+            this.sailingInfoForm.setData(PageSailingInfoAdd.defaultOption.globelRow);
+            if (this.action != "add")
+            {
+                window.setTimeout(function () {
+                    PageSailingInfoAdd.funDealShipNoChangeInfo(PageSailingInfoAdd.defaultOption.globelRow.orderId);
+                },1000)
+            }
+        },
         funShipNoChangeInfo : function ()
         {
-            var shipId = mini.get("shipId").getValue();
-            PageSailingInfoAdd.funDealShipNoChangeInfo(shipId);
+            var orderId = mini.get("orderId").getValue();
+            PageSailingInfoAdd.funDealShipNoChangeInfo(orderId);
         },
-        funDealShipNoChangeInfo : function (shipId)
+        funDealShipNoChangeInfo : function (orderId)
         {
             PageSailingInfoAdd.defaultOption.dispatchShipFly.forEach(function (obj)
             {
-                if(obj.shipId == shipId)
+                if(obj.orderId == orderId)
                 {
                     obj.preArriveTime = PageMain.funStrToDate(obj.preArriveTime);
                     PageSailingInfoAdd.defaultOption.goodsTypeFly.forEach(function (goodObj) {

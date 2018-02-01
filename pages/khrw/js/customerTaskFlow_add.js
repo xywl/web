@@ -115,29 +115,11 @@ var PageCustomerTaskFlowAdd = function(){
         },
         funDischargeTime : function (e)
         {
-            var date = e.date;
-            var zhData = mini.get("loadingTime").getValue();
-            if (zhData == null)
-            {
-                e.allowSelect = true;
-            }
-            else if (Math.ceil(date.getTime()/3600000/24) < Math.ceil(zhData.getTime()/3600000/24))
-            {
-                e.allowSelect = false;
-            }
+            PageMain.funDateOperInfo(e, "loadingTime", "gt");
         },
         funLoadingTime : function (e)
         {
-            var date = e.date;
-            var zhData = mini.get("dischargeTime").getValue();
-            if (zhData == null)
-            {
-                e.allowSelect = true;
-            }
-            else if (Math.ceil(date.getTime()/3600000/24) > Math.ceil(zhData.getTime()/3600000/24))
-            {
-                e.allowSelect = false;
-            }
+            PageMain.funDateOperInfo(e, "dischargeTime", "lt");
         },
         funSave : function()
         {

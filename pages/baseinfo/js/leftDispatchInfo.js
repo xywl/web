@@ -59,8 +59,8 @@ var PageLeftDispatchInfo = function(){
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/leftDispatchInfo_add.html",
                 title: paramData.title,
-                width: 650,
-                height: 30 *  11 + 65,
+                width: 850,
+                height: 30 *  14 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageLeftDispatchInfoAdd.funSetData(paramData);

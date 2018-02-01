@@ -201,7 +201,7 @@ var PageCustomerTaskFlow = function(){
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTaskFlow_add.html",
                 title: paramData.title,
                 width: 900,
-                height: 45 *  10 + 65,
+                height: 530,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageCustomerTaskFlowAdd.funSetData(paramData);

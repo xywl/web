@@ -79,6 +79,39 @@ var PageMain = function(){
             }
             return mini.formatDate (new Date(e.value * 1000), "yyyy-MM-dd HH:mm:ss");
         },
+        funDateOperInfo:function (e, paramId, paramType)
+        {
+            var date = PageMain.funDateYMD(e.date);
+            var tmpDate = PageMain.funDateYMD(mini.get(paramId).getValue());
+            if (tmpDate == null)
+            {
+                e.allowSelect = true;
+                return ;
+            }
+            if (paramType == "lt")
+            {
+                if (parseInt(date.getTime()) < parseInt(tmpDate.getTime()))
+                {
+                    e.allowSelect = false;
+                }
+            }
+            else
+            {
+                if (parseInt(date.getTime()) > parseInt(tmpDate.getTime()))
+                {
+                    e.allowSelect = false;
+                }
+            }
+        },
+        funDateYMD : function (date)
+        {
+            var paramFormat = "yyyy-MM-dd 00:00:00";
+            if (arguments.length > 1)
+            {
+                paramFormat = arguments[1];
+            }
+            return mini.parseDate(mini.formatDate(date, paramFormat));
+        },
         funStrToDate :function ()
         {
             if (arguments[0] == "0"
