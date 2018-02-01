@@ -19,6 +19,8 @@ var PageUserProfileAdd = function(){
         {
             var row = data.row;
             this.action = data.action;
+
+            mini.get("department").setData(row.dataDictFly);
             this.userProfileForm.setData(row);
             if(this.action == "oper")
             {
@@ -34,15 +36,9 @@ var PageUserProfileAdd = function(){
         },
         funSave : function()
         {
-            this.userProfileForm.validate();
-            if (!this.userProfileForm.isValid())
+            if (PageMain.funDealSubmitValidate(this.userProfileForm))
             {
-                var errorTexts = form.getErrorTexts();
-                for (var i in errorTexts)
-                {
-                    mini.alert(errorTexts[i]);
-                    return;
-                }
+                return ;
             }
 
             var me = this;

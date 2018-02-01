@@ -20,13 +20,33 @@
 </head>
 <body>
 <div class="mini-layout" id="layout_userProfile_add" style="width: 100%;height: 100%;" allowResize="false">
-    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none;  padding:10px;">
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none;  padding:20px;">
         <div id="userProfileFormAdd">
 
             <input id="id" name="id"  class="mini-hidden" />
+            <input id="localId" name="localId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">昵称：</td>
+                    <td class="form-label">登录帐号：</td>
+                    <td class="form-content">
+                        <input name="loginName" id="loginName" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="登录帐号不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">登录密码：</td>
+                    <td class="form-content">
+                        <input name="passwd" id="passwd" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="登录密码不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">所属部门：</td>
+                    <td class="form-content">
+                        <input name="department" id="department" class="mini-combobox" valueField="id" textField="name"
+                               required="true" maxlength="3" requiredErrorText="部门不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">昵<span style="padding: 0 12px;"></span>称：</td>
                     <td class="form-content">
                         <input name="nickName" id="nickName" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="昵称不能为空"/>
                     </td>
@@ -38,10 +58,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">性别：</td>
+                    <td class="form-label">性<span style="padding: 0 12px;"></span>别：</td>
                     <td class="form-content">
                         <input name="gender" id="gender" class="mini-combobox" valueField="id" textField="name"
-                               required="true" maxlength="3" requiredErrorText="状态 0: 未知  1：男  2：女 不能为空"/>
+                               required="true" maxlength="3" requiredErrorText="状态不能为空"/>
                     </td>
                 </tr>
                 <tr>
@@ -49,13 +69,6 @@
                     <td class="form-content">
                         <input name="birthDay" id="birthDay" class="mini-datepicker" valueField="id" textField="name"
                                required="true" maxlength="30" requiredErrorText="出生年月不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">部门：</td>
-                    <td class="form-content">
-                        <input name="department" id="department" class="mini-combobox" valueField="id" textField="name"
-                               required="true" maxlength="3" requiredErrorText="状态 1：市场部  2：运营部 不能为空"/>
                     </td>
                 </tr>
             </table>
@@ -69,8 +82,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    mini.parse();
-</script>
 </body>
 </html>

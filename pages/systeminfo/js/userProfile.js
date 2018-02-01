@@ -3,14 +3,26 @@ var PageUserProfile = function(){
     return {
         defaultOption: {
             basePath:"",
+            roleTree:null,
+            dataDictFly:[],
             userProfileGrid : null
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
+            this.defaultOption.roleTree = mini.get("roleTree");
             this.userProfileGrid = mini.get("userProfileGrid");
             this.userProfileGrid.setUrl(PageMain.defaultOption.httpUrl + "/user/getList");
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/roles/getList", {pageIndex:0, pageSize:1000000000, queryParamFlag:1}, function (data) {
+                if (data.success)
+                {
+                    PageUserProfile.defaultOption.roleTree.setData(data.data);
+                }
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"departMent"}, function (data) {
+                PageUserProfile.defaultOption.dataDictFly = data;
+            })
             this.funSearch();
         },
         funSearch : function()
@@ -56,11 +68,12 @@ var PageUserProfile = function(){
         funOpenInfo : function(paramData)
         {
             var me = this;
+            paramData.row.dataDictFly = this.defaultOption.dataDictFly;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/systeminfo/userProfile_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  11 + 65,
+                height: 30 *  9 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageUserProfileAdd.funSetData(paramData);
@@ -69,6 +82,43 @@ var PageUserProfile = function(){
                     me.userProfileGrid.reload();
                 }
             })
+        },
+        funSetRole : function ()
+        {
+            var row = this.userProfileGrid.getSelected();
+            if(row)
+            {
+                var roleIds = this.defaultOption.roleTree.getValue();
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/userRoles/addfly", {roleIds:roleIds, userId:row.id}, function (data) {
+                    if (data.success)
+                    {
+                        PageMain.funShowMessageBox("分配成功")
+                    }
+                });
+            }
+            else
+            {
+                PageMain.funShowMessageBox("请选择一条角色记录")
+            }
+        },
+        funSelectionChanged : function ()
+        {
+            var record = PageUserProfile.userProfileGrid.getSelected();
+            if(record)
+            {
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/userRoles/loadRolesByUserId", {userId:record.id}, function (data) {
+                    var tmp = "";
+                    for(var nItem=0; nItem<data.length; nItem ++)
+                    {
+                        if(tmp != "")
+                        {
+                            tmp += ",";
+                        }
+                        tmp += data[nItem].roleId;
+                    }
+                    PageUserProfile.defaultOption.roleTree.setValue(tmp);
+                });
+            }
         },
         funDelete : function()
         {
@@ -80,9 +130,9 @@ var PageUserProfile = function(){
                     if (action == "ok")
                     {
                         $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/user/del",
+                            url : PageMain.defaultOption.httpUrl + "/user/delUser",
                             type: 'POST',
-                            data: {"id": row.id},
+                            data: row,
                             dataType: 'json',
                             success: function (data)
                             {
@@ -136,13 +186,14 @@ function gender(e) {
 
     //转换部门
     if("department" == field){
-        if(1 == e.value){
-            result = "市场部";
-        }else if(2 == e.value){
-            result = "运营部";
-        }else if(null == e.value){
-            result = "";
+        for(var nItem =0; nItem < PageUserProfile.defaultOption.dataDictFly.length; nItem++)
+        {
+            if(e.value == PageUserProfile.defaultOption.dataDictFly[nItem].id)
+            {
+                return PageUserProfile.defaultOption.dataDictFly[nItem].name;
+            }
         }
+        return "";
     }
     return result;
 }
