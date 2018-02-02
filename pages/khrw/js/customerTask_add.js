@@ -27,7 +27,7 @@ var PageCustomerTaskAdd = function(){
                // mini.get("type").setValue(1);
                 //mini.get("status").setValue(1);
             }
-
+            PageCustomerTaskAdd.funSetCustomer();
         	if(this.defaultOption.action == "oper")
         	{
         		mini.get("layout_customerTask_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

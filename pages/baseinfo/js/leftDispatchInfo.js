@@ -168,11 +168,11 @@ function formatData (e) {
     //转换"状态"
     if("taskStatus" == field){
         if(0 == e.value){
-            result = "待审核";
+            result = "未开始";
         }else if(1 == e.value){
-            result = "部分审核";
+            result = "部分完成";
         }else if(2 == e.value){
-            result = "已审核";
+            result = "已完成";
         }
     }
 
