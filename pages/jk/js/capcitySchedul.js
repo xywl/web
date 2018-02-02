@@ -415,6 +415,7 @@ var CapcitySchedul = function(){
                     plansData.id = submitData[i].id;
                 }
                 plansData.shipId = submitData[i].shipId;
+                plansData.shipFlag = submitData[i].shipFlag;
                 plansData.preWeight = submitData[i].preWeight;
                 plansData.preLoad = submitData[i].preLoad;
                 totalPreLoad += Number(submitData[i].preLoad);
