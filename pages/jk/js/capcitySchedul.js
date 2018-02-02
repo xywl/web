@@ -60,10 +60,11 @@ var CapcitySchedul = function(){
                 shipNo = record.shipNo,
                 preWeight = record.preWeight,
                 shipFlag = record.shipFlag;
+                var shipSuggestUnitPrice = $("#shipSuggestUnitPrice").val();
                 var datas = orderDetailsGrid.getData();
                 var idArray = [];
                 //console.log(record);
-                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preWeight: preWeight};
+                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice};
                 for(var i = 0; i < datas.length; i++)
                 {
                     idArray.push(datas[i].shipId);
@@ -161,6 +162,7 @@ var CapcitySchedul = function(){
                 CapcitySchedul.funSearchOrderDetailsGrid();
                 $("#leftWeight").val(record.leftWeight);
                 $("#totalLoad").val(record.totalLoad);
+                $("#shipSuggestUnitPrice").val(record.shipSuggestUnitPrice);
                 //orderDetailsGrid.load({customerTaskFlowId: record.id, "queryParamFlag": 1});
             }
         },

@@ -38,10 +38,12 @@
                     <div property="columns">
                         <div type="checkcolumn"></div>
                         <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                        <div field="customerName" width="100" headerAlign="center" allowSort="true">客户名称</div>
                         <div field="leftWeight" width="80" headerAlign="center" allowSort="true">余调吨位</div>
                         <!-- <div field="portNo" width="120" headerAlign="center" allowSort="true">客户单号</div> -->
                         <div field="flowName" width="120" headerAlign="center" allowSort="true">流向名称</div>
                         <div field="goodsName" width="80" headerAlign="center" allowSort="true">货物名称</div>
+                        <div field="shipSuggestUnitPrice" width="80" headerAlign="center" allowSort="true">参考运价</div>
                         <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funOrderTimeRenderer">装货时间</div>
                         <div field="startPortName" width="80" headerAlign="center" allowSort="true">装货点</div>
                         <div field="endPortName" width="80" headerAlign="center" allowSort="true">卸货点</div>
@@ -56,6 +58,7 @@
             <div class="mini-toolbar" style="border:0;padding:0px;height: 20px;line-height: 20px;">
                 船舶列表
             </div>
+            <input id="shipSuggestUnitPrice" name="shipSuggestUnitPrice" class="mini-hidden" />
             <div class="mini-toolbar" style="border-bottom:0;padding:0px;" id="shipListForm">
                 <input id="shipListParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <input id="shipListKey" name="shipNo" class="mini-textbox" emptyText="请输入查询内容" style="width:150px;" />
