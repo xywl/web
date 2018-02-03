@@ -32,8 +32,17 @@
                 <tr>
                     <td class="form-label">客户任务单号：</td>
                     <td class="form-content">
-                        <input name="customerTaskFlowId" id="customerTaskFlowId"  class="mini-combobox"  required="true" maxlength="20" valueField="id" textField="goodsName"   onvaluechanged="PageLeftDispatchInfoAdd.funCustomerTaskFlowId"
-                               allowInput="true"    requiredErrorText="客户任务单号不能为空"/>
+                        <div name="customerTaskFlowId" id="customerTaskFlowId" style="width: 670px;"  class="mini-combobox"  required="true" maxlength="20" valueField="id" textField="selfName"   onvaluechanged="PageLeftDispatchInfoAdd.funCustomerTaskFlowId"
+                               allowInput="true"    requiredErrorText="客户任务单号不能为空">
+                            <div property="columns">
+                                <div header="客户名称" field="customerName"></div>
+                                <div header="货物名称" field="goodsName"></div>
+                                <div header="流向" field="flowName"></div>
+                                <div header="装货港口" field="startPortName"></div>
+                                <div header="卸货港口" field="endPortName"></div>
+                                <div header="剩余吨位" field="leftWeight"></div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
