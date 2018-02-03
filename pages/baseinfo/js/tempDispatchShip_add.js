@@ -21,6 +21,10 @@ var PageTempDispatchShipAdd = function(){
         	row.from="1";
         	this.action = data.action;
         	this.tempDispatchShipForm.setData(row);
+            if(this.action == "add")
+            {
+                mini.get("status").select(0)
+            }
             if(this.action == "oper")
             {
                 mini.get("layout_tempDispatchShip_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

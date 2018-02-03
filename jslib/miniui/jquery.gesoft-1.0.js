@@ -4,7 +4,7 @@ var PageMain = function(){
             basePath:"",
             userProfileFly:[],
             zero:"0000000000000000000000000000000000",
-            httpUrl : "http://xingyi.nandasoft-its.com:8080/xyl"//"http://127.0.0.1:16721/xyl"
+            httpUrl : "http://127.0.0.1:16722/xyl"//"http://127.0.0.1:16721/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;

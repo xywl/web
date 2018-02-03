@@ -23,6 +23,10 @@ var PageShipStaffAdd = function(){
             this.action = data.action;
             mini.get("shipId").setData(row.shipIdFly)
             this.shipStaffForm.setData(row);
+            if(this.action == "add")
+            {
+                mini.get("status").select(0)
+            }
             if(this.action == "oper")
             {
                 mini.get("layout_shipStaff_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

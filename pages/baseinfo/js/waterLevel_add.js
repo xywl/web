@@ -19,6 +19,10 @@ var PageWaterLevelAdd = function(){
             var row = data.row;
             this.action = data.action;
             this.waterLevelForm.setData(row);
+            if(this.action == "add")
+            {
+                mini.get("status").select(0)
+            }
             if(this.action == "oper")
             {
                 mini.get("layout_waterLevel_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
