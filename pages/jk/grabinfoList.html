@@ -1,0 +1,116 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/grabinfoList.js"></script>
+    <title></title>
+    <style>
+        .c-cell {
+            float: left;
+            line-height: 18px;
+            margin-right: 10px;
+        }
+        .c-cell:after {
+            content: "\0020";
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 31px;" class="searchBar" id="customerForm">
+                <lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入单位编号或单位名称或单位简称或联系人或手机号"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageGrapInfoAudit.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageGrapInfoAudit.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-fit">
+            <div id="grapListGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="id" width="120" headerAlign="center" allowSort="true">临调单号</div>
+                    <div field="dispatchWeight" width="120" headerAlign="center" allowSort="true">临调吨位</div>
+                    <div field="bookETime" width="120" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererBookETime">预约有效期</div>
+                    <div field="specialTip" width="120" headerAlign="center" allowSort="true">特殊要求</div>
+                    <div field="waterLevel" width="120" headerAlign="center" allowSort="true">水位</div>
+                    <div field="customerTaskFlowId" width="120" headerAlign="center" allowSort="true">客户单号</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">客户单位</div>
+                    <div field="name" width="120" headerAlign="center" allowSort="true">客户合同</div>
+                    <div field="portType" width="120" headerAlign="center" allowSort="true">客户总吨位</div>
+                    <div field="type" width="120" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererType">客户剩余吨位</div>
+                    <div field="goodsType" width="120" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererGoodsType">流向单号</div>
+                    <div field="creator" width="120" headerAlign="center" allowSort="true">流向总吨位</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">流向剩余吨位</div>
+                    <div field="goodsName" width="120" headerAlign="center" allowSort="true">货物名称</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">货物类型</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">装货时间</div>
+                    <div field="startPortName" width="120" headerAlign="center" allowSort="true">装货点</div>
+                    <div field="endPortName" width="120" headerAlign="center" allowSort="true">卸货点</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">期待到货日期</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">审核状态</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageGrapInfoAudit.funOperRenderer">操作
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div title="抢单审核" region="south" showSplit="true" showSplitIcon="false" height="350" showHeader="false" style="border:0 none;">
+        <div class="mini-panel" title="临调订单信息" style="width: 100%;height:70px;"
+            showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 31px;" id="">
+                <div class="c-cell"><label>流向：</label><label></label></div>
+                <div class="c-cell"><label>客户名称：</label><label></label></div>
+                <div class="c-cell"><label>货物名称：</label><label id="goodsName"></label></div>
+                <div class="c-cell"><label>装货时间：</label><label id="loadingTime"></label></div>
+                <div class="c-cell"><label>装货点：</label><label id="startPortName"></label></div>
+                <div class="c-cell"><label>卸货点：</label><label id="endPortName"></label></div>
+                <div class="c-cell"><label>总吨位/余量：</label><label id="dispatchWeight"></label></div>
+                <div class="c-cell"><label>航行区域：</label><label></label></div>
+                <div class="c-cell"><label>大轮动态：</label>
+                    【<label>批次：</label><label></label><label>总载量：</label><label></label>,<label>航行区域：</label><label></label>,<label>到达位置：</label><label></label>,<label>到达时间：</label><label></label>,<label>离开时间：</label><label></label>】
+                </div>
+            </div>
+       </div>
+        <div class="mini-toolbar" style="border:0;padding:0px;height: 20px;line-height: 20px;">
+            抢单船舶信息
+        </div>
+        <div class="mini-fit">
+            <div id="checkListGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="waterLevel" width="120" headerAlign="center" allowSort="true">船号</div>
+                    <div field="customerTaskFlowId" width="120" headerAlign="center" allowSort="true">姓名</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">手机号</div>
+                    <div field="name" width="120" headerAlign="center" allowSort="true">预报吨位</div>
+                    <div field="portType" width="120" headerAlign="center" allowSort="true">船舶位置</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">预计到装货港时间</div>
+                    <div field="goodsName" width="120" headerAlign="center" allowSort="true">空船照片</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">参照物照片</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">预发吨位</div>
+                    <div field="startPortName" width="120" headerAlign="center" allowSort="true">船户实际运价</div>
+                    <div field="endPortName" width="120" headerAlign="center" allowSort="true">预结算金额</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">审核状态</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="radius" width="120" headerAlign="center" allowSort="true">操作</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
