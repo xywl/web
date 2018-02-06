@@ -1,0 +1,62 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="js/roles_add.js"></script>
+    <title></title>
+    <style>
+
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_roles_add" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none;  padding:10px;">
+        <div id="rolesFormAdd">
+
+            <input id="id" name="id"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+                <tr>
+                    <td class="form-label">旧<span style="padding: 0 3px;"></span>密<span style="padding: 0 3px;"></span>码：</td>
+                    <td class="form-content">
+                        <input name="pwd" id="pwd" class="mini-password"  required="true" maxlength="30" requiredErrorText="密码不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">新<span style="padding: 0 3px;"></span>密<span style="padding: 0 3px;"></span>码：</td>
+                    <td class="form-content">
+                        <input name="pasword" id="pasword" class="mini-password"  required="true" maxlength="30" requiredErrorText="新密码不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">确认密码：</td>
+                    <td class="form-content">
+                        <input name="name" id="name" class="mini-password"  required="true" maxlength="30" requiredErrorText="确认密码不能为空"/>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+    </div>
+    <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+            <a class="mini-button cursor" onclick="PageRolesAdd.funSave()" iconCls="icon-save">保存</a>
+            <a class="mini-button cursor" onclick="PageRolesAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    mini.parse();
+</script>
+</body>
+</html>

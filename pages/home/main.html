@@ -75,6 +75,7 @@
                 </div>
                 <div class="userid">
                     <ul id="userManage">
+                        <li class="config" onclick="PageHome.funOpenModify()">修改密码</li>
                         <li id="exit">退出</li>
                     </ul>
                 </div>
@@ -272,6 +273,22 @@
                     }
                 });
             }
+        },
+        funOpenModify : function ()
+        {
+            var me = this;
+            mini.open({
+                url: PageMain.funGetRootPath() + "/pages/systeminfo/modifySelfPwd.html",
+                title: "修改密码",
+                width: 600,
+                height: 200,
+                onload:function(){
+
+                },
+                ondestroy:function(action){
+
+                }
+            })
         },
         funResize : function()
         {

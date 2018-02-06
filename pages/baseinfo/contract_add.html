@@ -91,8 +91,15 @@
 
                 <tr>
                     <td class="form-label">签订部门：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content">
                         <input name="signDepartment"  id="signDepartment" class="mini-combobox" valueField="id" textField="name"    required="true" maxlength="10" requiredErrorText="合同签订部门不能为空"/>
+                    </td>
+                    <td class="form-label">货物类型：</td>
+                    <td class="form-content">
+                        <input name="goodsType" id="goodsType" class="mini-combobox" style="width: 88px;" onvaluechanged="PageContractAdd.funSetGoodsSubType()"
+                               valueField="id" textField="name"  required="true"  requiredErrorText="货物类型不能为空"/>
+                        <input name="goodsSubType" id="goodsSubType" class="mini-combobox" style="width: 88px;"
+                               valueField="id" textField="name"/>
                     </td>
                     <!-- <td class="form-label">签订人员：</td>
                      <td class="form-content">

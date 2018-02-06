@@ -54,18 +54,25 @@ var PageCustomerTaskFlowAdd = function(){
             mini.get("endPortId").setData(row.portData);
             mini.get("sailingArea").setData(row.sailingAreaFly);
             mini.get("selfBuckle").setData(row.selfPickFly);
+
             if (row.goodsSubType == 0)
             {
                 row.goodsSubType = "";
             }
+
             this.defaultOption.currentWeight = row.totalWeight;
             this.defaultOption.sumLoad = row.sumLoad;
             PageCustomerTaskFlowAdd.funLoadDwInfo(row.taskId);
 
             row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
             PageCustomerTaskFlowAdd.goodsSubType = row.goodsSubTypeFly;
+            if (row.goodsType == 2)
+            {
+                mini.get("goodsSubType").setData(PageCustomerTaskFlowAdd.goodsSubType);
+            }
            // row.goodsType=null;row.loadType=null;row.selfPick=null;row.status=null;row.sailingFlag=null;
             this.defaultOption.action = data.action;
+
 
             if(this.defaultOption.action != "add")
             {
@@ -79,12 +86,34 @@ var PageCustomerTaskFlowAdd = function(){
                 }
             }
 
+
             this.customerTaskFlowForm.setData(row);
             if (this.defaultOption.action == "add")
             {
                 mini.get("selfBuckle").select(0);
                 mini.get("selfPick").select(0);
                 mini.get("status").select(0);
+                PageMain.callAjax(PageMain.defaultOption.httpUrl + "/contract/getById",{id:row.contractId}, function (data) {
+                    console.log(data)
+                    if (data.success)
+                    {
+                        var obj = data.data;
+                        mini.get("goodsType").setValue(obj.goodsType)
+                        var goodsText = mini.get("goodsType").getText();
+                        if (obj.goodsType == 0)
+                        {
+                            goodsText = "";
+                            mini.get("goodsType").setValue("")
+                        }
+                        else if (obj.goodsType == 2)
+                        {
+                            mini.get("goodsSubType").setData(PageCustomerTaskFlowAdd.goodsSubType);
+                            mini.get("goodsSubType").setValue(obj.goodsSubType)
+                            goodsText = mini.get("goodsSubType").getText();
+                        }
+                        mini.get("goodsName").setValue(goodsText);
+                    }
+                },"application/x-www-form-urlencoded", false);
             }
         	if(this.defaultOption.action == "oper")
         	{
@@ -105,7 +134,6 @@ var PageCustomerTaskFlowAdd = function(){
             if (mini.get("flowId").getValue() != "" && mini.get("loadingTime").getValue() != null)
             {
                 PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTaskFlow/loadUnitPrice", {flowId:mini.get("flowId").getValue(), customerId:this.defaultOption.customerId, contractId:this.defaultOption.contractId, loadingTime:mini.get("loadingTime").getValue().getTime()/1000}, function (data) {
-                   console.log(data)
                     if (data.length > 0)
                     {
                         mini.get("shipSuggestUnitPrice").setValue(data[0].id);
@@ -115,11 +143,11 @@ var PageCustomerTaskFlowAdd = function(){
         },
         funDischargeTime : function (e)
         {
-            PageMain.funDateOperInfo(e, "loadingTime", "gt");
+            PageMain.funDateOperInfo(e, "loadingTime", "lt");
         },
         funLoadingTime : function (e)
         {
-            PageMain.funDateOperInfo(e, "dischargeTime", "lt");
+            PageMain.funDateOperInfo(e, "dischargeTime", "gt");
         },
         funSave : function()
         {
@@ -219,6 +247,9 @@ var PageCustomerTaskFlowAdd = function(){
                 //mini.get("goodsSubType").required =false;
             }
             mini.get("goodsName").setValue(goodsText);
+        },
+        funSetSubGoodsSubType : function () {
+            mini.get("goodsName").setValue(mini.get("goodsSubType").getText());
         },
         //加载总吨位
         funLoadDwInfo : function (taskId)
