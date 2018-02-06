@@ -17,12 +17,14 @@ var PageCustomerTaskFlowAdd = function(){
             this.basePath = PageMain.basePath;
             this.customerTaskFlowForm = new mini.Form("customerTaskFlowFormAdd");
             $("tr[name='dr']").hide();
+            $("td[name='dr']").hide();
         },
         funLoadTypeInfo : function ()
         {
             if (mini.get("loadType").getValue() == 1)
             {
                 $("tr[name='dr']").show();
+                $("td[name='dr']").show();
                 mini.get("bigShipPC").required =true;
                 mini.get("totalLoad").required =true;
                 mini.get("arriveLocation").required =true;
@@ -37,6 +39,7 @@ var PageCustomerTaskFlowAdd = function(){
                 mini.get("bigShipArriveTime").required =false;
                 mini.get("bigShipDepartTime").required =false;
                 $("tr[name='dr']").hide();
+                $("td[name='dr']").hide();
             }
         },
         funSetData : function(data)
@@ -83,6 +86,7 @@ var PageCustomerTaskFlowAdd = function(){
                 if(row.loadType == 1)
                 {
                     $("tr[name='dr']").show();
+                    $("td[name='dr']").show();
                 }
             }
 
@@ -114,6 +118,9 @@ var PageCustomerTaskFlowAdd = function(){
                         mini.get("goodsName").setValue(goodsText);
                     }
                 },"application/x-www-form-urlencoded", false);
+            }
+            else {
+                mini.get("taskNo").setReadOnly(true)
             }
         	if(this.defaultOption.action == "oper")
         	{
