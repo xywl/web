@@ -19,7 +19,7 @@ var PageRoles = function(){
             this.funSearch();
         },
         funSearch : function()
-        {
+        { 
             var rolesForm = new mini.Form("rolesForm");
             this.rolesGrid.load(rolesForm.getData());
         },
