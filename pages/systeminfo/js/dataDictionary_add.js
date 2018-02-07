@@ -13,7 +13,6 @@ var PageDataDictionaryAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.dataDictionaryForm = new mini.Form("dataDictionaryFormAdd");
-            this.funInitPortDate();
         },
         funSetData : function(data)
         {
@@ -77,26 +76,6 @@ var PageDataDictionaryAdd = function(){
         funCancel : function()
         {
             PageMain.funCloseWindow("cancel");
-        },
-
-        funInitPortDate:function () {
-            $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/dataDictionary/getList",
-                type : 'POST',
-                dataType: 'json',
-                success: function (data)
-                {
-                    if (data.success)
-                    {
-                        PageDataDictionaryAdd.infoData = data.data.list;
-                        mini.get("parentId").setData(PageDataDictionaryAdd.infoData);
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    PageMain.funShowMessageBox("获取上级编号ID失败");
-                }
-            });
         }
     }
 }();

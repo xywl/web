@@ -24,6 +24,7 @@
         <div id="dataDictionaryFormAdd">
 
             <input id="id" name="id"  class="mini-hidden" />
+            <input id="parentId" name="parentId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
                     <td class="form-label">编码：</td>
@@ -38,16 +39,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">上级编号ID：</td>
+                    <td class="form-label">备注：</td>
                     <td class="form-content">
-                        <input name="parentId" id="parentId" class="mini-combobox" required="true" maxlength="20" valueField="id" textField="parentId"
-                               allowInput="true" showNullItem="false" requiredErrorText="上级编号ID不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">备<span style="padding: 0 14px;"></span>注：</td>
-                    <td class="form-content">
-                        <input name="remark" id="remark" class="mini-textbox" maxlength="30" />
+                        <input name="remark" id="remark" class="mini-textarea" style="width:350px; height: 80px;"   maxlength="100" requiredErrorText="备注不能为空"/>
                     </td>
                 </tr>
             </table>
