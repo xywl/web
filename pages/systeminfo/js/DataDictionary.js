@@ -10,7 +10,7 @@ var PageDataDictionary = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.dataDictionaryGrid = mini.get("dataDictionaryGrid");
-            this.dataDictionaryGrid.setUrl(PageMain.defaultOption.httpUrl + "/dataDictionary/getList");
+            this.dataDictionaryGrid.setUrl(PageMain.defaultOption.httpUrl + "/dataDictionary/getTree");
             this.funSearch();
         },
         funSearch : function()
@@ -25,9 +25,26 @@ var PageDataDictionary = function(){
             mini.get("queryParamFlag").setValue("1");
             this.dataDictionaryGrid.load(dataDictionaryForm.getData());
         },
-        funAdd : function()
+        funAdd : function(paramType)
         {
             var paramData = {action: "add", row:{}, title:"新增数据"};
+            if (paramType == 0)
+            {
+                paramData.row.parentId = 0;
+            }
+            else
+            {
+                var row = this.dataDictionaryGrid.getSelected();
+                if(row)
+                {
+                    paramData.row.parentId = row.id;
+                }
+                else
+                {
+                    PageMain.funShowMessageBox("请选择一条记录");
+                    return;
+                }
+            }
             this.funOpenInfo(paramData);
         },
         funModify : function()
@@ -60,7 +77,7 @@ var PageDataDictionary = function(){
                 url: PageMain.funGetRootPath() + "/pages/systeminfo/dataDictionary_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  11 + 65,
+                height: 30 *  6 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageDataDictionaryAdd.funSetData(paramData);

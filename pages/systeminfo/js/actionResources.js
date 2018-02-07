@@ -3,6 +3,8 @@ var PageActionResources = function(){
     return {
         defaultOption: {
             basePath:"",
+            typeFly : [{id:0, name:"叶子节点"}, {id:1, name:"非叶子节点"}],
+            statusFly : [{id:0, name:"禁用"}, {id:1, name:"启用"}],
             actionResourcesGrid : null
         },
         init :function ()
@@ -10,7 +12,7 @@ var PageActionResources = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.actionResourcesGrid = mini.get("actionResourcesGrid");
-            this.actionResourcesGrid.setUrl(PageMain.defaultOption.httpUrl + "/action/getList");
+            this.actionResourcesGrid.setUrl(PageMain.defaultOption.httpUrl + "/action/getTree");
             this.funSearch();
         },
         funSearch : function()
@@ -27,8 +29,18 @@ var PageActionResources = function(){
         },
         funAdd : function()
         {
-            var paramData = {action: "add", row:{}, title:"新增数据"};
-            this.funOpenInfo(paramData);
+            var row = this.actionResourcesGrid.getSelected();
+            if(row)
+            {
+                var paramData = {action: "add", row:{}, title:"新增数据"};
+                paramData.row.parentId = row.id;
+                this.funOpenInfo(paramData);
+            }
+            else
+            {
+                PageMain.funShowMessageBox("请选择一条记录作为父节点");
+            }
+
         },
         funModify : function()
         {
@@ -43,6 +55,28 @@ var PageActionResources = function(){
                 PageMain.funShowMessageBox("请选择一条记录");
             }
         },
+        funTypeRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageActionResources.defaultOption.typeFly.length; nItem++)
+            {
+                if(e.value == PageActionResources.defaultOption.typeFly[nItem].id)
+                {
+                    return PageActionResources.defaultOption.typeFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        funStatusRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageActionResources.defaultOption.statusFly.length; nItem++)
+            {
+                if(e.value == PageActionResources.defaultOption.statusFly[nItem].id)
+                {
+                    return PageActionResources.defaultOption.statusFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageActionResources.funDetail()"></a>';
@@ -56,11 +90,13 @@ var PageActionResources = function(){
         funOpenInfo : function(paramData)
         {
             var me = this;
+            paramData.typeFly = this.defaultOption.typeFly;
+            paramData.statusFly = this.defaultOption.statusFly;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/systeminfo/actionResources_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  11 + 65,
+                height: 30 *  10 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageActionResourcesAdd.funSetData(paramData);

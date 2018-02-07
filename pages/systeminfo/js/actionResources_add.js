@@ -18,6 +18,8 @@ var PageActionResourcesAdd = function(){
         {
             var row = data.row;
             this.action = data.action;
+            mini.get("status").setData(data.statusFly);
+            mini.get("type").setData(data.typeFly);
             this.actionResourcesForm.setData(row);
             if(this.action == "oper")
             {
@@ -30,13 +32,18 @@ var PageActionResourcesAdd = function(){
                     if (c.setIsValid) c.setIsValid(true);      //去除错误提示
                 }
             }
+            else if (this.action == "add")
+            {
+                mini.get("status").setValue(1);
+                mini.get("type").setValue(0);
+            }
         },
         funSave : function()
         {
             this.actionResourcesForm.validate();
             if (!this.actionResourcesForm.isValid())
             {
-                var errorTexts = form.getErrorTexts();
+                var errorTexts = this.actionResourcesForm.getErrorTexts();
                 for (var i in errorTexts)
                 {
                     mini.alert(errorTexts[i]);

@@ -24,6 +24,8 @@
         <div id="actionResourcesFormAdd">
 
             <input id="id" name="id"  class="mini-hidden" />
+            <input id="iconUrl" name="iconUrl"  class="mini-hidden" />
+            <input id="parentId" name="parentId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
                     <td class="form-label">编号：</td>
@@ -40,31 +42,25 @@
                 <tr>
                     <td class="form-label">链接：</td>
                     <td class="form-content">
-                        <input name="url" id="url" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="链接不能为空"/>
+                        <input name="url" id="url" class="mini-textbox"  maxlength="30" requiredErrorText="链接不能为空"/>
                     </td>
                 </tr>
-                <tr>
+               <!-- <tr>
                     <td class="form-label">链接路径：</td>
                     <td class="form-content">
                         <input name="iconUrl" id="iconUrl" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="链接路径不能为空"/>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td class="form-label">类型：</td>
                     <td class="form-content">
-                        <input name="type" id="type" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="类型不能为空"/>
+                        <input name="type" id="type" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="30" requiredErrorText="类型不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">备注：</td>
+                    <td class="form-label">状态：</td>
                     <td class="form-content">
-                        <input name="remark" id="remark" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="备注不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">上级资源：</td>
-                    <td class="form-content">
-                        <input name="parentId" id="parentId" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="上级编号ID不能为空"/>
+                        <input name="status" id="status"  class="mini-combobox" valueField="id" textField="name"  required="true"  maxlength="30"/>
                     </td>
                 </tr>
                 <tr>
@@ -73,12 +69,20 @@
                         <input name="orderNo" id="orderNo" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="顺序不能为空"/>
                     </td>
                 </tr>
+
                 <tr>
-                    <td class="form-label">状态：</td>
+                    <td class="form-label">备注：</td>
                     <td class="form-content">
-                        <input name="status" id="status" class="mini-textbox" maxlength="30"/>
+                        <input name="remark" id="remark" class="mini-textarea" style="width:350px; height: 80px;"   maxlength="100" requiredErrorText="备注不能为空"/>
                     </td>
                 </tr>
+              <!--  <tr>
+                    <td class="form-label">上级资源：</td>
+                    <td class="form-content">
+                        <input name="parentId" id="parentId" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="上级编号ID不能为空"/>
+                    </td>
+                </tr>-->
+
             </table>
         </div>
 
