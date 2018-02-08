@@ -173,6 +173,8 @@
     var PageHome = {
         menuFlag:true,
         menuText : "",
+        menuArg : [],
+        menuFly : [],
         init : function()
         {
             this.menu_state = 1;
@@ -281,31 +283,30 @@
         },
         funDealResourcesInfo : function (resFly)
         {
-            console.log(resFly)
-            var menuFly = [];
+            PageHome.menuArg = resFly;
             resFly.forEach(function (obj) {
                if (obj.parentId == 0)
                {
                    var menuObj = {id : obj.id, parentHtml:null, childHtml:[]};
                    menuObj.parentHtml = ' <div style="padding: 6px 0;"> <span id="span1">'+obj.name+'</span> <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">  </div>';
-                   menuFly.push(menuObj);
+                   PageHome.menuFly.push(menuObj);
                }
                else if (obj.type == 1)
                {
-                   menuFly.forEach(function (menu) {
+                   PageHome.menuFly.forEach(function (menu) {
                         if (menu.id == obj.parentId)
                         {
-                            menu.childHtml.push('<li onclick="PageHome.funAddTab(this, \''+obj.url+'\')">'+obj.name+'</li>');
+                            menu.childHtml.push('<li name="'+obj.id+'" onclick="PageHome.funAddTab(this, \''+obj.url+'\')">'+obj.name+'</li>');
                         }
                    });
                }
             });
-            PageHome.funCreateMenuInfo(menuFly);
+            PageHome.funCreateMenuInfo();
         },
-        funCreateMenuInfo : function (menuFly)
+        funCreateMenuInfo : function ()
         {
             var menuArgs = "";
-            menuFly.forEach(function (menu) {
+            PageHome.menuFly.forEach(function (menu) {
                 menuArgs += '<li class="pli">' + menu.parentHtml +
 
                         '<ul class="nav1">' + menu.childHtml.join("") +
@@ -380,6 +381,17 @@
             {
                 tab = { title: $(obj).text(), name:$(obj).text(), url: strUrl, showCloseButton: true };
                 pageTabs.addTab(tab);
+                pageTabs.loadTab(strUrl, tab, function () {
+                    var operFly = [];
+                    PageHome.menuArg.forEach(function (menu) {
+                        if(menu.parentId == $(obj).attr("name"))
+                        {
+                            operFly.push(menu.name);
+                        }
+                    })
+                    var iframe = pageTabs.getTabIFrameEl(tab);
+                    iframe.contentWindow.PageMain.funDealMenuInfo(operFly);
+                });
             }
             pageTabs.activeTab(tab);
         }
