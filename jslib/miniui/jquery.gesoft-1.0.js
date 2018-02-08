@@ -2,7 +2,7 @@ var PageMain = function(){
     return {
         defaultOption: {
             basePath:"",
-            isNenuFlag:true,//是否根据权限显示操作功能
+            isNenuFlag:false,//是否根据权限显示操作功能; true时不按数据库处理
             userProfileFly:[],
             zero:"0000000000000000000000000000000000",
             httpUrl : "http://127.0.0.1:16721/xyl"//"http://xingyi.nandasoft-its.com:8080/xyl"//"http://127.0.0.1:16721/xyl"
