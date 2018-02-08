@@ -318,7 +318,7 @@ var PageMain = function(){
 }();
 
 $(function () {
-    PageMain.funDealMenuInfo([]);
+    PageMain.funDealMenuInfo(["保存", "取消"]);
     if( typeof  $.cookie('token') === "undefined" && PageMain.funGetUrlInfo() != "/pages/login/login.html")
     {
        window.location.href = PageMain.funGetRootPath() + "/pages/login/login.html"

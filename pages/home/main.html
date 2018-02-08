@@ -376,13 +376,12 @@
         funAddTab : function(obj, strUrl){
             var pageTabs = mini.get("pageTabs");
             var tab = pageTabs.getTab($(obj).text());
-            console.log(tab)
             if(!tab)
             {
                 tab = { title: $(obj).text(), name:$(obj).text(), url: strUrl, showCloseButton: true };
                 pageTabs.addTab(tab);
                 pageTabs.loadTab(strUrl, tab, function () {
-                    var operFly = [];
+                    var operFly = ["保存", "取消"];
                     PageHome.menuArg.forEach(function (menu) {
                         if(menu.parentId == $(obj).attr("name"))
                         {
