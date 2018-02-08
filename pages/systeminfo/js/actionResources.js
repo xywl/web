@@ -3,7 +3,8 @@ var PageActionResources = function(){
     return {
         defaultOption: {
             basePath:"",
-            typeFly : [{id:0, name:"叶子节点"}, {id:1, name:"非叶子节点"}],
+            openFlagFly : [{id:0, name:"窗体内打开"}, {id:1, name:"窗体外打开"}],
+            typeFly : [{id:0, name:"操作"}, {id:1, name:"菜单"}],
             statusFly : [{id:0, name:"禁用"}, {id:1, name:"启用"}],
             actionResourcesGrid : null
         },
@@ -34,6 +35,7 @@ var PageActionResources = function(){
             {
                 var paramData = {action: "add", row:{}, title:"新增数据"};
                 paramData.row.parentId = row.id;
+                paramData.row.leafNode = 0;
                 this.funOpenInfo(paramData);
             }
             else
@@ -66,6 +68,17 @@ var PageActionResources = function(){
             }
             return e.value;
         },
+        funOpenFlagRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageActionResources.defaultOption.openFlagFly.length; nItem++)
+            {
+                if(e.value == PageActionResources.defaultOption.openFlagFly[nItem].id)
+                {
+                    return PageActionResources.defaultOption.openFlagFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funStatusRenderer : function (e)
         {
             for(var nItem = 0; nItem < PageActionResources.defaultOption.statusFly.length; nItem++)
@@ -90,13 +103,14 @@ var PageActionResources = function(){
         funOpenInfo : function(paramData)
         {
             var me = this;
+            paramData.openFlagFly = this.defaultOption.openFlagFly;
             paramData.typeFly = this.defaultOption.typeFly;
             paramData.statusFly = this.defaultOption.statusFly;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/systeminfo/actionResources_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  10 + 65,
+                height: 30 *  11 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageActionResourcesAdd.funSetData(paramData);
