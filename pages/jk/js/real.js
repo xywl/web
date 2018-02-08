@@ -262,6 +262,16 @@ var PageMap = function()
                         this.mapObj.setCenter(new BMap.Point(parseFloat(mLngLat.lng) + 0.11, mLngLat.lat));
                     } catch (e) {
                     }
+                    window.setTimeout(function () {
+                        var mLngLat = PageMap.mapObj.getCenter();
+                        var zoom = PageMap.mapObj.getZoom()
+                        if (zoom > 11)
+                        {
+                            zoom = 11;
+                        }
+                        PageMap.mapObj.centerAndZoom(new BMap.Point(parseFloat(mLngLat.lng) + 0.11, mLngLat.lat), zoom);
+                        BMapLib.AreaRestriction.clearBounds();
+                    }, 1000);
                     PageMap.defaultOption.showBoundsFlag = false;
                 }
             }
