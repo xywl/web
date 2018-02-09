@@ -6,6 +6,7 @@ var PageActionResources = function(){
             openFlagFly : [{id:0, name:"窗体内打开"}, {id:1, name:"窗体外打开"}],
             typeFly : [{id:0, name:"操作"}, {id:1, name:"菜单"}],
             statusFly : [{id:0, name:"禁用"}, {id:1, name:"启用"}],
+            powerTree : null,
             actionResourcesGrid : null
         },
         init :function ()
@@ -13,12 +14,16 @@ var PageActionResources = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.actionResourcesGrid = mini.get("actionResourcesGrid");
+            this.powerTree = mini.get("powerTree");
+            this.powerTree.setUrl(PageMain.defaultOption.httpUrl + "/action/getTree");
+
             this.actionResourcesGrid.setUrl(PageMain.defaultOption.httpUrl + "/action/getTree");
             this.funSearch();
         },
         funSearch : function()
         {
             var actionResourcesForm = new mini.Form("actionResourcesForm");
+            this.powerTree.load(actionResourcesForm.getData());
             this.actionResourcesGrid.load(actionResourcesForm.getData());
         },
         funReset : function()
@@ -68,6 +73,31 @@ var PageActionResources = function(){
             }
             return e.value;
         },
+        funTreeDropInfo : function (e)
+        {
+            //参照节点
+            var dropNode = e.dropNode;
+
+            // 父节点
+            var parent = PageActionResources.powerTree.getParentNode(e.dragNode);
+
+            // 当前节点
+            var dragNode = e.dragNode;
+            dragNode.parentId = parent.id;
+            if (e.dragAction == "before")
+            {
+                dragNode.orderNo = dropNode.orderNo - 1;
+            }
+            else
+            {
+                dragNode.orderNo = dropNode.orderNo + 1;
+            }
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/action/modify?a="+Math.random(), dragNode, function (obj) {
+                PageActionResources.funSearch();
+            });
+
+        },
         funOpenFlagRenderer : function (e)
         {
             for(var nItem = 0; nItem < PageActionResources.defaultOption.openFlagFly.length; nItem++)
@@ -110,13 +140,13 @@ var PageActionResources = function(){
                 url: PageMain.funGetRootPath() + "/pages/systeminfo/actionResources_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  11 + 65,
+                height: 30 *  12 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageActionResourcesAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                    me.actionResourcesGrid.reload();
+                    PageActionResources.funSearch();
                 }
             })
         },
@@ -142,7 +172,7 @@ var PageActionResources = function(){
                                     mini.alert("操作成功", "提醒", function(){
                                         if(data.success)
                                         {
-                                            me.actionResourcesGrid.reload();
+                                            PageActionResources.funSearch();
                                         }
                                     });
                                 }

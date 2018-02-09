@@ -76,7 +76,12 @@
                         <input name="orderNo" id="orderNo" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="资源顺序不能为空"/>
                     </td>
                 </tr>
-
+                <tr name="operlist">
+                    <td class="form-label">功能操作：</td>
+                    <td class="form-content">
+                        <input name="operList" id="operList" multiSelect="true"  class="mini-combobox" valueField="id" textField="name"/>
+                    </td>
+                </tr>
                 <tr>
                     <td class="form-label">备<span style="padding: 0 14px;"></span>注：</td>
                     <td class="form-content">
