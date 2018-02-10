@@ -44,10 +44,10 @@ var CapcitySchedul = function(){
                 field = e.field,
                 value = e.value;
                 //设置行样式
-                if (record.status == 2) {
+                if (record.localstatus == 2) {
                     e.rowStyle = "background: #fceee2 !important;";
                 }
-                if ((field == "shipType" || field == "shipNo" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") && record.status != 2) {
+                if ((field == "shipType" || field == "shipNo" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount" || field == "status") && record.localstatus != 2) {
                     e.cellStyle = "background: #eee;";
                 } else {
                     e.cellStyle = "background: transparent;"
@@ -208,7 +208,7 @@ var CapcitySchedul = function(){
             var record = e.record;
             var uid = record._uid;
             var rowIndex = e.rowIndex;
-            if (e.row.id && e.row.status == 2) {
+            if (e.row.id && e.row.localstatus == 2) {
                 return '<a class="Blue_Button" href="javascript:CapcitySchedul.funReDelRow(\'' + uid + '\')">取消删除</a>';
             } else {
                 return '<a class="Blue_Button" href="javascript:CapcitySchedul.funDelRow(\'' + uid + '\')">删除</a> ';
@@ -240,8 +240,11 @@ var CapcitySchedul = function(){
         },
         funOnCellBeginEdit: function(e) {  //行编辑开始事件
             var record = e.record, field = e.field;
-            if (record.status == "2") {
+            if (record.localstatus == "2") {
                 e.cancel = true;    //如果置为删除状态则不允许编辑
+            }
+            if (record.localstatus != -1) {
+                e.cancel = true;
             }
             if (field == "shipType" || field == "shipId" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") {
                 e.cancel = true;
@@ -343,7 +346,7 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var preLoad = Number(row.preLoad);
                     if (isNaN(preLoad)) continue;
-                    if (row.status != 2) {
+                    if (row.localstatus != 2) {
                         preLoadTotal += preLoad;
                     } else {
                         preLoadTotal += 0;
@@ -371,7 +374,7 @@ var CapcitySchedul = function(){
                     }
                 } else {
                     orderDetailsGrid.rejectRecord(row);
-                    orderDetailsGrid.updateRow(row, {status: 2});
+                    orderDetailsGrid.updateRow(row, {localstatus: 2});
                 }
                 //console.log(row);
             };
@@ -380,7 +383,7 @@ var CapcitySchedul = function(){
         {
             var row = orderDetailsGrid.getRowByUID(row_uid);
             if (row) {
-                orderDetailsGrid.updateRow(row, {status: 0});
+                orderDetailsGrid.updateRow(row, {localstatus: 0});
                 orderDetailsGrid.acceptRecord(row);
                 //console.log(row);
             };
@@ -430,9 +433,9 @@ var CapcitySchedul = function(){
                 plansData.settleType = submitData[i].settleType;
                 if (submitData[i]._state == "added") { //flag: 1.修改  2.删除  3.新增
                     plansData.flag = 3;
-                } else if (submitData[i]._state == "modified" && submitData[i].status != 2) {
+                } else if (submitData[i]._state == "modified" && submitData[i].localstatus != 2) {
                     plansData.flag = 1;
-                } else if (submitData[i].status == 2) {
+                } else if (submitData[i].localstatus == 2) {
                     plansData.flag = 2;
                 }
                 plans.push(plansData);
