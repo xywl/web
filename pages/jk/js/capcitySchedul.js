@@ -47,7 +47,7 @@ var CapcitySchedul = function(){
                 if (record.localstatus == 2) {
                     e.rowStyle = "background: #fceee2 !important;";
                 }
-                if ((field == "shipType" || field == "shipNo" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount" || field == "status") && record.localstatus != 2) {
+                if ((field == "shipType" || field == "shipNo" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") && record.localstatus != 2) {
                     e.cellStyle = "background: #eee;";
                 } else {
                     e.cellStyle = "background: transparent;"
@@ -64,7 +64,7 @@ var CapcitySchedul = function(){
                 var datas = orderDetailsGrid.getData();
                 var idArray = [];
                 //console.log(record);
-                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice};
+                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice, status: -1};
                 for(var i = 0; i < datas.length; i++)
                 {
                     idArray.push(datas[i].shipId);
@@ -106,8 +106,13 @@ var CapcitySchedul = function(){
         },
         funSearchOrderGrid : function()
         {
-            var capcitySchedulForm = new mini.Form("capcitySchedulForm");
-            this.orderGrid.load(capcitySchedulForm.getData());
+            var orderListForm = new mini.Form("orderListForm");
+            var searchParam = orderListForm.getData();
+            var orderFlag = $("input[name='orderFlag']:checked");
+            if (orderFlag.length > 0) {
+                searchParam.flag = 1;
+            }
+            this.orderGrid.load(searchParam);
         },
         funShipListOnLoad: function(e)
         {
@@ -166,16 +171,16 @@ var CapcitySchedul = function(){
                 //orderDetailsGrid.load({customerTaskFlowId: record.id, "queryParamFlag": 1});
             }
         },
-        funShipStatusRenderer: function(e)
-        {
-            var record = e.record;
-            if(record.customerTaskFlowId)
-            {
-                return '已调度';
-            } else {
-                return '未调度';
-            }
-        },
+        // funShipStatusRenderer: function(e)
+        // {
+        //     var record = e.record;
+        //     if(record.customerTaskFlowId)
+        //     {
+        //         return '已调度';
+        //     } else {
+        //         return '未调度';
+        //     }
+        // },
         funShipFlagRenderer: function(e) //船舶类型
         {
             if(e.value == 1)
@@ -243,12 +248,16 @@ var CapcitySchedul = function(){
             if (record.localstatus == "2") {
                 e.cancel = true;    //如果置为删除状态则不允许编辑
             }
-            if (record.localstatus != -1) {
-                e.cancel = true;
+            if (field == "status" && record.status != -1 && typeof(record.status) == "number") {
+                e.cancel = true;  //状态不为已调度不能编辑
             }
             if (field == "shipType" || field == "shipId" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") {
                 e.cancel = true;
             }
+        },
+        funChangeStatus: function()
+        {
+            //orderDetailsGrid.updateRow(row, {canChangeStatus: 1});
         },
         funOnCellCommitEdit: function(e)  //行编辑提交前事件
         {
@@ -346,7 +355,7 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var preLoad = Number(row.preLoad);
                     if (isNaN(preLoad)) continue;
-                    if (row.localstatus != 2) {
+                    if (row.localstatus != 2 && row.status != -1) {
                         preLoadTotal += preLoad;
                     } else {
                         preLoadTotal += 0;
@@ -431,6 +440,9 @@ var CapcitySchedul = function(){
                     plansData.preSettleAmount = submitData[i].preSettleAmount;
                 }
                 plansData.settleType = submitData[i].settleType;
+                if (submitData[i].status == -1) {
+                    plansData.stashStatus = 1;
+                }
                 if (submitData[i]._state == "added") { //flag: 1.修改  2.删除  3.新增
                     plansData.flag = 3;
                 } else if (submitData[i]._state == "modified" && submitData[i].localstatus != 2) {
