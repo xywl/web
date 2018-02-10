@@ -19,8 +19,6 @@ var PageLeftDispatchInfoAdd = function(){
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/getCustomerTaskFlowList", {pageIndex:0, pageSize:1000000000, queryParamFlag:1} , function (data) {
                 if(data.success)
                 {
-                    console.log(data.data)
-
                     PageLeftDispatchInfoAdd.defaultOption.infoData = data.data;
                     PageLeftDispatchInfoAdd.defaultOption.infoData.forEach(function (obj) {
                         obj.selfName = obj.customerName + "  " + obj.goodsName + "  " + obj.flowName + "  " + obj.startPortName + " --> " + obj.endPortName;

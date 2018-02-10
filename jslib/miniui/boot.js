@@ -24,7 +24,7 @@
 var bootPATH = __CreateJSPath("boot.js");
 
 //debugger
-mini_debugger = true;
+mini_debugger = false;
 //miniui
 document.write('<script src="' + bootPATH + 'jquery-1.8.3-min.js" type="text/javascript"></sc' + 'ript>');
 document.write('<script src="' + bootPATH + 'jquery-extend.js" type="text/javascript"></sc' + 'ript>');

@@ -75,6 +75,7 @@
                 </div>
                 <div class="userid">
                     <ul id="userManage">
+                        <li class="config" onclick="PageHome.funOpenModify()">修改密码</li>
                         <li id="exit">退出</li>
                     </ul>
                 </div>
@@ -90,8 +91,8 @@
 <div id="menudiv"
      style="position:absolute;top:0;left:0;z-index:1;width:1px;height:1px;overflow:hidden;overflow-y:auto;border-right:1px solid #ccc;">
     <div class="menu_container">
-        <ol>
-            <li class="pli">
+        <ol id="menuflag">
+           <!-- <li class="pli">
                 <div style="padding: 6px 0;">
                     <span id="span1">基础信息管理</span>
                     <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">
@@ -155,8 +156,9 @@
                     <li onclick="PageHome.funAddTab(this, '../systeminfo/userProfile.html')">用户信息管理</li>
                     <li onclick="PageHome.funAddTab(this, '../systeminfo/roles.html')">角色信息管理</li>
                     <li onclick="PageHome.funAddTab(this, '../systeminfo/dataDictionary.html')">数据字典管理</li>
+                    <li onclick="PageHome.funAddTab(this, '../systeminfo/actionResources.html')">权限信息管理</li>
                 </ul>
-            </li>
+            </li>-->
         </ol>
     </div>
 </div>
@@ -171,6 +173,8 @@
     var PageHome = {
         menuFlag:true,
         menuText : "",
+        menuArg : [],
+        menuFly : [],
         init : function()
         {
             this.menu_state = 1;
@@ -179,35 +183,7 @@
                 me.funResize();
             });
 
-            $(".pli div").bind("click", function(){
 
-                if(PageHome.menuText != $(this).text())
-                {
-                    PageHome.menuText = $(this).text();
-                    $(".pli").find("div").each(function () {
-                        $(this).parent().find("ul").hide();
-                        $(this).attr("tag", false);
-                        $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_0.png");
-                    });
-                }
-
-                if($(this).attr("tag") == "true")
-                {
-                    $(this).attr("tag", false);
-                    $(this).parent().find("ul").hide();
-                    $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_0.png");
-                }
-                else
-                {
-                    $(this).attr("tag", true);
-                    $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_1.png");
-                    $(this).parent().find("ul").show();
-                }
-            });
-            $(".nav1 li").bind("click", function(){
-                $(".nav1 li").removeClass("current");
-                $(this).addClass("current");
-            });
             me.funResize();
 
             //左边菜单栏是否收起来
@@ -245,6 +221,37 @@
             });
             $(".menu_container").mCustomScrollbar();
         },
+        funInit : function(){
+            $(".pli div").bind("click", function(){
+
+                if(PageHome.menuText != $(this).text())
+                {
+                    PageHome.menuText = $(this).text();
+                    $(".pli").find("div").each(function () {
+                        $(this).parent().find("ul").hide();
+                        $(this).attr("tag", false);
+                        $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_0.png");
+                    });
+                }
+
+                if($(this).attr("tag") == "true")
+                {
+                    $(this).attr("tag", false);
+                    $(this).parent().find("ul").hide();
+                    $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_0.png");
+                }
+                else
+                {
+                    $(this).attr("tag", true);
+                    $(this).find(".ge_img").attr("src", "../../jslib/theme/sea/images/next_1.png");
+                    $(this).parent().find("ul").show();
+                }
+            });
+            $(".nav1 li").bind("click", function(){
+                $(".nav1 li").removeClass("current");
+                $(this).addClass("current");
+            });
+        },
         funMenuInfo : function()
         {
             window.setTimeout(function(){
@@ -265,6 +272,7 @@
                         var result = data.data;
                         $('#username').html(result.profile.nickName);
                         $('#realname').html(result.profile.realName);
+                        PageHome.funDealResourcesInfo(result.resources);
                     }
                     else
                     {
@@ -272,6 +280,56 @@
                     }
                 });
             }
+        },
+        funDealResourcesInfo : function (resFly)
+        {
+            PageHome.menuArg = resFly;
+            resFly.forEach(function (obj) {
+               if (obj.parentId == 0)
+               {
+                   var menuObj = {id : obj.id, parentHtml:null, childHtml:[]};
+                   menuObj.parentHtml = ' <div style="padding: 6px 0;"> <span id="span1">'+obj.name+'</span> <img class="ge_img" src="../../jslib/theme/sea/images/next_0.png" style="float: right;padding:6px;">  </div>';
+                   PageHome.menuFly.push(menuObj);
+               }
+               else if (obj.type == 1)
+               {
+                   PageHome.menuFly.forEach(function (menu) {
+                        if (menu.id == obj.parentId)
+                        {
+                            menu.childHtml.push('<li name="'+obj.id+'" onclick="PageHome.funAddTab(this, \''+obj.url+'\')">'+obj.name+'</li>');
+                        }
+                   });
+               }
+            });
+            PageHome.funCreateMenuInfo();
+        },
+        funCreateMenuInfo : function ()
+        {
+            var menuArgs = "";
+            PageHome.menuFly.forEach(function (menu) {
+                menuArgs += '<li class="pli">' + menu.parentHtml +
+
+                        '<ul class="nav1">' + menu.childHtml.join("") +
+                        '</ul></li>';
+            });
+            $("#menuflag").append(menuArgs);
+            PageHome.funInit();
+        },
+        funOpenModify : function ()
+        {
+            var me = this;
+            mini.open({
+                url: PageMain.funGetRootPath() + "/pages/systeminfo/modifySelfPwd.html",
+                title: "修改密码",
+                width: 600,
+                height: 200,
+                onload:function(){
+
+                },
+                ondestroy:function(action){
+
+                }
+            })
         },
         funResize : function()
         {
@@ -318,11 +376,21 @@
         funAddTab : function(obj, strUrl){
             var pageTabs = mini.get("pageTabs");
             var tab = pageTabs.getTab($(obj).text());
-            console.log(tab)
             if(!tab)
             {
                 tab = { title: $(obj).text(), name:$(obj).text(), url: strUrl, showCloseButton: true };
                 pageTabs.addTab(tab);
+                pageTabs.loadTab(strUrl, tab, function () {
+                    var operFly = ["保存", "取消"];
+                    PageHome.menuArg.forEach(function (menu) {
+                        if(menu.parentId == $(obj).attr("name"))
+                        {
+                            operFly.push(menu.name);
+                        }
+                    })
+                    var iframe = pageTabs.getTabIFrameEl(tab);
+                    iframe.contentWindow.PageMain.funDealMenuInfo(operFly);
+                });
             }
             pageTabs.activeTab(tab);
         }

@@ -27,7 +27,6 @@ var PageCustomerTask = function(){
             PageMain.funUserProfileInfo();
             //加载合同
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000}, function (data) {
-
                 PageCustomerTask.defaultOption.customerFly = data;
             });
             //加载所有客户信息
@@ -112,7 +111,7 @@ var PageCustomerTask = function(){
         },
         funOpenInfo : function(paramData)
         {
-            paramData.contractId = this.defaultOption.customerFly;
+            paramData.customerFly = this.defaultOption.customerFly;
         	var me = this;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTask_add.html",

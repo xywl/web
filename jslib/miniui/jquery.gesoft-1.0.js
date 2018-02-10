@@ -2,9 +2,10 @@ var PageMain = function(){
     return {
         defaultOption: {
             basePath:"",
+            isNenuFlag:false,//是否根据权限显示操作功能; true时不按数据库处理
             userProfileFly:[],
             zero:"0000000000000000000000000000000000",
-            httpUrl : "http://127.0.0.1:16722/xyl"//"http://127.0.0.1:16721/xyl"
+            httpUrl : "http://127.0.0.1:16721/xyl"//"http://xingyi.nandasoft-its.com:8080/xyl"//"http://127.0.0.1:16721/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
@@ -19,6 +20,9 @@ var PageMain = function(){
                 message: msg,
                 timeout: 2000
             });
+        },
+        funTest : function (test) {
+          alert(test)
         },
         funShowLoading : function ()
         {
@@ -248,6 +252,32 @@ var PageMain = function(){
             }
            return "";
         },
+        funDealMenuInfo: function (sysMenuFly)
+        {
+            if (PageMain.defaultOption.isNenuFlag)
+            {
+                return ;
+            }
+            var menuFly = $(".mini-toolbar").find("a");
+            var menuFlag = true;
+            menuFly.each(function (index)
+            {
+                menuFlag = true;
+                sysMenuFly.forEach(function (menuName)
+                {
+                    if(menuName == $(menuFly[index]).text())
+                    {
+                        menuFlag = false;
+                        $(menuFly[index]).show();
+                    }
+                });
+
+                if(menuFlag)
+                {
+                    $(menuFly[index]).hide();
+                }
+            })
+        },
         funUserProfileInfo : function ()
         {
             PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadUserProfile", {}, function (data) {
@@ -258,9 +288,14 @@ var PageMain = function(){
         callAjax : function (paramUrl, paramData, callback)
         {
             var contentType = "application/x-www-form-urlencoded";
+            var asyncFlag = true;
             if (arguments.length == 4)
             {
                 contentType =  arguments[3];
+            }
+            if (arguments.length == 5)
+            {
+                asyncFlag = arguments[4];
             }
             $.ajax({
                 url : paramUrl,
@@ -283,6 +318,7 @@ var PageMain = function(){
 }();
 
 $(function () {
+    PageMain.funDealMenuInfo(["保存", "取消"]);
     if( typeof  $.cookie('token') === "undefined" && PageMain.funGetUrlInfo() != "/pages/login/login.html")
     {
        window.location.href = PageMain.funGetRootPath() + "/pages/login/login.html"

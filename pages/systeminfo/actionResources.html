@@ -8,18 +8,7 @@
 </head>
 <body>
 <div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
-    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="70" showHeader="false">
-        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
-             showCloseButton="false">
-            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="actionResourcesForm">
-                <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入编码"  style="width:160px;"/>
-                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
-                <a class="mini-button" iconCls="icon-search" onclick="PageActionResources.funSearch()" plain="true"><label>查询</label></a>
-                <a class="mini-button" iconCls="icon-reset" onclick="PageActionResources.funReset()" plain="true"><label>重置</label></a>
-            </div>
-        </div>
-    </div>
+
     <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
         <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
             <table style="width:100%;">
@@ -31,26 +20,38 @@
                     </td>
                 </tr>
             </table>
+            <div style="display: none" class="searchBar" id="actionResourcesForm">
+                <lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入编码"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <input id="pageSize" name="pageSize" value="10000000" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageActionResources.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageActionResources.funReset()" plain="true"><label>重置</label></a>
+            </div>
         </div>
         <div class="mini-fit">
-            <div id="actionResourcesGrid" class="mini-datagrid"
-                 idField="id" allowResize="false"
-                 sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+            <div id="actionResourcesGrid" class="mini-treegrid"  resultAsTree="false" expandOnNodeClick="false"  allowResize="false"  allowDrag="true" allowDrop="true" allowLeafDropIn="true" treeColumn="taskname" showTreeIcon="true" expandOnLoad="true" idField="id"  parentField="parentId"style="height: 100%;">
                 <div property="columns">
-                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                    <div field="code" width="120" headerAlign="center" allowSort="true">编号</div>
-                    <div field="name" width="120" headerAlign="center" allowSort="true">名称</div>
-                    <div field="url" width="120" headerAlign="center" allowSort="true">路径</div>
-                    <div field="iconUrl" width="120" headerAlign="center" allowSort="true">链接路径</div>
-                    <div field="type" width="120" headerAlign="center" allowSort="true">类型</div>
-                    <div field="status" width="120" headerAlign="center" allowSort="true" >状态</div>
-                    <div field="remark" width="120" headerAlign="center" align="center" allowSort="true">备注</div>
-                    <div field="parentId" width="120" headerAlign="center" allowSort="true">上级资源</div>
-                    <div field="orderNo" width="120" headerAlign="center" align="center" allowSort="true">顺序</div>
-                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageActionResources.funOperRenderer">操作
-                    </div>
+                  <!--  <div type="indexcolumn" headerAlign="center"  width="30">序号</div>-->
+                    <div name="taskname" field="name" width="120" allowMove="true" headerAlign="center" allowSort="true">资源名称</div>
+                    <div field="code" width="80" headerAlign="center" allowSort="true">资源编号</div>
+                    <div field="url" width="120" headerAlign="centr" allowSort="true">链接地址</div>
+                <!--    <div field="iconUrl" width="120" headerAlign="center" allowSort="true">链接路径</div>-->
+                    <div field="openFlag" width="60" headerAlign="center" allowSort="true" renderer="PageActionResources.funOpenFlagRenderer">打开方式</div>
+                    <div field="type" width="60" headerAlign="center" allowSort="true" renderer="PageActionResources.funTypeRenderer">资源类型</div>
+                    <div field="status" width="60" headerAlign="center" allowSort="true"  renderer="PageActionResources.funStatusRenderer">资源状态</div>
+                   <!-- <div field="parentId" width="120" headerAlign="center" allowSort="true">上级资源</div>-->
+                    <div field="orderNo" width="60" headerAlign="center" align="center" allowSort="true">资源顺序</div>
+                   <!-- <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageActionResources.funOperRenderer">操作
+                    </div>-->
                 </div>
             </div>
+        </div>
+    </div>
+    <div title="east" region="east"  width="250" showSplit="false" showSplitIcon="false"  showHeader="false" style="border: none">
+        <div class="mini-panel" title="资源列表" style="width: 100%;height:100%"  showCloseButton="false">
+            <div id="powerTree" onDrop="PageActionResources.funTreeDropInfo" class="mini-tree"  showTreeIcon="true" expandOnLoad="true" parentField="parentId" resultAsTree="false" textField="name" idField="id" showCheckBox="false" checkRecursive="false" allowDrag="true" allowDrop="true" allowLeafDropIn="true" autoCheckParent="true" ></div>
+
         </div>
     </div>
 </div>

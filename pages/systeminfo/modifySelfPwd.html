@@ -3,7 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <script src="../../jslib/miniui/boot.js"></script>
-    <script type="text/javascript" src="js/dataDictionary_add.js"></script>
+    <script type="text/javascript" src="js/roles_add.js"></script>
     <title></title>
     <style>
 
@@ -19,39 +19,39 @@
     </style>
 </head>
 <body>
-<div class="mini-layout" id="layout_dataDictionary_add" style="width: 100%;height: 100%;" allowResize="false">
+<div class="mini-layout" id="layout_roles_add" style="width: 100%;height: 100%;" allowResize="false">
     <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none;  padding:10px;">
-        <div id="dataDictionaryFormAdd">
+        <div id="rolesFormAdd">
 
             <input id="id" name="id"  class="mini-hidden" />
-            <input id="parentId" name="parentId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">编码：</td>
+                    <td class="form-label">旧<span style="padding: 0 3px;"></span>密<span style="padding: 0 3px;"></span>码：</td>
                     <td class="form-content">
-                        <input name="code" id="code" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="编码不能为空"/>
+                        <input name="pwd" id="pwd" class="mini-password"  required="true" maxlength="30" requiredErrorText="密码不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">名称：</td>
+                    <td class="form-label">新<span style="padding: 0 3px;"></span>密<span style="padding: 0 3px;"></span>码：</td>
                     <td class="form-content">
-                        <input name="value" id="value" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="名称不能为空"/>
+                        <input name="pasword" id="pasword" class="mini-password"  required="true" maxlength="30" requiredErrorText="新密码不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">备注：</td>
+                    <td class="form-label">确认密码：</td>
                     <td class="form-content">
-                        <input name="remark" id="remark" class="mini-textarea" style="width:350px; height: 80px;"   maxlength="100" requiredErrorText="备注不能为空"/>
+                        <input name="name" id="name" class="mini-password"  required="true" maxlength="30" requiredErrorText="确认密码不能为空"/>
                     </td>
                 </tr>
+
             </table>
         </div>
 
     </div>
     <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
         <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
-            <a class="mini-button cursor" onclick="PageDataDictionaryAdd.funSave()" iconCls="icon-save">保存</a>
-            <a class="mini-button cursor" onclick="PageDataDictionaryAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+            <a class="mini-button cursor" onclick="PageRolesAdd.funSave()" iconCls="icon-save">保存</a>
+            <a class="mini-button cursor" onclick="PageRolesAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
         </div>
     </div>
 </div>

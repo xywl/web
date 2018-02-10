@@ -15,11 +15,13 @@ var PageCustomerTaskAdd = function(){
         },
         funSetData : function(data)
         {
-            //mini.get("type").setData(data.type);
-            //mini.get("status").setData(data.status);
-            mini.get("contractId").setData(data.contractId);
+
+
         	var row = data.row;
         	this.defaultOption.action = data.action;
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000, key:data.action, id:row.contractId}, function (data) {
+            mini.get("contractId").setData(data);
+        },"application/x-www-form-urlencoded", false);
         	this.customerTaskForm.setData(row);
             if(this.defaultOption.action == "add")
             {
@@ -45,7 +47,7 @@ var PageCustomerTaskAdd = function(){
         	this.customerTaskForm.validate();
             if (!this.customerTaskForm.isValid()) 
             {
-                 var errorTexts = form.getErrorTexts();
+                 var errorTexts = this.customerTaskForm.getErrorTexts();
                  for (var i in errorTexts) 
                  {
                      mini.alert(errorTexts[i]);
@@ -107,6 +109,10 @@ var PageCustomerTaskAdd = function(){
         funSetCustomer:function () {
             var customerIdCombo = mini.get("customerId");
             var id = mini.get("contractId").getValue();
+            if (id == "")
+            {
+                return ;
+            }
             customerIdCombo.setValue("");
             var url = PageMain.defaultOption.httpUrl + "/customerTask/loadContractById?key=" + id
             customerIdCombo.setUrl(url);

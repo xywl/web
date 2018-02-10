@@ -5,6 +5,8 @@ var PageContract = function(){
             basePath:"",
             contractStatus:[{id:1, name:"启用"},{id:2, name:"禁用"}],
             contractType:[{id:1, name:"短期"},{id:2, name:"长期"}],
+            goodsTypeFly : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}],
+            goodsSubTypeFly : [{id:1, name:"碎石"},{id:2, name:"市场煤炭"},{id:3, name:"华能电煤"},{id:4, name:"浙能电煤"},{id:5, name:"铜精矿"},{id:6, name:"PAT"},{id:7, name:"经营业务"},{id:8, name:"其他业务"}],
             customerFly : [],
             contractGrid : null,
             contractFlowGrid : null,
@@ -89,6 +91,28 @@ var PageContract = function(){
             }
             return e.value;
         },
+        funGoodsTypeRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageContract.defaultOption.goodsTypeFly.length; nItem++)
+            {
+                if(e.value == PageContract.defaultOption.goodsTypeFly[nItem].id)
+                {
+                    return PageContract.defaultOption.goodsTypeFly[nItem].name;
+                }
+            }
+            return "";
+        },
+        funGoodsSubTypeRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageContract.defaultOption.goodsSubTypeFly.length; nItem++)
+            {
+                if(e.value == PageContract.defaultOption.goodsSubTypeFly[nItem].id)
+                {
+                    return PageContract.defaultOption.goodsSubTypeFly[nItem].name;
+                }
+            }
+            return "";
+        },
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageContract.funDetail()"></a>';
@@ -136,6 +160,8 @@ var PageContract = function(){
         },
         funOpenInfo : function(paramData)
         {
+            paramData.goodsSubTypeFly = this.defaultOption.goodsSubTypeFly;
+            paramData.goodsTypeFly = this.defaultOption.goodsTypeFly;
             paramData.type = this.defaultOption.contractType;
             paramData.status = this.defaultOption.contractStatus;
             paramData.partyA = this.defaultOption.customerFly;

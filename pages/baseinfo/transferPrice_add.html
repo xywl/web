@@ -22,20 +22,21 @@
         <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
         <div id="transferPriceFormAdd">
        
-                	<input id="id" name="id"  class="mini-hidden" />
+            <input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
-                <tr>
-                    <td class="form-label">客户名称：</td>
-                    <td class="form-content">
-                        <input name="customerId" id="customerId" class="mini-combobox" valueField="id" textField="fullName"   required="true" maxlength="10" requiredErrorText="客户id不能为空"/>
-                    </td>
-                </tr>
                 <tr>
                     <td class="form-label">合同信息：</td>
                     <td class="form-content">
-                        <input name="contractId" id="contractId" class="mini-combobox" valueField="id" textField="name"   required="true" maxlength="10" requiredErrorText="合同不能为空"/>
+                        <input name="contractId" id="contractId" class="mini-combobox" valueField="id" textField="name"   required="true" maxlength="10" requiredErrorText="合同不能为空"  onvaluechanged="PageTransferPriceAdd.funSetCustomer()"/>
                     </td>
                 </tr>
+                <tr>
+                    <td class="form-label">客户名称：</td>
+                    <td class="form-content">
+                        <input name="customerId" id="customerId" class="mini-combobox" valueField="id" textField="name"   required="true" maxlength="10" requiredErrorText="客户不能为空"/>
+                    </td>
+                </tr>
+
                 <tr>
                     <td class="form-label">运价类型：</td>
                     <td class="form-content">

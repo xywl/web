@@ -1,53 +1,36 @@
-
-var PageDataDictionaryAdd = function(){
+/**
+ * Created by WCL on 2018/2/3.
+ */
+PageModifySelfPwd =  function(){
     return {
         defaultOption: {
             basePath:"",
             action : "",
-            dataDictionaryForm : null,
-            infoData:[]
+            modifyForm : null
 
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.dataDictionaryForm = new mini.Form("dataDictionaryFormAdd");
+            this.defaultOption.modifyForm = new mini.Form("modifyForm");
         },
         funSetData : function(data)
         {
             var row = data.row;
-            this.action = data.action;
-            this.dataDictionaryForm.setData(row);
-            if(this.action == "oper")
-            {
-                mini.get("layout_dataDictionary_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
-                var fields = this.dataDictionaryForm.getFields();
-                for (var i = 0, l = fields.length; i < l; i++)
-                {
-                    var c = fields[i];
-                    if (c.setReadOnly) c.setReadOnly(true);     //只读
-                    if (c.setIsValid) c.setIsValid(true);      //去除错误提示
-                }
-            }
+            this.defaultOption.action = data.action;
         },
         funSave : function()
         {
-            this.dataDictionaryForm.validate();
-            if (!this.dataDictionaryForm.isValid())
+            if (PageMain.funDealSubmitValidate(this.defaultOption.modifyForm))
             {
-                var errorTexts = form.getErrorTexts();
-                for (var i in errorTexts)
-                {
-                    mini.alert(errorTexts[i]);
-                    return;
-                }
+                return ;
             }
 
             var me = this;
-            var obj = this.dataDictionaryForm.getData(true);
+            var obj = this.defaultOption.modifyForm.getData(true);
             $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/dataDictionary/" + me.action + "?a="+Math.random(),
+                url : PageMain.defaultOption.httpUrl + "/roles/" + me.action + "?a="+Math.random(),
                 type : 'POST',
                 data : obj,
                 dataType: 'json',
@@ -81,5 +64,5 @@ var PageDataDictionaryAdd = function(){
 }();
 
 $(function(){
-    PageDataDictionaryAdd.init();
+    PageModifySelfPwd.init();
 });

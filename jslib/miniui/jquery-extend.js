@@ -3,9 +3,23 @@
  */
 (function ($) {
     var _ajax = $.ajax;
+
     $.ajax = function (options) {
         var _options = $.extend(options, {
-            headers:{"token":$.cookie('token')}
+            error:function(XMLHttpRequest, textStatus, errorThrown){
+                if (XMLHttpRequest.readyState == 0)
+                {
+                    try{
+                        PageMain.funShowMessageBox("网络出现异常！")
+                    }
+                    catch (e)
+                    {
+                        
+                    }
+                }
+            },
+            headers:{"token":$.cookie('token')
+            }
         });
         _ajax(_options);
     };

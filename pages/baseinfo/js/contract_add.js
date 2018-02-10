@@ -4,6 +4,7 @@ var PageContractAdd = function(){
         defaultOption: {
             basePath:"",
             action : "",
+            goodsSubTypeFly:[],
             contractForm : null
         },
         init :function ()
@@ -14,13 +15,30 @@ var PageContractAdd = function(){
         },
         funSetData : function(data)
         {
+            var row = data.row;
+            this.defaultOption.action = data.action;
             //console.log(parseInt(7).toString(2))
             mini.get("type").setData(data.type);
             mini.get("status").setData(data.status);
             mini.get("partyA").setData(data.partyA);
             mini.get("signDepartment").setData(data.dataDictFly);
-        	var row = data.row;
-        	this.defaultOption.action = data.action;
+            mini.get("goodsType").setData(data.goodsTypeFly);
+            PageContractAdd.defaultOption.goodsSubTypeFly = data.goodsSubTypeFly;
+            if(this.defaultOption.action != "add")
+            {
+                if (row.goodsType == 2)
+                {
+                    mini.get("goodsSubType").setData(data.goodsSubTypeFly);
+                }
+                if (row.goodsType == 0)
+                {
+                    row.goodsType = "";
+                }
+                if (row.goodsSubType == 0)
+                {
+                    row.goodsSubType = "";
+                }
+            }
         	this.contractForm.setData(row);
             if(this.defaultOption.action == "add")
             {
@@ -100,6 +118,18 @@ var PageContractAdd = function(){
             	   PageMain.funShowMessageBox("操作出现异常");
                }
            });
+        },
+        funSetGoodsSubType:function ()
+        {
+            var goodsVal = mini.get("goodsType").getValue();
+            if(goodsVal == 2)
+            {
+                mini.get("goodsSubType").setData(PageContractAdd.defaultOption.goodsSubTypeFly);
+            }
+            else
+            {
+                mini.get("goodsSubType").setData([]);
+            }
         },
         funCancel : function()
         {

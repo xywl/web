@@ -16,13 +16,17 @@ var PageTransferPriceAdd = function(){
         {
         	var row = data.row;
         	this.action = data.action;
-            mini.get("customerId").setData(row.customerFly);
-            mini.get("contractId").setData(row.contractFly);
+            //mini.get("customerId").setData(row.customerFly);
+            //mini.get("contractId").setData(row.contractFly);
             mini.get("priceType").setData(row.priceTypeFly);
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000, key:data.action, id:row.contractId}, function (data) {
+                mini.get("contractId").setData(data);
+            },"application/x-www-form-urlencoded", false);
+
         	this.transferPriceForm.setData(row);
+            this.funSetCustomer();
         	if(this.action == "oper")
         	{
-
         		mini.get("layout_transferPrice_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
         		var fields = this.transferPriceForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
@@ -92,6 +96,19 @@ var PageTransferPriceAdd = function(){
             	   PageMain.funShowMessageBox("操作出现异常");
                }
            });
+        },
+        funSetCustomer:function ()
+        {
+            var customerIdCombo = mini.get("customerId");
+            var id = mini.get("contractId").getValue();
+            if (id == "")
+            {
+                return ;
+            }
+            customerIdCombo.setValue("");
+            var url = PageMain.defaultOption.httpUrl + "/customerTask/loadContractById?key=" + id
+            customerIdCombo.setUrl(url);
+            customerIdCombo.select(0);
         },
         funCancel : function()
         {
