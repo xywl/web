@@ -20,7 +20,7 @@
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <input id="orderListKey" name="key" class="mini-textbox" emptyText="请输入查询内容" style="width:150px;" />
                 <a class="mini-button" iconCls="icon-search" onclick="CapcitySchedul.funSearchOrderGrid()" plain="true"><label>查询</label></a>
-                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchOrderGrid()" type="checkbox" name="orderFlag" value="1" hideFocus/>已调度订单</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchOrderGrid()" type="checkbox" name="orderFlag" value="1" hideFocus/>已调度完成订单</label>
             </div>
             <div class="mini-fit">
                 <div id="orderGrid" class="mini-datagrid"
@@ -106,7 +106,7 @@
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
                     </div>
                     <div name="PreLoad" vtype="required, float" field="preLoad" width="120" headerAlign="center" allowSort="false">预发吨位
-                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
+                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="120" />
                     </div>
                     <div name="PreArriveTime" vtype="required" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss"  renderer="CapcitySchedul.funOrderDetailsTimeRenderer">空船要求到港时间
                         <input property="editor" class="mini-datepicker" format="yyyy-MM-dd HH:mm:ss" showTime="true" style="width:100%;" />
@@ -122,12 +122,12 @@
                 </div>
                 <script type="text/javascript">
                     var SettleTypes = [{id: 1, text: '按实发吨位'}, {id: 2, text: '按实收吨位'}, {id: 11, text: '现金结算'}, {id: 12, text: '定期结算'}];
-                    var DispatchStatus = [{id: -1, text: '未调度'}, {id: 0, text: '已调度'}, {id: 1, text: '已到位'}, {id: 2, text: '已装货'}, {id: 3, text: '运输中'}, {id: 4, text: '已到港'}, {id: 5, text: '已卸货'}, {id: 6, text: '已完成'}];
+                    var DispatchStatus = [{id: -1, text: '未调度'}, {id: 0, text: '已调度'}, {id: 1, text: '已到位', enabled:false}, {id: 2, text: '已装货', enabled:false}, {id: 3, text: '运输中', enabled:false}, {id: 4, text: '已到港', enabled:false}, {id: 5, text: '已卸货', enabled:false}, {id: 6, text: '已完成', enabled:false}];
                 </script>
             </div>
         </div>
         <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
-            <a class="mini-button cursor" iconCls="icon-save" onclick="CapcitySchedul.funSubmitData()">确认下单</a>
+            <a class="mini-button cursor" iconCls="icon-save" onclick="CapcitySchedul.funSubmitData()">提交</a>
         </div>
     </div>
 </div>
