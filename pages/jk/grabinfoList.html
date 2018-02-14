@@ -36,9 +36,10 @@
     <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
         <div class="mini-fit">
             <div id="grapListGrid" class="mini-datagrid"
-                  idField="id" allowResize="false"
-                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                idField="id" allowResize="false" onselectionchanged="PageGrapInfoAudit.funOnSelectionChanged"
+                pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
+                    <div type="checkcolumn"></div>
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
                     <div field="id" width="120" headerAlign="center" allowSort="true">临调单号</div>
                     <div field="dispatchWeight" width="120" headerAlign="center" allowSort="true">临调吨位</div>
@@ -61,14 +62,12 @@
                     <div field="radius" width="120" headerAlign="center" allowSort="true">期待到货日期</div>
                     <div field="radius" width="120" headerAlign="center" allowSort="true">审核状态</div>
                     <div field="radius" width="120" headerAlign="center" allowSort="true">备注</div>
-                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageGrapInfoAudit.funOperRenderer">操作
-                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div title="抢单审核" region="south" showSplit="true" showSplitIcon="false" height="350" showHeader="false" style="border:0 none;">
-        <div class="mini-panel" title="临调订单信息" style="width: 100%;height:70px;"
+        <!-- <div class="mini-panel" title="临调订单信息" style="width: 100%;height:70px;"
             showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 31px;" id="">
                 <div class="c-cell"><label>流向：</label><label></label></div>
@@ -83,32 +82,44 @@
                     【<label>批次：</label><label></label><label>总载量：</label><label></label>,<label>航行区域：</label><label></label>,<label>到达位置：</label><label></label>,<label>到达时间：</label><label></label>,<label>离开时间：</label><label></label>】
                 </div>
             </div>
-       </div>
+        </div> -->
         <div class="mini-toolbar" style="border:0;padding:0px;height: 20px;line-height: 20px;">
             抢单船舶信息
         </div>
         <div class="mini-fit">
-            <div id="checkListGrid" class="mini-datagrid"
-                  idField="id" allowResize="false"
-                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+            <div id="checkListGrid" class="mini-datagrid" allowCellSelect="true" onlyCheckSelection="true"
+                idField="id" allowResize="false" allowCellEdit="true" showPager="false" allowCellValid="true"
+                pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"
+                ondrawcell="PageGrapInfoAudit.funOnDrawCell"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                    <div field="waterLevel" width="120" headerAlign="center" allowSort="true">船号</div>
-                    <div field="customerTaskFlowId" width="120" headerAlign="center" allowSort="true">姓名</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">手机号</div>
-                    <div field="name" width="120" headerAlign="center" allowSort="true">预报吨位</div>
-                    <div field="portType" width="120" headerAlign="center" allowSort="true">船舶位置</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">预计到装货港时间</div>
-                    <div field="goodsName" width="120" headerAlign="center" allowSort="true">空船照片</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">参照物照片</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">预发吨位</div>
-                    <div field="startPortName" width="120" headerAlign="center" allowSort="true">船户实际运价</div>
-                    <div field="endPortName" width="120" headerAlign="center" allowSort="true">预结算金额</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">审核状态</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">备注</div>
-                    <div field="radius" width="120" headerAlign="center" allowSort="true">操作</div>
+                    <div field="shipNo" width="70" headerAlign="center" allowSort="true">船号</div>
+                    <div field="name" width="70" headerAlign="center" allowSort="true">姓名</div>
+                    <div field="mobile" width="100" headerAlign="center" allowSort="true">手机号</div>
+                    <div field="preLoad" width="80" headerAlign="center" allowSort="true">预报吨位</div>
+                    <div field="portType" width="100" headerAlign="center" allowSort="true">船舶位置</div>
+                    <div field="preArrivePortTime" width="120" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererPreArriveTime">预计到装货港时间</div>
+                    <div field="shipEmptyPhoto" width="70" headerAlign="center" allowSort="true">空船照片</div>
+                    <div field="shipReference" width="70" headerAlign="center" allowSort="true">参照物照片</div>
+                    <div field="preActualLoad" vtype="required" width="80" headerAlign="center" allowSort="true">预发吨位
+                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="80" />
+                    </div>
+                    <div field="actualTransferPrice" vtype="required" width="80" headerAlign="center" allowSort="true">船户实际运价
+                        <input property="editor" class="mini-textbox" style="width:100%;" minWidth="80" />
+                    </div>
+                    <div field="preSettleAmount" vtype="required" width="80" headerAlign="center" allowSort="true">预结算金额</div>
+                    <div field="remarks" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="checkStatus" vtype="required" type="comboboxcolumn" vtype="required" autoShowPopup="true" width="120" headerAlign="center" allowSort="true">审核状态
+                        <input property="editor" class="mini-combobox" style="width:100%;" data="CheckStatus" />
+                    </div>
                 </div>
             </div>
+            <script type="text/javascript">
+                var CheckStatus = [{id: 0, text: '待审核'}, {id: 1, text: '审核通过'}, {id: 2, text: '审核不通过'}];
+            </script>
+        </div>
+        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+            <a class="mini-button cursor" iconCls="icon-save" onclick="PageGrapInfoAudit.funSubmitData()">提交</a>
         </div>
     </div>
 </div>
