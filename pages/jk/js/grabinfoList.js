@@ -77,7 +77,7 @@ var PageGrapInfoAudit = function(){
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/leftDispatchInfo/getLeftDispatch4Check", {"customerTaskFlowId": id}, function (data) {
                 if (data.success)
                 {
-                    console.log(data);
+                    //console.log(data);
                     var result = data.data.list[0];
                     $('#goodsName').html(result.goodsName);
                 }
@@ -136,9 +136,24 @@ var PageGrapInfoAudit = function(){
                 plansData.checkStatus = submitData[i].checkStatus;
             }
             plans.push(plansData);
-            param.leftDispatchId = submitData.leftDispatchId;
+            param.leftDispatchId = orderListData.id;
             param.plans = plans;
-            console.log(param);
+            //console.log(param);
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/reservation/check", {"leftDispatchId": param.leftDispatchId, "plans": JSON.stringify(param.plans)}, function (data) {
+                if (data.success)
+                {
+                    mini.alert("操作成功", "提醒", function(){
+                        if(data.success)
+                        {
+                            location.reload();
+                        }
+                    });
+                }
+                else
+                {
+                    PageMain.funShowMessageBox(data.msg);
+                }
+            });
             
         }
         // funOpenInfo : function(paramData)  // 弹框审核
