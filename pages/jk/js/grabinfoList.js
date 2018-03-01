@@ -37,11 +37,11 @@ var PageGrapInfoAudit = function(){
         },
         funRendererEmptyPhoto: function(e)
         {
-            return '<img class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
         },
         funRendererShipReference: function(e)
         {
-            return '<img class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
         },
         funOnDrawCell: function(e)  //计算预结算金额
         {
