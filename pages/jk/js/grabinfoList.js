@@ -35,6 +35,14 @@ var PageGrapInfoAudit = function(){
         {
             return PageMain.funStrToDate(e.value);
         },
+        funRendererEmptyPhoto: function(e)
+        {
+            return '<img class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+        },
+        funRendererShipReference: function(e)
+        {
+            return '<img class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+        },
         funOnDrawCell: function(e)  //计算预结算金额
         {
             var record = e.record;
@@ -105,6 +113,21 @@ var PageGrapInfoAudit = function(){
             }
             return Number(num1.toString().replace(".", "")) * Number(num2.toString().replace(".", "")) / Math.pow(10, baseNum);
         },
+        funEnlargeImage: function(obj)
+        {
+            var $this = $(obj);
+            var src = $this.attr("src");
+            var bigImages = [];
+            var $imgs = $(".thumbimg");
+            for(var i=0; i<$imgs.length; i++){
+                var img = {};
+                img.url = $imgs[i].src;
+                img.index = i;
+                $(".thumbimg").eq(i).attr("data-index",i);
+                bigImages.push(img);
+            }
+            bigpic(src,obj,bigImages);
+        },
         funSubmitData: function()
         {
             var checkListGrid = PageGrapInfoAudit.checkListGrid
@@ -132,7 +155,7 @@ var PageGrapInfoAudit = function(){
                 plansData.preSettleAmount = submitData[i].preSettleAmount;
                 plansData.leftDispatchId = submitData[i].leftDispatchId;
                 plansData.dispatchId = submitData[i].dispatchId;
-                plansData.customerTaskFlowId = submitData[i].customerTaskFlowId;
+                plansData.customerTaskFlowId = orderListData.customerTaskFlowId;
                 plansData.checkStatus = submitData[i].checkStatus;
             }
             plans.push(plansData);

@@ -2,8 +2,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="./themes/self/showImg.css">
     <script src="../../jslib/miniui/boot.js"></script>
     <script type="text/javascript" src="./js/grabinfoList.js"></script>
+    <script type="text/javascript" src="./js/showImg.js"></script>
     <title></title>
     <style>
         .c-cell {
@@ -99,8 +101,8 @@
                     <div field="preLoad" width="80" headerAlign="center" allowSort="true">预报吨位</div>
                     <div field="portType" width="100" headerAlign="center" allowSort="true">船舶位置</div>
                     <div field="preArrivePortTime" width="120" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererPreArriveTime">预计到装货港时间</div>
-                    <div field="shipEmptyPhoto" width="70" headerAlign="center" allowSort="true">空船照片</div>
-                    <div field="shipReference" width="70" headerAlign="center" allowSort="true">参照物照片</div>
+                    <div field="shipEmptyPhoto" width="70" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererEmptyPhoto">空船照片</div>
+                    <div field="shipReference" width="70" headerAlign="center" allowSort="true" renderer="PageGrapInfoAudit.funRendererShipReference">参照物照片</div>
                     <div field="preActualLoad" vtype="required" width="80" headerAlign="center" allowSort="true">预发吨位
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="80" />
                     </div>
@@ -108,7 +110,7 @@
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="80" />
                     </div>
                     <div field="preSettleAmount" vtype="required" width="80" headerAlign="center" allowSort="true">预结算金额</div>
-                    <div field="remarks" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <!-- <div field="remarks" width="120" headerAlign="center" allowSort="true">备注</div> -->
                     <div field="checkStatus" vtype="required" type="comboboxcolumn" vtype="required" autoShowPopup="true" width="120" headerAlign="center" allowSort="true">审核状态
                         <input property="editor" class="mini-combobox" style="width:100%;" data="CheckStatus" />
                     </div>
