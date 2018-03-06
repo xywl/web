@@ -39,7 +39,8 @@ mini.VTypes["telePhone"] = function (v) {
 /*邮箱*/
 mini.VTypes["emailErrorText"] = "请输入正确的Email地址";
 mini.VTypes["email"] = function (v) {
-	var re = new RegExp("^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
+	//var re = new RegExp("^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
+	var re = new RegExp("^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$");
     if (re.test(v)) return true;
     return false;
 }
