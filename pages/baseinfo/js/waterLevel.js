@@ -10,7 +10,7 @@ var PageWaterLevel = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.waterLevelGrid = mini.get("waterLevelGrid");
-            this.waterLevelGrid.setUrl(PageMain.defaultOption.httpUrl + "/waterLevel/getList");
+            this.waterLevelGrid.setUrl(PageMain.defaultOption.httpUrl + "/waterLevel/getPage");
             this.funSearch();
         },
         funSearch : function()

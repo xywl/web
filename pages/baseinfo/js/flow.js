@@ -14,7 +14,7 @@ var PageFlow = function(){
             this.basePath = PageMain.basePath;
             this.flowGrid = mini.get("flowGrid");
             this.flowGrid.setUrl(PageMain.defaultOption.httpUrl + "/flow/getList");
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/waterLevel/getList",{queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/waterLevel/getPage",{queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
                 if (data.success)
                 {
                     PageFlow.defaultOption.waterFly = data.data;
