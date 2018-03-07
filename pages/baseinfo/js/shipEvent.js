@@ -3,7 +3,9 @@ var PageShipEvent = function(){
     return {
         defaultOption: {
             basePath:"",
-            shipEventGrid : null
+            shipEventGrid : null,
+            shipNoData:[],
+            eventIdFly:[{id:1, name:"不接电话"},{id:2, name:"停船过夜"},{id:3, name:"不服调配"},{id:4, name:"修船"},{id:5, name:"保养"},{id:6, name:"事故停航"},{id:7, name:"私事停航"},{id:8, name:"春节放假"},{id:9, name:"装卸货异常情况"}],
         },
         init :function ()
         {
@@ -11,7 +13,11 @@ var PageShipEvent = function(){
             this.basePath = PageMain.basePath;
             this.shipEventGrid = mini.get("shipEventGrid");
             this.shipEventGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipEvent/getList")
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
+                PageShipEvent.defaultOption.shipNoData = data.data.list;
+            });
             this.funSearch();
+
         },
         funSearch : function()
         {
@@ -28,6 +34,28 @@ var PageShipEvent = function(){
         	shipEventForm.setData();
         	mini.get("queryParamFlag").setValue("1");
             this.shipEventGrid.load(shipEventForm.getData());
+        },
+        funShipIdRenderer : function (e)//船号转码
+        {
+            for(var nItem = 0; nItem < PageShipEvent.defaultOption.shipNoData.length; nItem++)
+            {
+                if(e.value == PageShipEvent.defaultOption.shipNoData[nItem].id)
+                {
+                    return PageShipEvent.defaultOption.shipNoData[nItem].shipNo;
+                }
+            }
+            return e.value;
+        },
+        funRendererEventId : function (e)
+        {
+            for(var nItem = 0; nItem < PageShipEvent.defaultOption.eventIdFly.length; nItem++)
+            {
+                if(e.value == PageShipEvent.defaultOption.eventIdFly[nItem].id)
+                {
+                    return PageShipEvent.defaultOption.eventIdFly[nItem].name;
+                }
+            }
+            return e.value;
         },
         funAdd : function()
         {
@@ -49,18 +77,21 @@ var PageShipEvent = function(){
         },
         funDetail : function()
         {
-        	var row = this.terminalMsgGrid.getSelected();
+        	var row = this.shipEventGrid.getSelected();
         	var paramData = {action: "oper", row:row, title:"查看详细"};
         	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
         {
         	var me = this;
+            paramData.eventId = this.defaultOption.eventIdFly;
+            paramData.shipId = this.defaultOption.shipNoData;
+            console.log(paramData);
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/shipEvent_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  9 + 65,
+                height: 30 *  6 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageShipEventAdd.funSetData(paramData);
@@ -82,7 +113,7 @@ var PageShipEvent = function(){
                         $.ajax({
                             url : PageMain.defaultOption.httpUrl + "/shipEvent/del",
                             type: 'POST',
-                            data: {"int": row.int},
+                            data: {"id": row.id},
                             dataType: 'json',
                             success: function (data)
                             {

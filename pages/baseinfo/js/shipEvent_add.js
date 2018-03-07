@@ -16,6 +16,8 @@ var PageShipEventAdd = function(){
         funSetData : function(data)
         {
         	var row = data.row;
+            mini.get("eventId").setData(data.eventId);
+            mini.get("shipId").setData(data.shipId);
         	this.action = data.action;
         	this.shipEventForm.setData(row);
         	if(this.action == "oper")
