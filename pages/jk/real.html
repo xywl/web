@@ -69,7 +69,8 @@
                 <span class="" style="padding-left: 15px;">船号:</span>
                  <input id="in12" name="in12" class="mini-combobox myselect" onvaluechanged="PageMap.funShipChanged(1)" textField="id" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
                 <span class="" style="padding-left: 15px;">&nbsp;速度：</span>
-                 <input id="speed" name="speed" class="mini-combobox myselect2"  textField="name" valueField="name" emptyText="请选择..." />
+                 <input id="speed" name="speed" changeOnMousewheel="false" class="mini-spinner myselect2"  minValue="1" maxValue="250" />
+                 <!--<input id="speed" name="speed" class="mini-combobox myselect2"  textField="name" valueField="name" emptyText="请选择..." />-->
                  <!--<select class="myselect" style="width: 60px !important; height: 25px;" id="speed">
                      <option>0.5秒/条</option>
                      <option selected>1秒/条</option>
