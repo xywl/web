@@ -439,6 +439,7 @@ var CapcitySchedul = function(){
                     plansData.preArriveTime = this.funTimeFormat(mini.formatDate(prePaseDate, "yyyy-MM-dd HH:mm:ss"));
                     plansData.preSettleAmount = submitData[i].preSettleAmount;
                 }
+                plansData.oil = submitData[i].oil;
                 plansData.settleType = submitData[i].settleType;
                 if (submitData[i].status == -1) {
                     plansData.stashStatus = 1;
@@ -453,7 +454,8 @@ var CapcitySchedul = function(){
                 plans.push(plansData);
             }
             param.plans = plans;
-            if (totalPreLoad > leftWeight) {
+            if (leftWeight != 0 && (totalPreLoad > leftWeight)) {
+                debugger;
                 mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
                 return;
             }
