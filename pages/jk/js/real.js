@@ -178,8 +178,8 @@ var PageMap = function()
             $("#bncs_select").attr("disabled", "disabled");
 
             //mini.get("in03").setData(PageMap.defaultOption.shipStatus);
-            mini.get("speed").setData(PageMap.defaultOption.speedFly);
-            mini.get("speed").select(1);
+           /* mini.get("speed").setData(PageMap.defaultOption.speedFly);
+            mini.get("speed").select(1);*/
             this.funLoadBase();
         },
         funCkListchangedInfo : function ()
@@ -826,7 +826,7 @@ var PageMap = function()
                 {
                     speed = 1;
                 }
-                PageMap.defaultOption.hisTimeOut = window.setTimeout(PageMap.funAutoPlay, PageMap.defaultOption.hisTime * parseFloat(speed));
+                PageMap.defaultOption.hisTimeOut = window.setTimeout(PageMap.funAutoPlay, PageMap.defaultOption.hisTime / parseFloat(speed));
             }
             else
             {

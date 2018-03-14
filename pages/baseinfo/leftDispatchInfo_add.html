@@ -116,19 +116,19 @@
                     <td class="form-content">
                         <input name="maxShipNum" id="maxShipNum"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true" maxlength="11" requiredErrorText="船舶最多个数不能为空"/>
                     </td>
-                    <td class="form-label">水<span style="padding: 0 14px;"></span>位：</td>
+                    <td class="form-label">最大吃水：</td>
                     <td class="form-content">
-                        <input name="waterLevel" id="waterLevel" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true"  requiredErrorText="水位不能为空"/>
+                        <input name="waterLevel" id="waterLevel" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000"  />
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">最小船舶吨位：</td>
                     <td class="form-content">
-                        <input name="minShipWeight" id="minShipWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true" maxlength="11" requiredErrorText="最小船舶吨位不能为空"/>
+                        <input name="minShipWeight" id="minShipWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"   maxlength="11" />
                     </td>
                     <td class="form-label">最大船舶吨位：</td>
                     <td class="form-content">
-                        <input name="maxShipWeight" id="maxShipWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  required="true" maxlength="11" requiredErrorText="最大船舶吨位不能为空"/>
+                        <input name="maxShipWeight" id="maxShipWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000"  maxlength="11" />
                     </td>
                 </tr>
                 <tr>
@@ -140,7 +140,7 @@
                 <tr>
                     <td class="form-label">特殊要求：</td>
                     <td class="form-content" colspan="3">
-                        <input name="specialTip" id="specialTip" class="mini-textarea" style="width: 670px; height: 60px;"  required="true" maxlength="80"  requiredErrorText="特殊要求不能为空"/>
+                        <input name="specialTip" id="specialTip" class="mini-textarea" style="width: 670px; height: 60px;"  maxlength="80"  />
                     </td>
                 </tr>
             </table>

@@ -22,56 +22,43 @@
         <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:10px;">
         <div id="shipEventFormAdd">
        
-                	<input id="int" name="int"  class="mini-hidden" />
+                	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">shipId：</td>
+                    <td class="form-label">船号：</td>
                     <td class="form-content">
-                        <input name="shipId" id="shipId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="shipId不能为空"/>
+                        <input name="shipId" id="shipId"  class="mini-combobox"  width="150"
+                               required="true" maxlength="20" valueField="id" textField="shipNo"   emptyText="请选择..."
+                               allowInput="true" showNullItem="true" nullItemText="请选择..."
+                               requiredErrorText="船号不能为空"/>
+                    </td>
+                    <td class="form-label">事件类型：</td>
+                    <td class="form-content">
+                        <input name="eventId" id="eventId"   class="mini-combobox" valueField="id" textField="name" required="true"
+                               width="140" maxlength="3" requiredErrorText="事件类型不能为空"   />
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">事件类型 1：正常   2：停驶   3：不适航  ：</td>
+                    <td class="form-label">开始日期：</td>
                     <td class="form-content">
-                        <input name="eventId" id="eventId" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="事件类型 1：正常   2：停驶   3：不适航  不能为空"/>
+                        <input name="beginDate" id="beginDate" class="mini-datepicker" width="150"  format="yyyy-MM-dd"  allowInput="false"  required="true"  emptyText="起始日期"/>
+                    </td>
+                    <td class="form-label">结束日期：</td>
+                    <td class="form-content">
+                        <input name="endDate" id="endDate" class="mini-datepicker" width="150"  format="yyyy-MM-dd" allowInput="false"   required="true"  emptyText="截止日期" allowInput="false"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">description：</td>
+                    <td class="form-label">总天数：</td>
                     <td class="form-content">
-                        <input name="description" id="description" class="mini-textbox"  required="true" maxlength="100" requiredErrorText="description不能为空"/>
+                        <input name="dayNum" id="dayNum"class="mini-spinner" required="true" minValue="0" maxValue="100000"  width="150"  maxlength="11"  requiredErrorText="总天数不能为空"/>
+                    </td>
+                    <td class="form-label">备注：</td>
+                    <td class="form-content">
+                        <input name="description" id="description"  width="150" class="mini-textarea" style=" height: 40px;"   maxlength="100" />
                     </td>
                 </tr>
-                <tr>
-                    <td class="form-label">creator：</td>
-                    <td class="form-content">
-                        <input name="creator" id="creator" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="creator不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">created：</td>
-                    <td class="form-content">
-                        <input name="created" id="created" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="created不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">updater：</td>
-                    <td class="form-content">
-                        <input name="updater" id="updater" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="updater不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">updated：</td>
-                    <td class="form-content">
-                        <input name="updated" id="updated" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="updated不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">isDeleted：</td>
-                    <td class="form-content">
-                        <input name="isDeleted" id="isDeleted" class="mini-textbox"  required="true" maxlength="3" requiredErrorText="isDeleted不能为空"/>
-                    </td>
-                </tr>
+
             </table>
          </div>
             
