@@ -28,10 +28,10 @@
             border-radius:5px;
         }
         .myselect{
-            width:118px !important;
+            width:140px !important;
         }
         .myselect2{
-            width:90px !important;
+            width:60px !important;
         }
         .mini-mask{
             //display: none !important;
@@ -65,11 +65,10 @@
             <img src="js/mapbaidu/img/map-close-1.png" class="close-img">
              <div class="info-top">
                 <span class="">设备号:</span>
-                 <input id="in11" name="in11" class="mini-combobox myselect" onvaluechanged="PageMap.funDevChanged(1)"  textField="name" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                 <input id="in11" name="in11" class="mini-combobox" style="width: 175px;"  onvaluechanged="PageMap.funDevChanged(1)"  textField="name" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
                 <span class="" style="padding-left: 15px;">船号:</span>
-                 <input id="in12" name="in12" class="mini-combobox myselect" onvaluechanged="PageMap.funShipChanged(1)" textField="id" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
-                <span class="" style="padding-left: 15px;">&nbsp;速度：</span>
-                 <input id="speed" name="speed" changeOnMousewheel="false" class="mini-spinner myselect2"  minValue="1" maxValue="250" />
+                 <input id="in12" name="in12" class="mini-combobox" style="width: 175px;"  onvaluechanged="PageMap.funShipChanged(1)" textField="id" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+
                  <!--<input id="speed" name="speed" class="mini-combobox myselect2"  textField="name" valueField="name" emptyText="请选择..." />-->
                  <!--<select class="myselect" style="width: 60px !important; height: 25px;" id="speed">
                      <option>0.5秒/条</option>
@@ -80,14 +79,14 @@
                  <p/>
                  <span class="">时间段:</span>
                  <input name="in13" id="in13" class="mini-datepicker" style="width: 175px;"  valueType="string"   format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" allowSort="true"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
-                <span class="" style="padding: 0 5px;">-</span>
+                <span class="" style="padding: 0 20px;">-</span>
                  <input name="in14" id="in14" class="mini-datepicker" style="width: 175px;" valueType="string"  format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss" showTime="true" allowSort="true"  nullValue="null"  emptyText="开始时间" allowInput="false"/>
-                 <span class="" style="padding-left: 15px;"></span>
-               <button  onclick="PageMap.funSearchHis()" style="margin: 0 3px; width: 70px; height: 25px;" >回放</button>
+                 <span class="" style="padding-left: 5px;"></span>
+               <button  onclick="PageMap.funSearchHis()" style="margin: 0 3px; width: 60px; height: 25px;" >回放</button>
                  <!-- <button onclick="PageMap.funResetSearch()" style="margin: 0 3px; width: 50px;">重置</button>-->
 
                  <p/>
-                  <input id="bncs_select" type="range" value="0" onmouseup="PageMap.funSliderChange()" value="0" min="0"
+                  <input id="bncs_select" type="range" value="0" onmouseup="PageMap.funSliderChange()" onmousedown="PageMap.funSliderKeyDown()" value="0" min="0"
                          max="100" data-rangeslider style="width:480px;">
                  <p/>
                  <input type="button" value="播放" onclick="PageMap.funPlay()"/>
@@ -95,6 +94,11 @@
                  <input type="button" value="停止" onclick="PageMap.funStop()"/>
                  <input type="button" value="重播" onclick="PageMap.funRePlay()"/>
                  <input type="button" value="清空" onclick="PageMap.funHisClear()"/>
+
+                 <span class="" style="padding-left: 15px;">&nbsp;速度：</span>
+                 <input type="button" value="慢" onclick="mini.get('speed').setValue(mini.get('speed').getValue() - 1)"/>
+                 <input id="speed" name="speed" changeOnMousewheel="false" class="mini-spinner myselect2"  minValue="1" maxValue="250" />
+                 <input type="button" value="快" onclick="mini.get('speed').setValue(mini.get('speed').getValue() + 1)"/>
             </div>
             <div class="info-middle"></div>
             <div class="info-bottom"></div>

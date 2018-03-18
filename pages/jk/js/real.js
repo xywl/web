@@ -56,6 +56,7 @@ var PageMap = function()
             hisTimeOut:null,
             hisTime : 1000,
             hisPlayFlag:false,
+            hisPlayStaue:1,
             baseInfoWindow:null,
             realFlag : false,
             PortFly : [],
@@ -635,10 +636,17 @@ var PageMap = function()
                 PageMap.defaultOption.hisMarker.hide();
             }
             PageMap.defaultOption.hisPolyLineFly = [];
+
+
             if (PageMain.IsNull("in12", "船号")
                 || PageMain.IsNull("in13", "开始时间")
                 || PageMain.IsNull("in14", "结束时间"))
             {
+                return ;
+            }
+            if((mini.parseDate(mini.get("in14").getValue()) - mini.parseDate(mini.get("in13").getValue()))/86400000 >= 2)
+            {
+                PageMain.funShowMessageBox("查询时间不能大于两天");
                 return ;
             }
             PageMain.funShowLoading();
@@ -749,7 +757,15 @@ var PageMap = function()
         {
             //console.log("--------------" + $("#bncs_select").val())
             PageMap.defaultOption.hisCurrCnt = parseInt($("#bncs_select").val() - 1);
-            PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
+            if (PageMap.defaultOption.hisPlayStaue == 2)
+            {
+                PageMap.defaultOption.hisPlayStaue = 1;
+                PageMap.funPlay();
+            }
+            else
+            {
+                PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
+            }
         },
         //画船的位置
         funHisMarker : function (paramItem)
@@ -857,6 +873,19 @@ var PageMap = function()
                 PageMap.defaultOption.hisPlayFlag = true;
                 PageMap.funAutoPlay();
             }
+        },
+        funSliderKeyDown : function ()
+        {
+            if (PageMap.defaultOption.hisPlayFlag)
+            {
+                PageMap.funParse();
+                PageMap.defaultOption.hisPlayStaue = 2;
+            }
+            else
+            {
+                PageMap.defaultOption.hisPlayStaue = 0;
+            }
+            console.log("0-----------------9")
         },
         //删除图层
         funRemoveOverlayByObj : function(mObj)
