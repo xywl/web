@@ -662,11 +662,8 @@ var PageMap = function()
             var tmpFly = [];
             for(var nItem = 0; nItem < this.defaultOption.hisDataFly.length - 1; nItem++)
             {
-
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem].lng, this.defaultOption.hisDataFly[nItem].lat)));
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
-
-
             }
             var polyline = this.funAddPolyLineInfo(tmpFly);
             this.defaultOption.hisPolyLineFly.push(polyline);
@@ -778,13 +775,20 @@ var PageMap = function()
             {
                 PageMap.defaultOption.hisMarker.setPosition(paramPoint);
             }
-            PageMap.defaultOption.hisInfoWindow.setContent(PageMap.funHisInfoWindowInfo(mObj));
-            PageMap.funDealState(mObj);
+            //PageMap.defaultOption.hisInfoWindow.setContent(PageMap.funHisInfoWindowInfo(mObj));
+
             if(PageMap.defaultOption.hisInfoWindow.isOpen() == false)
             {
+                PageMap.defaultOption.hisInfoWindow.setWidth(320);
+                PageMap.defaultOption.hisInfoWindow.setHeight(150);
+                PageMap.defaultOption.hisInfoWindow.setContent("<div id='hisCon'>"+PageMap.funHisInfoWindowInfo(mObj)+"</div>");
                 PageMap.defaultOption.hisMarker.openInfoWindow( PageMap.defaultOption.hisInfoWindow, paramPoint);
             }
+            else {
+                $("#hisCon").html(PageMap.funHisInfoWindowInfo(mObj));
+            }
 
+            PageMap.funDealState(mObj);
             var me = this;
             PageMap.defaultOption.GlobalGeocoder.getLocation(paramPoint, function(rs)
             {
