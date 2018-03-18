@@ -659,16 +659,18 @@ var PageMap = function()
             this.defaultOption.hisDataFly = data;
             this.funHis();
             PageMap.mapObj.centerAndZoom(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[0].lng, this.defaultOption.hisDataFly[0].lat)), PageMap.mapObj.getZoom());
+            var tmpFly = [];
             for(var nItem = 0; nItem < this.defaultOption.hisDataFly.length - 1; nItem++)
             {
-                var tmpFly = [];
+
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem].lng, this.defaultOption.hisDataFly[nItem].lat)));
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
 
-                var polyline = this.funAddPolyLineInfo(tmpFly);
-                this.defaultOption.hisPolyLineFly.push(polyline);
-                this.funHisMouseInfo(polyline, nItem);
+
             }
+            var polyline = this.funAddPolyLineInfo(tmpFly);
+            this.defaultOption.hisPolyLineFly.push(polyline);
+            this.funHisMouseInfo(polyline, nItem);
         },
         funHisMouseInfo : function (polyline, item)
         {
