@@ -3,7 +3,9 @@ var PageWaterLevel = function(){
     return {
         defaultOption: {
             basePath:"",
-            waterLevelGrid : null
+            waterLevelGrid : null,
+            operCnt : 0,
+            dataDictFly : []
         },
         init :function ()
         {
@@ -12,6 +14,10 @@ var PageWaterLevel = function(){
             this.waterLevelGrid = mini.get("waterLevelGrid");
             this.waterLevelGrid.setUrl(PageMain.defaultOption.httpUrl + "/waterLevel/getPage");
             this.funSearch();
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"gjswd"}, function (data) {
+                PageWaterLevel.defaultOption.dataDictFly = data;
+              //  PageWaterLevel.funLoadSearchInfo();
+            })
         },
         funSearch : function()
         {
@@ -47,6 +53,17 @@ var PageWaterLevel = function(){
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageWaterLevel.funDetail()"></a>';
         },
+        funDictRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageWaterLevel.defaultOption.dataDictFly.length; nItem++)
+            {
+                if(e.value == PageWaterLevel.defaultOption.dataDictFly[nItem].id)
+                {
+                    return PageWaterLevel.defaultOption.dataDictFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funDetail : function()
         {
             var row = this.waterLevelGrid.getSelected();
@@ -56,6 +73,7 @@ var PageWaterLevel = function(){
         funOpenInfo : function(paramData)
         {
             var me = this;
+            paramData.dataDictFly = this.defaultOption.dataDictFly;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/waterLevel_add.html",
                 title: paramData.title,

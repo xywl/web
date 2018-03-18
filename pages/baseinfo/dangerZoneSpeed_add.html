@@ -27,51 +27,60 @@
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
                     <td class="form-label">区域航段：</td>
-                    <td class="form-content">
+                    <td class="form-content" colspan="3">
                         <input name="name" id="name" class="mini-textbox"  required="true" maxlength="20" requiredErrorText="区域航段不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">经<span style="padding: 0 4px;"></span>纬<span style="padding: 0 4px;"></span>度：</td>
-                    <td class="form-content">
+                    <td class="form-content" colspan="3">
                         <input name="coordinate" id="coordinate" class="mini-textbox"    onclick="PageDangerZoneSpeedAdd.funOpenLngLat()"/>
                         <a class="mini-button" iconCls="icon-site" onclick="PageDangerZoneSpeedAdd.funOpenLngLat()"><label>区域</label></a>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">最小速度(km/h)：</td>
+                    <td class="form-content" width="140">
+                        <input name="minSpeed" id="minSpeed"   decimalPlaces="2" width="130" class="mini-spinner"  minValue="0" maxValue="1000000000000" />
+                    </td>
+                    <td class="form-label"  width="140">是否终端报警：</td>
                     <td class="form-content">
-                        <input name="minSpeed" id="minSpeed"   decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="1000000000000" />
+                        <input name="selfalarmMin" id="selfalarmMin" width="80" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
+                               maxlength="10" \/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">最大速度(km/h)：</td>
                     <td class="form-content">
-                        <input name="maxSpeed" id="maxSpeed" onvalidation="onMaxSpeedValidation"  decimalPlaces="2" class="mini-spinner" minValue="0" maxValue="1000000000000" />
+                        <input name="maxSpeed" id="maxSpeed" onvalidation="onMaxSpeedValidation"  width="130"  decimalPlaces="2" class="mini-spinner" minValue="0" maxValue="1000000000000" />
                     </td>
+                    <td class="form-label">是否终端报警：</td>
+                    <td class="form-content">
+                        <input name="selfalarmMax" id="selfalarmMax"  width="80" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
+                               maxlength="10" \/>                    </td>
                 </tr>
                 <tr>
                     <td class="form-label">消息模版：</td>
-                    <td class="form-content">
+                    <td class="form-content" colspan="3">
                         <input  id="msgId" name="msgId" class="mini-combobox" valueField="id" textField="title"  onvaluechanged="PageDangerZoneSpeedAdd.funMsgChangeInfo"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">模版内容：</td>
-                    <td class="form-content">
-                        <input name="msgTemplate" id="msgTemplate" class="mini-textarea" style="width:350px; height: 100px;"  maxlength="100"/>
+                    <td class="form-content" colspan="3">
+                        <input name="msgTemplate" id="msgTemplate" class="mini-textarea" style="width:350px; height: 80px;"  maxlength="100"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">状<span style="padding: 0 16px;"></span>态：</td>
-                    <td class="form-content">
+                    <td class="form-content" colspan="3">
                         <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"  required="true" maxlength="3"
                           required="true" maxlength="10" requiredErrorText="状态不能为空"\/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">备<span style="padding: 0 16px;"></span>注：</td>
-                    <td class="form-content">
+                    <td class="form-content" colspan="3">
                         <input name="description" id="description" class="mini-textarea" style="width:350px; height: 80px;"  maxlength="100"/>
                     </td>
                 </tr>

@@ -92,7 +92,9 @@
                 <tr>
                     <td class="form-label">签订部门：</td>
                     <td class="form-content">
-                        <input name="signDepartment"  id="signDepartment" class="mini-combobox" valueField="id" textField="name"    required="true" maxlength="10" requiredErrorText="合同签订部门不能为空"/>
+                        <input name="signDepartment"  id="signDepartment" class="mini-combobox"
+                        required="true" maxlength="20" valueField="id" textField="name"   emptyText="请选择..."
+                        allowInput="true" showNullItem="true" nullItemText="请选择..."   requiredErrorText="合同签订部门不能为空"/>
                     </td>
                     <td class="form-label">货物类型：</td>
                     <td class="form-content">

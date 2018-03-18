@@ -28,7 +28,9 @@
                 <tr>
                     <td class="form-label">关键水位点：</td>
                     <td class="form-content">
-                        <input name="name" id="name" class="mini-textbox"  required="true" maxlength="30" requiredErrorText="关键水位点不能为空"/>
+                        <input name="name" id="name" class="mini-combobox"  width="280"
+                               required="true" maxlength="20" valueField="id" textField="name"   emptyText="请选择..."
+                               allowInput="true" showNullItem="true" nullItemText="请选择..."  requiredErrorText="关键水位点不能为空"/>
                     </td>
                 </tr>
                 <tr>

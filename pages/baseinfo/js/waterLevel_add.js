@@ -18,6 +18,7 @@ var PageWaterLevelAdd = function(){
         {
             var row = data.row;
             this.action = data.action;
+            mini.get("name").setData(data.dataDictFly);
             this.waterLevelForm.setData(row);
             if(this.action == "add")
             {

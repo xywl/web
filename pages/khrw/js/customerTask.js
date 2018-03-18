@@ -13,6 +13,7 @@ var PageCustomerTask = function(){
             totalLoad:0,
             flowFly :[], //流向JSON
             flowSelect : [], //流向选择
+            selfBuckleFly : [{id:1, name:"是"},{id:2, name:"否"}],
             detailGridForm : null
         },
         init :function ()
@@ -113,6 +114,7 @@ var PageCustomerTask = function(){
         {
             paramData.customerFly = this.defaultOption.customerFly;
         	var me = this;
+            paramData.row.selfBuckleFly = this.defaultOption.selfBuckleFly;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/khrw/customerTask_add.html",
                 title: paramData.title,
@@ -158,7 +160,17 @@ var PageCustomerTask = function(){
             }
             return e.value;
         },
-
+        funSelfBuckleTypeRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageCustomerTask.defaultOption.selfBuckleFly.length; nItem++)
+            {
+                if(e.value == PageCustomerTask.defaultOption.selfBuckleFly[nItem].id)
+                {
+                    return PageCustomerTask.defaultOption.selfBuckleFly[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funContractRenderer : function (e)//合同转码
         {
             for(var nItem = 0; nItem < PageCustomerTask.defaultOption.customerFly.length; nItem++)

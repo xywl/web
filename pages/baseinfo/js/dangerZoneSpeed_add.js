@@ -37,11 +37,14 @@ var PageDangerZoneSpeedAdd = function(){
         {
             var row = data.row;
             this.action = data.action;
+            mini.get("selfalarmMin").setData(data.selfAlarmJson);
+            mini.get("selfalarmMax").setData(data.selfAlarmJson);
             this.dangerZoneSpeedForm.setData(row);
             if(this.action == "add")
             {
                 mini.get("status").select(0)
             }
+
             if(this.action == "oper")
             {
                 mini.get("layout_dangerZoneSpeed_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();

@@ -3,7 +3,8 @@ var PageDangerZoneSpeed = function(){
     return {
         defaultOption: {
             basePath:"",
-            dangerZoneSpeedGrid : null
+            dangerZoneSpeedGrid : null,
+            selfAlarm:[{id:1, name:"是"},{id:2, name:"否"}],
         },
         init :function ()
         {
@@ -55,6 +56,17 @@ var PageDangerZoneSpeed = function(){
             }
             return e.value;
         },
+        funRendererSelfAlarm: function (e)
+        {
+            for(var nItem = 0; nItem < PageDangerZoneSpeed.defaultOption.selfAlarm.length; nItem++)
+            {
+                if(e.value == PageDangerZoneSpeed.defaultOption.selfAlarm[nItem].id)
+                {
+                    return PageDangerZoneSpeed.defaultOption.selfAlarm[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funOperRenderer : function(e)
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageDangerZoneSpeed.funDetail()"></a>';
@@ -68,6 +80,7 @@ var PageDangerZoneSpeed = function(){
         funOpenInfo : function(paramData)
         {
             var me = this;
+            paramData.selfAlarmJson = this.defaultOption.selfAlarm;
             mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/dangerZoneSpeed_add.html",
                 title: paramData.title,
