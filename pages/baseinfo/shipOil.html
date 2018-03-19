@@ -1,0 +1,54 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/shipOil.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="72" showHeader="false"    style="border: none;">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="shipOilForm">
+				<lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入实际加油量"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageShipOil.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageShipOil.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-add" plain="true" onclick="PageShipOil.funAdd()"><label class="form-label">增加</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-edit" plain="true" id="edit" onclick="PageShipOil.funModify()"><label class="form-label">修改</label></a>
+                        <a  class="mini-button block-button hide" iconCls="icon-remove" plain="true" id="remove" onclick="PageShipOil.funDelete()"><label class="form-label">删除</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="mini-fit">
+            <div id="shipOilGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+					 <div field="fuelQuantity" width="120" headerAlign="center" allowSort="true">实际加油量</div>
+                    <div field="unitPrice" width="120" headerAlign="center" allowSort="true" >航行区域</div>
+                    <div field="refuelingTime" width="120" headerAlign="center" allowSort="true"renderer="PageMain.funFromDateInfo">油的单价</div>
+                    <div field="creatorName" width="120" headerAlign="center" allowSort="true">创建人</div>
+                    <div field="created" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">创建时间</div>
+                    <div field="description" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageShipOil.funOperRenderer">操作</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -94,9 +94,11 @@ var PageSailingInfoAdd = function(){
                 mini.get("loadTime").setReadOnly(false);
                 mini.get("loadWeight").setReadOnly(false);
                 mini.get("preArriveEPortTime").setReadOnly(false);
+                mini.get("bucklePrice").setReadOnly(false);
                 mini.get("loadTime").required =true;
                 mini.get("loadWeight").required =true;
                 mini.get("preArriveEPortTime").required =true;
+                mini.get("bucklePrice").required =true;
                 $("td[name='zqlgsj']").hide();
                 $("tr[name='zqdgsj']").hide();
                 $("tr[name='zqxhsj']").hide();
@@ -187,6 +189,8 @@ var PageSailingInfoAdd = function(){
                     obj.dischargeDelayFee = mini.get("dischargeDelayFee").getValue();
                     obj.allowance = mini.get("allowance").getValue();
                     obj.description = mini.get("description").getValue();
+                    obj.status = mini.get("status").getValue();
+                    obj.bucklePrice = mini.get("bucklePrice").getValue();
                     /*if(mini.get("startchargeTime").getValue() == null) {
                         var d = new Date();
                         mini.get("startchargeTime").setData()

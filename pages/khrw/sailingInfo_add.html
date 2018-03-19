@@ -26,6 +26,7 @@
         <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:20px;">
         <div id="sailingInfoFormAdd">
             <input id="id" name="id"  class="mini-hidden" />
+            <input id="status" name="status"   class="mini-hidden  " />
             <input id="shipId" name="shipId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr name="zqxhsj">
@@ -70,6 +71,12 @@
                         <input name="actualArriveEPortTime" id="actualArriveEPortTime" class="mini-datepicker" nullValue="null"
                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="重船离港时间不能为空"
                                showClearButton="true"   allowInput="false" />
+                    </td>
+                </tr>
+                <tr name="kqzhdj">
+                    <td class="form-label">扣网片金额（元）：</td>
+                    <td class="form-content">
+                        <input name="bucklePrice" id="bucklePrice" class="mini-textbox" requiredErrorText="扣网片金额不能为空"  />
                     </td>
                 </tr>
                 <tr name="kqzhdj">
