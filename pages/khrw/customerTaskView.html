@@ -1,0 +1,85 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/customerTaskView.js"></script>
+    <title>客户任务查看</title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="72" showHeader="false"  style="border: none;">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="customerTaskViewForm">
+                <lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入任务单号"  style="width:160px;"/>
+				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />	
+                <a class="mini-button" iconCls="icon-search" onclick="PageCustomerTask.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageCustomerTask.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-fit">
+            <div id="customerTaskViewGrid" class="mini-datagrid"
+                idField="id" allowResize="false" idField="id"
+                pagesize="15" sizeList="[15,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div field="status" width="120" headerAlign="center" allowSort="true">任务状态</div>
+                    <div header="任务信息" headerAlign="center">
+                        <div property="columns">
+                            <div field="taskNo" width="120" headerAlign="center" allowSort="true">客户单号</div>
+                            <div field="fullName" width="100" headerAlign="center" allowSort="true">客户单位</div>
+                            <div field="contractName" width="100" headerAlign="center" allowSort="true">合同</div>
+                            <div field="totalLoad" width="100" headerAlign="center" allowSort="true">总吨位</div>
+                        </div>
+                    </div>
+                    <div header="任务流向信息" headerAlign="center">
+                        <div property="columns">
+                            <div field="flowName" width="100" headerAlign="center" allowSort="true">流向</div>
+                            <div field="goodsName" width="100" headerAlign="center" allowSort="true">货物名称</div>
+                            <div field="goodsType" width="100" headerAlign="center" allowSort="true">货物类型</div>
+                            <div field="totalWeight" width="100" headerAlign="center" allowSort="true">流向吨位</div>
+                            <div field="startPortName" width="100" headerAlign="center" allowSort="true">装货点</div>
+                            <div field="loadDate" width="100" headerAlign="center" allowSort="true">装货日期</div>
+                            <div field="endPortName" width="100" headerAlign="center" allowSort="true">卸货点</div>
+                            <div field="dischargeDate" width="100" headerAlign="center" allowSort="true">卸货日期</div>
+                            <div field="contractName" width="100" headerAlign="center" allowSort="true">大轮动态</div>
+                            <div field="totalLoad" width="100" headerAlign="center" allowSort="true">临调动态</div>
+                        </div>
+                    </div>
+                    <div header="运力调度信息" headerAlign="center">
+                        <div property="columns">
+                            <div field="shipNo" width="100" headerAlign="center" allowSort="true">船号</div>
+                            <div field="shipFlag" width="100" headerAlign="center" allowSort="true">船舶类型</div>
+                            <div field="preWeight" width="100" headerAlign="center" allowSort="true">预报吨位</div>
+                            <div field="preLoad" width="100" headerAlign="center" allowSort="true">预发吨位</div>
+                            <div field="actualTransferPrice" width="100" headerAlign="center" allowSort="true">实际运价</div>
+                            <div field="preArriveTime" width="130" headerAlign="center" allowSort="true">空船预计到岗时间</div>
+                        </div>
+                    </div>
+                    <div header="船舶航次信息" headerAlign="center">
+                        <div property="columns">
+                            <div field="arriveSPortTime" width="130" headerAlign="center" allowSort="true">空船实际到港时间</div>
+                            <div field="loadTime" width="130" headerAlign="center" allowSort="true">空船实际装货时间</div>
+                            <div field="loadWeight" width="130" headerAlign="center" allowSort="true">空船实际装货吨位</div>
+                            <div field="preArriveEPortTime" width="130" headerAlign="center" allowSort="true">重船预计到卸货港时间</div>
+                            <div field="actualArriveEPortTime" width="130" headerAlign="center" allowSort="true">重船实际到卸货港时间</div>
+                            <div field="dischargeTime" width="130" headerAlign="center" allowSort="true">重船实际卸货时间</div>
+                            <div field="dischargeWeight" width="130" headerAlign="center" allowSort="true">重船实际卸货吨位</div>
+                            <div field="dischargeDelayFee" width="100" headerAlign="center" allowSort="true">卸货延期费</div>
+                            <div field="allowance" width="100" headerAlign="center" allowSort="true">异常补助</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+</script>
+</body>
+</html>
