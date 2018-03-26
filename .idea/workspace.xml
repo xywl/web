@@ -4,21 +4,10 @@
     <list default="true" id="25c8f052-4269-41ea-8586-91ee93bbc8b3" name="Default" comment="装卸货异常情况">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" afterPath="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/contract_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/contract_add.html" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed.html" afterPath="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed.html" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed_add.html" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed_add.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed_add.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/waterLevel.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/waterLevel.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/waterLevel_add.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/waterLevel_add.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/waterLevel.html" afterPath="$PROJECT_DIR$/pages/baseinfo/waterLevel.html" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" />
       <change beforePath="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" />
       <change beforePath="$PROJECT_DIR$/pages/home/main.html" afterPath="$PROJECT_DIR$/pages/home/main.html" />
-      <change beforePath="$PROJECT_DIR$/pages/khrw/customerTask_add.html" afterPath="$PROJECT_DIR$/pages/khrw/customerTask_add.html" />
-      <change beforePath="$PROJECT_DIR$/pages/khrw/js/customerTask.js" afterPath="$PROJECT_DIR$/pages/khrw/js/customerTask.js" />
-      <change beforePath="$PROJECT_DIR$/pages/khrw/js/customerTask_add.js" afterPath="$PROJECT_DIR$/pages/khrw/js/customerTask_add.js" />
-      <change beforePath="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" afterPath="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" />
-      <change beforePath="$PROJECT_DIR$/pages/khrw/sailingInfo.html" afterPath="$PROJECT_DIR$/pages/khrw/sailingInfo.html" />
       <change beforePath="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" afterPath="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" />
     </list>
     <ignored path="xyl.iws" />
@@ -38,110 +27,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/home/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="121" column="79" lean-forward="false" selection-start-line="121" selection-start-column="67" selection-end-line="121" selection-end-column="79" />
+            <state relative-caret-position="57">
+              <caret line="94" column="28" lean-forward="true" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
               <folding>
-                <marker date="1520432135668" expanded="true" signature="12186:12201" ph="..." />
-                <marker date="1520432135668" expanded="true" signature="12314:12339" ph="..." />
+                <marker date="1521466645477" expanded="true" signature="12285:12300" ph="..." />
+                <marker date="1521466645477" expanded="true" signature="12413:12438" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerTask.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/khrw/customerTask.html">
+      <file leaf-file-name="jquery.gesoft-1.0.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-171">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="1940">
+              <caret line="116" column="68" lean-forward="false" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="customerTask_add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/khrw/customerTask_add.html">
+      <file leaf-file-name="shipEvent.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="57" column="63" lean-forward="false" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
+            <state relative-caret-position="171">
+              <caret line="27" column="121" lean-forward="false" selection-start-line="27" selection-start-column="121" selection-end-line="27" selection-end-column="121" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="waterLevel.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/waterLevel.html">
+      <file leaf-file-name="shipEvent.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="40" column="112" lean-forward="false" selection-start-line="40" selection-start-column="112" selection-end-line="40" selection-end-column="112" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="waterLevel_add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="47" column="21" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="47" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="waterLevel.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/waterLevel.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="298">
+              <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
               <folding>
-                <marker date="1521375428890" expanded="true" signature="1875:1926" ph="..." />
+                <marker date="1522070449803" expanded="true" signature="1183:1234" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="transferPrice.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferPrice.js">
+      <file leaf-file-name="shipEvent_add.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="130" column="67" lean-forward="true" selection-start-line="130" selection-start-column="67" selection-end-line="130" selection-end-column="67" />
-              <folding>
-                <marker date="1520338197605" expanded="true" signature="3559:3610" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transferPrice_add.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferPrice_add.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="344">
-              <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerTask.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pages/khrw/js/customerTask.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2185">
-              <caret line="124" column="67" lean-forward="false" selection-start-line="124" selection-start-column="67" selection-end-line="124" selection-end-column="67" />
-              <folding>
-                <marker date="1521378340364" expanded="true" signature="2204:2255" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="customerTask_add.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/khrw/js/customerTask_add.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+            <state relative-caret-position="154">
+              <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -159,18 +94,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>shipLevel</find>
-      <find>shipLevelFly</find>
-      <find>140</find>
-      <find>funDetail</find>
-      <find>goodsSubTypeFly</find>
-      <find>eventIdFly</find>
-      <find>shipNoData</find>
-      <find>PageShipStaff</find>
-      <find>改建</find>
-      <find>单位名称</find>
-      <find>船舶</find>
-      <find>实际卸货</find>
       <find>实际到卸货港时间</find>
       <find>zqdgsj</find>
       <find>ksxhsj</find>
@@ -181,7 +104,6 @@
       <find>funFromDateInfo</find>
       <find>zqxhsj</find>
       <find>装卸货异常情况</find>
-      <find>shipFlagFly</find>
       <find>shipFlag</find>
       <find>operCnt</find>
       <find>funSearch</find>
@@ -189,6 +111,19 @@
       <find>funDictRenderer</find>
       <find>dataDictFly</find>
       <find>priceTypeFly</find>
+      <find>PageShip</find>
+      <find>PageShipAdd</find>
+      <find>shipGrid</find>
+      <find>shipLevelFly</find>
+      <find>shipFlagFly</find>
+      <find>shipFormAdd</find>
+      <find>shipForm</find>
+      <find>160</find>
+      <find>ship/</find>
+      <find>width</find>
+      <find>PageShipAddOil</find>
+      <find>status</find>
+      <find>kqzhdj</find>
     </findStrings>
     <replaceStrings>
       <replace>PageSailingInfo</replace>
@@ -203,6 +138,14 @@
       <replace>客户任务流向</replace>
       <replace>140</replace>
       <replace>150</replace>
+      <replace>PageShipAddOil</replace>
+      <replace>PageShipOil</replace>
+      <replace>shipOilGrid</replace>
+      <replace>shipOilFormAdd</replace>
+      <replace>260</replace>
+      <replace>shipOil/</replace>
+      <replace>shipOilForm</replace>
+      <replace>PageShipOilAdd</replace>
     </replaceStrings>
     <dirStrings>
       <dir>E:\develop\project\xyl\front\xyl</dir>
@@ -225,10 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pages/baseinfo/sailingInfo.html" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/js/ship.js" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/js/contract_add.js" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/js/msgTemplate_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/port_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/customer.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/bigShipState.html" />
@@ -245,14 +184,11 @@
         <option value="$PROJECT_DIR$/pages/baseinfo/js/dangerZone_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/tempDispatchShip_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/shipStaff_add.js" />
-        <option value="$PROJECT_DIR$/pages/home/main.html" />
         <option value="$PROJECT_DIR$/pages/khrw/js/sailingInfo.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/customer_add.html" />
         <option value="$PROJECT_DIR$/jslib/miniui/mini.vtypes.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/shipEvent_add.js" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/shipEvent.html" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/ship_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/ship_add.html" />
         <option value="$PROJECT_DIR$/pages/khrw/customerTaskFlow_add.html" />
@@ -260,22 +196,29 @@
         <option value="$PROJECT_DIR$/pages/baseinfo/port.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/tempDispatchShip.html" />
         <option value="$PROJECT_DIR$/pages/khrw/sailingInfo.html" />
-        <option value="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" />
         <option value="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" />
-        <option value="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/contract.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/waterLevel_add.js" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/waterLevel.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/waterLevel.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/contract_add.html" />
         <option value="$PROJECT_DIR$/pages/khrw/js/customerTask.js" />
         <option value="$PROJECT_DIR$/pages/khrw/customerTask_add.html" />
         <option value="$PROJECT_DIR$/pages/khrw/js/customerTask_add.js" />
+        <option value="$PROJECT_DIR$/pages/home/main.html" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/shipOil.html" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/js/shipOil.js" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/js/shipOil_add.js" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/shipOil_add.html" />
+        <option value="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" />
+        <option value="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" />
       </list>
     </option>
   </component>
@@ -305,7 +248,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -334,13 +276,6 @@
               <item name="xyl" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="baseinfo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="baseinfo" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
@@ -378,6 +313,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
@@ -393,128 +329,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\xylWebGit\xyl\pages\baseinfo\js" />
+      <recent name="G:\xylWebGit\xyl\pages\baseinfo" />
+      <recent name="G:\xylw\xyl\pages" />
+      <recent name="G:\xylw\xyl\pages\khrw\js" />
+      <recent name="G:\xylw\xyl\pages\khrw" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\study\xyl\jslib\miniui" />
       <recent name="E:\study\xyl\jk" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\xylw\xyl\pages" />
-      <recent name="G:\xylw\xyl\pages\khrw\js" />
-      <recent name="G:\xylw\xyl\pages\khrw" />
-      <recent name="G:\xylw\xyl\pages\baseinfo" />
-      <recent name="G:\xylw\xyl\pages\baseinfo\js" />
-    </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pages/jk/js/real.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pages/jk/real.html</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -630,7 +455,11 @@
       <workItem from="1520944542884" duration="9036000" />
       <workItem from="1521119476068" duration="13000" />
       <workItem from="1521287148465" duration="2169000" />
-      <workItem from="1521364072160" duration="8862000" />
+      <workItem from="1521364072160" duration="9008000" />
+      <workItem from="1521461278393" duration="6786000" />
+      <workItem from="1521724270015" duration="929000" />
+      <workItem from="1521983980720" duration="738000" />
+      <workItem from="1522068534489" duration="4236000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1516196217339</created>
@@ -807,11 +636,25 @@
       <option name="project" value="LOCAL" />
       <updated>1520949637080</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="modify">
+      <created>1521378977754</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1521378977754</updated>
+    </task>
+    <task id="LOCAL-00027" summary="20180319-wzf">
+      <created>1521470264904</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1521470264904</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="271672000" />
+    <option name="totallyTimeSpent" value="284507000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -869,9 +712,10 @@
     <MESSAGE value="add" />
     <MESSAGE value="去除分页" />
     <MESSAGE value="船舶事件" />
-    <MESSAGE value="modify" />
     <MESSAGE value="装卸货异常情况" />
-    <option name="LAST_COMMIT_MESSAGE" value="装卸货异常情况" />
+    <MESSAGE value="modify" />
+    <MESSAGE value="20180319-wzf" />
+    <option name="LAST_COMMIT_MESSAGE" value="20180319-wzf" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -880,169 +724,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipStaff.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2375">
-          <caret line="125" column="64" lean-forward="false" selection-start-line="125" selection-start-column="64" selection-end-line="125" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipStaff_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="29" column="91" lean-forward="false" selection-start-line="29" selection-start-column="91" selection-end-line="29" selection-end-column="91" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="40" column="132" lean-forward="false" selection-start-line="40" selection-start-column="132" selection-end-line="40" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="39" column="94" lean-forward="false" selection-start-line="39" selection-start-column="94" selection-end-line="39" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/ship_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="139" column="25" lean-forward="true" selection-start-line="139" selection-start-column="25" selection-end-line="139" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/customerTaskFlow_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="152" column="57" lean-forward="false" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/leftDispatchInfo_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="130" column="165" lean-forward="false" selection-start-line="130" selection-start-column="165" selection-end-line="130" selection-end-column="165" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/port.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="48" column="51" lean-forward="false" selection-start-line="48" selection-start-column="51" selection-end-line="48" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/port_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="30" column="43" lean-forward="false" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/tempDispatchShip_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1862">
-          <caret line="98" column="82" lean-forward="false" selection-start-line="98" selection-start-column="82" selection-end-line="98" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/tempDispatchShip.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/tempDispatchShip_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="39" column="8" lean-forward="false" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2242">
-          <caret line="118" column="20" lean-forward="false" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/js/sailingInfo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="90" column="61" lean-forward="true" selection-start-line="90" selection-start-column="61" selection-end-line="90" selection-end-column="61" />
-          <folding>
-            <marker date="1520345246337" expanded="true" signature="764:815" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/sailingInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="31" column="131" lean-forward="true" selection-start-line="31" selection-start-column="131" selection-end-line="31" selection-end-column="131" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/sailingInfo_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="58" column="32" lean-forward="false" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-25">
-          <caret line="123" column="46" lean-forward="false" selection-start-line="123" selection-start-column="46" selection-end-line="123" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/customer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520338197583" expanded="true" signature="2530:2581" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/port.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520338197592" expanded="true" signature="1718:1769" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/ship.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="124" column="30" lean-forward="false" selection-start-line="124" selection-start-column="22" selection-end-line="124" selection-end-column="30" />
-          <folding>
-            <marker date="1520338197595" expanded="true" signature="3536:3587" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1050,7 +735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
           <caret line="44" column="13" lean-forward="false" selection-start-line="41" selection-start-column="12" selection-end-line="44" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1058,7 +742,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1066,9 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
           <caret line="58" column="28" lean-forward="false" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="28" />
-          <folding>
-            <marker date="1521372343708" expanded="true" signature="2415:2466" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1076,17 +756,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="45" column="144" lean-forward="false" selection-start-line="45" selection-start-column="144" selection-end-line="45" selection-end-column="144" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#td#1;n#tr#5;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1094,7 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="107" column="44" lean-forward="true" selection-start-line="107" selection-start-column="44" selection-end-line="107" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1102,7 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1110,7 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1118,9 +784,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520338197711" expanded="true" signature="4402:4453" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1128,9 +791,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="100" lean-forward="true" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
-          <folding>
-            <marker date="1520338197710" expanded="true" signature="2113:2164" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1138,7 +798,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-399">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1146,9 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1520338197576" expanded="true" signature="774:825" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1156,7 +812,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="53" column="138" lean-forward="false" selection-start-line="53" selection-start-column="123" selection-end-line="53" selection-end-column="138" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1164,15 +819,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="241">
           <caret line="20" column="26" lean-forward="false" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipStaff_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="87" column="59" lean-forward="true" selection-start-line="84" selection-start-column="24" selection-end-line="87" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1180,7 +826,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="45" column="126" lean-forward="true" selection-start-line="45" selection-start-column="91" selection-end-line="45" selection-end-column="126" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1188,9 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="176" column="63" lean-forward="true" selection-start-line="176" selection-start-column="63" selection-end-line="176" selection-end-column="63" />
-          <folding>
-            <marker date="1520338197578" expanded="true" signature="4770:4821" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1198,11 +840,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-633">
           <caret line="15" column="8" lean-forward="false" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/contractFlow_add.html">
+    <entry file="file://$PROJECT_DIR$/pages/khrw/customerTask.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1210,63 +851,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/contract_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/home/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="121" column="79" lean-forward="false" selection-start-line="121" selection-start-column="67" selection-end-line="121" selection-end-column="79" />
-          <folding>
-            <marker date="1520432135668" expanded="true" signature="12186:12201" ph="..." />
-            <marker date="1520432135668" expanded="true" signature="12314:12339" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/customerTask.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-171">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="47" column="21" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="47" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/waterLevel.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
+        <state relative-caret-position="760">
           <caret line="40" column="112" lean-forward="false" selection-start-line="40" selection-start-column="112" selection-end-line="40" selection-end-column="112" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/waterLevel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="19" selection-end-column="14" />
-          <folding>
-            <marker date="1521375428890" expanded="true" signature="1875:1926" ph="..." />
-          </folding>
+          <caret line="19" column="14" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="19" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferPrice.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="130" column="67" lean-forward="true" selection-start-line="130" selection-start-column="67" selection-end-line="130" selection-end-column="67" />
+        <state relative-caret-position="2470">
+          <caret line="130" column="67" lean-forward="false" selection-start-line="130" selection-start-column="67" selection-end-line="130" selection-end-column="67" />
           <folding>
             <marker date="1520338197605" expanded="true" signature="3559:3610" ph="..." />
           </folding>
@@ -1275,34 +877,240 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferPrice_add.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/khrw/customerTask_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="57" column="63" lean-forward="false" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
-          <folding />
+        <state relative-caret-position="380">
+          <caret line="20" column="60" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/khrw/js/customerTask_add.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
+        <state relative-caret-position="342">
           <caret line="18" column="32" lean-forward="false" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/khrw/js/customerTask.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2185">
-          <caret line="124" column="67" lean-forward="false" selection-start-line="124" selection-start-column="67" selection-end-line="124" selection-end-column="67" />
+        <state relative-caret-position="383">
+          <caret line="120" column="27" lean-forward="true" selection-start-line="120" selection-start-column="27" selection-end-line="120" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/ship.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="17" column="85" lean-forward="false" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/ship.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-73">
+          <caret line="94" column="62" lean-forward="false" selection-start-line="94" selection-start-column="50" selection-end-line="94" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/port_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-114">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipStaff_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="87" column="59" lean-forward="true" selection-start-line="84" selection-start-column="24" selection-end-line="87" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/customerTask_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="57" column="63" lean-forward="false" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipOil_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/customerTaskFlow_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3648">
+          <caret line="192" column="82" lean-forward="false" selection-start-line="192" selection-start-column="82" selection-end-line="192" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/js/customerTaskFlow_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3420">
+          <caret line="180" column="13" lean-forward="false" selection-start-line="178" selection-start-column="11" selection-end-line="180" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipOil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipOil_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="760">
+          <caret line="40" column="74" lean-forward="false" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/js/sailingInfo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1710">
+          <caret line="90" column="66" lean-forward="false" selection-start-line="90" selection-start-column="66" selection-end-line="90" selection-end-column="66" />
           <folding>
-            <marker date="1521378340364" expanded="true" signature="2204:2255" ph="..." />
+            <marker date="1520345246337" expanded="true" signature="764:815" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3648">
+          <caret line="192" column="59" lean-forward="false" selection-start-line="192" selection-start-column="59" selection-end-line="192" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/sailingInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="29" column="129" lean-forward="false" selection-start-line="29" selection-start-column="129" selection-end-line="29" selection-end-column="129" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipOil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+          <folding>
+            <marker date="1521467340447" expanded="true" signature="1500:1551" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/khrw/sailingInfo_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="7" lean-forward="false" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="27" column="121" lean-forward="false" selection-start-line="27" selection-start-column="121" selection-end-line="27" selection-end-column="121" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
+          <folding>
+            <marker date="1522070449803" expanded="true" signature="1183:1234" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/bigShipState_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-772">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/contract_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/contractFlow_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-924">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/customer_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-912">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/dangerZone_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="37" column="74" lean-forward="false" selection-start-line="37" selection-start-column="67" selection-end-line="37" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-266">
+          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1940">
+          <caret line="116" column="68" lean-forward="false" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/home/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="94" column="28" lean-forward="true" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+          <folding>
+            <marker date="1521466645477" expanded="true" signature="12285:12300" ph="..." />
+            <marker date="1521466645477" expanded="true" signature="12413:12438" ph="..." />
           </folding>
         </state>
       </provider>
