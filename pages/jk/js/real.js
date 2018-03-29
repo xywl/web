@@ -83,6 +83,11 @@ var PageMap = function()
         {
             mini.parse();
 
+            var date = new Date();
+            mini.get("in14").setValue(date);
+            date.setDate(date.getDate() - 3);
+            mini.get("in13").setValue(date.Format("yyyy-MM-dd hh:mm:ss"));
+
             this.defaultOption.cklist = mini.get("cklist");
             this.defaultOption.cklist.setData(this.defaultOption.cklistData);
             this.defaultOption.cklist.setValue("1,2,3");
@@ -1291,6 +1296,7 @@ var PageMap = function()
         {
             return this.funPoint(paramFly[0], paramFly[1]);
         },
+
         //清除轨迹信息
         funClearHisInfo : function ()
         {
