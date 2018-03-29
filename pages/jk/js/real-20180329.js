@@ -628,8 +628,9 @@ var PageMap = function()
         funSearchHis : function ()
         {
             PageMap.funStop();
-            PageMap.funHisClear();
-            PageMap.funClearHisLineFly();
+            PageMap.defaultOption.hisPolyLineFly.forEach(function (polyline) {
+                PageMap.mapObj.removeOverlay(polyline);
+            });
             if (PageMap.defaultOption.hisMarker != null)
             {
                 PageMap.defaultOption.hisMarker.hide();
@@ -671,11 +672,10 @@ var PageMap = function()
             {
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem].lng, this.defaultOption.hisDataFly[nItem].lat)));
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
-                PageMap.defaultOption.hisPolyLineFly.push(null);
             }
-            this.defaultOption.hisPolyLine = this.funAddPolyLineInfo(tmpFly, "#FF182A");
-            //this.defaultOption.hisPolyLineFly.push(polyline);
-            //this.funHisMouseInfo(polyline, nItem);
+            var polyline = this.funAddPolyLineInfo(tmpFly);
+            this.defaultOption.hisPolyLineFly.push(polyline);
+            this.funHisMouseInfo(polyline, nItem);
         },
         funHisMouseInfo : function (polyline, item)
         {
@@ -718,11 +718,9 @@ var PageMap = function()
         funHisClear : function ()
         {
             PageMap.defaultOption.hisPlayFlag = false;
-            if (PageMap.defaultOption.hisPolyLine != null)
-            {
-                PageMap.mapObj.removeOverlay(PageMap.defaultOption.hisPolyLine);
-            }
-            PageMap.funClearHisLineFly();
+            PageMap.defaultOption.hisPolyLineFly.forEach(function (polyline) {
+                PageMap.mapObj.removeOverlay(polyline);
+            });
             if (PageMap.defaultOption.hisMarker != null)
             {
                 PageMap.defaultOption.hisMarker.hide();
@@ -734,21 +732,14 @@ var PageMap = function()
             PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
 
         },
-        funClearHisLineFly : function ()
-        {
-            PageMap.defaultOption.hisPolyLineFly.forEach(function (polyline) {
-                if (polyline != null)
-                {
-                    PageMap.mapObj.removeOverlay(polyline);
-                }
-            });
-        },
         //轨迹回放
         funHis:function ()
         {
 
             PageMap.defaultOption.hisCurrCnt = 0;
             PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
+            console.log(PageMap.defaultOption.hisCurrCnt);
+            console.log(PageMap.defaultOption.hisSumCnt);
             if(PageMap.defaultOption.hisMarker != null)
             {
                 PageMap.defaultOption.hisMarker.show();
@@ -779,14 +770,6 @@ var PageMap = function()
         //画船的位置
         funHisMarker : function (paramItem)
         {
-            if (paramItem >= 1)
-            {
-                var tmpFly = [];
-                tmpFly.push(PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(PageMap.defaultOption.hisDataFly[paramItem-1].lng, PageMap.defaultOption.hisDataFly[paramItem - 1].lat)));
-                tmpFly.push(PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(PageMap.defaultOption.hisDataFly[paramItem].lng, PageMap.defaultOption.hisDataFly[paramItem].lat)));
-                PageMap.defaultOption.hisPolyLineFly[paramItem-1] = PageMap.funAddPolyLineInfo(tmpFly);
-                PageMap.funHisMouseInfo(PageMap.defaultOption.hisPolyLineFly[paramItem-1], paramItem);
-            }
             var mObj = PageMap.defaultOption.hisDataFly[paramItem];
             var paramPoint = PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(mObj.lng, mObj.lat));
             var tmpLng = PageMap.mapObj.getBounds();
@@ -843,7 +826,6 @@ var PageMap = function()
         //回放停止
         funStop : function ()
         {
-            PageMap.funClearHisLineFly();
             PageMap.defaultOption.hisCurrCnt = 0;
             PageMap.defaultOption.hisPlayFlag = false;
             if (PageMap.defaultOption.hisTimeOut != null)
@@ -885,7 +867,6 @@ var PageMap = function()
         //重播
         funRePlay : function()
         {
-            PageMap.funClearHisLineFly();
             PageMap.defaultOption.hisCurrCnt = 0;
             if (PageMap.defaultOption.hisPlayFlag == false)
             {
@@ -904,6 +885,7 @@ var PageMap = function()
             {
                 PageMap.defaultOption.hisPlayStaue = 0;
             }
+            console.log("0-----------------9")
         },
         //删除图层
         funRemoveOverlayByObj : function(mObj)
@@ -911,15 +893,9 @@ var PageMap = function()
             this.mapObj.removeOverlay(mObj);
         },
         //画线路
-        funAddPolyLineInfo : function()
+        funAddPolyLineInfo : function(pointFly)
         {
-            var pointFly = arguments[0];
-            var lineColor = "blue";
-            if (arguments.length > 1)
-            {
-                lineColor = arguments[1];
-            }
-            var polyLine = new BMap.Polyline(pointFly, {strokeColor:lineColor, strokeWeight:6, strokeOpacity:0.4});
+            var polyLine = new BMap.Polyline(pointFly, {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.4});
             this.mapObj.addOverlay(polyLine);
             return polyLine;
         },
