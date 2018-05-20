@@ -654,7 +654,7 @@ var PageMap = function()
                 return ;
             }
             PageMain.funShowLoading();
-            PageMain.callAjax("http://183.246.204.251:26332/location/getHistoryLocations",	"{\"compcode\":\"2\",\"devicecode\":\""+ mini.get("in12").getValue()+"\",\"starttime\":\""+ mini.get("in13").getValue()+"\",\"endtime\":\""+ mini.get("in14").getValue()+"\",\"apikey\":\"174f9540-0d1e-4509-a96b-e692c64dae8d\"}", function (data) {
+            PageMain.callAjax("http://112.11.223.225:16332/location/getHistoryLocations",	"{\"compcode\":\"2\",\"devicecode\":\""+ mini.get("in12").getValue()+"\",\"starttime\":\""+ mini.get("in13").getValue()+"\",\"endtime\":\""+ mini.get("in14").getValue()+"\",\"apikey\":\"174f9540-0d1e-4509-a96b-e692c64dae8d\"}", function (data) {
                 PageMain.funCloseLoading();
                 if (data.success && data.data.length > 0)
                 {
