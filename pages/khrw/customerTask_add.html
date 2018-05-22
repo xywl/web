@@ -31,6 +31,13 @@
             <input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;">
                 <tr>
+                    <td class="form-label">任务单号：</td>
+                    <td class="form-content">
+                        <input name="taskNo" id="taskNo" class="mini-textbox"
+                               required="true" maxlength="10" requiredErrorText="任务单号不能为空"/>
+                    </td>
+                </tr>
+                <tr>
                     <td class="form-label">合同名称：</td>
                     <td class="form-content">
                         <input name="contractId" id="contractId" class="mini-combobox" valueField="id"
@@ -50,13 +57,6 @@
                     <td class="form-content">
                         <input name="totalLoad" id="totalLoad" class="mini-textbox"
                                required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">是否扣网片：</td>
-                    <td class="form-content">
-                        <input name="selfBuckle" id="selfBuckle" class="mini-combobox" valueField="id" textField="name"
-                                maxlength="3" />
                     </td>
                 </tr>
                 <tr>

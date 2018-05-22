@@ -50,10 +50,10 @@
                     <div field="preArriveEPortTime" width="150" headerAlign="center" allowSort="true"  renderer="PageMain.funFromDateInfo">预计到卸货港时间</div>
                     <div field="departPortTime" width="150" headerAlign="center" allowSort="true"  renderer="PageMain.funFromDateInfo">离港时间</div>
                     <div field="actualArriveEPortTime" width="150" headerAlign="center" align="center" allowSort="true" renderer="PageMain.funFromDateInfo">实际到卸货港时间</div>
-                    <div field="dischargeTime" width="150" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">实际卸货时间</div>
+                    <div field="dischargeTime" width="150" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">实际卸空时间</div>
                     <div field="dischargeWeight" width="80" headerAlign="center" allowSort="true">实际卸货吨位</div>
                     <div field="dischargeDelayFee" width="80" headerAlign="center" align="center" allowSort="true" >卸货延期费</div>
-                    <div field="allowance" width="80" headerAlign="center" align="center" allowSort="true" >异常补助</div>
+                    <div field="allowance" width="80" headerAlign="center" align="center" allowSort="true" >吨位补助</div>
                     <div field="description" width="120" headerAlign="center" align="center" allowSort="true" >备注</div>
                     <!--<div field="show_plan" width="60" headerAlign="center" allowSort="false" align="center" renderer="PageSailingInfo.funOperRenderer">操作</div>-->
                 </div>
@@ -186,7 +186,7 @@
                 <td style="width:150px;"><input name="shipId" class="mini-textbox" /></td>
             </tr>
             <tr>
-                <td style="width:80px;"class="form-label">实际卸货时间：</td>
+                <td style="width:80px;"class="form-label">实际卸空时间：</td>
                 <td style="width:150px;"><input name="dischargeTime"  required="true" id="dischargeTime" class="mini-datepicker" nullValue="null"
                                                 format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"
                                                 showOkButton="true" showClearButton="false" /></td>
@@ -200,7 +200,7 @@
                 <td style="width:150px;"><input name="dischargeDelayFee" decimalPlaces="2" class="mini-spinner" required="true" minValue="0" maxValue="10000000000" /></td>
             </tr>
             <tr>
-                <td style="width:80px;"class="form-label">异常补助：</td>
+                <td style="width:80px;"class="form-label">吨位补助：</td>
                 <td style="width:150px;"><input name="allowance" decimalPlaces="2" class="mini-spinner" required="true" minValue="0" maxValue="10000000000" /></td>
             </tr>
             <tr>

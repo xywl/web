@@ -55,10 +55,10 @@
 
                 </tr>
                 <tr>
-                    <td class="form-label">方<span style="padding: 0 14px;"></span>向：</td>
+                    <td class="form-label">航次标识：</td>
                     <td class="form-content">
-                        <input name="direction" id="direction" class="mini-textbox"
-                               required="true" maxlength="10" requiredErrorText="方向不能为空"/>
+                        <input name="sailingFlag" id="sailingFlag"  valueField="id" textField="name"
+                               class="mini-radiobuttonlist" required="true"  requiredErrorText="航次标识不能为空"/>
                     </td>
                     <td class="form-label">总<span style="padding: 0 4px;"></span>吨<span style="padding: 0 4px;"></span>位：</td>
                     <td class="form-content">
@@ -152,18 +152,6 @@
                     <td class="form-content">
                         <input name="shipSuggestUnitPrice" id="shipSuggestUnitPrice"  decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="1000000000000"
                               maxlength="10" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">航次标识：</td>
-                    <td class="form-content">
-                        <input name="sailingFlag" id="sailingFlag"  valueField="id" textField="name"
-                               class="mini-radiobuttonlist" required="true"  requiredErrorText="航次标识不能为空"/>
-                    </td>
-                    <td class="form-label">是否扣网片：</td>
-                    <td class="form-content">
-                        <input name="selfBuckle" id="selfBuckle"  class="mini-combobox"
-                               valueField="id" textField="name"   />
                     </td>
                 </tr>
                 <tr>

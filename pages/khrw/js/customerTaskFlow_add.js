@@ -56,7 +56,6 @@ var PageCustomerTaskFlowAdd = function(){
             mini.get("startPortId").setData(row.portData);
             mini.get("endPortId").setData(row.portData);
             mini.get("sailingArea").setData(row.sailingAreaFly);
-            mini.get("selfBuckle").setData(row.selfPickFly);
 
             if (row.goodsSubType == 0)
             {
@@ -94,7 +93,6 @@ var PageCustomerTaskFlowAdd = function(){
             this.customerTaskFlowForm.setData(row);
             if (this.defaultOption.action == "add")
             {
-                mini.get("selfBuckle").select(0);
                 mini.get("selfPick").select(0);
                 mini.get("status").select(0);
                 PageMain.callAjax(PageMain.defaultOption.httpUrl + "/contract/getById",{id:row.contractId}, function (data) {
@@ -137,7 +135,7 @@ var PageCustomerTaskFlowAdd = function(){
         },
         funLoadUnitPriceInfo : function ()
         {
-            console.log(mini.get("loadingTime").getValue())
+            console.log(mini.get("loadingTime").getValue());
             if (mini.get("flowId").getValue() != "" && mini.get("loadingTime").getValue() != null)
             {
                 PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTaskFlow/loadUnitPrice", {flowId:mini.get("flowId").getValue(), customerId:this.defaultOption.customerId, contractId:this.defaultOption.contractId, loadingTime:mini.get("loadingTime").getValue().getTime()/1000}, function (data) {

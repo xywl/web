@@ -16,7 +16,6 @@ var PageCustomerTaskAdd = function(){
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("selfBuckle").setData(row.selfBuckleFly);
         	this.defaultOption.action = data.action;
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/customerTask/loadCustomer",{pageSize:10000, key:data.action, id:row.contractId}, function (data) {
             mini.get("contractId").setData(data);
@@ -113,7 +112,7 @@ var PageCustomerTaskAdd = function(){
                 return ;
             }
             customerIdCombo.setValue("");
-            var url = PageMain.defaultOption.httpUrl + "/customerTask/loadContractById?key=" + id
+            var url = PageMain.defaultOption.httpUrl + "/customerTask/loadContractById?key=" + id;
             customerIdCombo.setUrl(url);
             customerIdCombo.select(0);
         }
