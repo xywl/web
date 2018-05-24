@@ -110,7 +110,10 @@ var PageCustomerTaskFlowAdd = function(){
                         else if (obj.goodsType == 2)
                         {
                             mini.get("goodsSubType").setData(PageCustomerTaskFlowAdd.goodsSubType);
-                            mini.get("goodsSubType").setValue(obj.goodsSubType)
+                            if (obj.goodsSubType == 0)
+                            {
+                                mini.get("goodsSubType").setValue("1");
+                            }
                             goodsText = mini.get("goodsSubType").getText();
                         }
                         mini.get("goodsName").setValue(goodsText);

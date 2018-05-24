@@ -37,7 +37,7 @@
                     </td>
                     <td class="form-label">任务编号：</td>
                     <td class="form-content">
-                        <input name="taskNo" id="taskNo" class="mini-textbox"  required="true" maxlength="20" requiredErrorText="任务编号不能为空"/>
+                        <input name="taskNo" id="taskNo" class="mini-textbox"  readonly="true"/>
                     </td>
                     </tr>
                     <tr>
@@ -60,7 +60,7 @@
                         <input name="sailingFlag" id="sailingFlag"  valueField="id" textField="name"
                                class="mini-radiobuttonlist" required="true"  requiredErrorText="航次标识不能为空"/>
                     </td>
-                    <td class="form-label">总<span style="padding: 0 4px;"></span>吨<span style="padding: 0 4px;"></span>位：</td>
+                    <td class="form-label">流向吨位：</td>
                     <td class="form-content">
                         <input name="totalWeight" id="totalWeight" decimalPlaces="0" class="mini-spinner" minValue="0" maxValue="1000000000000"
                                required="true" maxlength="50" requiredErrorText="总吨位不能为空"/>
