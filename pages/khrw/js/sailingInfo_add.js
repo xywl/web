@@ -16,9 +16,11 @@ var PageSailingInfoAdd = function(){
         init :function ()
         {
             mini.parse();
+            mini.get("status").setData([{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}]);
+            mini.get("status").setReadOnly(false);
             this.basePath = PageMain.basePath;
             this.sailingInfoForm = new mini.Form("sailingInfoFormAdd");
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDsipatchShip", {}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDispatchShip", {}, function (data) {
                 PageSailingInfoAdd.defaultOption.dispatchShipFly = data;
                 mini.get("orderId").setData(data);
             });
@@ -73,12 +75,15 @@ var PageSailingInfoAdd = function(){
                 var c = fields[i];
                 if (c.setReadOnly) c.setReadOnly(true);     //只读
             }
+            mini.get("status").setReadOnly(false);
             if (this.operType == "kqdgdj" || this.operType == "bjkqdgdj")
             {
+
                 if(this.operType == "kqdgdj")
                 {
                     mini.get("orderId").required =true;
                     mini.get("orderId").setReadOnly(false);
+                    mini.get("status").setValue("1");
                 }
 
                 mini.get("arriveSPortTime").setReadOnly(false);

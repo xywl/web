@@ -12,7 +12,7 @@ var PagePortAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.portForm = new mini.Form("portFormAdd");
-            mini.get("portType").setData([{id:1, name:"集装箱"},{id:2, name:"其它"}])
+            mini.get("portType").setData([{id:1, name:"集装箱"},{id:2, name:"其它"}]);
         },
         funSetData : function(data)
         {

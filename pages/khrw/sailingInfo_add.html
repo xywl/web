@@ -26,7 +26,6 @@
         <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:20px;">
         <div id="sailingInfoFormAdd">
             <input id="id" name="id"  class="mini-hidden" />
-            <input id="status" name="status"   class="mini-hidden" />
             <input id="shipId" name="shipId"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr name="zqxhsj">
@@ -46,7 +45,7 @@
                     <td class="form-content">
                         <input name="dischargeDelayFee" id="dischargeDelayFee" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000" />
                     </td>
-                    <td class="form-label">异常补助：</td>
+                    <td class="form-label">吨位补助：</td>
                     <td class="form-content">
                         <input name="allowance" id="allowance" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000" />
                     </td>
@@ -114,11 +113,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">订单编号：</td>
+                    <td class="form-label">调度单号：</td>
                     <td class="form-content">
                         <input name="orderNo" id="orderNo" class="mini-textbox"/>
                     </td>
-                    <td class="form-label">任务流向：</td>
+                    <td class="form-label">流<span style="padding: 0 14px;"></span>向：</td>
                     <td class="form-content">
                         <input name="flowName" id="flowName"  class="mini-textbox"/>
                     </td>
@@ -164,7 +163,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">预计到港时间：</td>
+                    <td class="form-label">空船要求到港时间：</td>
                     <td class="form-content">
                         <input name="preArriveTime" id="preArriveTime"  class="mini-textbox" />
                     </td>
@@ -172,6 +171,14 @@
                     <td class="form-content">
                         <input name="fullName" id="fullName"  class="mini-textbox" />
                     </td>
+                </tr>
+                <tr>
+                    <td class="form-label">船运状态：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="statue" id="status" class="mini-combobox" valueField="id" textField="name"
+                               required="true"/>
+                    </td>
+
                 </tr>
             </table>
          </div>
