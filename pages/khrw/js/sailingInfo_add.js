@@ -17,7 +17,7 @@ var PageSailingInfoAdd = function(){
         {
             mini.parse();
             mini.get("status").setData([{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}]);
-            mini.get("status").setReadOnly(false);
+
             this.basePath = PageMain.basePath;
             this.sailingInfoForm = new mini.Form("sailingInfoFormAdd");
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDispatchShip", {}, function (data) {
@@ -47,8 +47,8 @@ var PageSailingInfoAdd = function(){
             }
             else
             {
-                console.log("-----------------")
-                console.log(PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly)
+                console.log("-----------------");
+                console.log(PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly);
                 mini.get("orderId").setData(PageSailingInfoAdd.defaultOption.dispatchUnDealShipFly);
             }
 
@@ -74,6 +74,7 @@ var PageSailingInfoAdd = function(){
             {
                 var c = fields[i];
                 if (c.setReadOnly) c.setReadOnly(true);     //只读
+                mini.get("status").enabled=false;
             }
             mini.get("status").setReadOnly(false);
             if (this.operType == "kqdgdj" || this.operType == "bjkqdgdj")
@@ -83,7 +84,6 @@ var PageSailingInfoAdd = function(){
                 {
                     mini.get("orderId").required =true;
                     mini.get("orderId").setReadOnly(false);
-                    mini.get("status").setValue("1");
                 }
 
                 mini.get("arriveSPortTime").setReadOnly(false);
@@ -194,14 +194,15 @@ var PageSailingInfoAdd = function(){
                     obj.dischargeDelayFee = mini.get("dischargeDelayFee").getValue();
                     obj.allowance = mini.get("allowance").getValue();
                     obj.description = mini.get("description").getValue();
-                    obj.status = mini.get("status").getValue();
+                    obj.status = "1";//mini.get("status").getValue();
                     obj.bucklePrice = mini.get("bucklePrice").getValue();
                     /*if(mini.get("startchargeTime").getValue() == null) {
                         var d = new Date();
                         mini.get("startchargeTime").setData()
                     }*/
                     obj.id = mini.get("id").getValue();
-                    PageSailingInfoAdd.sailingInfoForm.setData(obj)
+                    PageSailingInfoAdd.sailingInfoForm.setData(obj);
+
                     return;
                 }
             })
