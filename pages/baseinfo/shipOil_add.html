@@ -28,6 +28,18 @@
                 	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0"  style="width:100%;table-layout:fixed;">
                 <tr>
+                    <td class="form-label">船号：</td>
+                    <td class="form-content">
+                        <input name="shipId" id="shipId"   width="260" class="mini-combobox" valueField="id" textField="shipNo"  maxlength="10" required="true" requiredErrorText="船号不能为空"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">扣款类型：</td>
+                    <td class="form-content">
+                        <input name="status" id="status"  width="260"  class="mini-combobox" valueField="id" textField="name"  required="true"  maxlength="10" requiredErrorText="扣款类型不能为空"/>
+                    </td>
+                </tr>
+                <tr>
                     <td width="10%" align="right">实际加油量（L）：</td>
                     <td width="20%"  class="form-content">
                         <input name="fuelQuantity" id="fuelQuantity"  class="mini-textbox"  width="260" required="true"  maxValue="30"

@@ -1,40 +1,42 @@
-var PageShipOilAdd = function(){
+
+var PageShippingPlanAdd = function(){
     return {
         defaultOption: {
             basePath:"",
             action : "",
-            shipForm : null
-            
+            shippingPlanForm : null
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.shipForm = new mini.Form("shipOilFormAdd");
+            this.shippingPlanForm = new mini.Form("shippingPlanFormAdd");
         },
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("shipId").setData(row.shipIdFly);
-            mini.get("status").setData(row.statusData)
+            mini.get("shipClass").setData(row.shipClassFly);
         	this.action = data.action;
-        	this.shipForm.setData(row);
-            if(this.action == "oper")
-            {
-                mini.get("layout_ship_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
-                var fields = this.shipForm.getFields();
+        	this.shippingPlanForm.setData(row);
+
+        	if(this.action == "oper")
+        	{
+        		
+        		mini.get("layout_shippingPlan_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
+        		var fields = this.shippingPlanForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
                 {
                     var c = fields[i];
                     if (c.setReadOnly) c.setReadOnly(true);     //只读
                     if (c.setIsValid) c.setIsValid(true);      //去除错误提示
                 }
-            }
+        	}
+
         },
         funSave : function()
         {
-        	this.shipForm.validate();
-            if (!this.shipForm.isValid())
+        	this.shippingPlanForm.validate();
+            if (!this.shippingPlanForm.isValid())
             {
                  var errorTexts = form.getErrorTexts();
                  for (var i in errorTexts) 
@@ -43,13 +45,11 @@ var PageShipOilAdd = function(){
                      return;
                  }
             }
+            
             var me = this;
-            var obj = this.shipForm.getData(true);
-            if(mini.get("refuelingTime").getValue() != null && mini.get("refuelingTime").getValue() != ""){
-                obj.refuelingTime = mini.get("refuelingTime").getValue().getTime()/1000;
-            }
+            var obj = this.shippingPlanForm.getData(true);
             $.ajax({
-               url : PageMain.defaultOption.httpUrl + "/shipOil/" + me.action + "?a="+Math.random(),
+               url : PageMain.defaultOption.httpUrl + "/shippingPlan/" + me.action + "?a="+Math.random(),
                type : 'POST',
                data : obj,
                dataType: 'json',
@@ -83,5 +83,5 @@ var PageShipOilAdd = function(){
 }();
 
 $(function(){
-    PageShipOilAdd.init();
+	PageShippingPlanAdd.init();
 });

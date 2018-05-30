@@ -38,9 +38,11 @@
                  pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="shipId" width="120" headerAlign="center" allowSort="true" renderer="PageShipOil.funShipIdRenderer">船号</div>
+                    <div field="status" width="120" headerAlign="center" allowSort="true" renderer="PageShipOil.funRendererStatus" >扣款类型</div>
 					 <div field="fuelQuantity" width="120" headerAlign="center" allowSort="true">实际加油量</div>
-                    <div field="unitPrice" width="120" headerAlign="center" allowSort="true" >航行区域</div>
-                    <div field="refuelingTime" width="120" headerAlign="center" allowSort="true"renderer="PageMain.funFromDateInfo">油的单价</div>
+                    <div field="unitPrice" width="120" headerAlign="center" allowSort="true" >油的单价</div>
+                    <div field="refuelingTime" width="120" headerAlign="center" allowSort="true"renderer="PageMain.funFromDateInfo">实际加油时间</div>
                     <div field="creatorName" width="120" headerAlign="center" allowSort="true">创建人</div>
                     <div field="created" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">创建时间</div>
                     <div field="description" width="120" headerAlign="center" allowSort="true">备注</div>

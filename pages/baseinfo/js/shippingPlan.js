@@ -1,34 +1,49 @@
 
-var PageShipOil = function(){
+var PageShippingPlan = function(){
     return {
         defaultOption: {
             basePath:"",
-            shipOilGrid : null,
-            statusFly:[{id:1, name:"预扣"},{id:2, name:"实扣"}],
-            shipNoData:[]
+            shippingPlanGrid : null,
+            shipClassData:[{id:1, name:"650吨以上"},{id:2, name:"650吨以下"},{id:3, name:"碎石船"},{id:4, name:"兴能散装船"},{id:5, name:"兴能集装箱船"},{id:6, name:"兴一航运散装船"},{id:7, name:"兴一航运集装箱船"}]
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.shipOilGrid = mini.get("shipOilGrid");
-            this.shipOilGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipOil/getList");
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
-                PageShipOil.defaultOption.shipNoData = data.data.list;
-            });
+            this.shippingPlanGrid = mini.get("shippingPlanGrid");
+            this.shippingPlanGrid.setUrl(PageMain.defaultOption.httpUrl + "/shippingPlan/getList")
+            mini.get("key").setData(PageShippingPlan.defaultOption.shipClassData);
             this.funSearch();
+
         },
         funSearch : function()
         {
-        	var shipOilForm = new mini.Form("shipOilForm");
-        	this.shipOilGrid.load(shipOilForm.getData());
+        	var shippingPlanForm = new mini.Form("shippingPlanForm");
+        	this.shippingPlanGrid.load(shippingPlanForm.getData());
+
+        },
+        funOperRenderer : function(e)
+        {
+            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageShippingPlan.funDetail()"></a>';
         },
         funReset : function()
         {
-        	var shipOilForm = new mini.Form("shipOilForm");
-            shipOilForm.setData();
-            mini.get("queryParamFlag").setValue("1");
-            this.shipOilGrid.load(shipOilForm.getData());
+        	var shippingPlanForm = new mini.Form("shippingPlanForm");
+        	shippingPlanForm.setData();
+        	mini.get("queryParamFlag").setValue("1");
+            this.shippingPlanGrid.load(shippingPlanForm.getData());
+        },
+        //货物类型
+        funGoodsTypeRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageShippingPlan.defaultOption.shipClassData.length; nItem++)
+            {
+                if(e.value == PageShippingPlan.defaultOption.shipClassData[nItem].id)
+                {
+                    return PageShippingPlan.defaultOption.shipClassData[nItem].name;
+                }
+            }
+            return e.value;
         },
         funAdd : function()
         {
@@ -37,7 +52,7 @@ var PageShipOil = function(){
         },
         funModify : function()
         {
-        	var row = this.shipOilGrid.getSelected();
+        	var row = this.shippingPlanGrid.getSelected();
             if(row)
             {
             	var paramData = {action: "modify", row: row, title:"编辑数据"};
@@ -48,61 +63,33 @@ var PageShipOil = function(){
             	PageMain.funShowMessageBox("请选择一条记录");
             }
         },
-        funShipIdRenderer : function (e)//船号转码
-        {
-            for(var nItem = 0; nItem < PageShipOil.defaultOption.shipNoData.length; nItem++)
-            {
-
-                if(e.value == PageShipOil.defaultOption.shipNoData[nItem].id)
-                {
-                    return PageShipOil.defaultOption.shipNoData[nItem].shipNo;
-                }
-            }
-            return e.value;
-        },
-        funRendererStatus: function (e)
-        {
-            for(var nItem = 0; nItem < PageShipOil.defaultOption.statusFly.length; nItem++)
-            {
-                if(e.value == PageShipOil.defaultOption.statusFly[nItem].id)
-                {
-                    return PageShipOil.defaultOption.statusFly[nItem].name;
-                }
-            }
-            return e.value;
-        },
-        funOperRenderer : function(e)
-        {
-            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageShipOil.funDetail()"></a>';
-        },
         funDetail : function()
         {
-            var row = this.shipOilGrid.getSelected();
-            var paramData = {action: "oper", row:row, title:"查看详细"};
-            this.funOpenInfo(paramData);
+        	var row = this.shippingPlanGrid.getSelected();
+        	var paramData = {action: "oper", row:row, title:"查看详细"};
+        	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
         {
         	var me = this;
-            paramData.row.shipIdFly = me.defaultOption.shipNoData;
-            paramData.row.statusData = me.defaultOption.statusFly;
+            paramData.row.shipClassFly = me.defaultOption.shipClassData;
         	mini.open({
-                url: PageMain.funGetRootPath() + "/pages/baseinfo/shipOil_add.html",
+                url: PageMain.funGetRootPath() + "/pages/baseinfo/shippingPlan_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 35 *  10  +40,
+                height: 40 *  7 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
-                    iframe.contentWindow.PageShipOilAdd.funSetData(paramData);
+                    iframe.contentWindow.PageShippingPlanAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.shipOilGrid.reload();
+                	me.shippingPlanGrid.reload();
                 }
             })
         },
         funDelete : function()
         {
-            var row = this.shipOilGrid.getSelected();
+            var row = this.shippingPlanGrid.getSelected();
             var me = this;
             if(row)
             {
@@ -110,7 +97,7 @@ var PageShipOil = function(){
                     if (action == "ok") 
                     {
                         $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/shipOil/del",
+                            url : PageMain.defaultOption.httpUrl + "/shippingPlan/del",
                             type: 'POST',
                             data: {"id": row.id},
                             dataType: 'json',
@@ -122,7 +109,7 @@ var PageShipOil = function(){
                                      mini.alert("操作成功", "提醒", function(){
                                          if(data.success)
                                          {
-                                        	 me.shipOilGrid.reload();
+                                        	 me.shippingPlanGrid.reload();
                                          }
                                      });
                                  }
@@ -148,5 +135,5 @@ var PageShipOil = function(){
 }();
 
 $(function(){
-	PageShipOil.init();
+	PageShippingPlan.init();
 });

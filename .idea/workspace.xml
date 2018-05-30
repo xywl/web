@@ -2,13 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25c8f052-4269-41ea-8586-91ee93bbc8b3" name="Default" comment="装卸货异常情况">
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/freightPlan.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/freightPlan_add.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/js/freightPlan.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/js/freightPlan_add.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/js/shippingPlan.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/js/shippingPlan_add.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/shippingPlan.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/baseinfo/shippingPlan_add.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/report/js/poundBalance.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/report/js/reportfive.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/report/js/reportthree.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/report/poundBalance.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/report/reportfive.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/pages/report/reportthree.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" afterPath="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/shipOil.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/shipOil.js" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/shipOil_add.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/shipOil_add.js" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/shipOil.html" afterPath="$PROJECT_DIR$/pages/baseinfo/shipOil.html" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/shipOil_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/shipOil_add.html" />
       <change beforePath="$PROJECT_DIR$/pages/home/main.html" afterPath="$PROJECT_DIR$/pages/home/main.html" />
-      <change beforePath="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" afterPath="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" />
     </list>
     <ignored path="xyl.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,11 +44,26 @@
       <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/home/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="94" column="28" lean-forward="true" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+            <state relative-caret-position="1501">
+              <caret line="88" column="57" lean-forward="true" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
               <folding>
-                <marker date="1521466645477" expanded="true" signature="12285:12300" ph="..." />
-                <marker date="1521466645477" expanded="true" signature="12413:12438" ph="..." />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1527427436667" expanded="true" signature="13128:13143" ph="..." />
+                <marker date="1527427436667" expanded="true" signature="13256:13281" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="poundBalance.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/report/js/poundBalance.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="56" lean-forward="true" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+              <folding>
+                <marker date="1524673048368" expanded="true" signature="903:954" ph="..." />
               </folding>
             </state>
           </provider>
@@ -43,40 +72,8 @@
       <file leaf-file-name="jquery.gesoft-1.0.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1940">
-              <caret line="116" column="68" lean-forward="false" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shipEvent.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="27" column="121" lean-forward="false" selection-start-line="27" selection-start-column="121" selection-end-line="27" selection-end-column="121" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shipEvent.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
-              <folding>
-                <marker date="1522070449803" expanded="true" signature="1183:1234" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shipEvent_add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+            <state relative-caret-position="266">
+              <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -196,7 +193,6 @@
         <option value="$PROJECT_DIR$/pages/baseinfo/port.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/tempDispatchShip.html" />
         <option value="$PROJECT_DIR$/pages/khrw/sailingInfo.html" />
-        <option value="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed.html" />
@@ -219,6 +215,7 @@
         <option value="$PROJECT_DIR$/pages/baseinfo/waterLevel_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html" />
+        <option value="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" />
       </list>
     </option>
   </component>
@@ -252,61 +249,31 @@
         <subPane>
           <expand>
             <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
-              <item name="jslib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
-              <item name="jslib" type="462c0819:PsiDirectoryNode" />
-              <item name="miniui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="baseinfo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
               <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="khrw" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="b2602c69:ProjectViewProjectNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="khrw" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="systeminfo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="xyl" type="b2602c69:ProjectViewProjectNode" />
-              <item name="xyl" type="462c0819:PsiDirectoryNode" />
-              <item name="pages" type="462c0819:PsiDirectoryNode" />
-              <item name="systeminfo" type="462c0819:PsiDirectoryNode" />
+              <item name="report" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -326,19 +293,19 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="G:/xylWebGit" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\xylWebGit\xyl\pages\baseinfo\js" />
-      <recent name="G:\xylWebGit\xyl\pages\baseinfo" />
-      <recent name="G:\xylw\xyl\pages" />
-      <recent name="G:\xylw\xyl\pages\khrw\js" />
-      <recent name="G:\xylw\xyl\pages\khrw" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\study\xyl\jslib\miniui" />
       <recent name="E:\study\xyl\jk" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\xylWebV1.0\web\pages\baseinfo\js" />
+      <recent name="G:\xylWebV1.0\web\pages\baseinfo" />
+      <recent name="G:\xylWebV1.0\web\pages" />
+      <recent name="G:\xylWebV1.0\web\pages\home" />
+      <recent name="G:\xylWebGit\xyl\pages\baseinfo\js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -460,6 +427,8 @@
       <workItem from="1521724270015" duration="929000" />
       <workItem from="1521983980720" duration="738000" />
       <workItem from="1522068534489" duration="4236000" />
+      <workItem from="1527607595732" duration="5382000" />
+      <workItem from="1527661560156" duration="3675000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1516196217339</created>
@@ -654,7 +623,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284507000" />
+    <option name="totallyTimeSpent" value="293564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -724,41 +693,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/port.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/dangerZone_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="44" column="13" lean-forward="false" selection-start-line="41" selection-start-column="12" selection-end-line="44" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/ship_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="58" column="28" lean-forward="false" selection-start-line="58" selection-start-column="8" selection-end-line="58" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/dangerZoneSpeed.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="45" column="144" lean-forward="false" selection-start-line="45" selection-start-column="144" selection-end-line="45" selection-end-column="144" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/dangerZoneSpeed_add.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -787,7 +721,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/systeminfo/js/DataDictionary.js">
+    <entry file="file://$PROJECT_DIR$/pages/systeminfo/js/dataDictionary.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="100" lean-forward="true" selection-start-line="12" selection-start-column="100" selection-end-line="12" selection-end-column="100" />
@@ -847,7 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,9 +802,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2470">
           <caret line="130" column="67" lean-forward="false" selection-start-line="130" selection-start-column="67" selection-end-line="130" selection-end-column="67" />
-          <folding>
-            <marker date="1520338197605" expanded="true" signature="3559:3610" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -932,13 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipOil_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/khrw/customerTaskFlow_add.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3648">
@@ -950,23 +874,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3420">
           <caret line="180" column="13" lean-forward="false" selection-start-line="178" selection-start-column="11" selection-end-line="180" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipOil.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipOil_add.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="760">
-          <caret line="40" column="74" lean-forward="false" selection-start-line="40" selection-start-column="46" selection-end-line="40" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -974,9 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1710">
           <caret line="90" column="66" lean-forward="false" selection-start-line="90" selection-start-column="66" selection-end-line="90" selection-end-column="66" />
-          <folding>
-            <marker date="1520345246337" expanded="true" signature="764:815" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -992,17 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="551">
           <caret line="29" column="129" lean-forward="false" selection-start-line="29" selection-start-column="129" selection-end-line="29" selection-end-column="129" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipOil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1178">
-          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
-          <folding>
-            <marker date="1521467340447" expanded="true" signature="1500:1551" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1010,7 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="22" column="7" lean-forward="false" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1018,13 +910,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="29" column="45" lean-forward="true" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="513">
           <caret line="27" column="121" lean-forward="false" selection-start-line="27" selection-start-column="121" selection-end-line="27" selection-end-column="121" />
           <folding />
         </state>
@@ -1032,11 +923,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipEvent.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="1767">
           <caret line="93" column="31" lean-forward="false" selection-start-line="93" selection-start-column="31" selection-end-line="93" selection-end-column="31" />
-          <folding>
-            <marker date="1522070449803" expanded="true" signature="1183:1234" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,7 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-772">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1068,7 +956,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-912">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1076,7 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
           <caret line="37" column="74" lean-forward="false" selection-start-line="37" selection-start-column="67" selection-end-line="37" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1084,33 +970,115 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-266">
           <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1940">
-          <caret line="116" column="68" lean-forward="false" selection-start-line="116" selection-start-column="34" selection-end-line="116" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipEvent_add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="83" column="9" lean-forward="true" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+        <state relative-caret-position="1577">
+          <caret line="83" column="9" lean-forward="false" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/report/js/reportfive.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1527433536010" expanded="true" signature="1572:1623" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shippingPlan.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1527169898277" expanded="true" signature="1041:1092" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/freightPlan_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipOil.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-36">
+          <caret line="17" column="86" lean-forward="false" selection-start-line="17" selection-start-column="86" selection-end-line="17" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/shipOil_add.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="40" column="21" lean-forward="false" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipOil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+          <folding>
+            <marker date="1527433349074" expanded="true" signature="2600:2651" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/shipOil_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/report/js/poundBalance.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="56" lean-forward="true" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+          <folding>
+            <marker date="1524673048368" expanded="true" signature="903:954" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="9" lean-forward="true" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/home/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="94" column="28" lean-forward="true" selection-start-line="94" selection-start-column="28" selection-end-line="94" selection-end-column="28" />
+        <state relative-caret-position="1501">
+          <caret line="88" column="57" lean-forward="true" selection-start-line="88" selection-start-column="57" selection-end-line="88" selection-end-column="57" />
           <folding>
-            <marker date="1521466645477" expanded="true" signature="12285:12300" ph="..." />
-            <marker date="1521466645477" expanded="true" signature="12413:12438" ph="..." />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1527427436667" expanded="true" signature="13128:13143" ph="..." />
+            <marker date="1527427436667" expanded="true" signature="13256:13281" ph="..." />
           </folding>
         </state>
       </provider>
