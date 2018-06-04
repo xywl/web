@@ -259,6 +259,8 @@ var PageMap = function()
                         minLat = pfly[1];
                     }
                 });
+
+                //ss
                 if (maxLng > 0 )
                 {
                     var mBounds = new BMap.Bounds(new BMap.Point(maxLng, maxLat),new BMap.Point(minLng, minLat));
