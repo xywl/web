@@ -512,7 +512,8 @@ var PageMap = function()
         funAddPort : function(mObj, colorFly)
         {
             var PortObj = {circle:null, circlePoint:null, label:null};
-            var mLngLat = this.funPoint(mObj.longitude/1000000, mObj.latitude/1000000);
+            var lngLatFly = PageConvert.funWGS84ToBaidu(mObj.longitude/1000000, mObj.latitude/1000000);
+            var mLngLat = this.funPoint(lngLatFly[0], lngLatFly[1]);
             var mCircle2 = this.funAddCircle(mLngLat, mObj.radius);
             mCircle2.addEventListener("mouseover", function(e){
                 mCircle2.setStrokeWeight(6)
