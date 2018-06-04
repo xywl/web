@@ -260,7 +260,7 @@ var PageMap = function()
                     }
                 });
 
-                //sss
+                //sss22
                 if (maxLng > 0 )
                 {
                     var mBounds = new BMap.Bounds(new BMap.Point(maxLng, maxLat),new BMap.Point(minLng, minLat));
