@@ -1,0 +1,96 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/reportfour.js"></script>
+    <title></title>
+    <style>
+        .mini-datagrid-cell {
+            float: left;
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="72" showHeader="false"    style="border: none;">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="reportfiveForm">
+				<lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入船号"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageShip.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageShip.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+
+        <div class="mini-fit">
+            <div class="mini-datagrid-cell">
+                <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+                    主营业务熟料计划40万吨
+                </div>
+                <div id="reportSevenGrid1" class="mini-datagrid"
+                    idField="id" allowResize="false" showPager="false"
+                    pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                    <div property="columns">
+                        <div field="lx" headerAlign="center"  width="120">收货单位</div>
+                        <div field="jhsl " width="60" headerAlign="center" allowSort="true">计划</div>
+                        <div field="sjsl" width="60" headerAlign="center" allowSort="true" >实际完成</div>
+                        <div field="wcl" width="60" headerAlign="center" allowSort="true">完成率</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mini-datagrid-cell">
+                <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+                    散装运输及经营计划31.14万吨
+                </div>
+                <div id="reportSevenGrid2" class="mini-datagrid"
+                    idField="id" allowResize="false" showPager="false"
+                    pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                    <div property="columns">
+                        <div field="lx" headerAlign="center"  width="120">货物名称</div>
+                        <div field="jhsl " width="60" headerAlign="center" allowSort="true">计划</div>
+                        <div field="sjsl" width="60" headerAlign="center" allowSort="true" >实际完成</div>
+                        <div field="wcl" width="60" headerAlign="center" allowSort="true">完成率</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mini-datagrid-cell">
+                <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+                    集装箱计划0.62万标箱
+                </div>
+                <div id="reportSevenGrid3" class="mini-datagrid"
+                    idField="id" allowResize="false" showPager="false"
+                    pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                    <div property="columns">
+                        <div field="lx " width="120" headerAlign="center" allowSort="true">货物名称</div>
+                        <div field="jhsl" width="60" headerAlign="center" allowSort="true" >计划</div>
+                        <div field="sjsl" width="60" headerAlign="center" allowSort="true">实际完成</div>
+                        <div field="wcl" width="60" headerAlign="center" allowSort="true">完成率</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mini-datagrid-cell">
+                <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+                    船运月平均航次计划5.97个
+                </div>
+                <div id="reportSevenGrid4" class="mini-datagrid"
+                    idField="id" allowResize="false" showPager="false"
+                    pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                    <div property="columns">
+                        <div field="lx " width="120" headerAlign="center" allowSort="true">船级</div>
+                        <div field="jhsl" width="60" headerAlign="center" allowSort="true" >计划</div>
+                        <div field="sjsl" width="60" headerAlign="center" allowSort="true">实际完成</div>
+                        <div field="wcl" width="60" headerAlign="center" allowSort="true">完成了</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
