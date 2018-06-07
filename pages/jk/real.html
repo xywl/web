@@ -96,9 +96,9 @@
                  <input type="button" value="清空" onclick="PageMap.funHisClear()"/>
 
                  <span class="" style="padding-left: 15px;">&nbsp;速度：</span>
-                 <input type="button" value="慢" onclick="mini.get('speed').setValue(mini.get('speed').getValue() - 1)"/>
-                 <input id="speed" name="speed" changeOnMousewheel="false" class="mini-spinner myselect2"  minValue="1" maxValue="250" />
-                 <input type="button" value="快" onclick="mini.get('speed').setValue(mini.get('speed').getValue() + 1)"/>
+                 <input type="button" value="慢" onclick="mini.get('speed').setValue(mini.get('speed').getValue() - 50)"/>
+                 <input id="speed" name="speed" changeOnMousewheel="false" class="mini-spinner myselect2"  minValue="50" maxValue="400" />
+                 <input type="button" value="快" onclick="mini.get('speed').setValue(mini.get('speed').getValue() + 50)"/>
             </div>
             <div class="info-middle"></div>
             <div class="info-bottom"></div>

@@ -50,14 +50,14 @@
 
                 // 初始化地图,设置中心点坐标和地图级别
                 //this.mapObj.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
-                this.mapObj.centerAndZoom("南京",15);
+                this.mapObj.centerAndZoom("长兴",15);
                 this.mapObj.addControl(new BMap.MapTypeControl({
                     mapTypes:[
                         BMAP_NORMAL_MAP,
                         BMAP_HYBRID_MAP
                     ]}));
                 // 设置地图显示的城市 此项是必须设置的
-                this.mapObj.setCurrentCity("南京");
+                this.mapObj.setCurrentCity("长兴");
                 //开启鼠标滚轮缩放
                 this.mapObj.enableScrollWheelZoom(true);
                 this.mapObj.enableDragging();

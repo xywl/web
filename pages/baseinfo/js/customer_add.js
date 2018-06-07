@@ -14,7 +14,7 @@ var PageCustomerAdd = function(){
             this.basePath = PageMain.basePath;
             this.customerForm = new mini.Form("customerFormAdd");
             mini.get("type").setData([{id:1, name:"长期"},{id:2, name:"临时"}]);
-            mini.get("goodsType").setData([{id:1, name:"孰料"},{id:2, name:"电煤"},{id:4, name:"集装箱"},{id:256, name:"其他"}])
+            mini.get("goodsType").setData([{id:1, name:"熟料"},{id:2, name:"电煤"},{id:4, name:"集装箱"},{id:256, name:"其他"}])
         },
         funSetData : function(data)
         {

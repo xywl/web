@@ -651,9 +651,9 @@ var PageMap = function()
             {
                 return ;
             }
-            if((mini.parseDate(mini.get("in14").getValue()) - mini.parseDate(mini.get("in13").getValue()))/86400000 > 3)
+            if((mini.parseDate(mini.get("in14").getValue()) - mini.parseDate(mini.get("in13").getValue()))/86400000 > 8)
             {
-                PageMain.funShowMessageBox("查询时间不能大于三天");
+                PageMain.funShowMessageBox("查询时间不能大于八天");
                 return ;
             }
             PageMain.funShowLoading();
