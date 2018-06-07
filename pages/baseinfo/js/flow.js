@@ -5,6 +5,7 @@ var PageFlow = function(){
             basePath:"",
             flowGrid : null,
             waterFly : null,
+            dataDictWaterPointFly : null,
             sailingAreaFly : [{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}],
             portData:[]
         },
@@ -14,14 +15,28 @@ var PageFlow = function(){
             this.basePath = PageMain.basePath;
             this.flowGrid = mini.get("flowGrid");
             this.flowGrid.setUrl(PageMain.defaultOption.httpUrl + "/flow/getList");
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"gjswd"}, function (data) {
+                PageFlow.defaultOption.dataDictWaterPointFly = data;
+            });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/waterLevel/getPage",{queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
                 if (data.success)
                 {
+                    data.data.forEach(function (obj)
+                    {
+                        obj.name=PageFlow.funRendererDataDictWaterPoint(obj.name);
+                    });
                     PageFlow.defaultOption.waterFly = data.data;
                 }
-            })
+            });
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/port/getPage",{queryParamFlag: 1, pageIndex:0, pageSize:1000000000}, function (data) {
+                if (data.success)
+                {
+                    PageFlow.defaultOption.portData = data.data;
+                }
+            });
+
             this.funSearch();
-            this.funInitPortDate();
         },
         funSearch : function()
         {
@@ -105,10 +120,20 @@ var PageFlow = function(){
         },
         funRendererPortType : function (e)
         {
-            for(var i =0 ;  i< PageFlow.portData.length;i++) {
+            for(var i =0 ;  i< PageFlow.defaultOption.portData.length;i++) {
 
-                if(PageFlow.portData[i].id == e.value){
-                    return PageFlow.portData[i].name;
+                if(PageFlow.defaultOption.portData[i].id == e.value){
+                    return PageFlow.defaultOption.portData[i].name;
+                }
+
+            }
+        },
+        funRendererDataDictWaterPoint : function (v)
+        {
+            for(var i =0 ;  i< PageFlow.defaultOption.dataDictWaterPointFly.length;i++) {
+
+                if(PageFlow.defaultOption.dataDictWaterPointFly[i].id == v){
+                    return PageFlow.defaultOption.dataDictWaterPointFly[i].name;
                 }
 
             }
@@ -131,7 +156,7 @@ var PageFlow = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/flow_add.html",
                 title: paramData.title,
                 width: 650,
-                height: 30 *  11 + 65,
+                height: 30 *  12 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageFlowAdd.funSetData(paramData);
@@ -184,24 +209,6 @@ var PageFlow = function(){
             {
                 mini.alert("请先选择要删除的记录");
             }
-        },
-        funInitPortDate:function () {
-            $.ajax({
-                url : PageMain.defaultOption.httpUrl + "/port/getPage",
-                type : 'POST',
-                dataType: 'json',
-                success: function (data)
-                {
-                    if (data.success)
-                    {
-                        PageFlow.portData = data.data;
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    PageMain.funShowMessageBox("获取船号失败");
-                }
-            });
         }
     }
 }();

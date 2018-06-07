@@ -65,7 +65,7 @@ var PageShipStaffAdd = function(){
                     success: function (data)
                     {
                         if(data.data > 0){
-                            PageMain.funShowMessageBox("该穿号已有船长，请重新添加！");
+                            PageMain.funShowMessageBox("该船舶已有船长，请重新添加！");
                         }else {
                             flag=true;
                         }

@@ -73,7 +73,7 @@
                         <div name="ShipStatus" field="shipStatus" width="100" headerAlign="center" allowSort="true">船舶状态</div>
                         <div name="Position" field="position" width="80" headerAlign="center" allowSort="true">位置</div>
                         <div name="Captain" field="captain" width="80" headerAlign="center" allowSort="true">船长</div>
-                        <div name="Mobile" field="mobile" width="100" headerAlign="center" allowSort="true">联系电话</div>
+                        <div name="CombineMobile" field="combineMobile" width="100" headerAlign="center" allowSort="true">联系电话</div>
                         <div name="SailArea" field="sailArea" width="100" headerAlign="center" allowSort="true">航行区域</div>
                         <div name="Remarks" field="remarks" width="120" headerAlign="center" allowSort="true">备注</div>
                     </div>
@@ -101,6 +101,7 @@
                     <!-- <div name="ShipStatus" field="shipStatus" width="80" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipStatusRenderer">调度状态</div> -->
                     <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="false">船号</div>
                     <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipTypeRenderer">船舶类型</div>
+                    <div name="CombineMobile" field="combineMobile" width="100" headerAlign="center" allowSort="false">联系电话</div>
                     <div name="PreWeight" vtype="required" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位</div>
                     <div name="ActualTransferPrice" vtype="required, float" field="actualTransferPrice" width="100" headerAlign="center" allowSort="false">船户实际运价
                         <input property="editor" class="mini-textbox" style="width:100%;" minWidth="100" />
@@ -110,9 +111,6 @@
                     </div>
                     <div name="PreArriveTime" vtype="required" field="preArriveTime" width="120" headerAlign="center" allowSort="false" dateFormat="yyyy-MM-dd HH:mm:ss"  renderer="CapcitySchedul.funOrderDetailsTimeRenderer">空船要求到港时间
                         <input property="editor" class="mini-datepicker" format="yyyy-MM-dd HH:mm:ss" showTime="true" style="width:100%;" />
-                    </div>
-                    <div name="Oil" vtype="required" field="oil" width="120" headerAlign="center" allowSort="false">计划加油量
-                        <input property="editor" class="mini-textbox" style="width:100%;" />
                     </div>
                     <div type="comboboxcolumn" vtype="required" autoShowPopup="true" name="SettleType" field="settleType" width="120" headerAlign="center" allowSort="false">结算吨位方式
                         <input property="editor" class="mini-combobox" style="width:100%;" data="SettleTypes" />

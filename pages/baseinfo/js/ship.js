@@ -14,6 +14,7 @@ var PageShip = function(){
             this.shipGrid = mini.get("shipGrid");
             this.shipGrid.setUrl(PageMain.defaultOption.httpUrl + "/ship/getList")
             this.funSearch();
+            mini.get("fitStatus").setData([{id:1, name:"是"},{id:2, name:"否"}]);
         },
         funSearch : function()
         {
@@ -78,7 +79,7 @@ var PageShip = function(){
         {
             if (e.value ==1 )
             {
-                return "干货船";
+                return "普通货船";
             } else if (e.value == 2)
             {
                 return "多用途船";
@@ -106,6 +107,18 @@ var PageShip = function(){
                     return PageShip.defaultOption.shipFlagFly[nItem].name;
                 }
             }
+            return e.value;
+        },
+        funRendererFitStatus : function (e)
+        {
+            if (e.value ==1 )
+            {
+                return "适航";
+            } else if (e.value == 2)
+            {
+                return "不适航";
+            }
+
             return e.value;
         },
         funOperRenderer : function(e)

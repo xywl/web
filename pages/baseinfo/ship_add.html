@@ -173,12 +173,12 @@
                     <td class="form-label">营运类型：</td>
                     <td class="form-content">
                         <input name="runType" id="runType"  class="mini-combobox" required="true"
-                               width="140"class="mini-combobox" valueField="id" textField="name"  maxlength="3" />
+                               width="140" valueField="id" textField="name"  maxlength="3" />
                     </td>
 
                     <td class="form-label">建成日期：</td>
                     <td class="form-content">
-                        <input name="buildDate" id="buildDate" required="true" class="mini-datepicker" width="140"  emptyText="建成日期" allowInput="false"  />
+                        <input name="buildDate" id="buildDate" class="mini-datepicker" width="140"  emptyText="建成日期" allowInput="false"  />
                     </td>
                     <td class="form-label">改建日期：</td>
                     <td class="form-content">
@@ -193,11 +193,11 @@
                     </td>
                     <td class="form-label">检验日期：</td>
                     <td class="form-content">
-                        <input name="checkDate" id="checkDate" required="true" class="mini-datepicker" width="140" emptyText="检验日期" allowInput="false"  />
+                        <input name="checkDate" id="checkDate" class="mini-datepicker" width="140" emptyText="检验日期" allowInput="false"  />
                     </td>
                     <td class="form-label">维修/保养日期：</td>
                     <td class="form-content">
-                        <input name="repairDate" id="repairDate" required="true" class="mini-datepicker" width="140" emptyText="维修/保养日期" allowInput="false"  />
+                        <input name="repairDate" id="repairDate" class="mini-datepicker" width="140" emptyText="维修/保养日期" allowInput="false"  />
                     </td>
                 </tr>
                 <!--<tr>-->
@@ -211,11 +211,25 @@
 
                <!-- </tr>-->
                 <tr>
-
-                    <td class="form-label">备<span style="padding: 0 12px;"></span>注：</td>
-                    <td class="form-content" colspan="5">
-                        <input name="description" id="description" class="mini-textarea" width="100%"  maxlength="100"/>
+                    <td class="form-label">适航状态：</td>
+                    <td class="form-content">
+                        <input name="fitStatus"  id="fitStatus"  valueField="id" textField="name"  class="mini-combobox" width="140"  maxlength="100"/>
                     </td>
+                    <td class="form-label">不适航原因：</td>
+                    <td class="form-content">
+                        <input name="noFitCause" id="noFitCause"   class="mini-textarea" width="140"  maxlength="100"/>
+                    </td>
+                    <td class="form-label">备<span style="padding: 0 12px;"></span>注：</td>
+                    <td class="form-content">
+                        <input name="description" id="description" class="mini-textarea" width="140"  maxlength="100"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">数据状态：</td>
+                    <td class="form-content" colspan="5">
+                        <input name="status"  id="status"  valueField="id" textField="name"  class="mini-combobox" width="140"  maxlength="100"/>
+                    </td>
+
                 </tr>
             </table>
          </div>

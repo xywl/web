@@ -17,7 +17,7 @@ var PageWaterLevel = function(){
             PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"gjswd"}, function (data) {
                 PageWaterLevel.defaultOption.dataDictFly = data;
               //  PageWaterLevel.funLoadSearchInfo();
-            })
+            });
         },
         funSearch : function()
         {

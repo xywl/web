@@ -12,9 +12,11 @@ var PageShipAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.shipForm = new mini.Form("shipFormAdd");
-            mini.get("shipType").setData([{id:1, name:"干货船"},{id:2, name:"多用途船"}]);
-            mini.get("runType").setData([{id:1, name:"集散两用"},{id:2, name:"集装箱"},{id:3, name:"砂石"},{id:99, name:"其他"}])
-            mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}])
+            mini.get("shipType").setData([{id:1, name:"普通货船"},{id:2, name:"多用途船"}]);
+            mini.get("runType").setData([{id:1, name:"集散两用"},{id:2, name:"集装箱"},{id:3, name:"砂石"},{id:99, name:"其他"}]);
+            mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}]);
+            mini.get("fitStatus").setData([{id:1, name:"是"},{id:2, name:"否"}]);
+            mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}]);
         },
         funSetData : function(data)
         {
@@ -35,8 +37,24 @@ var PageShipAdd = function(){
             }
             mini.get("shipLevel").setData(data.shipLevel);
             mini.get("shipFlag").setData(data.shipFlag);
+            if(row.runType="0")
+            {
+                row.runType="";
+            }
             if(row.shipLevel =="0"){
                 row.shipLevel = "";
+            }
+            if(row.rebuildDate =="1900-01-01"){
+                row.rebuildDate = "";
+            }
+            if(row.insuranceDate =="1900-01-01"){
+                row.insuranceDate = "";
+            }
+            if(row.checkDate =="1900-01-01"){
+                row.checkDate = "";
+            }
+            if(row.repairDate =="1900-01-01"){
+                row.repairDate = "";
             }
         	this.shipForm.setData(row);
             if(this.action == "oper")

@@ -120,7 +120,7 @@ var PageShipStaff = function(){
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/shipStaff_add.html",
                 title: paramData.title,
                 width: 850,
-                height: 30 *  11 + 65,
+                height: 30 *  11 + 100,
                 onload:function(){
                     var iframe=this.getIFrameEl();
                     iframe.contentWindow.PageShipStaffAdd.funSetData(paramData);

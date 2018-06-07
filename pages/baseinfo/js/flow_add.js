@@ -5,6 +5,7 @@ var PageFlowAdd = function(){
             basePath:"",
             action : "",
             flowForm : null,
+            dataDictWaterPointFly : null,
             portData:[]
         },
         init :function ()
@@ -15,12 +16,16 @@ var PageFlowAdd = function(){
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}])
             mini.get("sailingArea").setData([{id:1, name:"A级"},{id:2, name:"B级"},{id:4, name:"C级"}])
             this.funInitPortDate();
+            PageMain.callAjax(PageMain.defaultOption.httpUrl +"/gps/loadDataDict", {code:"gjswd"}, function (data) {
+                PageFlowAdd.defaultOption.dataDictWaterPointFly = data;
+            });
         },
         funSetData : function(data)
         {
         	var row = data.row;
         	this.action = data.action;
-            mini.get("waterLevelPoint").setData(row.waterFly)
+
+            mini.get("waterLevelPoint").setData(row.waterFly);
             row.sailingArea = PageMain.funDealComBitInfo(row.sailingArea, 4);
             if (this.action == "add")
             {
@@ -64,6 +69,16 @@ var PageFlowAdd = function(){
                     }
                 }
             })
+        },
+        funRendererDataDictWaterPoint : function (v)
+        {
+            for(var i =0 ;  i< PageFlowAdd.defaultOption.dataDictWaterPointFly.length;i++) {
+
+                if(PageFlowAdd.defaultOption.dataDictWaterPointFly[i].id == v){
+                    return PageFlowAdd.defaultOption.dataDictWaterPointFly[i].name;
+                }
+
+            }
         },
         funSave : function()
         {

@@ -47,7 +47,7 @@ var CapcitySchedul = function(){
                 if (record.localstatus == 2) {
                     e.rowStyle = "background: #fceee2 !important;";
                 }
-                if ((field == "shipType" || field == "shipNo" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") && record.localstatus != 2) {
+                if ((field == "shipType" || field == "shipNo"|| field == "combineMobile" || field == "shipStatus" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") && record.localstatus != 2) {
                     e.cellStyle = "background: #eee;";
                 } else {
                     e.cellStyle = "background: transparent;"
@@ -55,16 +55,17 @@ var CapcitySchedul = function(){
             });
 
             shipListGrid.on("select", function (e) {  //船舶列表选中事件
-                var record = e.record,
-                shipId = record.shipId,
-                shipNo = record.shipNo,
-                preWeight = record.preWeight,
+                var record = e.record;
+                shipId = record.shipId;
+                shipNo = record.shipNo;
+                combineMobile = record.combineMobile;
+                preWeight = record.preWeight;
                 shipFlag = record.shipFlag;
                 var shipSuggestUnitPrice = $("#shipSuggestUnitPrice").val();
                 var datas = orderDetailsGrid.getData();
                 var idArray = [];
                 //console.log(record);
-                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice, status: -1};
+                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, combineMobile: combineMobile, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice, status: -1};
                 for(var i = 0; i < datas.length; i++)
                 {
                     idArray.push(datas[i].shipId);
@@ -363,7 +364,7 @@ var CapcitySchedul = function(){
                 }
                 var hasLeftWeight = totalLoad - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
-                e.cellHtml = '<span style="color: red;font-size: 12px;">剩余未调度吨位数: '+hasLeftWeight+'</span>';
+                e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未调度吨位数: '+hasLeftWeight+'</span>';
             }
         },
         funDelRow: function(row_uid)
@@ -439,7 +440,7 @@ var CapcitySchedul = function(){
                     plansData.preArriveTime = this.funTimeFormat(mini.formatDate(prePaseDate, "yyyy-MM-dd HH:mm:ss"));
                     plansData.preSettleAmount = submitData[i].preSettleAmount;
                 }
-                plansData.oil = submitData[i].oil;
+                //plansData.oil = submitData[i].oil;
                 plansData.settleType = submitData[i].settleType;
                 if (submitData[i].status == -1) {
                     plansData.stashStatus = 1;

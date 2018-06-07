@@ -10,20 +10,21 @@ var PageSailingInfoAdd = function(){
             globelRow : [],
             operType:"",
             goodsTypeFly : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}],
+            sailingStatusTypeFly : [{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}],
             sailingInfoForm : null
             
         },
         init :function ()
         {
             mini.parse();
-            mini.get("status").setData([{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}]);
+            mini.get("status").setData(PageSailingInfoAdd.defaultOption.sailingStatusTypeFly);
 
             this.basePath = PageMain.basePath;
             this.sailingInfoForm = new mini.Form("sailingInfoFormAdd");
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDispatchShip", {}, function (data) {
-                PageSailingInfoAdd.defaultOption.dispatchShipFly = data;
-                mini.get("orderId").setData(data);
-            });
+            // PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDispatchShip", {}, function (data) {
+            //     PageSailingInfoAdd.defaultOption.dispatchShipFly = data;
+            //     mini.get("orderId").setData(data);
+            // });
 
 
 
@@ -44,6 +45,9 @@ var PageSailingInfoAdd = function(){
                 row.departPortTime = PageMain.funStrToDate(row.departPortTime);
                 row.actualArriveEPortTime = PageMain.funStrToDate(row.actualArriveEPortTime);
                 row.dischargeTime = PageMain.funStrToDate(row.dischargeTime);
+                mini.get("orderId").setData(row);
+                mini.get("orderId").setValue(row.orderId);
+
             }
             else
             {

@@ -3,15 +3,27 @@ var PageSailingInfo = function(){
     return {
         defaultOption: {
             basePath:"",
-            sailingInfoGrid : null
+            sailingInfoGrid : null,
+            sailingStatusTypeFly : [{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}]
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
             this.sailingInfoGrid = mini.get("sailingInfoGrid");
-            this.sailingInfoGrid.setUrl(PageMain.defaultOption.httpUrl + "/sailingInfo/getList")
+            this.sailingInfoGrid.setUrl(PageMain.defaultOption.httpUrl + "/sailingInfo/getList");
             this.funSearch();
+        },
+        funSailingStatusRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageSailingInfo.defaultOption.sailingStatusTypeFly.length; nItem++)
+            {
+                if(e.value == PageSailingInfo.defaultOption.sailingStatusTypeFly[nItem].id)
+                {
+                    return PageSailingInfo.defaultOption.sailingStatusTypeFly[nItem].name;
+                }
+            }
+            return "";
         },
         funSearch : function()
         {
