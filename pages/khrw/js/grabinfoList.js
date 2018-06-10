@@ -78,7 +78,7 @@ var PageGrapInfoAudit = function(){
             var grapListGrid = e.sender;
             var row = grapListGrid.getSelected();
             PageGrapInfoAudit.funSearchDispatchInfo(row.customerTaskFlowId);
-            PageGrapInfoAudit.checkListGrid.load({leftDispatchId: row.id, status: row.status, queryParamFlag: 1});
+            PageGrapInfoAudit.checkListGrid.load({leftDispatchId: row.id, status: 1, queryParamFlag: 1});
         },
         funSearchDispatchInfo: function(id)
         {
