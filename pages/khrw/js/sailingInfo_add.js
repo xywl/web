@@ -21,12 +21,10 @@ var PageSailingInfoAdd = function(){
 
             this.basePath = PageMain.basePath;
             this.sailingInfoForm = new mini.Form("sailingInfoFormAdd");
-            // PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDispatchShip", {}, function (data) {
-            //     PageSailingInfoAdd.defaultOption.dispatchShipFly = data;
-            //     mini.get("orderId").setData(data);
-            // });
-
-
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/sailingInfo/loadDispatchShip", {}, function (data) {
+                PageSailingInfoAdd.defaultOption.dispatchShipFly = data;
+                mini.get("orderId").setData(data);
+            });
 
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadPortAll",{}, function (data) {
                 PageSailingInfoAdd.defaultOption.PortFly = data;
@@ -78,21 +76,24 @@ var PageSailingInfoAdd = function(){
             {
                 var c = fields[i];
                 if (c.setReadOnly) c.setReadOnly(true);     //只读
-                mini.get("status").enabled=false;
             }
-            mini.get("status").setReadOnly(false);
-            if (this.operType == "kqdgdj" || this.operType == "bjkqdgdj")
+            mini.get("description").setReadOnly(false);
+            if (this.operType == "kqdgdj")
             {
-
-                if(this.operType == "kqdgdj")
-                {
-                    mini.get("orderId").required =true;
-                    mini.get("orderId").setReadOnly(false);
-                }
-
+                mini.get("orderId").required =true;
+                mini.get("orderId").setReadOnly(false);
                 mini.get("arriveSPortTime").setReadOnly(false);
                 mini.get("arriveSPortTime").required =true;
-
+                $("tr[name='kqzhdj']").hide();
+                $("tr[name='zqxhsj']").hide();
+                $("tr[name='zqdgsj']").hide();
+                $("tr[name='ksxhsj']").hide();
+            }
+            else if(this.operType == "bjkqdgdj")
+            {
+                mini.get("arriveSPortTime").setReadOnly(false);
+                mini.get("arriveSPortTime").required =true;
+                $("tr[name='kqdgdj']").hide();
                 $("tr[name='kqzhdj']").hide();
                 $("tr[name='zqxhsj']").hide();
                 $("tr[name='zqdgsj']").hide();
@@ -154,7 +155,7 @@ var PageSailingInfoAdd = function(){
             if (this.action != "add")
             {
                 window.setTimeout(function () {
-                    PageSailingInfoAdd.funDealShipNoChangeInfo(PageSailingInfoAdd.defaultOption.globelRow.orderId);
+                    PageSailingInfoAdd.funDealShipNoChangeInfoEdit(PageSailingInfoAdd.defaultOption.globelRow);
                 },1000)
             }
         },
@@ -163,7 +164,47 @@ var PageSailingInfoAdd = function(){
             var orderId = mini.get("orderId").getValue();
             PageSailingInfoAdd.funDealShipNoChangeInfo(orderId);
         },
-         funDealShipNoChangeInfo : function (orderId)
+
+        funDealShipNoChangeInfoEdit : function (obj)
+        {
+            obj.preArriveTime = PageMain.funStrToDate(obj.preArriveTime);
+            PageSailingInfoAdd.defaultOption.goodsTypeFly.forEach(function (goodObj) {
+                if (goodObj.id == obj.goodsType)
+                {
+                    obj.goodsType = goodObj.name;
+                }
+            });
+
+            PageSailingInfoAdd.defaultOption.PortFly.forEach(function (portObj) {
+                if (portObj.id == obj.startPortId)
+                {
+                    obj.startPortId = portObj.name;
+                }
+                else if (portObj.id == obj.endPortId)
+                {
+                    obj.endPortId = portObj.name;
+                }
+            })
+            obj.loadTime = mini.get("loadTime").getValue();
+            obj.loadWeight = mini.get("loadWeight").getValue();
+            obj.preArriveEPortTime = mini.get("preArriveEPortTime").getValue();
+            obj.arriveSPortTime = mini.get("arriveSPortTime").getValue();
+            obj.departPortTime = mini.get("departPortTime").getValue();
+            obj.actualArriveEPortTime = mini.get("actualArriveEPortTime").getValue();
+            obj.dischargeTime = mini.get("dischargeTime").getValue();
+            obj.dischargeWeight = mini.get("dischargeWeight").getValue();
+            obj.dischargeDelayFee = mini.get("dischargeDelayFee").getValue();
+            obj.allowance = mini.get("allowance").getValue();
+            obj.description = mini.get("description").getValue();
+            obj.status = "1";//mini.get("status").getValue();
+            obj.bucklePrice = mini.get("bucklePrice").getValue();
+            obj.id = mini.get("id").getValue();
+            PageSailingInfoAdd.sailingInfoForm.setData(obj);
+
+            return;
+
+        },
+        funDealShipNoChangeInfo : function (orderId)
         {
             PageSailingInfoAdd.defaultOption.dispatchShipFly.forEach(function (obj)
             {
