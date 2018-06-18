@@ -45,6 +45,8 @@ var PageMap = function()
             GlobalShipZCIcon : null,
             GlobalShipZCHIcon : null,
             GlobalShipHcon : null,
+            GlobalShip0LxIcon : null,
+            GlobalShipHLxIcon : null,
             realMarkerFly : [],
             hisInfoWindow:null,
             hisDataFly : [], //轨迹数据
@@ -69,9 +71,15 @@ var PageMap = function()
             SailingFly:[],
             DispatchFly:[],
             cklist:null,
+            mRealInterval:null,
             statelist : null,
             showSatateList:"",
             showBoundsFlag : true,
+            circleDzwlMarker : null,//电子围栏
+            circleDzwlOverlay : null,//电子围栏
+            circleDzwlLng : 0,//电子围栏
+            circleDzwlLat : 0,//电子围栏
+            circleDzwlRadius : 0,//电子围栏
             TipFly:[],// 提醒
             cklistData :[{"id": 1, "text": "港口"},{"id": 2, "text": "航道"},{"id": 3, "text": "危险区域"}],
             statelistData :[{"id": 4, "text": "只显报警船"},{"id": 5, "text": "只显重载船"}],
@@ -124,6 +132,9 @@ var PageMap = function()
             this.defaultOption.GlobalShipZCIcon = new BMap.Icon("themes/images/ship0.png", new BMap.Size(40, 40));
             this.defaultOption.GlobalShipZCHIcon = new BMap.Icon("themes/images/shiph.png", new BMap.Size(57, 57));
             this.defaultOption.GlobalShipHIcon = new BMap.Icon("themes/images/shipredh.png", new BMap.Size(57, 57));
+
+            this.defaultOption.GlobalShip0LxIcon = new BMap.Icon("themes/images/ship0_lx.png", new BMap.Size(40, 40));
+            this.defaultOption.GlobalShipHLxIcon = new BMap.Icon("themes/images/shiph_lx.png", new BMap.Size(40, 40));
             this.defaultOption.GlobalPointIcon = new BMap.Icon("themes/images/point.png", new BMap.Size(16, 16));
             // 添加带有定位的导航控件
             var navigationControl = new BMap.NavigationControl({
@@ -188,6 +199,70 @@ var PageMap = function()
             mini.get("speed").select(1);*/
             this.funLoadBase();
         },
+        funClearDzwlInfo : function ()
+        {
+            this.mapObj.removeOverlay(this.defaultOption.circleDzwlOverlay);
+            this.mapObj.removeOverlay(this.defaultOption.circleDzwlMarker);
+        },
+        funAddDzwlInfo : function ()
+        {
+            this.funClearDzwlInfo();
+            var drawingManager = new BMapLib.DrawingManager(this.mapObj, {
+                isOpen: true, //是否开启绘制模式
+                enableDrawingTool: false, //是否显示工具栏
+                drawingToolOptions: {
+                    anchor: BMAP_ANCHOR_TOP_RIGHT, //位置
+                    offset: new BMap.Size(5, 5), //偏离值
+                    scale: 0.8, //工具栏缩放比例
+                    drawingModes : [
+                        BMAP_DRAWING_CIRCLE
+                    ]
+                }
+            });
+
+            drawingManager.setDrawingMode(BMAP_DRAWING_CIRCLE);
+            var me = this;
+            drawingManager.addEventListener('circlecomplete', function(e, overlay) {
+                me.defaultOption.circleDzwlOverlay = overlay;
+                me.defaultOption.circleDzwlMarker = me.funAddMarkerInfo(new BMap.Point(e.getCenter().lng, e.getCenter().lat));
+                me.defaultOption.circleDzwlLng = e.getCenter().lng;
+                me.defaultOption.circleDzwlLat = e.getCenter().lat;
+                me.defaultOption.circleDzwlRadius = parseInt(e.getRadius());
+                me.funDzwlSearchShipInfo(overlay);
+                drawingManager.close();
+            });
+
+        },
+        funDzwlSearchShipInfo : function (mClicle)
+        {
+            var shipFly = [];
+            this.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                if (BMapLib.GeoUtils.isPointInCircle(mObj.lnglat, mClicle))
+                {
+                    shipFly.push(mObj.realObj);
+                    //tmp +="<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>设备号："+ mObj.devId +"</span><span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>船号：" + mObj.shipNo + "</span>"+ (mObj.alarmType == 1?"<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>报警</span>":"")  + (mObj.sailState == 1?"<span style='padding: 0 12px; width: 120px; display:-moz-inline-box;display:inline-block; '>有任务</span>":"") + " <br/>"
+                }
+            });
+            PageMap.funOpenShipInfo(shipFly);
+        },
+        funOpenShipInfo : function (shipFly)
+        {
+            var me = this;
+            mini.open({
+                url: PageMain.funGetRootPath() + "/pages/jk/query_ship.html",
+                title: "电子围栏检索",
+                width: 800,
+                height: 320,
+                onload:function(){
+                    var iframe=this.getIFrameEl();
+                    iframe.contentWindow.PageQueryShip.funSetData(shipFly);
+                },
+                ondestroy:function(action){
+                    me.funClearDzwlInfo();
+                }
+            })
+        },
+
         funCkListchangedInfo : function ()
         {
            var ckFlys = this.defaultOption.cklist.getValue().split(",");
@@ -384,9 +459,12 @@ var PageMap = function()
             PageMap.funLoadSailingInfo();
             PageMap.funLoadRealInfo();
             //加载航道
-            window.setInterval(PageMap.funLoadRealInfo, 15000)
+            PageMap.funRealInterval();
             window.setInterval(PageMap.funLoadSailingInfo, 12000)
 
+        },
+        funRealInterval : function () {
+            PageMap.defaultOption.mRealInterval = window.setInterval(PageMap.funLoadRealInfo, 15000);
         },
         funRealRowClick : function (e) {
             //e.row.devId
@@ -633,6 +711,11 @@ var PageMap = function()
             }
 
         },
+        funHisReal : function ()
+        {
+            PageMap.funHisClear();
+            PageMap.funRealInterval();
+        },
         funSearchHis : function ()
         {
             PageMap.funStop();
@@ -661,6 +744,7 @@ var PageMap = function()
                 PageMain.funCloseLoading();
                 if (data.success && data.data.length > 0)
                 {
+                    PageMap.funHis2RealInfo();
                     PageMap.funDealHis(data.data);
                 }
                 else
@@ -668,6 +752,21 @@ var PageMap = function()
                     PageMain.funShowMessageBox("暂无轨迹数据");
                 }
             },"application/json;charset=utf-8");
+        },
+        funHis2RealInfo : function ()
+        {
+            if (PageMap.defaultOption.mRealInterval != null)
+            {
+                try{
+                    window.clearInterval(PageMap.defaultOption.mRealInterval);
+                    PageMap.defaultOption.mRealInterval = null;
+                }catch(e){
+
+                }
+            }
+            PageMap.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                mObj.marker.hide();
+            })
         },
         funDealHis : function (data)
         {
@@ -1083,6 +1182,7 @@ var PageMap = function()
         funDrawCarCallBackInfo : function (paramRow, paramPoint, paramPlace)
         {
             var alarmType = 0;
+            var alarmTypeVal = "-";
             var sailState = 0;
             /*PageMain.funTipInfo(paramRow.shipNo)*/
             var flag = true;
@@ -1101,6 +1201,7 @@ var PageMap = function()
                 var tmpObj = PageMap.funGetDangerZoneSpeedInfo(paramRow.areaId);
                 if (tmpObj != null)
                 {
+                    alarmTypeVal += "超速报警"+tmpObj.name+"【最高速度"+tmpObj.maxSpeed+"】";
                     tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">超速报警：'+tmpObj.name+'【最高速度'+tmpObj.maxSpeed+'】</div>';
                 }
             }
@@ -1110,6 +1211,7 @@ var PageMap = function()
                 var tmpObj = PageMap.funGetDangerZoneSpeedInfo(paramRow.areaId);
                 if (tmpObj != null)
                 {
+                    alarmTypeVal += "低速报警"+tmpObj.name+"【最低速度"+tmpObj.minSpeed+"】";
                     tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">低速报警：' + tmpObj.name + '【最低速度' + tmpObj.minSpeed + '】</div>';
                 }
             }
@@ -1119,9 +1221,13 @@ var PageMap = function()
                 var tmpObj = PageMap.funGetDangerZoneInfo(paramRow.areaId);
                 if (tmpObj != null)
                 {
+                    alarmTypeVal += "区载报警"+tmpObj.name;
                     tmpContent += '<div style="width: 272px; float: left; height: 25px; color: red;">区载报警：' + tmpObj.name + '</div>';
                 }
             }
+
+            paramRow.alarmType = alarmType;
+            paramRow.alarmTypeVal = alarmTypeVal;
 
             //进港
             if(paramRow.inOrOut == 1)
@@ -1195,20 +1301,21 @@ var PageMap = function()
 
             if (flag)
             {
-                var mMarkerObj = {devId: null, lnglat:null, alarmType:null, sailState:null, shipNo:null, marker: null, label: null, infoWindow: null};
+                var mMarkerObj = {devId: null, lnglat:null, alarmType:null, sailState:null, shipNo:null, marker: null, label: null, infoWindow: null, realObj : null};
                 mMarkerObj.devId = paramRow.devId;
                 mMarkerObj.lnglat = paramPoint;
                 mMarkerObj.alarmType = alarmType;
                 mMarkerObj.sailState = sailState;
                 mMarkerObj.shipNo = paramRow.shipNo;
                 mMarkerObj.infoWindow = new BMap.InfoWindow(tmpContent);
+                mMarkerObj.realObj = paramRow;
 
                 mMarkerObj.label = new BMap.Label(paramRow.shipNo, {
                     offset : new BMap.Size(-5 * parseInt(paramRow.shipNo.replace(/[^\x00-\xff]/g,"aa").length / 2), -20)    //设置文本偏移量
                 });
                 mMarkerObj.label.setStyle(this.defaultOption.GlobalLabelStyle);
 
-                mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShowRealIconInfo(alarmType, sailState));
+                mMarkerObj.marker = this.funAddMarkerInfo(paramPoint, this.funShowRealIconInfo(alarmType, sailState, paramRow.online));
                 mMarkerObj.marker.setRotation(paramRow.angle);
 
                 //mMarkerObj.label.setRotation(paramRow.angle);
@@ -1225,9 +1332,17 @@ var PageMap = function()
             try { return rs.address; }catch (e){}
             return "";
         },
-        funShowRealIconInfo : function (alarmType, shipState)
+        funShowRealIconInfo : function (alarmType, shipState, online)
         {
-            if (alarmType == 1)
+            if(online == 0)
+            {
+                if(shipState  == 1)
+                {
+                    return this.defaultOption.GlobalShipHLxIcon;
+                }
+                return this.defaultOption.GlobalShip0LxIcon;
+            }
+            else if (alarmType == 1)
             {
                 if(shipState  == 1)
                 {
