@@ -43,6 +43,7 @@ var PageSailingInfoAdd = function(){
                 row.departPortTime = PageMain.funStrToDate(row.departPortTime);
                 row.actualArriveEPortTime = PageMain.funStrToDate(row.actualArriveEPortTime);
                 row.dischargeTime = PageMain.funStrToDate(row.dischargeTime);
+                row.startchargeTime = PageMain.funStrToDate(row.startchargeTime);
                 mini.get("orderId").setData(row);
                 mini.get("orderId").setValue(row.orderId);
 
@@ -85,6 +86,7 @@ var PageSailingInfoAdd = function(){
                 mini.get("arriveSPortTime").setReadOnly(false);
                 mini.get("arriveSPortTime").required =true;
                 $("tr[name='kqzhdj']").hide();
+                $("td[name='zqlgsj']").hide();
                 $("tr[name='zqxhsj']").hide();
                 $("tr[name='zqdgsj']").hide();
                 $("tr[name='ksxhsj']").hide();
@@ -95,6 +97,7 @@ var PageSailingInfoAdd = function(){
                 mini.get("arriveSPortTime").required =true;
                 $("tr[name='kqdgdj']").hide();
                 $("tr[name='kqzhdj']").hide();
+                $("td[name='zqlgsj']").hide();
                 $("tr[name='zqxhsj']").hide();
                 $("tr[name='zqdgsj']").hide();
                 $("tr[name='ksxhsj']").hide();
@@ -103,13 +106,18 @@ var PageSailingInfoAdd = function(){
             {
                 mini.get("loadTime").setReadOnly(false);
                 mini.get("loadWeight").setReadOnly(false);
-                mini.get("preArriveEPortTime").setReadOnly(false);
                 mini.get("bucklePrice").setReadOnly(false);
                 mini.get("loadTime").required =true;
                 mini.get("loadWeight").required =true;
-                mini.get("preArriveEPortTime").required =true;
                 mini.get("bucklePrice").required =true;
-                $("td[name='zqlgsj']").hide();
+                mini.get("cutWire").setReadOnly(false);
+                mini.get("cutWire").required =true;
+                mini.get("cutOther").setReadOnly(false);
+                mini.get("cutOther").required =true;
+                mini.get("cutOtherDes").setReadOnly(false);
+                mini.get("cutOtherDes").required =true;
+                $("tr[name='kqdgdj']").hide();
+                $("tr[name='zqlgsj']").hide();
                 $("tr[name='zqdgsj']").hide();
                 $("tr[name='zqxhsj']").hide();
                 $("tr[name='ksxhsj']").hide();
@@ -118,6 +126,9 @@ var PageSailingInfoAdd = function(){
             {
                 mini.get("departPortTime").setReadOnly(false);
                 mini.get("departPortTime").required =true;
+                mini.get("preArriveEPortTime").setReadOnly(false);
+                mini.get("preArriveEPortTime").required =true;
+                $("tr[name='kqdgdj']").hide();
                 $("tr[name='ksxhsj']").hide();
                 $("tr[name='zqdgsj']").hide();
                 $("tr[name='zqxhsj']").hide();
@@ -125,6 +136,7 @@ var PageSailingInfoAdd = function(){
             }else if (this.operType == "ksxhsj"){
                 mini.get("startchargeTime").setReadOnly(false);
                 mini.get("startchargeTime").required =true;
+                $("tr[name='kqdgdj']").hide();
                 $("tr[name='zqdgsj']").hide();
                 $("tr[name='zqxhsj']").hide();
             }
@@ -132,21 +144,25 @@ var PageSailingInfoAdd = function(){
             {
                 mini.get("actualArriveEPortTime").setReadOnly(false);
                 mini.get("actualArriveEPortTime").required =true;
+                $("tr[name='kqdgdj']").hide();
                 $("tr[name='zqxhsj']").hide();
                 $("tr[name='ksxhsj']").hide();
             }
             else if(this.operType == "zqxhsj")
             {
+                mini.get("startchargeTime").setReadOnly(false);
+                mini.get("startchargeTime").required =true;
                 mini.get("dischargeTime").setReadOnly(false);
                 mini.get("dischargeWeight").setReadOnly(false);
                 mini.get("dischargeDelayFee").setReadOnly(false);
                 mini.get("allowance").setReadOnly(false);
                 mini.get("description").setReadOnly(false);
-
                 mini.get("dischargeTime").required =true;
                 mini.get("dischargeWeight").required =true;
                 mini.get("dischargeDelayFee").required =true;
                 mini.get("allowance").required =true;
+
+                $("tr[name='kqdgdj']").hide();
             }
         },
         funDealSetDataInfo: function ()
@@ -196,13 +212,23 @@ var PageSailingInfoAdd = function(){
             obj.dischargeDelayFee = mini.get("dischargeDelayFee").getValue();
             obj.allowance = mini.get("allowance").getValue();
             obj.description = mini.get("description").getValue();
-            obj.status = "1";//mini.get("status").getValue();
             obj.bucklePrice = mini.get("bucklePrice").getValue();
             obj.id = mini.get("id").getValue();
             PageSailingInfoAdd.sailingInfoForm.setData(obj);
 
             return;
 
+        },
+        funGetStatusOperType(operType)
+        {
+            var status="0";
+            if(this.operType == "kqdgdj")status="1";
+            if(this.operType == "bjkqdgdj")status="1";
+            if(this.operType == "kqzhdj")status="2";
+            if(this.operType == "zqlgsj")status="3";
+            if(this.operType == "zqdgsj")status="4";
+            if(this.operType == "zqxhsj")status="5";
+            return status;
         },
         funDealShipNoChangeInfo : function (orderId)
         {
@@ -274,6 +300,12 @@ var PageSailingInfoAdd = function(){
             obj.actualArriveEPortTime = PageMain.funGetTimeMiniInfo("actualArriveEPortTime");
             obj.dischargeTime = PageMain.funGetTimeMiniInfo("dischargeTime");
             obj.startchargeTime = PageMain.funGetTimeMiniInfo("startchargeTime");
+            var status=mini.get("status").getValue();
+            var operStatus=PageSailingInfoAdd.funGetStatusOperType(this.operType);
+            if(status<operStatus)
+            {
+                obj.status=operStatus;
+            }
             $.ajax({
                url : PageMain.defaultOption.httpUrl + "/sailingInfo/" + me.action + "?a="+Math.random(),
                type : 'POST',

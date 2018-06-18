@@ -14,7 +14,7 @@
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="freightPlanForm">
                 <lable class="form-label">关键字：</lable>
                 <input name="key" id="key"   class="mini-combobox"
-                       valueField="id" textField="name"  emptyText="请选择船舶类型" />
+                       valueField="id" textField="name"  emptyText="请选择船舶所有权" />
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageFreightPlan.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageFreightPlan.funReset()" plain="true"><label>重置</label></a>
@@ -40,7 +40,7 @@
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
 					 <div field="time" width="120" headerAlign="center" allowSort="true" >计划月份</div>
-					 <div field="shipFlag" width="120" headerAlign="center" allowSort="true"  renderer="PageFreightPlan.funGoodsTypeRenderer">船舶类型 </div>
+					 <div field="shipFlag" width="120" headerAlign="center" allowSort="true"  renderer="PageFreightPlan.funGoodsTypeRenderer">船舶所有权 </div>
                     <div field="revUnit" width="120" headerAlign="center" allowSort="true" renderer="PageFreightPlan.funRevUnitRenderer">收货单位</div>
                     <div field="goodsName" width="120" headerAlign="center" allowSort="true" renderer="PageFreightPlan.funGoodsNameRenderer">货物名称</div>
                     <div field="plan" width="120" headerAlign="center" allowSort="true">计划（万吨/万标箱）</div>
