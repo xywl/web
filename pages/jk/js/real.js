@@ -714,6 +714,9 @@ var PageMap = function()
         funHisReal : function ()
         {
             PageMap.funHisClear();
+            PageMap.defaultOption.GlobalShipFly.forEach(function (mObj) {
+                mObj.marker.show();
+            })
             PageMap.funRealInterval();
         },
         funSearchHis : function ()
@@ -873,8 +876,14 @@ var PageMap = function()
         {
             //console.log("--------------" + $("#bncs_select").val())
             PageMap.defaultOption.hisCurrCnt = parseInt($("#bncs_select").val() - 1);
+            console.log("--------------"+PageMap.defaultOption.hisPlayStaue)
+
+
+            PageMap.funDealSliderChange();
+
             if (PageMap.defaultOption.hisPlayStaue == 2)
             {
+
                 PageMap.defaultOption.hisPlayStaue = 1;
                 PageMap.funPlay();
             }
@@ -882,6 +891,18 @@ var PageMap = function()
             {
                 PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
             }
+        },
+        funDealSliderChange : function()
+        {
+            PageMap.funClearHisLineFly();
+            var tmpFly = [];
+            for(var nItem = 0; nItem < PageMap.defaultOption.hisCurrCnt; nItem++)
+            {
+                tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem].lng, this.defaultOption.hisDataFly[nItem].lat)));
+                tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
+                PageMap.defaultOption.hisPolyLineFly.push(null);
+            }
+            PageMap.defaultOption.hisPolyLineFly.push(PageMap.funAddPolyLineInfo(tmpFly));
         },
         //画船的位置
         funHisMarker : function (paramItem)
