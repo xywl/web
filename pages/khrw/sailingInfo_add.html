@@ -29,172 +29,185 @@
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr name="kqdgdj">
                     <td class="form-label">调度任务：</td>
-                    <td class="form-content" colspan="3">
+                    <td class="form-content" colspan="5">
                         <input name="orderId" id="orderId"  class="mini-combobox" valueField="orderId" textField="shipNo"   onvaluechanged="PageSailingInfoAdd.funShipNoChangeInfo"  maxlength="10" requiredErrorText="调度船号不能为空"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">船运状态：</td>
+                    <td class="form-label" style="width: 130px;">调度单号：</td>
                     <td class="form-content">
-                        <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"
-                               required="true" width="140"/>
+                        <input name="orderNo" id="orderNo" class="mini-textbox" width="160"/>
                     </td>
-                    <td class="form-label">调度船号：</td>
+                    <td class="form-label" style="width: 130px;">调度船号：</td>
                     <td class="form-content">
                         <input id="shipId" name="shipId"  class="mini-hidden" />
-                        <input class="mini-textbox" name="shipNo" id="shipNo"   width="140"/>
+                        <input class="mini-textbox" name="shipNo" id="shipNo"   width="160"/>
                     </td>
-                    <td class="form-label">调度单号：</td>
+                    <td class="form-label" style="width: 130px;">船长：</td>
                     <td class="form-content">
-                        <input name="orderNo" id="orderNo" class="mini-textbox" width="140"/>
+                        <input name="shiperName" id="shiperName"  class="mini-textbox" width="160" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">流<span style="padding: 0 14px;"></span>向：</td>
+                    <td class="form-label" style="width: 130px;">联系电话：</td>
                     <td class="form-content">
-                        <input name="flowName" id="flowName"  class="mini-textbox" width="140"/>
+                        <input name="shiperMobile" id="shiperMobile"  class="mini-textbox" width="160" />
                     </td>
-                    <td class="form-label">装货港口：</td>
+                    <td class="form-label" style="width: 130px;">预报吨位：</td>
                     <td class="form-content">
-                        <input name="startPortId" id="startPortId"  class="mini-textbox"  width="140"/>
+                        <input name="preWeight" id="preWeight"  class="mini-textbox" width="160" />
                     </td>
-                    <td class="form-label">卸货港口：</td>
+                    <td class="form-label" style="width: 130px;">预发吨位：</td>
                     <td class="form-content">
-                        <input name="endPortId" id="endPortId"  class="mini-textbox"  width="140"/>
+                        <input name="preLoad" id="preLoad"  class="mini-textbox" width="160" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">发货单位：</td>
+                    <td class="form-label" style="width: 130px;">要求到港时间：</td>
                     <td class="form-content">
-                        <input name="sender" id="sender"  class="mini-textbox"  width="140"/>
+                        <input name="preArriveTime" id="preArriveTime"  class="mini-textbox" width="160" />
                     </td>
-                    <td class="form-label">收货单位：</td>
+                    <td class="form-label" style="width: 130px;">船运状态：</td>
                     <td class="form-content">
-                        <input name="receiver" id="receiver"  class="mini-textbox"  width="140"/>
+                        <input name="status" id="status" class="mini-combobox" valueField="id" textField="name"
+                               required="true" width="160"/>
                     </td>
-                    <td class="form-label">货物名称：</td>
+                    <td class="form-label" style="width: 130px;">流向任务单号：</td>
                     <td class="form-content">
-                        <input name="goodsName" id="goodsName"  class="mini-textbox" width="140" />
+                        <input name="flowTaskNo" id="flowTaskNo"  class="mini-textbox" width="160"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">货物类型：</td>
+                    <td class="form-label" style="width: 130px;">客户名称：</td>
                     <td class="form-content">
-                        <input name="goodsType" id="goodsType"  class="mini-textbox" width="140" />
+                        <input name="customerName" id="customerName"  class="mini-textbox" width="160" />
                     </td>
-                    <td class="form-label">预报吨位：</td>
+                    <td class="form-label" style="width: 130px;">货物名称：</td>
                     <td class="form-content">
-                        <input name="preWeight" id="preWeight"  class="mini-textbox" width="140" />
+                        <input name="goodsName" id="goodsName"  class="mini-textbox" width="160" />
                     </td>
-                    <td class="form-label">预发吨位：</td>
+                    <td class="form-label" style="width: 130px;">是否自提：</td>
                     <td class="form-content">
-                        <input name="preLoad" id="preLoad"  class="mini-textbox" width="140" />
+                        <input name="selfPick" id="selfPick"  class="mini-textbox"  width="160"/>
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">空船要求到港时间：</td>
+                    <td class="form-label" style="width: 130px;">发货单位：</td>
                     <td class="form-content">
-                        <input name="preArriveTime" id="preArriveTime"  class="mini-textbox" width="140" />
+                        <input name="sender" id="sender"  class="mini-textbox"  width="160"/>
                     </td>
-                    <td class="form-label">客户名称：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="fullName" id="fullName"  class="mini-textbox" width="140" />
+                    <td class="form-label" style="width: 130px;">收货单位：</td>
+                    <td class="form-content">
+                        <input name="receiver" id="receiver"  class="mini-textbox"  width="160"/>
+                    </td>
+                    <td class="form-label"  style="width: 130px;">流<span style="padding: 0 14px;"></span>向：</td>
+                    <td class="form-content">
+                        <input name="flowName" id="flowName"  class="mini-textbox" width="160"/>
                     </td>
                 </tr>
-            </table>
-            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">实际到装货港时间：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="arriveSPortTime" id="arriveSPortTime" class="mini-datepicker"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际到装货港时间不能为空" allowInput="false"/>
+                    <td class="form-label" style="width: 130px;">航行区域：</td>
+                    <td class="form-content">
+                        <input name="sailingArea" id="sailingArea"  class="mini-textbox"  width="160"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">装货港口：</td>
+                    <td class="form-content">
+                        <input name="startPortId" id="startPortId"  class="mini-textbox"  width="160"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">卸货港口：</td>
+                    <td class="form-content">
+                        <input name="endPortId" id="endPortId"  class="mini-textbox"  width="160"/>
                     </td>
                 </tr>
-                <tr name="kqzhdj">
-                    <td class="form-label">实际装货时间：</td>
+                <tr>
+                    <td class="form-label" style="width: 130px;">预计装货时间：</td>
                     <td class="form-content">
-                        <input name="loadTime" id="loadTime"   class="mini-datepicker"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际装货时间不能为空" allowInput="false"/>
+                        <input name="preLoadingTime" id="preLoadingTime"  class="mini-textbox"  width="160"/>
                     </td>
-                    <td class="form-label">实际装货吨位：</td>
+                    <td class="form-label" style="width: 130px;">预计卸货时间：</td>
                     <td class="form-content">
-                        <input name="loadWeight" id="loadWeight"   decimalPlaces="0" class="mini-spinner"  minValue="0" maxValue="10000000000" />
+                        <input name="preDischargeTime" id="preDischargeTime"  class="mini-textbox"  width="160"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">空船到港时间：</td>
+                    <td class="form-content">
+                        <input name="arriveSPortTime" id="arriveSPortTime" class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际到装货港时间不能为空" allowInput="false"/>
                     </td>
                 </tr>
-                <tr name="kqzhdj">
-                    <td class="form-label">扣网片金额（元）：</td>
+                <tr>
+                    <td class="form-label" style="width: 130px;">实际装货时间：</td>
                     <td class="form-content">
-                        <input name="bucklePrice" id="bucklePrice" class="mini-textbox" requiredErrorText="扣网片金额不能为空"  />
+                        <input name="loadTime" id="loadTime"   class="mini-datepicker"  width="160"  showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际装货时间不能为空" allowInput="false"/>
                     </td>
-                    <td class="form-label">扣钢丝金额（元）：</td>
+                    <td class="form-label" style="width: 130px;">实际装货吨位：</td>
                     <td class="form-content">
-                        <input name="cutWire" id="cutWire" class="mini-textbox" requiredErrorText="扣钢丝金额不能为空"  />
+                        <input name="loadWeight" id="loadWeight"   decimalPlaces="0" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000" />
                     </td>
-
-                </tr>
-                <tr name="kqzhdj">
-                    <td class="form-label">其他扣款（元）：</td>
+                    <td class="form-label" style="width: 130px;">扣网片金额：</td>
                     <td class="form-content">
-                        <input name="cutOther" id="cutOther" class="mini-textbox" requiredErrorText="其他扣款不能为空"  />
-                    </td>
-                    <td class="form-label">其他扣款说明：</td>
-                    <td class="form-content">
-                        <input name="cutOtherDes" id="cutOtherDes" class="mini-textbox" requiredErrorText="其他扣款说明不能为空"  />
+                        <input name="bucklePrice" id="bucklePrice" class="mini-textbox"  width="160" requiredErrorText="扣网片金额不能为空"  />
                     </td>
                 </tr>
-                <tr name="kqzhdj">
-                    <td class="form-label" name="zqlgsj">重船离港时间：</td>
-                    <td class="form-content" name="zqlgsj">
-                        <input name="departPortTime" id="departPortTime" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="重船离港时间不能为空"
-                               showClearButton="true"   allowInput="false"/>
-                    </td>
-                    <td class="form-label">预计到卸货港时间：</td>
+                <tr>
+                    <td class="form-label" style="width: 130px;">扣钢丝金额：</td>
                     <td class="form-content">
-                        <input name="preArriveEPortTime" id="preArriveEPortTime" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="预计到卸货港时间不能为空"
-                               showClearButton="true"  allowInput="false" />
+                        <input name="cutWire" id="cutWire" class="mini-textbox"  width="160" requiredErrorText="扣钢丝金额不能为空"  />
+                    </td>
+                    <td class="form-label" style="width: 130px;">其他扣款：</td>
+                    <td class="form-content">
+                        <input name="cutOther" id="cutOther" class="mini-textbox"  width="160" requiredErrorText="其他扣款不能为空"  />
+                    </td>
+                    <td class="form-label" style="width: 130px;">其他扣款说明：</td>
+                    <td class="form-content">
+                        <input name="cutOtherDes" id="cutOtherDes" class="mini-textbox" width="160"  requiredErrorText="其他扣款说明不能为空"  />
                     </td>
                 </tr>
-                <tr name="zqdgsj">
-                    <td class="form-label">实际到卸货港时间：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="actualArriveEPortTime" id="actualArriveEPortTime" class="mini-datepicker" nullValue="null"
-                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="重船离港时间不能为空"
+                <tr>
+                    <td class="form-label" style="width: 130px;">重船离港时间：</td>
+                    <td class="form-content">
+                        <input name="departPortTime" id="departPortTime" class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="重船离港时间不能为空" allowInput="false"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">预计到卸货港时间：</td>
+                    <td class="form-content">
+                        <input name="preArriveEPortTime" id="preArriveEPortTime" class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="预计到卸货港时间不能为空" allowInput="false"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">实际到卸货港时间：</td>
+                    <td class="form-content">
+                        <input name="actualArriveEPortTime" id="actualArriveEPortTime" class="mini-datepicker"  width="160" nullValue="null"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="实际到卸货港时间不能为空"
                                showClearButton="true"   allowInput="false" />
                     </td>
                 </tr>
-                <tr name="ksxhsj">
-                    <td class="form-label">开始卸货时间：</td>
-                    <td class="form-content" colspan="3">
-                        <input name="startchargeTime" id="startchargeTime" class="mini-datepicker" nullValue="null"
+                <tr>
+                    <td class="form-label" style="width: 130px;">开始卸货时间：</td>
+                    <td class="form-content">
+                        <input name="startchargeTime" id="startchargeTime" class="mini-datepicker"  width="160" nullValue="null"
                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="开始卸货时间不能为空"
                                showClearButton="true"   allowInput="false"/>
                     </td>
-                </tr>
-                <tr name="zqxhsj">
-                    <td class="form-label">实际卸空时间：</td>
+                    <td class="form-label" style="width: 130px;">实际卸空时间：</td>
                     <td class="form-content">
-                        <input name="dischargeTime" id="dischargeTime" class="mini-datepicker" nullValue="null"
+                        <input name="dischargeTime" id="dischargeTime" class="mini-datepicker"  width="160" nullValue="null"
                                format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="实际卸空时间不能为空"
                                showClearButton="true"   allowInput="false"/>
                     </td>
-                    <td class="form-label">实际卸货吨位：</td>
+                    <td class="form-label" style="width: 130px;">实际卸货吨位：</td>
                     <td class="form-content">
-                        <input name="dischargeWeight" id="dischargeWeight"  decimalPlaces="0" class="mini-spinner" minValue="0" maxValue="10000000000" />
-                    </td>
-                </tr>
-                <tr name="zqxhsj">
-                    <td class="form-label">卸货延期费：</td>
-                    <td class="form-content">
-                        <input name="dischargeDelayFee" id="dischargeDelayFee" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000" />
-                    </td>
-                    <td class="form-label">吨位补助：</td>
-                    <td class="form-content">
-                        <input name="allowance" id="allowance" decimalPlaces="2" class="mini-spinner"  minValue="0" maxValue="10000000000" />
+                        <input name="dischargeWeight" id="dischargeWeight"  decimalPlaces="0" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">备<span style="padding: 0 14px;"></span>注：</td>
+                    <td class="form-label" style="width: 130px;">卸货延期费：</td>
+                    <td class="form-content">
+                        <input name="dischargeDelayFee" id="dischargeDelayFee" decimalPlaces="2" class="mini-spinner" width="160"   minValue="0" maxValue="10000000000" />
+                    </td>
+                    <td class="form-label" style="width: 130px;">吨位补助：</td>
                     <td class="form-content" colspan="3">
+                        <input name="allowance" id="allowance" decimalPlaces="2" class="mini-spinner" width="160"   minValue="0" maxValue="10000000000" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label" style="width: 130px;">备<span style="padding: 0 14px;"></span>注：</td>
+                    <td class="form-content" colspan="5">
                         <input name="description" id="description" class="mini-textarea"  style="height: 40px; width: 624px;"/>
                     </td>
                 </tr>

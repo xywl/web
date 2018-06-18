@@ -32,7 +32,7 @@
                         <div type="indexcolumn" headerAlign="center" width="30">序号</div>
                         <div field="customerName" width="100" headerAlign="center" allowSort="true">客户名称</div>
                         <div field="leftWeight" width="80" headerAlign="center" allowSort="true">余调吨位</div>
-                        <div field="taskNo" width="120" headerAlign="center" allowSort="true">任务流向单号</div>
+                        <div field="taskNo" width="120" headerAlign="center" allowSort="true">流向任务单号</div>
                         <div field="flowName" width="120" headerAlign="center" allowSort="true">流向名称</div>
                         <div field="goodsName" width="80" headerAlign="center" allowSort="true">货物名称</div>
                         <div field="shipSuggestUnitPrice" width="80" headerAlign="center" allowSort="true">参考运价</div>
@@ -66,7 +66,7 @@
                         <div type="checkcolumn"></div>
                         <div visible="false" name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="true">船号</div>
                         <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="true">船号</div>
-                        <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funShipFlagRenderer">船舶类型</div>
+                        <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funShipFlagRenderer">船舶所有权</div>
                         <div name="PreWeight" field="preWeight" width="100" headerAlign="center" allowSort="true">预报吨位</div>
                         <div name="PreArriveTime" field="preArriveTime" width="120" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" renderer="CapcitySchedul.funPreArriveTimeRenderer">预计到港时间</div>
                         <div name="ArrivalPort" field="arrivalPort" width="100" headerAlign="center" allowSort="true">到达港口</div>
@@ -100,7 +100,7 @@
                     <div visible="false" name="ShipId" field="shipId" width="50" headerAlign="center" allowSort="false">船id</div>
                     <!-- <div name="ShipStatus" field="shipStatus" width="80" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipStatusRenderer">调度状态</div> -->
                     <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="false">船号</div>
-                    <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipTypeRenderer">船舶类型</div>
+                    <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="false" renderer="CapcitySchedul.funShipTypeRenderer">船舶所有权</div>
                     <div name="CombineMobile" field="combineMobile" width="100" headerAlign="center" allowSort="false">联系电话</div>
                     <div name="PreWeight" vtype="required" field="preWeight" width="100" headerAlign="center" allowSort="false">预报吨位</div>
                     <div name="ActualTransferPrice" vtype="required, float" field="actualTransferPrice" width="100" headerAlign="center" allowSort="false">船户实际运价

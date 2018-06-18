@@ -35,7 +35,7 @@
                         <input name="flowId" id="flowId" class="mini-combobox" valueField="id" onvaluechanged="PageCustomerTaskFlowAdd.funPortNameCustomer()"
                                textField="name"  required="true"  requiredErrorText="流向不能为空"/>
                     </td>
-                    <td class="form-label">任务编号：</td>
+                    <td class="form-label">流向任务单号：</td>
                     <td class="form-content">
                         <input name="taskNo" id="taskNo" class="mini-textbox"  readonly="true"/>
                     </td>
@@ -79,13 +79,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">装货时间：</td>
+                    <td class="form-label">预计装货时间：</td>
                     <td class="form-content">
                         <input name="loadingTime" id="loadingTime" class="mini-datepicker"   ondrawdate="PageCustomerTaskFlowAdd.funLoadingTime"
                                showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"  onvaluechanged="PageCustomerTaskFlowAdd.funLoadUnitPriceInfo()"
                                nullValue="null" showTime="true"   emptyText="装货时间" allowInput="false"/>
                     </td>
-                    <td class="form-label">卸货时间：</td>
+                    <td class="form-label">预计卸货时间：</td>
                     <td class="form-content">
                         <input name="dischargeTime" id="dischargeTime" class="mini-datepicker"  ondrawdate="PageCustomerTaskFlowAdd.funDischargeTime"
                                showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  required="true" timeFormat="H:mm:ss"
