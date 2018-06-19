@@ -1,44 +1,42 @@
-var PageShipOilAdd = function(){
+
+var PagePlanRefuelingAdd = function(){
     return {
         defaultOption: {
             basePath:"",
-            action : "",
-            shipForm : null
-            
+            action : ""
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.shipForm = new mini.Form("shipOilFormAdd");
+            this.planRefuelingForm = new mini.Form("planRefuelingFormAdd");
         },
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("shipId").setData(row.shipIdFly);
-            mini.get("status").setData(row.statusData)
+            mini.get("disId").setData(row.disIdData);
+            mini.get("shipId").setData(row.shipNoData);
+            mini.get("shipId").setReadOnly(true);
         	this.action = data.action;
-            if (this.action != "add")
-            {
-                row.refuelingTime = PageMain.funStrToDate(row.refuelingTime);
-            }
-        	this.shipForm.setData(row);
-            if(this.action == "oper")
-            {
-                mini.get("layout_ship_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
-                var fields = this.shipForm.getFields();
+        	this.planRefuelingForm.setData(row);
+        	if(this.action == "oper")
+        	{
+        		
+        		mini.get("layout_planRefueling_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
+        		var fields = this.planRefuelingForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
                 {
                     var c = fields[i];
                     if (c.setReadOnly) c.setReadOnly(true);     //只读
                     if (c.setIsValid) c.setIsValid(true);      //去除错误提示
                 }
-            }
+        	}
+
         },
         funSave : function()
         {
-        	this.shipForm.validate();
-            if (!this.shipForm.isValid())
+        	this.planRefuelingForm.validate();
+            if (!this.planRefuelingForm.isValid())
             {
                  var errorTexts = form.getErrorTexts();
                  for (var i in errorTexts) 
@@ -47,13 +45,11 @@ var PageShipOilAdd = function(){
                      return;
                  }
             }
+            
             var me = this;
-            var obj = this.shipForm.getData(true);
-            if(mini.get("refuelingTime").getValue() != null && mini.get("refuelingTime").getValue() != ""){
-                obj.refuelingTime = mini.get("refuelingTime").getValue().getTime()/1000;
-            }
+            var obj = this.planRefuelingForm.getData(true);
             $.ajax({
-               url : PageMain.defaultOption.httpUrl + "/shipOil/" + me.action + "?a="+Math.random(),
+               url : PageMain.defaultOption.httpUrl + "/planRefueling/" + me.action + "?a="+Math.random(),
                type : 'POST',
                data : obj,
                dataType: 'json',
@@ -82,10 +78,21 @@ var PageShipOilAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
+        },
+        funSetShipId:function () {
+            var disVal =  mini.get("disId").getValue();
+            var disIdData = mini.get("disId");
+            var shipId ="";
+            for(var i = 0; i< disIdData.data.length;i++){
+                if(disVal == disIdData.data[i].id){
+                    shipId =disIdData.data[i].shipId;
+                }
+            }
+            mini.get("shipId").setValue(shipId);
         }
     }
 }();
 
 $(function(){
-    PageShipOilAdd.init();
+	PagePlanRefuelingAdd.init();
 });

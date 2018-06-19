@@ -13,16 +13,16 @@
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="pondForm">
 				<lable class="form-label">船号：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入船号"  style="width:160px;"/>
+                <input name="shipNo" id="shipNo" class="mini-textbox" emptyText="请输入船号"  style="width:160px;"/>
                 <!--<lable class="form-label">客户：</lable>
                 <input name="key" id="name" class="mini-textbox" emptyText="请输入客户名称"  style="width:160px;"/>-->
                 <lable class="form-label">时间：</lable>
-                <input name="key" id="key" class="mini-monthpicker"  format="yyyy-MM" style="width:160px;"  required="true"  nullValue="null"  emptyText="请输入开始时间" allowInput="false"/>
-                <input name="key" id="key" class="mini-monthpicker"  format="yyyy-MM" style="width:160px;"  required="true"  nullValue="null"  emptyText="请输入结束时间" allowInput="false"/>
+                <input name="startTime" id="startTime" class="mini-monthpicker"  format="yyyy-MM" style="width:160px;"  required="true"  nullValue="null"  emptyText="请输入开始时间" allowInput="false"/>
+                <input name="endTime" id="endTime" class="mini-monthpicker"  format="yyyy-MM" style="width:160px;"  required="true"  nullValue="null"  emptyText="请输入结束时间" allowInput="false"/>
 
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
-                <a class="mini-button" iconCls="icon-search" onclick="PageShip.funSearch()" plain="true"><label>查询</label></a>
-                <a class="mini-button" iconCls="icon-reset" onclick="PageShip.funReset()" plain="true"><label>重置</label></a>
+                <a class="mini-button" iconCls="icon-search" onclick="PagePoundBalance.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PagePoundBalance.funReset()" plain="true"><label>重置</label></a>
             </div>
         </div>
     </div>

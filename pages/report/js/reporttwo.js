@@ -4,7 +4,8 @@ var PageReporttwo = function(){
             basePath:"",
             reporttwoGrid : null,
             shipNoData:[],
-            headerData:[]
+            headerData:[],
+            searchCount : 0
         },
         init :function ()
         {
@@ -19,8 +20,13 @@ var PageReporttwo = function(){
         },
         funSearch : function()
         {
+
         	var reporttwoForm = new mini.Form("reporttwoForm");
         	var postData = reporttwoForm.getData();
+        	if( PageReporttwo.defaultOption.searchCount != 0 && (mini.get("key").getFormValue() == null || mini.get("key").getFormValue() == "") ){
+                PageMain.funShowMessageBox("请填写统计年月");
+                return;
+            }
             postData.key =mini.get("key").getFormValue();
             $.ajax({
                 url : PageMain.defaultOption.httpUrl + "/dispatch/getReportTwoHeader",
@@ -37,7 +43,7 @@ var PageReporttwo = function(){
                     PageMain.funShowMessageBox("删除记录失败");
                 }
             });
-            console.log(PageReporttwo.defaultOption.headerData);
+            PageReporttwo.defaultOption.searchCount += 1 ;
             this.reporttwoGrid.set({
                 columns: PageReporttwo.defaultOption.headerData
             });

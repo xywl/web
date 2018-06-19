@@ -1,66 +1,79 @@
-var PagePoundBalance = function(){
+
+var PagePlanRefueling = function(){
     return {
         defaultOption: {
             basePath:"",
-            pounGrid : null
+            planRefuelingGrid : null,
+            disIdData:[],
+            shipNoData:[]
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.pounGrid = mini.get("pounGrid");
-            this.pounGrid.setUrl(PageMain.defaultOption.httpUrl + "/dispatch/getPoundBalanceList");
+            this.planRefuelingGrid = mini.get("planRefuelingGrid");
+            this.planRefuelingGrid.setUrl(PageMain.defaultOption.httpUrl + "/planRefueling/getList");
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{}, function (data) {
+                PagePlanRefueling.defaultOption.disIdData = data;
+                mini.get("key").setData(data);
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
+                PagePlanRefueling.defaultOption.shipNoData = data.data.list;
+            });
             this.funSearch();
+
         },
         funSearch : function()
         {
-        	var pondForm = new mini.Form("pondForm");
-        	this.pounGrid.load(pondForm.getData());
+        	var planRefuelingForm = new mini.Form("planRefuelingForm");
+        	this.planRefuelingGrid.load(planRefuelingForm.getData());
+
         },
         funOperRenderer : function(e)
         {
-            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PagePoundBalance.funDetail()"></a>';
+            return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PagePlanRefueling.funDetail()"></a>';
         },
         funReset : function()
         {
-        	var pondForm = new mini.Form("pondForm");
-        	pondForm.setData();
+        	var planRefuelingForm = new mini.Form("planRefuelingForm");
+        	planRefuelingForm.setData();
         	mini.get("queryParamFlag").setValue("1");
-            this.pounGrid.load(pondForm.getData());
+            this.planRefuelingGrid.load(planRefuelingForm.getData());
+        },
+        //调度单号
+        funDisIdDataRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PagePlanRefueling.defaultOption.disIdData.length; nItem++)
+            {
+                if(e.value == PagePlanRefueling.defaultOption.disIdData[nItem].id)
+                {
+                    return PagePlanRefueling.defaultOption.disIdData[nItem].name;
+                }
+            }
+            return e.value;
+        },
+        //船号
+        funRevUnitRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PagePlanRefueling.defaultOption.shipNoData.length; nItem++)
+            {
+                if(e.value == PagePlanRefueling.defaultOption.shipNoData[nItem].id)
+                {
+                    return PagePlanRefueling.defaultOption.shipNoData[nItem].shipNo;
+                }
+            }
+            return e.value;
         },
 
-        //空船到港登记
-        funKqdgdj : function ()
-        {
-            var row = this.pounGrid.getSelected();
-            var paramData = {action: "add", operType : arguments[0], row: row, title:arguments[1], url:"/pages/khrw/sailingInfo_add.html", mWidth:arguments[2], mHeight:arguments[3]};
-            
-            if(arguments[0] == "kqdgdj")
-            {
-                paramData.row = {};
-                this.funOpenInfo(paramData);
-            }
-            else
-            {
-                if(row)
-                {
-                    paramData.action = "modify";
-                    this.funOpenInfo(paramData);
-                }
-                else
-                {
-                    PageMain.funShowMessageBox("请选择一条记录");
-                }
-            }
-        },
         funAdd : function()
         {
-        	var paramData = {action: "add", row:{}, title:"空船到港登记"};
+        	var paramData = {action: "add", row:{}, title:"新增数据"};
             this.funOpenInfo(paramData);
         },
         funModify : function()
         {
-        	var row = this.pounGrid.getSelected();
+        	var row = this.planRefuelingGrid.getSelected();
             if(row)
             {
             	var paramData = {action: "modify", row: row, title:"编辑数据"};
@@ -73,30 +86,32 @@ var PagePoundBalance = function(){
         },
         funDetail : function()
         {
-        	var row = this.pounGrid.getSelected();
+        	var row = this.planRefuelingGrid.getSelected();
         	var paramData = {action: "oper", row:row, title:"查看详细"};
         	this.funOpenInfo(paramData);
         },
         funOpenInfo : function(paramData)
         {
         	var me = this;
+            paramData.row.shipNoData = me.defaultOption.shipNoData;
+            paramData.row.disIdData =  me.defaultOption.disIdData;
         	mini.open({
-                url: PageMain.funGetRootPath() + paramData.url,
+                url: PageMain.funGetRootPath() + "/pages/baseinfo/planRefueling_add.html",
                 title: paramData.title,
-                width: paramData.mWidth,
-                height: paramData.mHeight,
+                width: 650,
+                height: 40 *  7 + 65,
                 onload:function(){
                     var iframe=this.getIFrameEl();
-                    iframe.contentWindow.PagePoundBalanceAdd.funSetData(paramData);
+                    iframe.contentWindow.PagePlanRefuelingAdd.funSetData(paramData);
                 },
                 ondestroy:function(action){
-                	me.pounGrid.reload();
+                	me.planRefuelingGrid.reload();
                 }
             })
         },
         funDelete : function()
         {
-            var row = this.pounGrid.getSelected();
+            var row = this.planRefuelingGrid.getSelected();
             var me = this;
             if(row)
             {
@@ -104,7 +119,7 @@ var PagePoundBalance = function(){
                     if (action == "ok") 
                     {
                         $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/sailingInfo/del",
+                            url : PageMain.defaultOption.httpUrl + "/planRefueling/del",
                             type: 'POST',
                             data: {"id": row.id},
                             dataType: 'json',
@@ -116,7 +131,7 @@ var PagePoundBalance = function(){
                                      mini.alert("操作成功", "提醒", function(){
                                          if(data.success)
                                          {
-                                        	 me.pounGrid.reload();
+                                        	 me.planRefuelingGrid.reload();
                                          }
                                      });
                                  }
@@ -142,5 +157,5 @@ var PagePoundBalance = function(){
 }();
 
 $(function(){
-	PagePoundBalance.init();
+    PagePlanRefueling.init();
 });
