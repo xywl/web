@@ -1,44 +1,45 @@
-var PageShipOilAdd = function(){
+
+var PagePreBuckleOilAdd = function(){
     return {
         defaultOption: {
             basePath:"",
-            action : "",
-            shipForm : null
-            
+            action : ""
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.shipForm = new mini.Form("shipOilFormAdd");
+            this.preBuckleOilForm = new mini.Form("preBuckleOilFormAdd");
         },
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("shipId").setData(row.shipIdFly);
-            mini.get("status").setData(row.statusData)
+            mini.get("shipId").setData(row.shipNoData);
         	this.action = data.action;
-            if (this.action != "add")
+            if(this.defaultOption.action != "add")
             {
-                row.refuelingTime = PageMain.funStrToDate(row.refuelingTime);
+                row.preBuckleTime = PageMain.funStrToDate(row.preBuckleTime);
             }
-        	this.shipForm.setData(row);
-            if(this.action == "oper")
-            {
-                mini.get("layout_ship_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
-                var fields = this.shipForm.getFields();
+        	this.preBuckleOilForm.setData(row);
+
+        	if(this.action == "oper")
+        	{
+        		
+        		mini.get("layout_preBuckleOil_add").updateRegion("south", { visible: false });//$(".mini-toolbar").hide();
+        		var fields = this.preBuckleOilForm.getFields();
                 for (var i = 0, l = fields.length; i < l; i++)
                 {
                     var c = fields[i];
                     if (c.setReadOnly) c.setReadOnly(true);     //只读
                     if (c.setIsValid) c.setIsValid(true);      //去除错误提示
                 }
-            }
+        	}
+
         },
         funSave : function()
         {
-        	this.shipForm.validate();
-            if (!this.shipForm.isValid())
+        	this.preBuckleOilForm.validate();
+            if (!this.preBuckleOilForm.isValid())
             {
                  var errorTexts = form.getErrorTexts();
                  for (var i in errorTexts) 
@@ -47,13 +48,14 @@ var PageShipOilAdd = function(){
                      return;
                  }
             }
+            
             var me = this;
-            var obj = this.shipForm.getData(true);
-            if(mini.get("refuelingTime").getValue() != null && mini.get("refuelingTime").getValue() != ""){
-                obj.refuelingTime = mini.get("refuelingTime").getValue().getTime()/1000;
+            var obj = this.preBuckleOilForm.getData(true);
+            if(mini.get("preBuckleTime").getValue() != null && mini.get("preBuckleTime").getValue() != ""){
+                obj.preBuckleTime = mini.get("preBuckleTime").getValue().getTime()/1000;
             }
             $.ajax({
-               url : PageMain.defaultOption.httpUrl + "/shipOil/" + me.action + "?a="+Math.random(),
+               url : PageMain.defaultOption.httpUrl + "/preBuckleOil/" + me.action + "?a="+Math.random(),
                type : 'POST',
                data : obj,
                dataType: 'json',
@@ -82,10 +84,11 @@ var PageShipOilAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
-        }
+        },
+
     }
 }();
 
 $(function(){
-    PageShipOilAdd.init();
+    PagePreBuckleOilAdd.init();
 });
