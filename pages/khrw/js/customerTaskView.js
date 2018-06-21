@@ -3,7 +3,8 @@ var PageCustomerTastView = function(){
     return {
         defaultOption: {
             basePath:"",
-            customerTaskViewGrid : null
+            customerTaskViewGrid : null,
+            goodsType : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}]
         },
         init :function ()
         {
@@ -24,6 +25,17 @@ var PageCustomerTastView = function(){
             customerTaskViewForm.setData();
             mini.get("queryParamFlag").setValue("1");
             this.customerTaskViewGrid.load(customerTaskViewForm.getData());
+        },
+        funRendererGoodsType : function (e)
+        {
+            for(var nItem = 0; nItem < PageCustomerTastView.defaultOption.goodsType.length; nItem++)
+            {
+                if(e.value == PageCustomerTastView.defaultOption.goodsType[nItem].id)
+                {
+                    return PageCustomerTastView.defaultOption.goodsType[nItem].name;
+                }
+            }
+            return "";
         },
         funRendererLoadDate: function(e)
         {
