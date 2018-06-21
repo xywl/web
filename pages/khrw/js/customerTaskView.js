@@ -25,6 +25,50 @@ var PageCustomerTastView = function(){
             mini.get("queryParamFlag").setValue("1");
             this.customerTaskViewGrid.load(customerTaskViewForm.getData());
         },
+        funRendererLoadDate: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererDischargeDate: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererPreArriveTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererLoadTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererDischargeTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererLoadWeight: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererPreArriveTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererPreArriveEPortTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererDischargeWeight: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererArriveSPortTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererActualArriveEPortTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        }
     }
 }();
 
