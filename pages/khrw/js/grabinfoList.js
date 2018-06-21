@@ -157,8 +157,8 @@ var PageGrapInfoAudit = function(){
                 plansData.dispatchId = submitData[i].dispatchId;
                 plansData.customerTaskFlowId = orderListData.customerTaskFlowId;
                 plansData.checkStatus = submitData[i].checkStatus;
+                plans.push(plansData);
             }
-            plans.push(plansData);
             param.leftDispatchId = orderListData.id;
             param.plans = plans;
             //console.log(param);
