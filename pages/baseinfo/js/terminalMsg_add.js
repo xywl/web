@@ -12,6 +12,11 @@ var PageTerminalMsgAdd = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.terminalMsgForm = new mini.Form("terminalMsgFormAdd");
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadShip",{}, function (data) {
+                mini.get("deviceId").setData(data);
+            });
+
         },
         funSetData : function(data)
         {
