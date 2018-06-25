@@ -844,12 +844,12 @@ var PageMap = function()
             }
             return s +"秒";
         },
-        funHisMouseInfo : function (polyline, item)
+        funHisMouseInfo : function (polyline, mObj)
         {
             var me = this;
             polyline.addEventListener("mouseover", function(e){
                 polyline.setStrokeWeight(8);
-                var mObj = me.defaultOption.hisDataFly[item + 1];
+                // var mObj = me.defaultOption.hisDataFly[item + 1];
                 var paramPoint = me.funPointTwo(PageConvert.funWGS84ToBaidu(mObj.lng, mObj.lat));
                 try{
 
@@ -963,6 +963,8 @@ var PageMap = function()
             }
             PageMap.defaultOption.hisPolyLineFly = [];
             PageMap.defaultOption.hisPolyLineFly.push(PageMap.funAddPolyLineInfo(tmpFly));
+            PageMap.funHisMouseInfo(PageMap.defaultOption.hisPolyLineFly[PageMap.defaultOption.hisPolyLineFly.length-1], PageMap.defaultOption.hisDataFly[PageMap.defaultOption.hisCurrCnt]);
+
         },
         funHisMarker: function (paramItem)
         {
@@ -985,6 +987,7 @@ var PageMap = function()
                 tmpFly.push(PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(PageMap.defaultOption.hisDataFly[nItem].lng, PageMap.defaultOption.hisDataFly[nItem].lat)));
             }
             PageMap.defaultOption.hisPolyLineFly.push(PageMap.funAddPolyLineInfo(tmpFly));
+            PageMap.funHisMouseInfo(PageMap.defaultOption.hisPolyLineFly[PageMap.defaultOption.hisPolyLineFly.length-1], PageMap.defaultOption.hisDataFly[endItem-1]);
             var mObj = PageMap.defaultOption.hisDataFly[endItem - 1];
             var paramPoint = tmpFly[tmpFly.length - 1];//PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(mObj.lng, mObj.lat));
             var tmpLng = PageMap.mapObj.getBounds();
