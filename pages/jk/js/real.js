@@ -14,6 +14,7 @@ var PageMap = function()
             btnOperFlag:false,
             GlobalGeocoder : new BMap.Geocoder(),
             GlobalPointIcon:null,
+            GlobalStaytimeIcon:null,
             shipStatus : [{id:1, name:"无任务"},{id:2, name:"有任务"}],
             speedFly : [{id:0.5, name:"0.5秒/条"},{id:1, name:"1秒/条"},{id:2, name:"2秒/条"},{id:3, name:"3秒/条"}],
             GlobalLabelOps : {
@@ -50,6 +51,8 @@ var PageMap = function()
             realMarkerFly : [],
             hisInfoWindow:null,
             hisDataFly : [], //轨迹数据
+            hisStaytimeFly : [],//轨迹回放时停靠时间
+            hisStaytimeMarkerFly : [],//停靠时间的标注
             hisPolyLine : null,//轨迹回放线路
             hisPolyLineFly : [],
             hisMarker:null,//轨迹回放时船
@@ -136,6 +139,8 @@ var PageMap = function()
             this.defaultOption.GlobalShip0LxIcon = new BMap.Icon("themes/images/ship0_lx.png", new BMap.Size(40, 40));
             this.defaultOption.GlobalShipHLxIcon = new BMap.Icon("themes/images/shiph_lx.png", new BMap.Size(40, 40));
             this.defaultOption.GlobalPointIcon = new BMap.Icon("themes/images/point.png", new BMap.Size(16, 16));
+            this.defaultOption.GlobalStaytimeIcon = new BMap.Icon("themes/images/staytime.png", new BMap.Size(32, 32));
+
             // 添加带有定位的导航控件
             var navigationControl = new BMap.NavigationControl({
                 // 靠左上角位置
@@ -777,16 +782,49 @@ var PageMap = function()
             this.funHis();
             PageMap.mapObj.centerAndZoom(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[0].lng, this.defaultOption.hisDataFly[0].lat)), PageMap.mapObj.getZoom());
             var tmpFly = [];
-            for(var nItem = 0; nItem < this.defaultOption.hisDataFly.length - 1; nItem++)
+            PageMap.defaultOption.hisStaytimeFly = [];
+            for(var nItem = 0; nItem < this.defaultOption.hisDataFly.length; nItem++)
             {
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem].lng, this.defaultOption.hisDataFly[nItem].lat)));
-                tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
-                PageMap.defaultOption.hisPolyLineFly.push(null);
+                //tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
+                if (this.defaultOption.hisDataFly[nItem].staytime > 0)
+                {
+                    PageMap.defaultOption.hisStaytimeFly.push({dataPoint:PageMap.defaultOption.hisDataFly[nItem], lnglat:tmpFly[nItem]});
+                }
+                PageMap.defaultOption.hisPolyLineFly = [];//.push(null);
             }
             this.defaultOption.hisPolyLine = this.funAddPolyLineInfo(tmpFly, "#FF182A");
             //this.defaultOption.hisPolyLineFly.push(polyline);
             //this.funHisMouseInfo(polyline, nItem);
+            PageMap.funDealStaytimeInfo();
         },
+        funDealStaytimeInfo : function ()
+        {
+            PageMap.defaultOption.hisStaytimeFly.forEach(function (obj) {
+                PageMap.funDealStaytimeGlobalGeocoder(obj);
+            });
+        },
+        funDealStaytimeGlobalGeocoder : function(data)
+        {
+            var me = this;
+            this.defaultOption.GlobalGeocoder.getLocation(data.lnglat, function(rs)
+            {
+                var mObj = data.dataPoint;
+                var staytimeObj = {marker:null, infoWindow:null};
+                var tmpContent = "设<span style='padding: 0 4px;'></span>备<span style='padding: 0 3px;'></span>号：" + mObj.deviceCode + " <br/>" +
+                    "时<span style='padding: 0 12px;'></span>间：" + mObj.occurTime + " <br/>" +
+                    "速<span style='padding: 0 12px;'></span>度：" + mObj.speed + " <br/>" +
+                    "停靠时间：" + mObj.staytime+ " <br/>";
+                tmpContent += "位<span style='padding: 0 12px;'></span>置：" + me.funGeocoderAddressInfo(rs);
+                staytimeObj.marker = PageMap.funAddMarkerInfo(data.lnglat, PageMap.defaultOption.GlobalStaytimeIcon);
+                staytimeObj.infoWindow = new BMap.InfoWindow(tmpContent)
+                PageMap.defaultOption.hisStaytimeMarkerFly.push(staytimeObj);
+                staytimeObj.marker.addEventListener("click", function(e){
+                    staytimeObj.marker.openInfoWindow(staytimeObj.infoWindow);
+                });
+            });
+        },
+
         funHisMouseInfo : function (polyline, item)
         {
             var me = this;
@@ -842,7 +880,10 @@ var PageMap = function()
             PageMap.defaultOption.hisDataFly = [];
             PageMap.defaultOption.hisCurrCnt = 0;
             PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
-
+            PageMap.defaultOption.hisStaytimeMarkerFly.forEach(function (data) {
+                PageMap.mapObj.removeOverlay(data.marker);
+            });
+            PageMap.defaultOption.hisStaytimeMarkerFly = [];
         },
         funClearHisLineFly : function ()
         {
@@ -869,7 +910,7 @@ var PageMap = function()
             PageMap.defaultOption.hisPlayFlag = false;
             $("#bncs_select").attr("disabled", false);
             PageMap.defaultOption.hisInfoWindow = new BMap.InfoWindow("");
-            PageMap.funHisMarker(0);
+            PageMap.funHisMarker(1);
         },
         //滚动条变化
         funSliderChange : function ()
@@ -900,12 +941,77 @@ var PageMap = function()
             {
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem].lng, this.defaultOption.hisDataFly[nItem].lat)));
                 tmpFly.push(this.funPointTwo(PageConvert.funWGS84ToBaidu(this.defaultOption.hisDataFly[nItem + 1].lng, this.defaultOption.hisDataFly[nItem + 1].lat)));
-                PageMap.defaultOption.hisPolyLineFly.push(null);
             }
+            PageMap.defaultOption.hisPolyLineFly = [];
             PageMap.defaultOption.hisPolyLineFly.push(PageMap.funAddPolyLineInfo(tmpFly));
         },
-        //画船的位置
-        funHisMarker : function (paramItem)
+        funHisMarker: function (paramItem)
+        {
+            var speed = mini.get("speed").getValue();
+            if(speed == "")
+            {
+                speed = 1;
+            }
+            speed = parseInt(speed);
+            var endItem = paramItem + speed;
+            if (endItem >= PageMap.defaultOption.hisSumCnt)
+            {
+                endItem = PageMap.defaultOption.hisSumCnt;
+            }
+
+            var tmpFly = [];
+            tmpFly.push(PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(PageMap.defaultOption.hisDataFly[paramItem-1].lng, PageMap.defaultOption.hisDataFly[paramItem - 1].lat)));
+            for (var nItem = paramItem; nItem < endItem; nItem ++)
+            {
+                tmpFly.push(PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(PageMap.defaultOption.hisDataFly[nItem].lng, PageMap.defaultOption.hisDataFly[nItem].lat)));
+            }
+            PageMap.defaultOption.hisPolyLineFly.push(PageMap.funAddPolyLineInfo(tmpFly));
+            var mObj = PageMap.defaultOption.hisDataFly[endItem - 1];
+            var paramPoint = tmpFly[tmpFly.length - 1];//PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(mObj.lng, mObj.lat));
+            var tmpLng = PageMap.mapObj.getBounds();
+            if(tmpLng.Ke < paramPoint.lat && tmpLng.Le < paramPoint.lng && tmpLng.Fe > paramPoint.lat && tmpLng.Ge > paramPoint.lng.toFixed(6))
+            {
+
+            }
+            else
+            {
+                PageMap.mapObj.centerAndZoom(paramPoint, PageMap.mapObj.getZoom());
+            }
+
+            if(PageMap.defaultOption.hisMarker == null)
+            {
+
+                PageMap.defaultOption.hisMarker = this.funAddMarkerInfo(paramPoint,PageMap.funShowShipIconInfo(1));
+            }
+            else
+            {
+                PageMap.defaultOption.hisMarker.setPosition(paramPoint);
+            }
+            //PageMap.defaultOption.hisInfoWindow.setContent(PageMap.funHisInfoWindowInfo(mObj));
+
+            if(PageMap.defaultOption.hisInfoWindow.isOpen() == false)
+            {
+                PageMap.defaultOption.hisInfoWindow.setWidth(320);
+                PageMap.defaultOption.hisInfoWindow.setHeight(150);
+                PageMap.defaultOption.hisInfoWindow.setContent("<div id='hisCon'>"+PageMap.funHisInfoWindowInfo(mObj)+"</div>");
+                PageMap.defaultOption.hisMarker.openInfoWindow( PageMap.defaultOption.hisInfoWindow, paramPoint);
+            }
+            else {
+                $("#hisCon").html(PageMap.funHisInfoWindowInfo(mObj));
+            }
+
+            PageMap.funDealState(mObj);
+            var me = this;
+            PageMap.defaultOption.GlobalGeocoder.getLocation(paramPoint, function(rs)
+            {
+                $("#hisplace").html(me.funGeocoderAddressInfo(rs));
+            });
+            PageMap.defaultOption.hisMarker.setRotation(mObj.angle);
+
+            PageMap.defaultOption.hisCurrCnt += speed;
+        },
+        //画船的位置[暂时不用]
+        funHisMarker_bak : function (paramItem)
         {
             if (paramItem >= 1)
             {
@@ -965,7 +1071,7 @@ var PageMap = function()
             PageMap.funHisMarker(PageMap.defaultOption.hisCurrCnt);
             $("#bncs_select").val(PageMap.defaultOption.hisCurrCnt + 1);
             //设置进度条
-            PageMap.defaultOption.hisCurrCnt += 1;
+            //PageMap.defaultOption.hisCurrCnt += 1;
             PageMap.funBlack();
         },
         //回放停止
@@ -989,12 +1095,14 @@ var PageMap = function()
         {
             if(PageMap.defaultOption.hisCurrCnt < PageMap.defaultOption.hisSumCnt && PageMap.defaultOption.hisPlayFlag)
             {
-                var speed = mini.get("speed").getValue();
+                /*var speed = mini.get("speed").getValue();
                 if(speed == "")
                 {
                     speed = 1;
                 }
                 PageMap.defaultOption.hisTimeOut = window.setTimeout(PageMap.funAutoPlay, PageMap.defaultOption.hisTime / parseFloat(speed));
+                */
+                PageMap.defaultOption.hisTimeOut = window.setTimeout(PageMap.funAutoPlay, PageMap.defaultOption.hisTime);
             }
             else
             {
