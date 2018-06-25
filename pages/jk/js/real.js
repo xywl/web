@@ -814,7 +814,7 @@ var PageMap = function()
                 var tmpContent = "设<span style='padding: 0 4px;'></span>备<span style='padding: 0 3px;'></span>号：" + mObj.deviceCode + " <br/>" +
                     "时<span style='padding: 0 12px;'></span>间：" + mObj.occurTime + " <br/>" +
                     "速<span style='padding: 0 12px;'></span>度：" + mObj.speed + " <br/>" +
-                    "停靠时间：" + mObj.staytime+ " <br/>";
+                    "停靠时间：" + PageMap.funDealmmInfo(mObj.staytime)+ " <br/>";
                 tmpContent += "位<span style='padding: 0 12px;'></span>置：" + me.funGeocoderAddressInfo(rs);
                 staytimeObj.marker = PageMap.funAddMarkerInfo(data.lnglat, PageMap.defaultOption.GlobalStaytimeIcon);
                 staytimeObj.infoWindow = new BMap.InfoWindow(tmpContent)
@@ -824,7 +824,26 @@ var PageMap = function()
                 });
             });
         },
-
+        funDealmmInfo : function (val)
+        {
+            console.log(val)
+            var h = ""
+            var m = "";
+            var s = val;
+            if (val >=60)
+            {
+                s = val % 60;
+                m = parseInt(val / 60);
+                if (m >=60)
+                {
+                    h = parseInt(m /60);
+                    m = m % 60;
+                    return h + "小时" + m + "分钟" + s +"秒";
+                }
+                return m + "分钟" + s +"秒";
+            }
+            return s +"秒";
+        },
         funHisMouseInfo : function (polyline, item)
         {
             var me = this;
