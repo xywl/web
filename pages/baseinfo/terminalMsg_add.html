@@ -25,15 +25,9 @@
                 	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
                 <tr>
-                    <td class="form-label">船舶id：</td>
+                    <td class="form-label">船舶：</td>
                     <td class="form-content">
-                        <input name="shipId" id="shipId" class="mini-textbox"  required="true" maxlength="10" requiredErrorText="船舶id不能为空"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">设备id：</td>
-                    <td class="form-content">
-                        <input name="deviceId" id="deviceId" class="mini-textbox"  required="true" maxlength="255" requiredErrorText="设备id不能为空"/>
+                        <input name="deviceId" id="deviceId"  textField="id" valueField="name"  class="mini-combobox"  allowInput="true" required="true" maxlength="10" requiredErrorText="船舶id不能为空"/>
                     </td>
                 </tr>
                 <tr>

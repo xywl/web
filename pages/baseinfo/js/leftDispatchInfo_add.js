@@ -48,7 +48,7 @@ var PageLeftDispatchInfoAdd = function(){
                     mini.get("endPortName").setValue(mObj.endPortName);
                     mini.get("customerName").setValue(mObj.customerName);
                     mini.get("flowName").setValue(mObj.flowName);
-                    mini.get("loadingTime").setValue(mObj.loadingTime);
+                    // mini.get("loadingTime").setValue(mObj.loadingTime);
                     return;
                 }
             });
@@ -165,6 +165,39 @@ var PageLeftDispatchInfoAdd = function(){
         }*/
     }
 }();
+
+function formatData (e) {
+
+        var loadingTime = new Date(1000 * value);
+        var year = loadingTime.getFullYear();
+        var mon = loadingTime.getMonth() + 1;
+        if(10 > mon){
+            mon = "0" + mon;
+        }
+
+        var sDate = loadingTime.getDate();
+        if(10 > sDate){
+            sDate = "0" + sDate;
+        }
+
+        var hours = loadingTime.getHours();
+        if(10 > hours){
+            hours = "0" + hours;
+        }
+
+        var min = loadingTime.getMinutes();
+        if(10 > min){
+            min = "0" + min;
+        }
+
+        var sec = loadingTime.getSeconds();
+        if(10 > sec){
+            sec = "0" + sec;
+        }
+
+
+    mini.get("loadingTime").setValue(year + "-" + mon + "-" + sDate + "  " + hours + ":" + min + ":" + sec);
+}
 
 $(function(){
     PageLeftDispatchInfoAdd.init();

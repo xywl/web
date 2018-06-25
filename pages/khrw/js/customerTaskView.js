@@ -3,19 +3,83 @@ var PageCustomerTastView = function(){
     return {
         defaultOption: {
             basePath:"",
-            customerTaskViewGrid : null
+            customerTaskViewGrid : null,
+            goodsType : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}]
         },
         init :function ()
         {
             mini.parse();
             this.basePath = PageMain.basePath;
-            this.customerTaskViewGrid = PageCustomerTask.defaultOption.customerTaskViewGrid;
-            //this.customerTaskViewGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTaskFlow/getList?id")
+            this.customerTaskViewGrid = mini.get("customerTaskViewGrid");
+            this.customerTaskViewGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTask/getTaskDetailList");
+            PageCustomerTastView.funSearch();
         },
         funSearch : function()
         {
         	var customerTaskViewForm = new mini.Form("customerTaskViewForm");
         	this.customerTaskViewGrid.load(customerTaskViewForm.getData());
+        },
+        funReset : function()
+        {
+            var customerTaskViewForm = new mini.Form("customerTaskViewForm");
+            customerTaskViewForm.setData();
+            mini.get("queryParamFlag").setValue("1");
+            this.customerTaskViewGrid.load(customerTaskViewForm.getData());
+        },
+        funRendererGoodsType : function (e)
+        {
+            for(var nItem = 0; nItem < PageCustomerTastView.defaultOption.goodsType.length; nItem++)
+            {
+                if(e.value == PageCustomerTastView.defaultOption.goodsType[nItem].id)
+                {
+                    return PageCustomerTastView.defaultOption.goodsType[nItem].name;
+                }
+            }
+            return "";
+        },
+        funRendererLoadDate: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererDischargeDate: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererPreArriveTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererLoadTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererDischargeTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererLoadWeight: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererPreArriveTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererPreArriveEPortTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererDischargeWeight: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererArriveSPortTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
+        },
+        funRendererActualArriveEPortTime: function(e)
+        {
+            return PageMain.funStrToDate(e.value);
         }
     }
 }();
