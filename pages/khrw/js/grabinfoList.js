@@ -37,11 +37,13 @@ var PageGrapInfoAudit = function(){
         },
         funRendererEmptyPhoto: function(e)
         {
-            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+            var token = $.cookie("token");
+            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value + "?token="+token +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
         },
         funRendererShipReference: function(e)
         {
-            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+            var token = $.cookie("token");
+            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value + "?token="+token +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
         },
         funOnDrawCell: function(e)  //计算预结算金额
         {
