@@ -4,7 +4,8 @@ var PageCustomerTastView = function(){
         defaultOption: {
             basePath:"",
             customerTaskViewGrid : null,
-            goodsType : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}]
+            goodsType : [{id:1, name:"熟料"},{id:2, name:"散装"},{id:3, name:"集装箱"}],
+            taskStatus : [{id:0, name:"未开始"},{id:1, name:"执行中"},{id:2, name:"已完成"}]
         },
         init :function ()
         {
@@ -13,6 +14,11 @@ var PageCustomerTastView = function(){
             this.customerTaskViewGrid = mini.get("customerTaskViewGrid");
             this.customerTaskViewGrid.setUrl(PageMain.defaultOption.httpUrl + "/customerTask/getTaskDetailList");
             PageCustomerTastView.funSearch();
+
+            // var grid = mini.get("customerTaskViewGrid");
+            // grid.on("load", function () {
+            //     grid.mergeColumns(["taskStatus", "taskNo", "fullName", "contractName", "totalLoad", "flowName", "goodsName", "goodsType"]);
+            // });
         },
         funSearch : function()
         {
@@ -25,6 +31,17 @@ var PageCustomerTastView = function(){
             customerTaskViewForm.setData();
             mini.get("queryParamFlag").setValue("1");
             this.customerTaskViewGrid.load(customerTaskViewForm.getData());
+        },
+        funRendererTaskStatus : function (e)
+        {
+            for(var nItem = 0; nItem < PageCustomerTastView.defaultOption.taskStatus.length; nItem++)
+            {
+                if(e.value == PageCustomerTastView.defaultOption.taskStatus[nItem].id)
+                {
+                    return PageCustomerTastView.defaultOption.taskStatus[nItem].name;
+                }
+            }
+            return "";
         },
         funRendererGoodsType : function (e)
         {
