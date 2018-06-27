@@ -26,20 +26,20 @@
                 idField="id" allowResize="false" idField="id"
                 pagesize="15" sizeList="[15,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
-                    <div field="status" width="120" headerAlign="center" allowSort="true">任务状态</div>
+                    <div field="taskStatus" name="taskStatus" width="120" headerAlign="center" renderer="PageCustomerTastView.funRendererTaskStatus" allowSort="true">任务状态</div>
                     <div header="任务信息" headerAlign="center">
                         <div property="columns">
-                            <div field="taskNo" width="120" headerAlign="center" allowSort="true">客户单号</div>
-                            <div field="fullName" width="100" headerAlign="center" allowSort="true">客户单位</div>
-                            <div field="contractName" width="100" headerAlign="center" allowSort="true">合同</div>
-                            <div field="totalLoad" width="100" headerAlign="center" allowSort="true">总吨位</div>
+                            <div field="taskNo" name="taskNo" width="120" headerAlign="center" allowSort="true">客户单号</div>
+                            <div field="fullName" name="fullName" width="100" headerAlign="center" allowSort="true">客户单位</div>
+                            <div field="contractName" name="contractName" width="100" headerAlign="center" allowSort="true">合同</div>
+                            <div field="totalLoad" name="totalLoad" width="100" headerAlign="center" allowSort="true">总吨位</div>
                         </div>
                     </div>
                     <div header="任务流向信息" headerAlign="center">
                         <div property="columns">
-                            <div field="flowName" width="100" headerAlign="center" allowSort="true">流向</div>
-                            <div field="goodsName" width="100" headerAlign="center" allowSort="true">货物名称</div>
-                            <div field="goodsType" width="100" headerAlign="center" renderer="PageCustomerTastView.funRendererGoodsType" allowSort="true">货物类型</div>
+                            <div field="flowName" name="flowName" width="100" headerAlign="center" allowSort="true">流向</div>
+                            <div field="goodsName" name="goodsName" width="100" headerAlign="center" allowSort="true">货物名称</div>
+                            <div field="goodsType" name="goodsType" width="100" headerAlign="center" renderer="PageCustomerTastView.funRendererGoodsType" allowSort="true">货物类型</div>
                             <div field="totalWeight" width="100" headerAlign="center" allowSort="true">流向吨位</div>
                             <div field="startPortName" width="100" headerAlign="center" allowSort="true">装货点</div>
                             <div field="loadDate" width="130" headerAlign="center" renderer="PageCustomerTastView.funRendererLoadDate" allowSort="true">装货日期</div>
