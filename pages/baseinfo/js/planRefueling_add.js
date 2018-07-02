@@ -19,7 +19,7 @@ var PagePlanRefuelingAdd = function(){
             mini.get("shipId").setReadOnly(true);*/
             mini.get("disId").setData(row.disIdData);
             mini.get("shipId").setData(row.disIdData);
-            mini.get("disId").setReadOnly(true)
+            //mini.get("disId").setReadOnly(true)
         	this.action = data.action;
         	this.planRefuelingForm.setData(row);
         	if(this.action == "oper")
@@ -85,6 +85,29 @@ var PagePlanRefuelingAdd = function(){
         funSetShipId:function () {
             var shipVal =  mini.get("shipId").getValue();
             mini.get("disId").setValue(shipVal);
+
+            var shipIdData = mini.get("shipId");
+            var shipId ="";
+            for(var i = 0; i< shipIdData.data.length;i++){
+                if(shipVal == shipIdData.data[i].id){
+                    shipId =shipIdData.data[i].shipId;
+                }
+            }
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",
+                type: 'POST',
+                data:  {key:shipId},
+                dataType: 'json',
+                async: false,
+                success: function (data)
+                {
+                    mini.get("disId").setData(data);
+                },
+                error: function ()
+                {
+                    PageMain.funShowMessageBox("获取失败");
+                }
+            });
             /*var disVal =  mini.get("disId").getValue();
             var disIdData = mini.get("disId");
             var shipId ="";

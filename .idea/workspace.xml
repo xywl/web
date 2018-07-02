@@ -4,11 +4,8 @@
     <list default="true" id="25c8f052-4269-41ea-8586-91ee93bbc8b3" name="Default" comment="..">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" afterPath="$PROJECT_DIR$/jslib/miniui/jquery.gesoft-1.0.js" />
+      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js" />
       <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice_add.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice_add.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/js/transferPrice.js" afterPath="$PROJECT_DIR$/pages/baseinfo/js/transferPrice.js" />
-      <change beforePath="$PROJECT_DIR$/pages/baseinfo/planRefueling_add.html" afterPath="$PROJECT_DIR$/pages/baseinfo/planRefueling_add.html" />
       <change beforePath="$PROJECT_DIR$/pages/home/main.html" afterPath="$PROJECT_DIR$/pages/home/main.html" />
       <change beforePath="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" afterPath="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" />
       <change beforePath="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" afterPath="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" />
@@ -33,14 +30,14 @@
       <file leaf-file-name="transferFlowPrice_add.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice_add.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="28" column="53" lean-forward="true" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
+            <state relative-caret-position="475">
+              <caret line="34" column="15" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="34" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sailingInfo_add.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sailingInfo_add.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/khrw/sailingInfo_add.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="335">
@@ -87,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/home/main.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="152">
@@ -115,9 +112,21 @@
       <file leaf-file-name="planRefueling_add.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="1294">
+              <caret line="98" column="34" lean-forward="false" selection-start-line="98" selection-start-column="34" selection-end-line="98" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="planRefueling.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="16" column="101" lean-forward="false" selection-start-line="16" selection-start-column="101" selection-end-line="16" selection-end-column="101" />
+              <folding>
+                <marker date="1530543656500" expanded="true" signature="1301:1352" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,16 +136,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
               <caret line="5" column="54" lean-forward="false" selection-start-line="5" selection-start-column="54" selection-end-line="5" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="transferFlowPrice_add.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/baseinfo/transferFlowPrice_add.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="55" lean-forward="false" selection-start-line="30" selection-start-column="49" selection-end-line="30" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -154,7 +153,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>funset</find>
       <find>main.h</find>
       <find>FreightPlan</find>
       <find>PagePreBuckleOilAdd</find>
@@ -184,6 +182,7 @@
       <find>transferPriceId</find>
       <find>poundBalance</find>
       <find>startchargeTime</find>
+      <find>cutWire</find>
     </findStrings>
     <replaceStrings>
       <replace>customerTask</replace>
@@ -276,19 +275,19 @@
         <option value="$PROJECT_DIR$/pages/home/main.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/planRefueling.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/preBuckleOil_add.html" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/preBuckleOil_add.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/preBuckleOil.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/preBuckleOil.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/ship_add.html" />
         <option value="$PROJECT_DIR$/pages/baseinfo/planRefueling_add.html" />
-        <option value="$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js" />
         <option value="$PROJECT_DIR$/pages/khrw/js/customerTask.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/transferPrice.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice.js" />
         <option value="$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice_add.js" />
         <option value="$PROJECT_DIR$/pages/khrw/js/sailingInfo_add.js" />
         <option value="$PROJECT_DIR$/pages/khrw/sailingInfo_add.html" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js" />
+        <option value="$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js" />
       </list>
     </option>
   </component>
@@ -546,7 +545,7 @@
       <workItem from="1530164758523" duration="2612000" />
       <workItem from="1530286501374" duration="88000" />
       <workItem from="1530513389480" duration="9426000" />
-      <workItem from="1530537345941" duration="3831000" />
+      <workItem from="1530537345941" duration="5861000" />
     </task>
     <task id="LOCAL-00001" summary="add">
       <created>1516196217339</created>
@@ -765,11 +764,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529414803488</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="1、航次信息管理，bug优化； &#10;2、运价信息管理，流向是取得合同里的； &#10;3、计划加油管理，先选船号再选调度号，默认最新的调度号；">
+      <created>1530541986029</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1530541986029</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="351454000" />
+    <option name="totallyTimeSpent" value="353484000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -835,7 +841,8 @@
     <MESSAGE value="航运航次表" />
     <MESSAGE value="任务指标表" />
     <MESSAGE value="计划加油管理、预扣油款管理" />
-    <option name="LAST_COMMIT_MESSAGE" value="计划加油管理、预扣油款管理" />
+    <MESSAGE value="1、航次信息管理，bug优化； &#10;2、运价信息管理，流向是取得合同里的； &#10;3、计划加油管理，先选船号再选调度号，默认最新的调度号；" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、航次信息管理，bug优化； &#10;2、运价信息管理，流向是取得合同里的； &#10;3、计划加油管理，先选船号再选调度号，默认最新的调度号；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -963,13 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="35" lean-forward="true" selection-start-line="1" selection-start-column="35" selection-end-line="1" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/preBuckleOil_add.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-456">
@@ -1045,6 +1045,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="153" column="8" lean-forward="false" selection-start-line="153" selection-start-column="8" selection-end-line="153" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1121,6 +1122,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="53" lean-forward="false" selection-start-line="5" selection-start-column="53" selection-end-line="5" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1167,22 +1169,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="28" column="53" lean-forward="true" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1159">
@@ -1198,17 +1184,6 @@
         <state relative-caret-position="-285">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/home/main.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="134" column="22" lean-forward="true" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
-          <folding>
-            <marker date="1529407579358" expanded="true" signature="13530:13545" ph="..." />
-            <marker date="1529407579358" expanded="true" signature="13658:13683" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1229,6 +1204,43 @@
             <element signature="n#style#0;n#td#2;n#tr#11;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#4;n#tr#11;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#td#1;n#tr#14;n#table#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/transferFlowPrice_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="34" column="15" lean-forward="true" selection-start-line="20" selection-start-column="11" selection-end-line="34" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/planRefueling_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1294">
+          <caret line="98" column="34" lean-forward="false" selection-start-line="98" selection-start-column="34" selection-end-line="98" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/baseinfo/js/planRefueling.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="16" column="101" lean-forward="false" selection-start-line="16" selection-start-column="101" selection-end-line="16" selection-end-column="101" />
+          <folding>
+            <marker date="1530543656500" expanded="true" signature="1301:1352" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/home/main.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="134" column="22" lean-forward="true" selection-start-line="134" selection-start-column="22" selection-end-line="134" selection-end-column="22" />
+          <folding>
+            <marker date="1529407579358" expanded="true" signature="13530:13545" ph="..." />
+            <marker date="1529407579358" expanded="true" signature="13658:13683" ph="..." />
           </folding>
         </state>
       </provider>
