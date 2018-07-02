@@ -14,9 +14,12 @@ var PagePlanRefuelingAdd = function(){
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("disId").setData(row.disIdData);
+            /*mini.get("disId").setData(row.disIdData);
             mini.get("shipId").setData(row.shipNoData);
-            mini.get("shipId").setReadOnly(true);
+            mini.get("shipId").setReadOnly(true);*/
+            mini.get("disId").setData(row.disIdData);
+            mini.get("shipId").setData(row.disIdData);
+            mini.get("disId").setReadOnly(true)
         	this.action = data.action;
         	this.planRefuelingForm.setData(row);
         	if(this.action == "oper")
@@ -80,7 +83,9 @@ var PagePlanRefuelingAdd = function(){
         	PageMain.funCloseWindow("cancel");
         },
         funSetShipId:function () {
-            var disVal =  mini.get("disId").getValue();
+            var shipVal =  mini.get("shipId").getValue();
+            mini.get("disId").setValue(shipVal);
+            /*var disVal =  mini.get("disId").getValue();
             var disIdData = mini.get("disId");
             var shipId ="";
             for(var i = 0; i< disIdData.data.length;i++){
@@ -88,7 +93,7 @@ var PagePlanRefuelingAdd = function(){
                     shipId =disIdData.data[i].shipId;
                 }
             }
-            mini.get("shipId").setValue(shipId);
+            mini.get("shipId").setValue(shipId);*/
         }
     }
 }();

@@ -27,7 +27,7 @@ var PageTransferFlowPrice = function(){
         {
             return '<a class="mini-button-icon mini-iconfont icon-detail" style="display: inline-block;  height:16px;padding:0 10px;" title="详情查看" href="javascript:PageTransferFlowPrice.funDetail()"></a>';
         },
-        funFlowRenderer : function (e)
+       /* funFlowRenderer : function (e)
         {
             for(var nItem = 0; nItem < PageTransferFlowPrice.defaultOption.flowFly.length; nItem++)
             {
@@ -37,7 +37,7 @@ var PageTransferFlowPrice = function(){
                 }
             }
             return e.value;
-        },
+        },*/
         funReset : function()
         {
         	var transferFlowPriceForm = new mini.Form("transferFlowPriceForm");
@@ -47,7 +47,7 @@ var PageTransferFlowPrice = function(){
         },
         funAdd : function()
         {
-        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId}, title:"新增运价流向信息数据"};
+        	var paramData = {action: "add", row:{transferPriceId:PageTransferPrice.defaultOption.transferPriceId,contractId:PageTransferPrice.defaultOption.contractId}, title:"新增运价流向信息数据"};
             this.funOpenInfo(paramData);
         },
         funModify : function()

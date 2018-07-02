@@ -15,9 +15,25 @@ var PageTransferFlowPriceAdd = function(){
         },
         funSetData : function(data)
         {
+
         	var row = data.row;
         	this.action = data.action;
-            mini.get("flowId").setData(row.flowFly);
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/dispatch/getFlowByContractId",
+                type: 'POST',
+                data:  {key:data.row.contractId},
+                dataType: 'json',
+                async: false,
+                success: function (data)
+                {
+                    mini.get("flowId").setData(data);
+                },
+                error: function ()
+                {
+                    PageMain.funShowMessageBox("获取失败");
+                }
+            });
+          //  mini.get("flowId").setData(row.flowFly);
         	this.transferFlowPriceForm.setData(row);
         	if(this.action == "oper")
         	{

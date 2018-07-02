@@ -8,6 +8,7 @@ var PageTransferPrice = function(){
             customerFly : null,
             contractFly : null,
             transferPriceId:0,
+            contractId:0,
             customerCombox:null,
             priceTypeFly : [{id:1, name:"客户"},{id:2, name:"船户"}],
             detailGridForm:null
@@ -201,6 +202,7 @@ var PageTransferPrice = function(){
             td.appendChild(PageTransferPrice.defaultOption.detailGridForm);
             PageTransferPrice.defaultOption.detailGridForm.style.display = "block";
             PageTransferPrice.defaultOption.transferPriceId = row.id;
+            PageTransferPrice.defaultOption.contractId = row.contractId;
             PageTransferPrice.defaultOption.transferFlowPriceGrid.load({transferPriceId:row.id, queryParamFlag: 1 });
         },
     }

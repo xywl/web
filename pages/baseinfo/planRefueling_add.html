@@ -24,19 +24,20 @@
        
                 	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+
+                <tr>
+                    <td class="form-label">船号：</td>
+                    <td class="form-content">
+                        <input name="shipId" id="shipId"   class="mini-combobox" valueField="id" textField="shipNo" required="true" onvaluechanged="PagePlanRefuelingAdd.funSetShipId()"
+                                maxlength="3" requiredErrorText="船号不能为空"   />
+                    </td>
+                </tr>
                 <tr>
                     <td class="form-label">调度号：</td>
                     <td class="form-content">
                         <input name="disId" id="disId"   class="mini-combobox"
-                               valueField="id" textField="name" required="true"  onvaluechanged="PagePlanRefuelingAdd.funSetShipId()"
+                               valueField="id" textField="name" required="true"
                                maxlength="3" requiredErrorText="调度号不能为空"    />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="form-label">船号：</td>
-                    <td class="form-content">
-                        <input name="shipId" id="shipId"   class="mini-combobox" valueField="id" textField="shipNo" required="true"
-                                maxlength="3" requiredErrorText="船号不能为空"   />
                     </td>
                 </tr>
                 <tr>
