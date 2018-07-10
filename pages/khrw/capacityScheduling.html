@@ -20,7 +20,7 @@
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <input id="orderListKey" name="key" class="mini-textbox" emptyText="请输入查询内容" style="width:150px;" />
                 <a class="mini-button" iconCls="icon-search" onclick="CapcitySchedul.funSearchOrderGrid()" plain="true"><label>查询</label></a>
-                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchOrderGrid()" type="checkbox" name="orderFlag" value="1" hideFocus/>已调度完成订单</label>
+                <label style="font-size: 12px;color: #444;vertical-align: middle;"><input style="vertical-align: middle;" onchange="CapcitySchedul.funSearchOrderGrid()" type="checkbox" id="checkOrderFlag" name="orderFlag" value="1" hideFocus/>已调度完成订单</label>
             </div>
             <div class="mini-fit">
                 <div id="orderGrid" class="mini-datagrid"

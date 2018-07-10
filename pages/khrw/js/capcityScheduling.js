@@ -150,6 +150,7 @@ var CapcitySchedul = function(){
             if (customerTaskFlowData) {
                 searchParam.customerTaskFlowId = customerTaskFlowData.id;
             }
+            searchParam.queryParamFlag = 1;
             shipListGrid.load(searchParam);
             //CapcitySchedul.funSearchOrderDetailsGrid();
         },
@@ -473,7 +474,19 @@ var CapcitySchedul = function(){
                                 mini.alert("操作成功", "提醒", function(){
                                     if(data.success)
                                     {
-                                        location.reload();
+                                        //location.reload();
+                                        var orderListForm = new mini.Form("orderListForm");
+                                        var shipListForm = new mini.Form("shipListForm");
+                                        orderListForm.setData();
+                                        shipListForm.setData();
+                                        mini.get("queryParamFlag").setValue("1");
+                                        $("input[name='queryParamFlag']").val("1");
+                                        $("input[type='checkbox']").attr("checked", false);
+                                        CapcitySchedul.funSearchOrderGrid();
+                                        //CapcitySchedul.funSearchOrderDetailsGrid();
+                                        shipListGrid.clearRows();
+                                        orderDetailsGrid.clearRows();
+                                        $('.mini-grid-summaryRow').remove();
                                     }
                                 });
                             }
