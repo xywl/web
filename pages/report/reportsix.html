@@ -1,0 +1,68 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/reportsix.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="72" showHeader="false"    style="border: none;">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="reportsixForm">
+				<lable class="form-label">船号：</lable>
+                <input name="shipNo" id="shipNo" class="mini-textbox" emptyText="请输入船号"  style="width:160px;"/>
+                <!--<lable class="form-label">客户：</lable>
+                <input name="key" id="name" class="mini-textbox" emptyText="请输入客户名称"  style="width:160px;"/>-->
+                <lable class="form-label">时间：</lable>
+                <input name="startTime" id="startTime" class="mini-monthpicker"  format="yyyy-MM" style="width:160px;"  required="true"  nullValue="null"  emptyText="请输入开始时间" allowInput="false"/>
+                <input name="endTime" id="endTime" class="mini-monthpicker"  format="yyyy-MM" style="width:160px;"  required="true"  nullValue="null"  emptyText="请输入结束时间" allowInput="false"/>
+
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="PageReportsix.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="PageReportsix.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+
+        <div class="mini-fit">
+            <div id="reportsixGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="time" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">日期</div>
+                    <div field="shipNo" width="120" headerAlign="center" allowSort="true" >船号</div>
+                    <div field="goodsName" width="120" headerAlign="center" allowSort="true">货物名称</div>
+                    <div field="sender" width="120" headerAlign="center" allowSort="true">发货地</div>
+					 <!--<div field="name" width="150" headerAlign="center" allowSort="true">发货单位</div>-->
+                    <div field="name" width="150" headerAlign="center" allowSort="true">开票单位</div>
+					 <div field="receiver" width="150" headerAlign="center" allowSort="true">收货单位</div>
+                    <div field="loadWeight" width="100" headerAlign="center" allowSort="true">实发吨位</div>
+                    <div field="dischargeWeight" width="100" headerAlign="center" allowSort="true">实收吨位</div>
+                    <div field="preWeight" width="100" headerAlign="center" allowSort="true">船运结算单价</div>
+                    <div field="preWeight" width="100" headerAlign="center" allowSort="true">金额</div>
+
+					 <div field="poundBalance" width="100" headerAlign="center" allowSort="true">靠泊费</div>
+                    <div field="hs" width="100" headerAlign="center" allowSort="true">扣费用</div>
+                    <div field="cchs" width="100" headerAlign="center" allowSort="true">扣网片金额</div>
+                    <div field="hs" width="100" headerAlign="center" allowSort="true">扣钢丝金额</div>
+                    <div field="cchs" width="100" headerAlign="center" allowSort="true">其他扣款</div>
+
+                    <div field="kcy" width="120" headerAlign="center" allowSort="true">扣柴油</div>
+                    <div field="kcy" width="120" headerAlign="center" allowSort="true">滞港补助</div>
+                    <div field="kcy" width="120" headerAlign="center" allowSort="true">吨位补助</div>
+                    <div field="kpje" width="120" headerAlign="center" allowSort="true">实际结算金额</div>
+                    <div field="portName" width="120" headerAlign="center" allowSort="true">码头</div>
+                    <div field="buildFactory" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="time" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">结算日期</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

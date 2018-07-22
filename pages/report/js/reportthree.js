@@ -3,6 +3,7 @@ var PageReportthree = function(){
         defaultOption: {
             basePath:"",
             reportthreeGrid : null,
+            eventIdFly:[{id:1, name:"不接电话"},{id:2, name:"停船过夜"},{id:3, name:"不服调配"},{id:4, name:"修船"},{id:5, name:"保养"},{id:6, name:"事故停航"},{id:7, name:"私事停航"},{id:8, name:"春节放假"},{id:9, name:"装卸货异常情况"}],
             shipNoData:[]
         },
         init :function ()
@@ -74,6 +75,17 @@ var PageReportthree = function(){
                 if(e.value == PageReportthree.defaultOption.shipNoData[nItem].id)
                 {
                     return PageReportthree.defaultOption.shipNoData[nItem].shipNo;
+                }
+            }
+            return e.value;
+        },
+        funRendererEventId : function (e)
+        {alert(1);
+            for(var nItem = 0; nItem < PageReportthree.defaultOption.eventIdFly.length; nItem++)
+            {
+                if(e.value == PageReportthree.defaultOption.eventIdFly[nItem].id)
+                {
+                    return PageReportthree.defaultOption.eventIdFly[nItem].name;
                 }
             }
             return e.value;

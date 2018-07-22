@@ -37,7 +37,7 @@ var PageShipAdd = function(){
             }
             mini.get("shipLevel").setData(data.shipLevel);
             mini.get("shipFlag").setData(data.shipFlag);
-            if(row.runType="0")
+            if(row.runType=="0")
             {
                 row.runType="";
             }
@@ -56,6 +56,7 @@ var PageShipAdd = function(){
             if(row.repairDate =="1900-01-01"){
                 row.repairDate = "";
             }
+
         	this.shipForm.setData(row);
             if(this.action == "oper")
             {
