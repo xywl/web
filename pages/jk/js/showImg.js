@@ -24,7 +24,7 @@ function bigpic(src,obj,data){
 			var $maxwidth=$(window).width()-100;
 			var newwidth=$picwidth;
 			var newheight=$picheight;
-			$('.iconarea').css('left',($maxwidth-400)/2);
+			// $('.iconarea').css('left',($maxwidth-400)/2);
 			if($picheight>=$maxheight)newheight=$maxheight;
 			if($picwidth>=$maxwidth)newwidth=$maxwidth;
 			$('.bigpic-area').width(newwidth).height(newheight).css({'left':($maxwidth-newwidth+100)/2,'top':($maxheight-newheight+30)/2+10});	
