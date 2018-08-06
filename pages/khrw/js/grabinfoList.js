@@ -128,7 +128,7 @@ var PageGrapInfoAudit = function(){
                 $(".thumbimg").eq(i).attr("data-index",i);
                 bigImages.push(img);
             }
-            bigpic(src,obj,bigImages);
+            window.top.bigpic(src,obj,bigImages);
         },
         funSubmitData: function()
         {
