@@ -61,17 +61,19 @@ var CapcitySchedul = function(){
                 combineMobile = record.combineMobile;
                 preWeight = record.preWeight;
                 shipFlag = record.shipFlag;
+                var preArriveTime = Number($("#_loadingTime").val());
                 var shipSuggestUnitPrice = $("#shipSuggestUnitPrice").val();
                 var datas = orderDetailsGrid.getData();
                 var idArray = [];
                 //console.log(record);
-                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, combineMobile: combineMobile, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice, status: -1};
+                var newRow = {shipId: shipId, shipNo: shipNo, shipFlag: shipFlag, preArriveTime: preArriveTime, combineMobile: combineMobile, preWeight: preWeight, actualTransferPrice: shipSuggestUnitPrice, status: -1};
                 for(var i = 0; i < datas.length; i++)
                 {
                     idArray.push(datas[i].shipId);
                 }
                 if(!CapcitySchedul.funInArray(idArray, newRow.shipId))
                 {
+                    console.log(newRow)
                     orderDetailsGrid.addRow(newRow, 0);
                 }
                 //orderDetailsGrid.addRow(newRow, 0);
@@ -170,6 +172,7 @@ var CapcitySchedul = function(){
                 $("#leftWeight").val(record.leftWeight);
                 $("#totalLoad").val(record.totalLoad);
                 $("#shipSuggestUnitPrice").val(record.shipSuggestUnitPrice);
+                $("#_loadingTime").val(record.loadingTime);
                 //orderDetailsGrid.load({customerTaskFlowId: record.id, "queryParamFlag": 1});
             }
         },
@@ -273,12 +276,12 @@ var CapcitySchedul = function(){
                     preLoadTotal += t;
                 }
             }
-            if (field == "preLoad") { 
-                // if (e.value > record.preWeight) {  //预发吨位不能大于预报吨位
-                //     mini.alert("预发吨位不得大于预报吨位，请重新输入");
-                //     e.value = e.oldValue == undefined ? '' : e.oldValue;
-                //     e.editor._IsValid = false;
-                // }
+            if (field == "preLoad") {
+                if (e.value > record.preWeight) {  //预发吨位不能大于预报吨位
+                    mini.alert("预发吨位不得大于预报吨位，请重新输入");
+                    e.value = e.oldValue == undefined ? '' : e.oldValue;
+                    e.editor._IsValid = false;
+                }
                 preLoadTotal += Number(e.value);
                 if (preLoadTotal > leftWeight) {  //当前调度吨位不能大于余调吨位
                     mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
@@ -365,7 +368,7 @@ var CapcitySchedul = function(){
                 }
                 var hasLeftWeight = totalLoad - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
-                e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未调度吨位数: '+hasLeftWeight+'</span>';
+                e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未生成调度结果吨位数: '+hasLeftWeight+'</span>';
             }
         },
         funDelRow: function(row_uid)
