@@ -44,6 +44,21 @@ var PageStaffSign = function(){
                 PageMain.funShowMessageBox("请选择一条记录");
             }
         },
+        funEnlargeImage: function(obj)
+        {
+            var $this = $(obj);
+            var src = $this.attr("src");
+            var bigImages = [];
+            var $imgs = $(".thumbimg");
+            for(var i=0; i<$imgs.length; i++){
+                var img = {};
+                img.url = $imgs[i].src;
+                img.index = i;
+                $(".thumbimg").eq(i).attr("data-index",i);
+                bigImages.push(img);
+            }
+            window.top.bigpic(src,obj,bigImages);
+        },
 
         funFromDateInfo: function(e)
         {
