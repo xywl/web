@@ -5,7 +5,8 @@ var PageMain = function(){
             isNenuFlag:false,//是否根据权限显示操作功能; true时不按数据库处理
             userProfileFly:[],
             zero:"0000000000000000000000000000000000",
-            httpUrl : "http://127.0.0.1:16722/xyl"
+            //httpUrl : "http://127.0.0.1:16722/xyl"//http://47.100.45.229  http://127.0.0.1:16722  //http://192.168.0.174:16722/xyl
+            httpUrl : window.location.protocol + "//" + window.location.host + "/xyl" //"http://xingyi.nandasoft-its.com:8080/xyl"//"http://xingyi.nandasoft-its.com:8080/xyl"//"http://127.0.0.1:16721/xyl"
         },
         init :function (basePath){
             this.basePath = basePath;
