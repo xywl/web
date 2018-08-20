@@ -25,11 +25,11 @@ var PageCustomerTaskFlowAdd = function(){
             {
                 $("tr[name='dr']").show();
                 $("td[name='dr']").show();
-                mini.get("bigShipPC").required =true;
-                mini.get("totalLoad").required =true;
-                mini.get("arriveLocation").required =true;
-                mini.get("bigShipArriveTime").required =true;
-                mini.get("bigShipDepartTime").required =true;
+                mini.get("bigShipPC").required =false;
+                mini.get("totalLoad").required =false;
+                mini.get("arriveLocation").required =false;
+                mini.get("bigShipArriveTime").required =false;
+                mini.get("bigShipDepartTime").required =false;
             }
             else
             {

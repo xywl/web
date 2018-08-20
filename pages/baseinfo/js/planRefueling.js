@@ -20,8 +20,9 @@ var PagePlanRefueling = function(){
             });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PagePlanRefueling.defaultOption.shipNoData = data.data.list;
+                PagePlanRefueling.funSearch();
             });
-            this.funSearch();
+
 
         },
         funSearch : function()

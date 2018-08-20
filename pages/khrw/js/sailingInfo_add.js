@@ -157,6 +157,8 @@ var PageSailingInfoAdd = function(){
                 mini.get("dischargeDelayFee").setReadOnly(false);
                 mini.get("allowance").setReadOnly(false);
                 mini.get("description").setReadOnly(false);
+                mini.get("poundBalance").setReadOnly(false);
+                mini.get("poundBalanceDes").setReadOnly(false);
                 mini.get("dischargeTime").required =true;
                 mini.get("dischargeWeight").required =true;
                 mini.get("dischargeDelayFee").required =true;

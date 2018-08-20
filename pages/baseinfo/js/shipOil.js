@@ -15,8 +15,9 @@ var PageShipOil = function(){
             this.shipOilGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipOil/getList");
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PageShipOil.defaultOption.shipNoData = data.data.list;
+                PageShipOil.funSearch();
             });
-            this.funSearch();
+
         },
         funSearch : function()
         {

@@ -15,9 +15,8 @@ var PagePreBuckleOil = function(){
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PagePreBuckleOil.defaultOption.shipNoData = data.data.list;
                 mini.get("key").setData(data.data.list);
+                PagePreBuckleOil.funSearch();
             });
-            this.funSearch();
-
         },
         funSearch : function()
         {
