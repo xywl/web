@@ -132,13 +132,20 @@ var PageGrapInfoAudit = function(){
         },
         funSubmitData: function()
         {
+            debugger;
             var checkListGrid = PageGrapInfoAudit.checkListGrid
             checkListGrid.validate();  //表格验证
             if (checkListGrid.isValid() == false) {
                 //alert("请校验输入单元格内容");
-                var error = checkListGrid.getCellErrors()[0];
-                checkListGrid.beginEditCell(error.record, error.column);
-                return;
+                var errors = checkListGrid.getCellErrors();
+                for (var i = 0; i < errors.length; i++) {
+                    if (errors[i].record.checkStatus == 1) {
+                        checkListGrid.beginEditCell(errors[i].record, errors[i].column);
+                        return;
+                    }
+                }
+                // checkListGrid.beginEditCell(error.record, error.column);
+                // return;
             }
             var param = {};
             var orderListData = this.grapListGrid.getSelected();
