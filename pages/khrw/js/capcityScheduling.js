@@ -354,13 +354,14 @@ var CapcitySchedul = function(){
             // }
             if (e.field == "preLoad") {
                 var leftWeight = $("#leftWeight").val();
-                var totalLoad = $("#totalLoad").val();              
+                var totalLoad = $("#totalLoad").val();
                 var preLoadTotal = 0;
                 for (var i = 0, l = rows.length; i < l; i++) {
                     var row = rows[i];
                     var preLoad = Number(row.preLoad);
                     if (isNaN(preLoad)) continue;
-                    if (row.localstatus != 2 && row.status != -1) {
+                    debugger
+                    if (row.localstatus != 2) {
                         preLoadTotal += preLoad;
                     } else {
                         preLoadTotal += 0;
