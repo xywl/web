@@ -18,7 +18,7 @@ var PageFreightPlanAdd = function(){
         {
         	var row = data.row;
             mini.get("shipFlag").setData(row.goodsTypeFly);
-            mini.get("revUnit").setData(row.revUnitFly);
+            //mini.get("revUnit").setData(row.revUnitFly);
 
             if (row.goodsSubType == 0)
             {
