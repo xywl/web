@@ -27,10 +27,26 @@
         <div id="shipOilFormAdd">
                 	<input id="id" name="id"  class="mini-hidden" />
             <table class="form-table" border="0"  style="width:100%;table-layout:fixed;">
-                <tr>
+                <!--<tr>
                     <td class="form-label">船号：</td>
                     <td class="form-content">
                         <input name="shipId" id="shipId"   width="260" class="mini-combobox" valueField="id" textField="shipNo" allowInput="true"   maxlength="10" required="true" requiredErrorText="船号不能为空"/>
+                    </td>
+                </tr>-->
+
+                <tr>
+                    <td class="form-label">船号：</td>
+                    <td class="form-content">
+                        <input name="shipId" id="shipId"   class="mini-combobox" valueField="shipId"  width="260"   textField="shipNo" required="true" onvaluechanged="PageShipOilAdd.funSetShipId()"
+                               allowInput="true"  maxlength="3" requiredErrorText="船号不能为空"   />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-label">调度单号：</td>
+                    <td class="form-content">
+                        <input name="disId" id="disId"   class="mini-combobox"  width="260"
+                               valueField="id" textField="name" required="true"
+                               maxlength="3" requiredErrorText="调度号不能为空"    />
                     </td>
                 </tr>
                 <tr>
