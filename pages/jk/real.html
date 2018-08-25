@@ -109,26 +109,29 @@
         </div>
     </span>
     <span class="btn" id="spanreal">船舶监控
-        <div class="info" style="height: 240px; width: 660px;">
+        <div class="info" style="height: 240px; width: 720px;">
             <img src="js/mapbaidu/img/map-close-1.png" class="close-img">
             <div class="info-top">
                 <span class="">设备号:</span>
-                <input id="in01" class="mini-combobox" style="width: 200px;" textField="name" onvaluechanged="PageMap.funDevChanged(0)" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
-                <span class="" style="padding-left: 15px;">船号:</span>
-                <input id="in02" class="mini-combobox" style="width: 200px;" textField="id" onvaluechanged="PageMap.funShipChanged(0)" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
-               <!-- <span class="" style="padding-left: 15px;">状态:</span>
-                <input id="in03" class="mini-combobox myselect" textField="name" valueField="id" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>-->
-                <span class="" style="padding-left: 15px;">&nbsp;</span>
+                <input id="in01" class="mini-combobox" style="width: 80px;" textField="name" onvaluechanged="PageMap.funDevChanged(0)" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 5px;">船号:</span>
+                <input id="in02" class="mini-combobox" style="width: 120px;" textField="id" onvaluechanged="PageMap.funShipChanged(0)" valueField="name" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 5px;">状态:</span>
+                <input id="in03" class="mini-combobox"  style="width: 70px;" textField="name" valueField="id" emptyText="请选择..."  allowInput="true" showNullItem="true" nullItemText="请选择..."/>
+                <span class="" style="padding-left: 5px;">任务单号:</span>
+                <input name="in04" id="in04" class="mini-textbox" emptyText="任务单号"  style="width:120px;"/>
+                <span class="" style="padding-left: 5px;">&nbsp;</span>
                 <button  onclick="PageMap.funSearchRealInfo()">查询</button>
                 <button onclick="PageMap.funResetSearch()">重置</button>
             </div>
             <div class="info-middle" style="padding-top: 10px; margin-bottom:10px;">
                 <div id="flowGrid" class="mini-datagrid"
-                     idField="id" allowResize="false" allowAlternating="true" onrowclick="PageMap.funRealRowClick" virtualScroll="true" showPager="false" sortMode="client" style="height: 205px; width: 658px;">
+                     idField="id" allowResize="false" allowAlternating="true" onrowclick="PageMap.funRealRowClick" virtualScroll="true" showPager="false" sortMode="client" style="height: 205px; width: 718px;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="40">序号</div>
 					 <div field="shipNo" width="120" headerAlign="center" allowSort="true">船号码</div>
 					 <div field="devId" width="120" headerAlign="center" allowSort="true">设备号</div>
+					 <div field="online" width="120" headerAlign="center" allowSort="true"  renderer="PageMap.funDealOnlineInfo">在线状态</div>
 					 <div field="gpsTime" width="120" headerAlign="center" allowSort="true">GPS时间</div>
 					 <div field="speed" width="120" headerAlign="center" allowSort="true">速度</div>
                 </div>

@@ -15,7 +15,7 @@ var PageMap = function()
             GlobalGeocoder : new BMap.Geocoder(),
             GlobalPointIcon:null,
             GlobalStaytimeIcon:null,
-            shipStatus : [{id:1, name:"无任务"},{id:2, name:"有任务"}],
+            shipStatus : [{id:1, name:"在线"},{id:2, name:"离线"}],
             speedFly : [{id:0.5, name:"0.5秒/条"},{id:1, name:"1秒/条"},{id:2, name:"2秒/条"},{id:3, name:"3秒/条"}],
             GlobalLabelOps : {
                 offset : new BMap.Size(-40, -20)    //设置文本偏移量
@@ -56,7 +56,7 @@ var PageMap = function()
             hisPolyLine : null,//轨迹回放线路
             hisPolyLineFly : [],
             hisMarker:null,//轨迹回放时船
-            hisCurrCnt : 0,//轨迹回放的当前记录
+            hisCurrCnt : 1,//轨迹回放的当前记录
             hisSumCnt : 0,//轨迹的总记录数
             hisTimeOut:null,
             hisTime : 1000,
@@ -199,7 +199,7 @@ var PageMap = function()
             });
             $("#bncs_select").attr("disabled", "disabled");
 
-            //mini.get("in03").setData(PageMap.defaultOption.shipStatus);
+            mini.get("in03").setData(PageMap.defaultOption.shipStatus);
            /* mini.get("speed").setData(PageMap.defaultOption.speedFly);
             mini.get("speed").select(1);*/
             this.funLoadBase();
@@ -369,7 +369,10 @@ var PageMap = function()
             if (this.defaultOption.statelist.getValue() == "")
             {
                 this.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                    mObj.marker.show();
+                    if (mObj.delFlag == false)
+                    {
+                        mObj.marker.show();
+                    }
                 });
             }
             else
@@ -378,7 +381,7 @@ var PageMap = function()
                 if(tmp == 4)
                 {
                     this.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                        if (mObj.alarmType == 1)
+                        if (mObj.alarmType == 1 && mObj.delFlag == false)
                         {
                             mObj.marker.show();
                         }
@@ -391,7 +394,8 @@ var PageMap = function()
                 else if (tmp == 5)
                 {
                     this.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                        if (mObj.sailState == 1)
+
+                        if (mObj.sailState == 1 && mObj.delFlag == false)
                         {
                             mObj.marker.show();
                         }
@@ -404,13 +408,16 @@ var PageMap = function()
                 else if(tmp ==45)
                 {
                     this.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                        if (mObj.sailState == 1 && mObj.alarmType == 1)
+                        if (mObj.delFlag == false)
                         {
-                            mObj.marker.show();
-                        }
-                        else
-                        {
-                            mObj.marker.hide();
+                            if (mObj.sailState == 1 && mObj.alarmType == 1)
+                            {
+                                mObj.marker.show();
+                            }
+                            else
+                            {
+                                mObj.marker.hide();
+                            }
                         }
                     });
                 }
@@ -489,12 +496,22 @@ var PageMap = function()
             {
                 devId = mini.get("in01").getValue();
             }
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadGpsReal",{shipNo:mini.get("in02").getText(), devId:devId}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/gps/loadGpsReal",{shipNo:mini.get("in02").getText(), online:mini.get("in03").getValue(),taskNo:mini.get("in04").getValue(), devId:devId}, function (data) {
                 $("#shipcnt").html(data.length);
                 mini.get("flowGrid").setData(data);
                 PageMap.defaultOption.realFlag = false;
                 PageMap.funShowRealInfo(data);
             });
+        },
+        // 处理在线状态
+        funDealOnlineInfo : function (e)
+        {
+            console.log(e.value)
+            if (e.value == 1 )
+            {
+                return "在线";
+            }
+            return "离线";
         },
         funLoadSailingInfo : function ()
         {
@@ -509,9 +526,11 @@ var PageMap = function()
         funSearchRealInfo : function ()
         {
             PageMap.defaultOption.realFlag = true;
+            console.log(PageMap.defaultOption.GlobalShipFly.length)
             //清空所有船
             PageMap.defaultOption.GlobalShipFly.forEach(function(mObj) {
                 mObj.marker.hide();
+                mObj.delFlag = true;
             });
             PageMap.funLoadRealInfo();
         },
@@ -685,6 +704,8 @@ var PageMap = function()
         {
             mini.get("in01").setValue("");
             mini.get("in02").setValue("");
+            mini.get("in03").setValue("");
+            mini.get("in04").setValue("");
         },
         funShowCity : function ()
         {
@@ -720,7 +741,10 @@ var PageMap = function()
         {
             PageMap.funHisClear();
             PageMap.defaultOption.GlobalShipFly.forEach(function (mObj) {
-                mObj.marker.show();
+                if (mObj.delFlag == false)
+                {
+                    mObj.marker.show();
+                }
             })
             PageMap.funRealInterval();
         },
@@ -748,7 +772,8 @@ var PageMap = function()
                 return ;
             }
             PageMain.funShowLoading();
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/location/getHistoryLocations",	"{\"compcode\":\"2\",\"devicecode\":\""+ mini.get("in12").getValue()+"\",\"starttime\":\""+ mini.get("in13").getValue()+"\",\"endtime\":\""+ mini.get("in14").getValue()+"\",\"apikey\":\"174f9540-0d1e-4509-a96b-e692c64dae8d\"}", function (data) {
+            PageMain.callAjax("http://112.11.223.225:16332/location/getHistoryLocations",
+                "{\"compcode\":\"2\",\"devicecode\":\""+ mini.get("in12").getValue()+"\",\"starttime\":\""+ mini.get("in13").getValue()+"\",\"endtime\":\""+ mini.get("in14").getValue()+"\",\"apikey\":\"174f9540-0d1e-4509-a96b-e692c64dae8d\"}", function (data) {
                 PageMain.funCloseLoading();
                 if (data.success && data.data.length > 0)
                 {
@@ -844,19 +869,23 @@ var PageMap = function()
             }
             return s +"秒";
         },
-        funHisMouseInfo : function (polyline, mObj)
+        funHisMouseInfo : function (polyline, mStartObj, mEndObj)
         {
             var me = this;
             polyline.addEventListener("mouseover", function(e){
                 polyline.setStrokeWeight(8);
                 // var mObj = me.defaultOption.hisDataFly[item + 1];
-                var paramPoint = me.funPointTwo(PageConvert.funWGS84ToBaidu(mObj.lng, mObj.lat));
+                var startPoint = me.funPointTwo(PageConvert.funWGS84ToBaidu(mStartObj.lng, mStartObj.lat));
+                var endPoint = me.funPointTwo(PageConvert.funWGS84ToBaidu(mEndObj.lng, mEndObj.lat));
                 try{
 
-                    me.defaultOption.mInfoWindow.setContent(me.funHisInfoWindowInfo(mObj));
-                    me.funDealState(mObj);
+                    me.defaultOption.mInfoWindow.setContent(me.funHisLineInfoWindowInfo(mStartObj, mEndObj));
                     me.mapObj.openInfoWindow(me.defaultOption.mInfoWindow, e.point);
-                    me.defaultOption.GlobalGeocoder.getLocation(paramPoint, function(rs)
+                    /*me.defaultOption.GlobalGeocoder.getLocation(startPoint, function(rs)
+                    {
+                        $("#starthisplace").html(me.funGeocoderAddressInfo(rs));
+                    });*/
+                    me.defaultOption.GlobalGeocoder.getLocation(e.point, function(rs)
                     {
                         $("#hisplace").html(me.funGeocoderAddressInfo(rs));
                     });
@@ -866,6 +895,16 @@ var PageMap = function()
                 polyline.setStrokeWeight(4);
                 me.mapObj.closeInfoWindow()
             });
+        },
+
+        funHisLineInfoWindowInfo : function (mStartObj, mEndObj)
+        {
+            var tmpContent = "船<span style='padding: 0 14px;'></span>号：" + mini.get("in12").getText() + " <br/>" +
+                "设<span style='padding: 0 4px;'></span>备<span style='padding: 0 4px;'></span>号：" + mEndObj.deviceCode + " <br/>" +
+                "起始时间：" + mStartObj.occurTime + " <br/>" +
+                "结束时间 ：" + mEndObj.occurTime + " <br/>";
+            tmpContent += "位<span style='padding: 0 14px;'></span>置：<span id='hisplace'></span>";
+            return tmpContent;
         },
 
         funHisInfoWindowInfo : function (mObj)
@@ -897,7 +936,7 @@ var PageMap = function()
             $("#bncs_select").val(0);
             $("#bncs_select").attr("max" , PageMap.defaultOption.hisSumCnt)
             PageMap.defaultOption.hisDataFly = [];
-            PageMap.defaultOption.hisCurrCnt = 0;
+            PageMap.defaultOption.hisCurrCnt = 1;
             PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
             PageMap.defaultOption.hisStaytimeMarkerFly.forEach(function (data) {
                 PageMap.mapObj.removeOverlay(data.marker);
@@ -917,7 +956,7 @@ var PageMap = function()
         funHis:function ()
         {
 
-            PageMap.defaultOption.hisCurrCnt = 0;
+            PageMap.defaultOption.hisCurrCnt = 1;
             PageMap.defaultOption.hisSumCnt = PageMap.defaultOption.hisDataFly.length;
             if(PageMap.defaultOption.hisMarker != null)
             {
@@ -987,7 +1026,7 @@ var PageMap = function()
                 tmpFly.push(PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(PageMap.defaultOption.hisDataFly[nItem].lng, PageMap.defaultOption.hisDataFly[nItem].lat)));
             }
             PageMap.defaultOption.hisPolyLineFly.push(PageMap.funAddPolyLineInfo(tmpFly));
-            PageMap.funHisMouseInfo(PageMap.defaultOption.hisPolyLineFly[PageMap.defaultOption.hisPolyLineFly.length-1], PageMap.defaultOption.hisDataFly[endItem-1]);
+            PageMap.funHisMouseInfo(PageMap.defaultOption.hisPolyLineFly[PageMap.defaultOption.hisPolyLineFly.length-1], PageMap.defaultOption.hisDataFly[paramItem-1], PageMap.defaultOption.hisDataFly[endItem-1]);
             var mObj = PageMap.defaultOption.hisDataFly[endItem - 1];
             var paramPoint = tmpFly[tmpFly.length - 1];//PageMap.funPointTwo(PageConvert.funWGS84ToBaidu(mObj.lng, mObj.lat));
             var tmpLng = PageMap.mapObj.getBounds();
@@ -1100,7 +1139,7 @@ var PageMap = function()
         funStop : function ()
         {
             PageMap.funClearHisLineFly();
-            PageMap.defaultOption.hisCurrCnt = 0;
+            PageMap.defaultOption.hisCurrCnt = 1;
             PageMap.defaultOption.hisPlayFlag = false;
             if (PageMap.defaultOption.hisTimeOut != null)
             {
@@ -1144,7 +1183,7 @@ var PageMap = function()
         funRePlay : function()
         {
             PageMap.funClearHisLineFly();
-            PageMap.defaultOption.hisCurrCnt = 0;
+            PageMap.defaultOption.hisCurrCnt = 1;
             if (PageMap.defaultOption.hisPlayFlag == false)
             {
                 PageMap.defaultOption.hisPlayFlag = true;
@@ -1445,14 +1484,17 @@ var PageMap = function()
                     //this.defaultOption.GlobalShipFly[nItem].marker.setIcon(this.funShipIconInfo(paramRow.angle));
                     this.defaultOption.GlobalShipFly[nItem].marker.setRotation(paramRow.angle);
                     this.defaultOption.GlobalShipFly[nItem].infoWindow.setContent(tmpContent);
+                    this.defaultOption.GlobalShipFly[nItem].delFlag = false;
+                    this.defaultOption.GlobalShipFly[nItem].marker.show()
                     flag = false;
                     break;
                 }
             }
 
+
             if (flag)
             {
-                var mMarkerObj = {devId: null, lnglat:null, alarmType:null, sailState:null, shipNo:null, marker: null, label: null, infoWindow: null, realObj : null};
+                var mMarkerObj = {devId: null, lnglat:null, alarmType:null, sailState:null, shipNo:null, marker: null, label: null, infoWindow: null, realObj : null, delFlag:false};
                 mMarkerObj.devId = paramRow.devId;
                 mMarkerObj.lnglat = paramPoint;
                 mMarkerObj.alarmType = alarmType;
