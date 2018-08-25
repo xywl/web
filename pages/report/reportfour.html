@@ -32,7 +32,7 @@
         <div class="mini-fit">
             <div class="mini-datagrid-cell">
                 <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
-                    主营业务熟料计划<input  class="reportSevenGrid3" style="width: 40px;"  type="text" />万吨
+                    主营业务熟料计划<input  class="reportSevenGrid1" style="width: 40px;"  type="text" />万吨
                 </div>
                 <div id="reportSevenGrid1" class="mini-datagrid"
                     idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell"  showFooter="false"
@@ -47,7 +47,7 @@
             </div>
             <div class="mini-datagrid-cell">
                 <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
-                    散装运输及经营计划<input  class="reportSevenGrid3" style="width: 40px;"  type="text" />万吨
+                    散装运输及经营计划<input  class="reportSevenGrid4" style="width: 40px;"  type="text" />万吨
                 </div>
                 <div id="reportSevenGrid2" class="mini-datagrid"
                     idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell"  showFooter="false"
@@ -77,7 +77,7 @@
             </div>
             <div class="mini-datagrid-cell">
                 <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
-                    船运月平均航次计划<input  class="reportSevenGrid3" style="width: 40px;"  type="text" />个
+                    船运月平均航次计划<input  class="reportSevenGrid4" style="width: 40px;"  type="text" />个
                 </div>
                 <div id="reportSevenGrid4" class="mini-datagrid"
                     idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell"  showFooter="false"
@@ -115,7 +115,7 @@
                 if(row.jhsl == '-'){
                     continue;
                 } else {
-                    jh += row.jhsl;
+                    jh += row.jhsl*1;
                 }
             }
             if(jh == 0) jh ='-';
@@ -127,10 +127,10 @@
             var sj = 0 ;
             for (var i = 0, l = rows.length; i < l; i++) {
                 var row = rows[i];
-                if(row.jhsl == '-'){
+                if(row.sjsl == '-'){
                     continue;
                 } else {
-                    sj += row.jhsl;
+                    sj += row.sjsl*1;
                 }
             }
             if(sj == 0) sj ='-';
@@ -145,12 +145,12 @@
                 if(row.jhsl == '-'){
                     continue;
                 } else {
-                    jh += row.jhsl;
+                    jh += row.jhsl*1;
                 }
                 if(row.sjsl == '-'){
                     continue;
                 } else {
-                    sj += row.sjsl;
+                    sj += row.sjsl*1;
                 }
             }
             if(jh == 0 || sj == 0){
