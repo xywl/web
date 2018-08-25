@@ -134,7 +134,7 @@
                 }
             }
             if(sj == 0) sj ='-';
-            e.cellHtml = sj;
+            e.cellHtml = sj
         }
         if (e.field == "wcl") {
             var jh =  0;
@@ -158,7 +158,7 @@
             }else {
                 sjwc = sj / jh;
             }
-            e.cellHtml = sjwc;
+            e.cellHtml = sjwc == '-'? '-':sjwc.toFixed(2);
         }
     }
 
