@@ -33,10 +33,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="form-label">预扣油款：</td>
+                    <td class="form-label">预扣油款（元）：</td>
                     <td class="form-content">
-                        <input name="preBuckleOil" id="preBuckleOil"   class="mini-textbox" required="true"
-                                maxlength="15" requiredErrorText="预扣油款不能为空"   />
+                        <input name="preBuckleOil" id="preBuckleOil"   class="mini-spinner"  minValue="0" value="0"  maxValue="10000000" format="#0.00"
+                               required="true"  maxlength="15" requiredErrorText="预扣油款不能为空"   />
                     </td>
                 </tr>
                 <tr>

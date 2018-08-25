@@ -42,14 +42,16 @@
                 <tr>
                     <td width="10%" align="right">实际加油量（L）：</td>
                     <td width="20%"  class="form-content">
-                        <input name="fuelQuantity" id="fuelQuantity"  class="mini-textbox"  width="260" required="true"  maxValue="30"
+                        <input name="fuelQuantity" id="fuelQuantity"    class="mini-spinner"  minValue="0" value="0"  maxValue="10000000" format="#0.00"
+                               width="260" required="true"  maxValue="30"
                                maxlength="20" requiredErrorText="实际加油量不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td width="10%" align="right">油的单价（元/L）：</td>
                     <td width="20%"  class="form-content">
-                        <input name="unitPrice" id="unitPrice"  class="mini-textbox"  width="260" required="true"  maxValue="30"
+                        <input name="unitPrice" id="unitPrice"   class="mini-spinner"  minValue="0" value="0"  maxValue="1000000" format="#0.00"
+                                width="260" required="true"  maxValue="30"
                                maxlength="20" requiredErrorText="油的单价不能为空"/>
                     </td>
                 </tr>
