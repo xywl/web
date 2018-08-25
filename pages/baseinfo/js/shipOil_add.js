@@ -15,8 +15,10 @@ var PageShipOilAdd = function(){
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("shipId").setData(row.shipIdFly);
-            mini.get("status").setData(row.statusData)
+           // mini.get("shipId").setData(row.shipIdFly);
+            mini.get("disId").setData(row.disIdData);
+            mini.get("shipId").setData(row.disIdData);
+            mini.get("status").setData(row.statusData);
         	this.action = data.action;
             if (this.action != "add")
             {
@@ -82,6 +84,27 @@ var PageShipOilAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
+        },
+        funSetShipId:function () {
+            var shipVal =  mini.get("shipId").getValue();
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",
+                type: 'POST',
+                data:  {key:shipVal},
+                dataType: 'json',
+                async: false,
+                success: function (data)
+                {
+                    if(data.length>0){
+                        mini.get("disId").setValue(data[0].id)
+                    }
+                    mini.get("disId").setData(data);
+                },
+                error: function ()
+                {
+                    PageMain.funShowMessageBox("获取失败");
+                }
+            });
         }
     }
 }();

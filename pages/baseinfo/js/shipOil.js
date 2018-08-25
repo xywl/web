@@ -5,7 +5,8 @@ var PageShipOil = function(){
             basePath:"",
             shipOilGrid : null,
             statusFly:[{id:1, name:"预扣"},{id:2, name:"实扣"}],
-            shipNoData:[]
+            shipNoData:[],
+            disIdData:[]
         },
         init :function ()
         {
@@ -16,6 +17,10 @@ var PageShipOil = function(){
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PageShipOil.defaultOption.shipNoData = data.data.list;
                 PageShipOil.funSearch();
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+                PageShipOil.defaultOption.disIdData = data;
+                //mini.get("key").setData(data);
             });
 
         },
@@ -61,6 +66,18 @@ var PageShipOil = function(){
             }
             return e.value;
         },
+        //调度单号
+        funDisIdDataRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageShipOil.defaultOption.disIdData.length; nItem++)
+            {
+                if(e.value == PageShipOil.defaultOption.disIdData[nItem].id)
+                {
+                    return PageShipOil.defaultOption.disIdData[nItem].name;
+                }
+            }
+            return e.value;
+        },
         funRendererStatus: function (e)
         {
             for(var nItem = 0; nItem < PageShipOil.defaultOption.statusFly.length; nItem++)
@@ -87,6 +104,7 @@ var PageShipOil = function(){
         	var me = this;
             paramData.row.shipIdFly = me.defaultOption.shipNoData;
             paramData.row.statusData = me.defaultOption.statusFly;
+            paramData.row.disIdData =  me.defaultOption.disIdData;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/shipOil_add.html",
                 title: paramData.title,

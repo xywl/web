@@ -14,7 +14,9 @@ var PagePreBuckleOilAdd = function(){
         funSetData : function(data)
         {
         	var row = data.row;
-            mini.get("shipId").setData(row.shipNoData);
+          //  mini.get("shipId").setData(row.shipNoData);
+            mini.get("disId").setData(row.disIdData);
+            mini.get("shipId").setData(row.disIdData);
         	this.action = data.action;
             if(this.defaultOption.action != "add")
             {
@@ -85,6 +87,27 @@ var PagePreBuckleOilAdd = function(){
         {
         	PageMain.funCloseWindow("cancel");
         },
+        funSetShipId:function () {
+            var shipVal =  mini.get("shipId").getValue();
+            $.ajax({
+                url : PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",
+                type: 'POST',
+                data:  {key:shipVal},
+                dataType: 'json',
+                async: false,
+                success: function (data)
+                {
+                    if(data.length>0){
+                        mini.get("disId").setValue(data[0].id)
+                    }
+                    mini.get("disId").setData(data);
+                },
+                error: function ()
+                {
+                    PageMain.funShowMessageBox("获取失败");
+                }
+            });
+        }
 
     }
 }();

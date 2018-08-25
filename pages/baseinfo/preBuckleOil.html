@@ -39,7 +39,8 @@
                  pagesize="30" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
                 <div property="columns">
                     <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
-                    <div field="shipId" width="120" headerAlign="center" allowSort="true"   renderer="PagePreBuckleOil.funShipRenderer">船号</div>
+                    <div field="disId" width="120" headerAlign="center" allowSort="true"  renderer="PagePreBuckleOil.funDisIdDataRenderer">调度单号</div>
+                    <div field="shipId" width="120" headerAlign="center" allowSort="true" renderer="PagePreBuckleOil.funShipRenderer">船号</div>
                     <div field="preBuckleOil" width="120" headerAlign="center" allowSort="true">预扣油款 </div>
                     <div field="preBuckleTime" width="120" headerAlign="center" allowSort="true"  renderer="PageMain.funFromDateInfo">扣款时间</div>
                     <div field="description" width="120" headerAlign="center" allowSort="true">备注</div>

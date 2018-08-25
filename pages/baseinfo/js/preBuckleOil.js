@@ -4,7 +4,8 @@ var PagePreBuckleOil = function(){
         defaultOption: {
             basePath:"",
             preBuckleOilGrid : null,
-            shipNoData:[]
+            shipNoData:[],
+            disIdData:[]
         },
         init :function ()
         {
@@ -16,6 +17,10 @@ var PagePreBuckleOil = function(){
                 PagePreBuckleOil.defaultOption.shipNoData = data.data.list;
                 mini.get("key").setData(data.data.list);
                 PagePreBuckleOil.funSearch();
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+                PagePreBuckleOil.defaultOption.disIdData = data;
+                //mini.get("key").setData(data);
             });
         },
         funSearch : function()
@@ -42,6 +47,18 @@ var PagePreBuckleOil = function(){
                 if(e.value == PagePreBuckleOil.defaultOption.shipNoData[nItem].id)
                 {
                     return PagePreBuckleOil.defaultOption.shipNoData[nItem].shipNo;
+                }
+            }
+            return e.value;
+        },
+        //调度单号
+        funDisIdDataRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PagePreBuckleOil.defaultOption.disIdData.length; nItem++)
+            {
+                if(e.value == PagePreBuckleOil.defaultOption.disIdData[nItem].id)
+                {
+                    return PagePreBuckleOil.defaultOption.disIdData[nItem].name;
                 }
             }
             return e.value;
@@ -74,6 +91,7 @@ var PagePreBuckleOil = function(){
         {
         	var me = this;
             paramData.row.shipNoData = me.defaultOption.shipNoData;
+            paramData.row.disIdData =  me.defaultOption.disIdData;
         	mini.open({
                 url: PageMain.funGetRootPath() + "/pages/baseinfo/preBuckleOil_add.html",
                 title: paramData.title,
