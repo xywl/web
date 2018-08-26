@@ -38,10 +38,9 @@ var PageTransferPrice = function(){
                 if(data.success)
                 {
                     PageTransferPrice.defaultOption.contractFly = data.data;
+                    PageTransferPrice.funSearch();
                 }
             });
-
-            this.funSearch();
         },
         funSearch : function()
         {

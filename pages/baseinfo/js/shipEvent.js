@@ -15,8 +15,9 @@ var PageShipEvent = function(){
             this.shipEventGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipEvent/getList")
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PageShipEvent.defaultOption.shipNoData = data.data.list;
+                PageShipEvent.funSearch();
             });
-            this.funSearch();
+
 
         },
         funSearch : function()
