@@ -43,6 +43,9 @@ var PageReportthree = function(){
                 //_reportThreeGrid.mergeColumns(["shipId"]);
                 _reportThreeGrid.mergeCells(merges);
             });
+            var now   = new Date();
+            var month = now.getMonth();
+            mini.get("key").setValue(now.getFullYear()+"-"+((month+1).length=1?("0"+(month+1)):(month+1)));
             this.funSearch();
         },
         funSearch : function()

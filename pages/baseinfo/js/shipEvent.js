@@ -5,7 +5,7 @@ var PageShipEvent = function(){
             basePath:"",
             shipEventGrid : null,
             shipNoData:[],
-            eventIdFly:[{id:1, name:"不接电话"},{id:2, name:"停船过夜"},{id:3, name:"不服调配"},{id:4, name:"修船"},{id:5, name:"保养"},{id:6, name:"事故停航"},{id:7, name:"私事停航"},{id:8, name:"春节放假"},{id:9, name:"装卸货异常情况"}],
+            eventIdFly:[{id:1, name:"不接电话（次）"},{id:2, name:"停船过夜（次）"},{id:3, name:"不服调配（次）"},{id:4, name:"修船（天）"},{id:5, name:"保养（天）"},{id:6, name:"事故停航（天）"},{id:7, name:"私事停航（天）"},{id:8, name:"春节放假（天）"},{id:9, name:"装卸货异常情况（天）"}],
         },
         init :function ()
         {

@@ -78,6 +78,21 @@ var PageShipEventAdd = function(){
         funCancel : function()
         {
         	PageMain.funCloseWindow("cancel");
+        },
+        funSet : function()
+        {
+            var eventval =  mini.get("eventId").getValue();
+            if(eventval == '1' || eventval == '2' ||eventval == '3'){
+                mini.get("endDate").setValue("");
+                mini.get("endDate").setRequired(false);
+                mini.get("endDate").setReadOnly(true);
+                mini.get("dayNum").setReadOnly(false);
+            } else {
+                changeEndDate();
+                mini.get("endDate").setReadOnly(false);
+                mini.get("dayNum").setReadOnly(true);
+                mini.get("endDate").setRequired(true);
+            }
         }
     }
 }();
