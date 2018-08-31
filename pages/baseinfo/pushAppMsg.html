@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/pushAppMsg.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="mini-layout" style="width: 100%;height: 100%;" allowResize="false">
+    <div title="north" region="north" showSplit="false" showSplitIcon="false" height="72" showHeader="false"    style="border: none;">
+        <div id="p1" class="mini-panel" title="检索条件" style="width: 100%;height:100%"
+             showCloseButton="false">
+            <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="pushAppMsgForm">
+				<lable class="form-label">关键字：</lable>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入船号"  style="width:160px;"/>
+                <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
+                <a class="mini-button" iconCls="icon-search" onclick="pushAppMsg.funSearch()" plain="true"><label>查询</label></a>
+                <a class="mini-button" iconCls="icon-reset" onclick="pushAppMsg.funReset()" plain="true"><label>重置</label></a>
+            </div>
+        </div>
+    </div>
+    <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
+        <div class="mini-fit">
+            <div id="pushAppMsgGrid" class="mini-datagrid"
+                  idField="id" allowResize="false"
+                 pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 100%;">
+                <div property="columns">
+                    <div type="indexcolumn" headerAlign="center"  width="30">序号</div>
+                    <div field="shipNo" width="120" headerAlign="center" allowSort="true">船号</div>
+					 <div field="nickName" width="120" headerAlign="center" allowSort="true">用户昵称</div>
+                    <div field="notificationTitle" width="120" headerAlign="center" allowSort="true" >通知标题</div>
+                    <div field="msgTitle" width="120" headerAlign="center" allowSort="true">消息标题</div>
+                    <div field="msgContent" width="120" headerAlign="center" allowSort="true">消息内容</div>
+                    <div field="created" width="120" headerAlign="center" allowSort="true" renderer="pushAppMsg.funFromDateInfo">时间</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
