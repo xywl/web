@@ -4,6 +4,7 @@ var PageTempDispatchShip = function(){
         defaultOption: {
             basePath:"",
             tempDispatchShipGrid : null,
+            statusFly:[{id:1, name:"后台新增"},{id:2, name:"APP新增"}]
 
         },
         init :function ()
@@ -44,6 +45,17 @@ var PageTempDispatchShip = function(){
             {
             	PageMain.funShowMessageBox("请选择一条记录");
             }
+        },
+        funRendererStatus: function (e)
+        {
+            for(var nItem = 0; nItem < PageTempDispatchShip.defaultOption.statusFly.length; nItem++)
+            {
+                if(e.value == PageTempDispatchShip.defaultOption.statusFly[nItem].id)
+                {
+                    return PageTempDispatchShip.defaultOption.statusFly[nItem].name;
+                }
+            }
+            return e.value;
         },
 
         /*funRendererGoodsType : function (e)
