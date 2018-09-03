@@ -36,7 +36,7 @@
                         <div field="flowName" width="120" headerAlign="center" allowSort="true">流向名称</div>
                         <div field="goodsName" width="80" headerAlign="center" allowSort="true">货物名称</div>
                         <div field="shipSuggestUnitPrice" width="80" headerAlign="center" allowSort="true">参考运价</div>
-                        <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funOrderTimeRenderer">装货时间</div>
+                        <div field="loadingTime" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">装货时间</div>
                         <div field="startPortName" width="80" headerAlign="center" allowSort="true">装货点</div>
                         <div field="endPortName" width="80" headerAlign="center" allowSort="true">卸货点</div>
                         <!-- <div field="goodsType" width="120" headerAlign="center" allowSort="true">货物类型</div> -->
@@ -68,7 +68,7 @@
                         <div name="ShipNo" field="shipNo" width="100" headerAlign="center" allowSort="true">船号</div>
                         <div name="ShipFlag" field="shipFlag" width="100" headerAlign="center" allowSort="true" renderer="CapcitySchedul.funShipFlagRenderer">船舶所有权</div>
                         <div name="PreWeight" field="preWeight" width="100" headerAlign="center" allowSort="true">预报吨位</div>
-                        <div name="PreArriveTime" field="preArriveTime" width="120" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" renderer="CapcitySchedul.funPreArriveTimeRenderer">预计到港时间</div>
+                        <div name="PreArriveTime" field="preArriveTime" width="120" headerAlign="center" allowSort="true" dateFormat="yyyy-MM-dd HH:mm:ss" renderer="PageMain.funFromDateInfo">预计到港时间</div>
                         <div name="ArrivalPort" field="arrivalPort" width="100" headerAlign="center" allowSort="true">到达港口</div>
                         <div name="ShipStatus" field="shipStatus" width="100" headerAlign="center" allowSort="true">船舶状态</div>
                         <div name="Position" field="position" width="80" headerAlign="center" allowSort="true">位置</div>

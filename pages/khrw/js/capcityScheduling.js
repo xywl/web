@@ -21,13 +21,13 @@ var CapcitySchedul = function(){
             orderDetailsGrid.setUrl(PageMain.defaultOption.httpUrl + "/dispatch/getList");
             //orderDetailsGrid.load();
 
-            orderDetailsGrid.on("celleditenter", function (e) {
-                var index = orderDetailsGrid.indexOf(e.record);
-                if (index == orderDetailsGrid.getData().length - 1) {
-                    var row = {};
-                    orderDetailsGrid.addRow(row);
-                }
-            });
+            // orderDetailsGrid.on("celleditenter", function (e) {
+            //     var index = orderDetailsGrid.indexOf(e.record);
+            //     if (index == orderDetailsGrid.getData().length - 1) {
+            //         var row = {};
+            //         orderDetailsGrid.addRow(row);
+            //     }
+            // });
 
             // orderDetailsGrid.on("beforeload", function (e) {
             //     if (orderDetailsGrid.getChanges().length > 0) {
@@ -73,7 +73,6 @@ var CapcitySchedul = function(){
                 }
                 if(!CapcitySchedul.funInArray(idArray, newRow.shipId))
                 {
-                    console.log(newRow)
                     orderDetailsGrid.addRow(newRow, 0);
                 }
                 //orderDetailsGrid.addRow(newRow, 0);
@@ -191,7 +190,7 @@ var CapcitySchedul = function(){
             if(e.value == 1)
             {
                 return '自有船舶';
-            } else if(e.value == 2) 
+            } else if(e.value == 2)
             {
                 return '挂靠船舶';
             } else if(e.value == 3)
@@ -204,7 +203,7 @@ var CapcitySchedul = function(){
             if(e.value == 1)
             {
                 return '自有船舶';
-            } else if(e.value == 2) 
+            } else if(e.value == 2)
             {
                 return '挂靠船舶';
             } else if(e.value == 3)
@@ -223,14 +222,6 @@ var CapcitySchedul = function(){
             } else {
                 return '<a class="Blue_Button" href="javascript:CapcitySchedul.funDelRow(\'' + uid + '\')">删除</a> ';
             }
-        },
-        funOrderTimeRenderer: function(e)
-        {
-            return PageMain.funStrToDate(e.row.loadingTime);
-        },
-        funPreArriveTimeRenderer: function(e)
-        {
-            return PageMain.funStrToDate(e.row.preArriveTime);
         },
         funOrderDetailsTimeRenderer: function(e)
         {
@@ -258,6 +249,12 @@ var CapcitySchedul = function(){
             }
             if (field == "shipType" || field == "shipId" || field == "shipFlag" || field == "preWeight" || field == "preSettleAmount") {
                 e.cancel = true;
+            }
+            if (field == "preArriveTime") {
+                console.log(Object.prototype.toString.call(e.value));
+                if (Object.prototype.toString.call(e.value) == '[object Number]') {
+                    e.value = PageMain.funStrToDate(e.value);
+                }
             }
         },
         funChangeStatus: function()
@@ -291,32 +288,38 @@ var CapcitySchedul = function(){
                 
             }
         },
-        // funOnCellEndEdit: function(e)  //行编辑结束事件
-        // {
-        //     var leftWeight = $("#leftWeight").val();
-        //     var record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
-        //     if (rows) {
-        //         for (var i = 0, l = rows.length; i < l; i++) {
-        //             var row = rows[i];
-        //             var t = Number(row.preLoad);
-        //             if (isNaN(t)) continue;
-        //             preLoadTotal += t;
-        //         }
-        //     }
-        //     if (preLoadTotal > leftWeight) {
-        //         mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
-        //         // mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
-        //         //     function (action, value) {
-        //         //         if (action == "ok") {
-        //         //             alert(value);
-        //         //         } else {
-        //         //             alert("取消");
-        //         //         }
-        //         //     }
-        //         // );
-        //         return;
-        //     }
-        // },
+        funOnCellEndEdit: function(e)  //行编辑结束事件
+        {
+            var record = e.record, field = e.field;
+            if (field == "preArriveTime") {
+                if (Object.prototype.toString.call(e.value) == '[object Date]') {
+                    e.value = Math.round(new Date(e.value).getTime()/1000);
+                }
+            }
+            // var leftWeight = $("#leftWeight").val();
+            // var record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
+            // if (rows) {
+            //     for (var i = 0, l = rows.length; i < l; i++) {
+            //         var row = rows[i];
+            //         var t = Number(row.preLoad);
+            //         if (isNaN(t)) continue;
+            //         preLoadTotal += t;
+            //     }
+            // }
+            // if (preLoadTotal > leftWeight) {
+            //     mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
+            //     // mini.alert("当前调度吨位大于余调吨位,请重新编编辑", "提示",
+            //     //     function (action, value) {
+            //     //         if (action == "ok") {
+            //     //             alert(value);
+            //     //         } else {
+            //     //             alert("取消");
+            //     //         }
+            //     //     }
+            //     // );
+            //     return;
+            // }
+        },
         funOnDrawCell: function(e)  //计算预结算金额
         {
             var record = e.record;
@@ -360,7 +363,6 @@ var CapcitySchedul = function(){
                     var row = rows[i];
                     var preLoad = Number(row.preLoad);
                     if (isNaN(preLoad)) continue;
-                    debugger
                     if (row.localstatus != 2) {
                         preLoadTotal += preLoad;
                     } else {
@@ -438,12 +440,17 @@ var CapcitySchedul = function(){
                 plansData.preLoad = submitData[i].preLoad;
                 totalPreLoad += Number(submitData[i].preLoad);
                 plansData.actualTransferPrice = submitData[i].actualTransferPrice;
-                if (submitData[i].id) {
-                    plansData.preArriveTime = submitData[i].preArriveTime
+                // if (submitData[i].id) {
+                //     plansData.preArriveTime = submitData[i].preArriveTime
+                // } else {
+                //     var prePaseDate = mini.parseDate(submitData[i].preArriveTime);
+                //     plansData.preArriveTime = this.funTimeFormat(mini.formatDate(prePaseDate, "yyyy-MM-dd HH:mm:ss"));
+                //     plansData.preSettleAmount = submitData[i].preSettleAmount;
+                // }
+                if (Object.prototype.toString.call(submitData[i].preArriveTime) == "[object Date]") {
+                    plansData.preArriveTime = Math.round(new Date(submitData[i].preArriveTime).getTime()/1000)
                 } else {
-                    var prePaseDate = mini.parseDate(submitData[i].preArriveTime);
-                    plansData.preArriveTime = this.funTimeFormat(mini.formatDate(prePaseDate, "yyyy-MM-dd HH:mm:ss"));
-                    plansData.preSettleAmount = submitData[i].preSettleAmount;
+                    plansData.preArriveTime = submitData[i].preArriveTime;
                 }
                 //plansData.oil = submitData[i].oil;
                 plansData.settleType = submitData[i].settleType;
@@ -461,7 +468,6 @@ var CapcitySchedul = function(){
             }
             param.plans = plans;
             if (leftWeight != 0 && (totalPreLoad > leftWeight)) {
-                debugger;
                 mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
                 return;
             }
