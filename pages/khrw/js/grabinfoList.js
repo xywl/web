@@ -132,7 +132,6 @@ var PageGrapInfoAudit = function(){
         },
         funSubmitData: function()
         {
-            debugger;
             var checkListGrid = PageGrapInfoAudit.checkListGrid
             checkListGrid.validate();  //表格验证
             if (checkListGrid.isValid() == false) {
@@ -171,22 +170,33 @@ var PageGrapInfoAudit = function(){
             param.leftDispatchId = orderListData.id;
             param.plans = plans;
             //console.log(param);
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/reservation/check", {"leftDispatchId": param.leftDispatchId, "plans": JSON.stringify(param.plans)}, function (data) {
-                if (data.success)
-                {
-                    mini.alert("操作成功", "提醒", function(){
-                        if(data.success)
-                        {
-                            location.reload();
-                        }
-                    });
-                }
-                else
-                {
-                    PageMain.funShowMessageBox(data.msg);
-                }
-            });
-            
+            if (plans.length > 0)
+            {
+                mini.confirm("是否确定提交订单?", "提醒", function (action) {
+                    if (action == "ok")
+                    {
+                        PageMain.callAjax(PageMain.defaultOption.httpUrl + "/reservation/check", {"leftDispatchId": param.leftDispatchId, "plans": JSON.stringify(param.plans)}, function (data) {
+                            if (data.success)
+                            {
+                                mini.alert("操作成功", "提醒", function(){
+                                    if(data.success)
+                                    {
+                                        location.reload();
+                                    }
+                                });
+                            }
+                            else
+                            {
+                                PageMain.funShowMessageBox(data.msg);
+                            }
+                        });
+                    }
+                });
+            }
+            else
+            {
+                mini.alert("没有可以提交的数据");
+            }
         }
         // funOpenInfo : function(paramData)  // 弹框审核
         // {
