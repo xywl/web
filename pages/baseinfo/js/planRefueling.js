@@ -54,6 +54,9 @@ var PagePlanRefueling = function(){
             }
             return e.value;
         },
+        funFromDateInfo:function(e){
+            return PageMain.funStrToDate(e.value);
+        },
         //船号
         funRevUnitRenderer : function (e)
         {

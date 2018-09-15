@@ -46,6 +46,26 @@ var PageTempDispatchShip = function(){
             	PageMain.funShowMessageBox("请选择一条记录");
             }
         },
+        funRendererEmptyPhoto: function(e)
+        {
+            var token = $.cookie("token");
+            return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value + "?token="+token +' onclick="PageTempDispatchShip.funEnlargeImage(this)">';
+        },
+        funEnlargeImage: function(obj)
+        {
+            var $this = $(obj);
+            var src = $this.attr("src");
+            var bigImages = [];
+            var $imgs = $(".thumbimg");
+            for(var i=0; i<$imgs.length; i++){
+                var img = {};
+                img.url = $imgs[i].src;
+                img.index = i;
+                $(".thumbimg").eq(i).attr("data-index",i);
+                bigImages.push(img);
+            }
+            window.top.bigpic(src,obj,bigImages);
+        },
         funRendererStatus: function (e)
         {
             for(var nItem = 0; nItem < PageTempDispatchShip.defaultOption.statusFly.length; nItem++)

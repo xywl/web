@@ -11,7 +11,7 @@ var PageDangerZoneSpeed = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.dangerZoneSpeedGrid = mini.get("dangerZoneSpeedGrid");
-            this.dangerZoneSpeedGrid.setUrl(PageMain.defaultOption.httpUrl + "/dangerZoneSpeed/getPage")
+            this.dangerZoneSpeedGrid.setUrl(PageMain.defaultOption.httpUrl + "/dangerZoneSpeed/getPage");
             this.funSearch();
         },
         funSearch : function()

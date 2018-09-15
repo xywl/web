@@ -10,7 +10,7 @@ var PageDangerZone = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.dangerZoneGrid = mini.get("dangerZoneGrid");
-            this.dangerZoneGrid.setUrl(PageMain.defaultOption.httpUrl + "/dangerZone/getPage")
+            this.dangerZoneGrid.setUrl(PageMain.defaultOption.httpUrl + "/dangerZone/getPage");
             this.funSearch();
         },
         funSearch : function()
