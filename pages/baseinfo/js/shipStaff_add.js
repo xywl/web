@@ -12,7 +12,7 @@ var PageShipStaffAdd = function(){
             this.basePath = PageMain.basePath;
             this.shipStaffForm = new mini.Form("shipStaffFormAdd");
             mini.get("gender").setData([{id:1, name:"男"},{id:2, name:"女"}]);
-            mini.get("title").setData([{id:1, name:"船长"},{id:2, name:"驾驶员"},{id:1, name:"轮机员"},{id:2, name:"水手"}]);
+            mini.get("title").setData([{id:1, name:"船长"},{id:2, name:"驾驶员"},{id:3, name:"轮机员"},{id:4, name:"水手"}]);
             mini.get("isOwner").setData([{id:1, name:"是"},{id:2, name:"否"}]);
             mini.get("status").setData([{id:1, name:"启用"},{id:2, name:"禁用"}]);
 

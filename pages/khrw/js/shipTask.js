@@ -4,7 +4,7 @@ var PageSailingInfo = function(){
         defaultOption: {
             basePath:"",
             sailingInfoGrid : null,
-            sailingStatusTypeFly : [{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}]
+            sailingStatusTypeFly : [{id:0, name:"已调度"},{id:1, name:"空船到港"},{id:2, name:"空船装后"},{id:3, name:"重船离港"},{id:4, name:"重船到港"},{id:5, name:"重船卸后"}]
         },
         init :function ()
         {

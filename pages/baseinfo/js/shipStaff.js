@@ -84,11 +84,11 @@ var PageShipStaff = function(){
         {
             if (e.value == 1)
             {
-                return "男"
+                return "是"
             }
             else if (e.value == 2)
             {
-                return "女"
+                return "否"
             }
             return e.value;
         },
