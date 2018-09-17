@@ -3,7 +3,9 @@ var pushAppMsg = function(){
     return {
         defaultOption: {
             basePath:"",
-            pushAppMsgGrid : null
+            pushAppMsgGrid : null,
+            shipNoData:[],
+            disIdData:[]
         },
         init :function ()
         {
@@ -11,7 +13,14 @@ var pushAppMsg = function(){
             this.basePath = PageMain.basePath;
             this.pushAppMsgGrid = mini.get("pushAppMsgGrid");
             this.pushAppMsgGrid.setUrl(PageMain.defaultOption.httpUrl + "/PushAppMsg/getPage");
-            pushAppMsg.funSearch();
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+                pushAppMsg.defaultOption.disIdData = data;
+                mini.get("key").setData(data);
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
+                pushAppMsg.defaultOption.shipNoData = data.data.list;
+                pushAppMsg.funSearch();
+            });
 
         },
         funFromDateInfo:function(e){

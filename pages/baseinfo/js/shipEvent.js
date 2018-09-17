@@ -5,6 +5,7 @@ var PageShipEvent = function(){
             basePath:"",
             shipEventGrid : null,
             shipNoData:[],
+            disIdData:[],
             eventIdFly:[{id:1, name:"不接电话（次）"},{id:2, name:"停船过夜（次）"},{id:3, name:"不服调配（次）"},{id:4, name:"修船（天）"},{id:5, name:"保养（天）"},{id:6, name:"事故停航（天）"},{id:7, name:"私事停航（天）"},{id:8, name:"春节放假（天）"},{id:9, name:"装卸货异常情况（天）"}],
         },
         init :function ()
@@ -13,6 +14,10 @@ var PageShipEvent = function(){
             this.basePath = PageMain.basePath;
             this.shipEventGrid = mini.get("shipEventGrid");
             this.shipEventGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipEvent/getList")
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+                PageShipEvent.defaultOption.disIdData = data;
+                mini.get("key").setData(data);
+            });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PageShipEvent.defaultOption.shipNoData = data.data.list;
                 PageShipEvent.funSearch();

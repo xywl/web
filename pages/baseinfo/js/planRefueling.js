@@ -16,7 +16,7 @@ var PagePlanRefueling = function(){
 
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
                 PagePlanRefueling.defaultOption.disIdData = data;
-                mini.get("key").setData(data);
+                mini.get("shipId").setData(data);
             });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PagePlanRefueling.defaultOption.shipNoData = data.data.list;
@@ -94,6 +94,34 @@ var PagePlanRefueling = function(){
         	var paramData = {action: "oper", row:row, title:"查看详细"};
         	this.funOpenInfo(paramData);
         },
+        funSetShipId:function () {
+            //  mini.get("disId").setData(null);
+            var shipVal = mini.get("shipId").getValue();
+            //  mini.get("disId").setValue(shipVal);
+            /*var shipIdData = mini.get("shipId");
+            var shipId ="";
+            for(var i = 0; i< shipIdData.data.length;i++){
+                if(shipVal == shipIdData.data[i].id){
+                    shipId =shipIdData.data[i].shipId;
+                }
+            }*/
+            $.ajax({
+                url: PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",
+                type: 'POST',
+                data: {key: shipVal},
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.length > 0) {
+                        mini.get("disId").setValue(data[0].id)
+                    }
+                    mini.get("disId").setData(data);
+                },
+                error: function () {
+                    PageMain.funShowMessageBox("获取失败");
+                }
+            })
+        },
         funOpenInfo : function(paramData)
         {
         	var me = this;
@@ -110,6 +138,34 @@ var PagePlanRefueling = function(){
                 },
                 ondestroy:function(action){
                 	me.planRefuelingGrid.reload();
+                }
+            })
+        },
+        funSetShipId:function () {
+            //  mini.get("disId").setData(null);
+            var shipVal = mini.get("shipId").getValue();
+            //  mini.get("disId").setValue(shipVal);
+            /*var shipIdData = mini.get("shipId");
+            var shipId ="";
+            for(var i = 0; i< shipIdData.data.length;i++){
+                if(shipVal == shipIdData.data[i].id){
+                    shipId =shipIdData.data[i].shipId;
+                }
+            }*/
+            $.ajax({
+                url: PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",
+                type: 'POST',
+                data: {key: shipVal},
+                dataType: 'json',
+                async: false,
+                success: function (data) {
+                    if (data.length > 0) {
+                        mini.get("disId").setValue(data[0].id)
+                    }
+                    mini.get("disId").setData(data);
+                },
+                error: function () {
+                    PageMain.funShowMessageBox("获取失败");
                 }
             })
         },
