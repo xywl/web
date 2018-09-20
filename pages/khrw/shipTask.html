@@ -13,7 +13,10 @@
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="sailingInfoForm">
                 <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入船号或者调度单号"  style="width:160px;"/>
+                <lable class="form-label">船号：</lable>
+                <input name="shipId" id="shipId"   class="mini-combobox" valueField="shipId" allowInput="true"  textField="shipNo" required="true" onvaluechanged="PageSailingInfo.funSetShipId()"/>
+                <lable class="form-label">调度单号：</lable>
+                <input name="disId" id="disId"   class="mini-combobox" valueField="id" textField="name" required="true"/>
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageSailingInfo.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageSailingInfo.funReset()" plain="true"><label>重置</label></a>
