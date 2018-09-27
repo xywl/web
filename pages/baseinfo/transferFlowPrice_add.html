@@ -46,14 +46,14 @@
                 <tr>
                     <td class="form-label">运<span style="padding: 0 14px;"></span>价：</td>
                     <td class="form-content">
-                        <input name="unitPrice" id="unitPrice"  class="mini-spinner"  minValue="0" value="0"  maxValue="1000000000000" format="¥#,00"
+                        <input name="unitPrice" id="unitPrice"  class="mini-spinner"  decimalPlaces="2"  minValue="0" value="0"  maxValue="1000000000000" format="¥#,0.00"
                                required="true" maxlength="10" requiredErrorText="运价不能为空"/>
                     </td>
                 </tr>
                 <tr>
                     <td class="form-label">参考运价：</td>
                     <td class="form-content">
-                        <input name="suggestUnitPrice" id="suggestUnitPrice" class="mini-spinner"  minValue="0" value="0"  maxValue="1000000000000" format="¥#,00"   required="true" maxlength="10" requiredErrorText="参考运价不能为空"/>
+                        <input name="suggestUnitPrice" id="suggestUnitPrice" class="mini-spinner"  minValue="0" value="0"  decimalPlaces="2"  maxValue="1000000000000" format="¥#,0.00"   required="true" maxlength="10" requiredErrorText="参考运价不能为空"/>
                     </td>
                 </tr>
             </table>

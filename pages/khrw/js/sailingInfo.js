@@ -145,7 +145,6 @@ var PageSailingInfo = function(){
         funDelete : function()
         {
             var row = this.sailingInfoGrid.getSelected();
-            alert(row.id);
             var me = this;
             if(row)
             {
