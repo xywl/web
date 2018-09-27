@@ -25,6 +25,22 @@ var PageOperationLog = function(){
             mini.get("queryParamFlag").setValue("1");
             this.operationLogGrid.load(operationLogForm.getData());
         },
+        funRendererUserType : function (e)
+        {
+            if (e.value == 0)
+            {
+                return "未知"
+            }
+            else if (e.value == 1)
+            {
+                return "管理后台用户"
+            }
+            else if (e.value == 2)
+            {
+                return "APP用户"
+            }
+            return e.value;
+        },
         funFromDateInfo: function(e)
         {
             return PageMain.funStrToDate(e.value);
