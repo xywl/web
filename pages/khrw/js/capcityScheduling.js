@@ -263,7 +263,7 @@ var CapcitySchedul = function(){
         },
         funOnCellCommitEdit: function(e)  //行编辑提交前事件
         {
-            var leftWeight = Number($("#leftWeight").val()) + Number(e.oldValue);
+            var leftWeight = Number($("#leftWeight").val()) + Number(e.oldValue == undefined ? 0 : e.oldValue);
             var  record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
             // if (rows) {
             //     for (var i = 0, l = rows.length; i < l; i++) {
