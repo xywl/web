@@ -263,16 +263,17 @@ var CapcitySchedul = function(){
         },
         funOnCellCommitEdit: function(e)  //行编辑提交前事件
         {
-            var leftWeight = Number($("#leftWeight").val());
+            var leftWeight = Number($("#leftWeight").val()) + Number(e.oldValue);
             var  record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
-            if (rows) {
-                for (var i = 0, l = rows.length; i < l; i++) {
-                    var row = rows[i];
-                    var t = Number(row.preLoad);
-                    if (isNaN(t)) continue;
-                    preLoadTotal += t;
-                }
-            }
+            // if (rows) {
+            //     for (var i = 0, l = rows.length; i < l; i++) {
+            //         var row = rows[i];
+            //         var t = Number(row.preLoad);
+            //         if (isNaN(t)) continue;
+            //         preLoadTotal += t;
+            //     }
+            //     preLoadTotal -= e.oldValue;
+            // }
             if (field == "preLoad") {
                 if (e.value > record.preWeight) {  //预发吨位不能大于预报吨位
                     mini.alert("预发吨位不得大于预报吨位，请重新输入");
@@ -285,7 +286,6 @@ var CapcitySchedul = function(){
                     e.value = e.oldValue == undefined ? '' : e.oldValue;
                     e.editor._IsValid = false;
                 }
-                
             }
         },
         funOnCellEndEdit: function(e)  //行编辑结束事件
@@ -372,6 +372,7 @@ var CapcitySchedul = function(){
                 var hasLeftWeight = totalLoad - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
                 e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未生成调度结果吨位数: '+hasLeftWeight+'</span>';
+                $('.mini-grid-summaryRow').show();
             }
         },
         funDelRow: function(row_uid)
@@ -467,7 +468,7 @@ var CapcitySchedul = function(){
                 plans.push(plansData);
             }
             param.plans = plans;
-            if (leftWeight != 0 && (totalPreLoad > leftWeight)) {
+            if (leftWeight < 0) {
                 mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
                 return;
             }
@@ -496,7 +497,7 @@ var CapcitySchedul = function(){
                                         //CapcitySchedul.funSearchOrderDetailsGrid();
                                         shipListGrid.clearRows();
                                         orderDetailsGrid.clearRows();
-                                        $('.mini-grid-summaryRow').remove();
+                                        $('.mini-grid-summaryRow').hide();
                                     }
                                 });
                             }
