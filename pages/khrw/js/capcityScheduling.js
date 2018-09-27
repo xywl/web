@@ -371,7 +371,7 @@ var CapcitySchedul = function(){
                 }
                 var hasLeftWeight = totalLoad - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
-                e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未生成调度结果吨位数: '+hasLeftWeight+'</span>';
+                e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未生成调度结果吨位数: <span id="leftWeightResult">'+hasLeftWeight+'</span></span>';
                 $('.mini-grid-summaryRow').show();
             }
         },
@@ -429,7 +429,7 @@ var CapcitySchedul = function(){
             var plans = [];
             var submitData = orderDetailsGrid.getChanges();
             var totalPreLoad = 0;
-            var leftWeight = $("#leftWeight").val();
+            var leftWeight = Number($("#leftWeightResult")[0].innerText);
             for (var i = 0; i < submitData.length; i++) {
                 var plansData = {};
                 if (submitData[i].id) {
