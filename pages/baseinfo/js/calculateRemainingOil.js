@@ -13,13 +13,13 @@ var PageShipOil = function(){
             this.basePath = PageMain.basePath;
             this.shipOilGrid = mini.get("shipOilGrid");
             this.shipOilGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipOil/calculateRemainingOil");
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+                PageShipOil.defaultOption.disIdData = data;
+                mini.get("key").setData(data);
+            });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PageShipOil.defaultOption.shipNoData = data.data.list;
                 PageShipOil.funSearch();
-            });
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
-                PageShipOil.defaultOption.disIdData = data;
-                //mini.get("key").setData(data);
             });
 
         },
@@ -38,7 +38,7 @@ var PageShipOil = function(){
         funSearch : function()
         {
             var shipOilForm = new mini.Form("shipOilForm");
-            this.shipOilGrid.load(shipOilForm.getData().shipId);
+            this.shipOilGrid.load(shipOilForm.getData());
         },
         funReset : function()
         {
