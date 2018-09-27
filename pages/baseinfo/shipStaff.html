@@ -14,6 +14,9 @@
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="shipStaffForm">
 				<lable class="form-label">关键字：</lable>
                 <input name="key" id="key" class="mini-textbox" emptyText="请输入姓名或者手机号码"  style="width:160px;"/>
+                <lable class="form-label">船号：</lable>
+                <input name="shipId" id="shipId"   class="mini-combobox"  allowInput="true"
+                       valueField="id" textField="shipNo"  emptyText="请选择船号" />
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageShipStaff.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageShipStaff.funReset()" plain="true"><label>重置</label></a>

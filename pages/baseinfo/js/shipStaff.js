@@ -11,8 +11,12 @@ var PageShipStaff = function(){
             mini.parse();
             this.basePath = PageMain.basePath;
             this.shipStaffGrid = mini.get("shipStaffGrid");
-            this.shipStaffGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipStaff/getList")
+            this.shipStaffGrid.setUrl(PageMain.defaultOption.httpUrl + "/shipStaff/getList");
 
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+                PageShipStaff.defaultOption.disIdData = data;
+                mini.get("shipId").setData(data);
+            });
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PageShipStaff.defaultOption.shipNoData = data.data.list;
                 PageShipStaff.funSearch();
