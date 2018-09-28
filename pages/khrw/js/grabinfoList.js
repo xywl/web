@@ -3,7 +3,8 @@ var PageGrapInfoAudit = function(){
         defaultOption: {
             basePath:"",
             grapListGrid : null,
-            checkListGrid: null
+            checkListGrid: null,
+            taskStatusFly : [{id:0, name:"未开始"},{id:1, name:"部分完成"},{id:2, name:"已完成"}]
         },
         init :function ()
         {
@@ -44,6 +45,17 @@ var PageGrapInfoAudit = function(){
         {
             var token = $.cookie("token");
             return '<img style="width: 20px;height:20px;" class="thumbimg" src='+ e.value + "?token="+token +' onclick="PageGrapInfoAudit.funEnlargeImage(this)">';
+        },
+        funRendererTaskStatus : function (e)
+        {
+            for(var nItem = 0; nItem < PageGrapInfoAudit.defaultOption.taskStatusFly.length; nItem++)
+            {
+                if(e.value == PageGrapInfoAudit.defaultOption.taskStatusFly[nItem].id)
+                {
+                    return PageGrapInfoAudit.defaultOption.taskStatusFly[nItem].name;
+                }
+            }
+            return "";
         },
         funOnDrawCell: function(e)  //计算预结算金额
         {
