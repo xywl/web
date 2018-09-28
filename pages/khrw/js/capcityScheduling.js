@@ -263,7 +263,7 @@ var CapcitySchedul = function(){
         },
         funOnCellCommitEdit: function(e)  //行编辑提交前事件
         {
-            var leftWeight = Number($("#leftWeight").val()) + Number(e.oldValue == undefined ? 0 : e.oldValue);
+            var leftWeight = Number($("#leftWeightResult")[0].innerText) + Number(e.oldValue == undefined ? 0 : e.oldValue);
             var  record = e.record, field = e.field, preLoadTotal = 0, rows = e.sender.data;
             // if (rows) {
             //     for (var i = 0, l = rows.length; i < l; i++) {
@@ -275,11 +275,11 @@ var CapcitySchedul = function(){
             //     preLoadTotal -= e.oldValue;
             // }
             if (field == "preLoad") {
-                if (e.value > record.preWeight) {  //预发吨位不能大于预报吨位
-                    mini.alert("预发吨位不得大于预报吨位，请重新输入");
-                    e.value = e.oldValue == undefined ? '' : e.oldValue;
-                    e.editor._IsValid = false;
-                }
+//                 if (e.value > record.preWeight) {  //预发吨位不能大于预报吨位
+//                     mini.alert("预发吨位不得大于预报吨位，请重新输入");
+//                     e.value = e.oldValue == undefined ? '' : e.oldValue;
+//                     e.editor._IsValid = false;
+//                 }
                 preLoadTotal += Number(e.value);
                 if (preLoadTotal > leftWeight) {  //当前调度吨位不能大于余调吨位
                     mini.alert("当前调度吨位大于余调吨位,请重新编编辑");
