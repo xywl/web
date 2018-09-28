@@ -372,7 +372,7 @@ var CapcitySchedul = function(){
                 var hasLeftWeight = totalLoad - preLoadTotal;
                 $("#hasLeftWeight").val(hasLeftWeight);
                 e.cellHtml = '<span style="color: red;font-size: 12px; width:200px">剩余未生成调度结果吨位数: <span id="leftWeightResult">'+hasLeftWeight+'</span></span>';
-                $('.mini-grid-summaryRow').show();
+                $('#orderDetailsGrid .mini-grid-summaryRow').show();
             }
         },
         funDelRow: function(row_uid)
@@ -497,7 +497,7 @@ var CapcitySchedul = function(){
                                         //CapcitySchedul.funSearchOrderDetailsGrid();
                                         shipListGrid.clearRows();
                                         orderDetailsGrid.clearRows();
-                                        $('.mini-grid-summaryRow').hide();
+                                        $('#orderDetailsGrid .mini-grid-summaryRow').hide();
                                     }
                                 });
                             }
