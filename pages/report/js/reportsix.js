@@ -53,58 +53,19 @@ var PageReportsix = function(){
                 }
             }
         },
-        funAdd : function()
-        {
-        	var paramData = {action: "add", row:{}, title:"空船到港登记"};
-            this.funOpenInfo(paramData);
-        },
         funModify : function()
-        {
-        	var row = this.reportsixGrid.getSelected();
-            if(row)
-            {
-            	var paramData = {action: "modify", row: row, title:"编辑数据"};
-                this.funOpenInfo(paramData);
-            }
-            else
-            {
-            	PageMain.funShowMessageBox("请选择一条记录");
-            }
-        },
-        funDetail : function()
-        {
-        	var row = this.reportsixGrid.getSelected();
-        	var paramData = {action: "oper", row:row, title:"查看详细"};
-        	this.funOpenInfo(paramData);
-        },
-        funOpenInfo : function(paramData)
-        {
-        	var me = this;
-        	mini.open({
-                url: PageMain.funGetRootPath() + paramData.url,
-                title: paramData.title,
-                width: paramData.mWidth,
-                height: paramData.mHeight,
-                onload:function(){
-                    var iframe=this.getIFrameEl();
-                    iframe.contentWindow.PageReportsixAdd.funSetData(paramData);
-                },
-                ondestroy:function(action){
-                	me.reportsixGrid.reload();
-                }
-            })
-        },
-        funDelete : function()
         {
             var row = this.reportsixGrid.getSelected();
             var me = this;
             if(row)
             {
-                mini.confirm("确定要删除这条记录?", "提醒", function (action) {
+                if(row.balanceDate!=null)
+                {mini.alert("此条记录已结算");return;}
+                mini.confirm("确定要结算这条记录?", "提醒", function (action) {
                     if (action == "ok") 
                     {
                         $.ajax({
-                            url : PageMain.defaultOption.httpUrl + "/sailingInfo/del",
+                            url : PageMain.defaultOption.httpUrl + "/sailingInfo/modifyBalance",
                             type: 'POST',
                             data: {"id": row.id},
                             dataType: 'json',
@@ -127,7 +88,7 @@ var PageReportsix = function(){
                             },
                             error: function ()
                             {
-                                PageMain.funShowMessageBox("删除记录失败");
+                                PageMain.funShowMessageBox("结算记录失败");
                             }
                         });
                     }
@@ -135,7 +96,7 @@ var PageReportsix = function(){
             }
             else
             {
-                mini.alert("请先选择要删除的记录");
+                mini.alert("请先选择要结算的记录");
             }
         }
     }

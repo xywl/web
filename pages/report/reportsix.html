@@ -27,7 +27,15 @@
         </div>
     </div>
     <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:0 none;">
-
+        <div class="mini-toolbar" style="border-bottom:0;padding:0px;">
+            <table style="width:100%;">
+                <tr>
+                    <td style="width:100%;">
+                        <a  class="mini-button block-button" iconCls="icon-edit" plain="true" onclick="PageReportsix.funModify()"><label class="form-label">结算</label></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div class="mini-fit">
             <div id="reportsixGrid" class="mini-datagrid"
                   idField="id" allowResize="false"
@@ -43,22 +51,22 @@
 					 <div field="receiver" width="150" headerAlign="center" allowSort="true">收货单位</div>
                     <div field="loadWeight" width="100" headerAlign="center" allowSort="true">实发吨位</div>
                     <div field="dischargeWeight" width="100" headerAlign="center" allowSort="true">实收吨位</div>
-                    <div field="preWeight" width="100" headerAlign="center" allowSort="true">船运结算单价</div>
-                    <div field="preWeight" width="100" headerAlign="center" allowSort="true">金额</div>
+                    <div field="actualTransferPrice" width="100" headerAlign="center" allowSort="true">船运结算单价</div>
+                    <div field="actualTransferMoney" width="100" headerAlign="center" allowSort="true">金额</div>
 
-					 <div field="poundBalance" width="100" headerAlign="center" allowSort="true">靠泊费</div>
-                    <div field="hs" width="100" headerAlign="center" allowSort="true">扣费用</div>
-                    <div field="cchs" width="100" headerAlign="center" allowSort="true">扣网片金额</div>
-                    <div field="hs" width="100" headerAlign="center" allowSort="true">扣钢丝金额</div>
-                    <div field="cchs" width="100" headerAlign="center" allowSort="true">其他扣款</div>
+					 <div field="" width="100" headerAlign="center" allowSort="true">靠泊费</div>
+                    <div field="" width="100" headerAlign="center" allowSort="true">扣费用</div>
+                    <div field="bucklePrice" width="100" headerAlign="center" allowSort="true">扣网片金额</div>
+                    <div field="cutWire" width="100" headerAlign="center" allowSort="true">扣钢丝金额</div>
+                    <div field="cutOther" width="100" headerAlign="center" allowSort="true">其他扣款</div>
 
-                    <div field="kcy" width="120" headerAlign="center" allowSort="true">扣柴油</div>
-                    <div field="kcy" width="120" headerAlign="center" allowSort="true">滞港补助</div>
+                    <div field="shipOil" width="120" headerAlign="center" allowSort="true">扣柴油</div>
+                    <div field="" width="120" headerAlign="center" allowSort="true">滞港补助</div>
                     <div field="allowance" width="120" headerAlign="center" allowSort="true">吨位补助</div>
-                    <div field="kpje" width="120" headerAlign="center" allowSort="true">实际结算金额</div>
-                    <div field="portName" width="120" headerAlign="center" allowSort="true">码头费</div>
-                    <div field="buildFactory" width="120" headerAlign="center" allowSort="true">备注</div>
-                    <div field="time" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">结算日期</div>
+                    <div field="BalanceMoney" width="120" headerAlign="center" allowSort="true">实际结算金额</div>
+                    <div field="" width="120" headerAlign="center" allowSort="true">码头费</div>
+                    <div field="" width="120" headerAlign="center" allowSort="true">备注</div>
+                    <div field="balanceDate" width="120" headerAlign="center" allowSort="true" renderer="PageMain.funFromDateInfo">结算日期</div>
                 </div>
             </div>
         </div>
