@@ -1327,21 +1327,22 @@ var PageMap = function()
         },
         funSettleTypeInfo : function (state)
         {
-            if (state == 1)
+            //结算方式  11：实发吨位现金结算  12：实发吨位定期结算   21：实收吨位现金结算  22：实收定期结算
+            if (state == 11)
             {
-                return "按实发吨位";
-            }
-            else if(state == 2)
-            {
-                return "按实收吨位";
-            }
-            else if(state == 11)
-            {
-                return "现金结算";
+                return "实发吨位现金结算";
             }
             else if(state == 12)
             {
-                return "定期结算";
+                return "实发吨位定期结算";
+            }
+            else if(state == 21)
+            {
+                return "实收吨位现金结算";
+            }
+            else if(state == 22)
+            {
+                return "实收吨位定期结算";
             }
             return state;
         },

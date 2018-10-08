@@ -1,0 +1,163 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../../jslib/miniui/boot.js"></script>
+    <script type="text/javascript" src="./js/shipTask_add.js"></script>
+    <title></title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        .mini-textbox, .mini-combobox, .mini-buttonedit{
+            height: 27px;
+            width:220px;
+        }
+    </style>
+</head>
+<body>
+<div class="mini-layout" id="layout_shipTask_add" style="width: 100%;height: 100%;" allowResize="false">
+        <div title="center" region="center" allowResize="false" showSplit="true" showSplitIcon="false" allowUnselect="false" style="border:none; padding:20px;">
+        <div id="shipTaskFormAdd">
+            <input id="id" name="id"  class="mini-hidden" />
+            <input id="orderId" name="orderId"  class="mini-hidden" />
+            <input id="shipId" name="shipId"  class="mini-hidden" />
+            <input id="status" name="status"  class="mini-hidden" />
+            <table class="form-table" border="0" cellpadding="1" cellspacing="2" style="width:100%;table-layout:fixed;">
+
+                <tr>
+                    <td class="form-label" style="width: 130px;">调度船号：</td>
+                    <td class="form-content" colspan="3">
+                        <input class="mini-textbox" name="shipNo" id="shipNo"   width="160"/>
+                    </td>
+                </tr>
+
+                <tr name="kcdgdj">
+                    <td class="form-label" style="width: 130px;">实际到装货港时间：</td>
+                    <td class="form-content"colspan="3">
+                        <input name="arriveSPortTime" id="arriveSPortTime"  required="true"  class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际到装货港时间不能为空" allowInput="false"/>
+                    </td>
+                </tr>
+
+                <tr name="kczhdj">
+                    <td class="form-label" style="width: 130px;">实际装货时间：</td>
+                    <td class="form-content">
+                        <input name="loadTime" id="loadTime" required="true" class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际到装货港时间不能为空" allowInput="false"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">实际装货吨位：</td>
+                    <td class="form-content">
+                        <input name="loadWeight" id="loadWeight" required="true"   decimalPlaces="0" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000"  requiredErrorText="实际装货吨位不能为空"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">装货凭证照片：</td>
+                    <td class="form-content">
+                        <input id="loadCentiPic" name="loadCentiPic"  class="mini-hidden" />
+                    </td>
+                </tr>
+                <tr name="kczhdj">
+                    <td class="form-label" style="width: 130px;">扣网片金额：</td>
+                    <td class="form-content">
+                        <input name="bucklePrice" id="bucklePrice" required="true"  width="160"   decimalPlaces="2" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000" requiredErrorText="扣钢丝金额不能为空"  />
+                    </td>
+                    <td class="form-label" style="width: 130px;">扣钢丝金额：</td>
+                    <td class="form-content">
+                        <input name="cutWire" id="cutWire" required="true"   decimalPlaces="2" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000"  width="160" requiredErrorText="其他扣款不能为空"  />
+                    </td>
+                    <td class="form-label" style="width: 130px;">其他扣款：</td>
+                    <td class="form-content">
+                        <input name="cutOther" id="cutOther"  required="true"   decimalPlaces="2" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000"   width="160" requiredErrorText="其他扣款不能为空"  />
+                    </td>
+                </tr>
+                <tr name="kczhdj">
+                    <td class="form-label" style="width: 130px;">其他扣款说明：</td>
+                    <td class="form-content">
+                        <input name="cutOtherDes" id="cutOtherDes"  required="true" class="mini-textbox" width="160" requiredErrorText="其他扣款说明不能为空"  />
+                    </td>
+                    <td class="form-label" style="width: 130px;">装货异常图片：</td>
+                    <td class="form-content">
+                        <input id="loadExPic" name="loadExPic"  class="mini-hidden" />
+                    </td>
+                    <td class="form-label" style="width: 130px;">装货异常说明：</td>
+                    <td class="form-content">
+                        <input name="loadExDes" id="loadExDes" class="mini-textbox" width="160"  />
+                    </td>
+                </tr>
+
+                <tr name="zclgdj">
+                    <td class="form-label" style="width: 130px;">实际开航时间：</td>
+                    <td class="form-content">
+                        <input name="departPortTime" id="departPortTime"  required="true" class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="实际开航时间不能为空" allowInput="false"/>
+                    </td>
+                    <td class="form-label" style="width: 130px;">预计到卸货港时间：</td>
+                    <td class="form-content">
+                        <input name="preArriveEPortTime" id="preArriveEPortTime" required="true"  class="mini-datepicker"  width="160"   showClearButton="true"   format="yyyy-MM-dd H:mm:ss"  timeFormat="H:mm:ss"   nullValue="null" showTime="true"   emptyText="预计到卸货港时间不能为空" allowInput="false"/>
+                    </td>
+                </tr>
+
+                <tr name="zcdgdj">
+                    <td class="form-label" style="width: 130px;">实际到卸货港时间：</td>
+                    <td class="form-content">
+                        <input name="actualArriveEPortTime" id="actualArriveEPortTime" class="mini-datepicker"  width="160" nullValue="null"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="实际到卸货港时间不能为空"
+                               showClearButton="true"   allowInput="false" required="true"  />
+                    </td>
+                </tr>
+
+                <tr name="zcxhdj">
+                    <td class="form-label" style="width: 130px;">实际卸货时间：</td>
+                    <td class="form-content">
+                        <input name="dischargeTime" id="dischargeTime" class="mini-datepicker"  width="160" nullValue="null"
+                               format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  emptyText="实际卸空时间不能为空"
+                               showClearButton="true"   allowInput="false"  required="true" />
+                    </td>
+                    <td class="form-label" style="width: 130px;">实际卸货吨位：</td>
+                    <td class="form-content">
+                        <input name="dischargeWeight" id="dischargeWeight"  required="true"  decimalPlaces="0" class="mini-spinner"  width="160" minValue="0" maxValue="10000000000" />
+                    </td>
+                    <td class="form-label" style="width: 130px;">卸货延期费：</td>
+                    <td class="form-content">
+                        <input name="dischargeDelayFee" id="dischargeDelayFee"  required="true" decimalPlaces="2" class="mini-spinner" width="160"   minValue="0" maxValue="10000000000" />
+                    </td>
+                </tr>
+                <tr name="zcxhdj">
+                    <td class="form-label" style="width: 130px;">吨位补助：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="allowance" id="allowance" required="true"  decimalPlaces="2" class="mini-spinner" width="160"   minValue="0" maxValue="10000000000" />
+                    </td>
+                    <td class="form-label" style="width: 130px;">卸货凭证照片：</td>
+                    <td class="form-content">
+                        <input id="dischargeCentiPic" name="loadExPic"  class="mini-hidden" />
+                    </td>
+                    <td class="form-label" style="width: 130px;">卸货异常图片：</td>
+                    <td class="form-content">
+                        <input id="dischargeExpic" name="loadExPic"  class="mini-hidden" />
+                    </td>
+                </tr>
+                <tr name="zcxhdj">
+                    <td class="form-label" style="width: 130px;">卸货异常说明：</td>
+                    <td class="form-content" colspan="3">
+                        <input name="dischargeExDes" id="dischargeExDes"  class="mini-textbox" width="160"  />
+                    </td>
+                </tr>
+
+            </table>
+         </div>
+            
+        </div>
+        <div  region="south" showSplit="false" showSplitIcon="false" height="30" showHeader="false"  style="border: none">
+	        <div class="mini-toolbar" style="position: fixed;left:0;bottom: 0;right:0;text-align: center;border-width: 1px 0 0 0" >
+	            <a class="mini-button cursor" onclick="PageShipTaskAdd.funSave()" iconCls="icon-save">保存</a>
+	            <a class="mini-button cursor" onclick="PageShipTaskAdd.funCancel()" iconCls="icon-cancel" style="margin:0 20px;">取消</a>
+	        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    	mini.parse();
+    </script>
+</body>
+</html>

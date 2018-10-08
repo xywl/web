@@ -14,7 +14,7 @@ var PagePlanRefueling = function(){
             this.planRefuelingGrid = mini.get("planRefuelingGrid");
             this.planRefuelingGrid.setUrl(PageMain.defaultOption.httpUrl + "/planRefueling/getList");
 
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/getShipInfoFromDispatchInfo",{key:null}, function (data) {
                 PagePlanRefueling.defaultOption.disIdData = data;
                 mini.get("shipId").setData(data);
             });

@@ -148,6 +148,16 @@ var PageCustomerTaskFlowAdd = function(){
                     }
                 })
             }
+            this.funLoadSailingTime();
+        },
+        funLoadSailingTime : function ()
+        {
+            if (mini.get("sailingTime").getValue() != "" && mini.get("loadingTime").getValue() != null)
+            {
+                var date =new Date(mini.get("loadingTime").getValue());
+                date.setHours (date.getHours() + parseFloat(mini.get("sailingTime").getValue()));
+                mini.get("dischargeTime").setValue(new Date(date));
+            }
         },
         funDischargeTime : function (e)
         {
@@ -284,10 +294,19 @@ var PageCustomerTaskFlowAdd = function(){
                     var data = result.data;
                     mini.get("startPortId").setValue(data.startPortId);
                     mini.get("endPortId").setValue(data.endPortId);
-
+                    mini.get("sailingTime").setValue(data.sailingTime);
                     mini.get("sailingArea").setValue(PageMain.funDealComBitInfo(data.sailingArea, 4));
+                    //this.funLoadSailingTime();
+                    if (data.sailingTime != "" && mini.get("loadingTime").getValue() != null)
+                    {
+                        var date =new Date(mini.get("loadingTime").getValue());
+                        date.setHours (date.getHours() + parseFloat(mini.get("sailingTime").getValue()));
+                        mini.get("dischargeTime").setValue(new Date(date));
+                    }
                 }
             });
+
+
         }
     }
 }();
