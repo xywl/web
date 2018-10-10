@@ -65,7 +65,7 @@
                     集装箱计划<input  class="reportSevenGrid3" style="width: 40px;"  type="text" readonly="true" />万标箱
                 </div>
                 <div id="reportSevenGrid3" class="mini-datagrid" onload="onload"
-                     idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell"  showFooter="false"
+                     idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell2"  showFooter="false"
                     pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 92%;">
                     <div property="columns">
                         <div field="lx" width="60" headerAlign="center" allowSort="true">货物名称</div>
@@ -80,7 +80,7 @@
                     船运月平均航次计划<input  class="reportSevenGrid4" style="width: 40px;"  type="text" readonly="true" />个
                 </div>
                 <div id="reportSevenGrid4" class="mini-datagrid"
-                    idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell"  showFooter="false"
+                    idField="id" allowResize="false" showPager="false" showSummaryRow="true"  ondrawsummarycell="onDrawSummaryCell2"  showFooter="false"
                     pagesize="10" sizeList="[10,30,50,100]" allowAlternating="true"  sortMode="client" style="height: 92%;">
                     <div property="columns">
                         <div field="lx" width="80" headerAlign="center" allowSort="true">船级</div>
@@ -142,11 +142,81 @@
             var sjwc = 0;
             for (var i = 0, l = rows.length; i < l; i++) {
                 var row = rows[i];
+                if(row.sjsl == '-'){
+                    continue;
+                } else {
+                    sj += row.sjsl*1;
+                }
+            }
+            for (var i = 0, l = rows.length; i < l; i++) {
+                var row = rows[i];
                 if(row.jhsl == '-'){
                     continue;
                 } else {
                     jh += row.jhsl*1;
                 }
+            }
+            if(jh == 0 || sj == 0){
+                sjwc ='-';
+            }else {
+                sjwc = sj / jh;
+            }
+            e.cellHtml = sjwc == '-'? '-':(sjwc/10000*100).toFixed(2)+"%";
+        }
+    }
+
+    function onDrawSummaryCell2(e) {
+
+        var result = e.result;
+        var grid = e.sender;
+        var rows = e.data;
+
+        if (e.field == "lx") {
+            e.cellHtml = "合计：";
+        }
+
+        if (e.field == "jhsl") {
+            var jh =  0;
+            for (var i = 0, l = rows.length; i < l; i++) {
+                var row = rows[i];
+                if(row.jhsl == '-'){
+                    continue;
+                } else {
+                    jh += row.jhsl*1;
+                }
+            }
+            if(jh == 0) jh ='-';
+            e.cellHtml =jh;
+            $("."+this.id).val(jh);
+        }
+
+        if (e.field == "sjsl") {
+            var sj = 0 ;
+            for (var i = 0, l = rows.length; i < l; i++) {
+                var row = rows[i];
+                if(row.sjsl == '-'){
+                    continue;
+                } else {
+                    sj += row.sjsl*1;
+                }
+            }
+            if(sj == 0) sj ='-';
+            e.cellHtml = sj
+        }
+        if (e.field == "wcl") {
+            var jh =  0;
+            var sj = 0 ;
+            var sjwc = 0;
+            for (var i = 0, l = rows.length; i < l; i++) {
+                var row = rows[i];
+                if(row.jhsl == '-'){
+                    continue;
+                } else {
+                    jh += row.jhsl*1;
+                }
+            }
+            for (var i = 0, l = rows.length; i < l; i++) {
+                var row = rows[i];
                 if(row.sjsl == '-'){
                     continue;
                 } else {
@@ -158,7 +228,7 @@
             }else {
                 sjwc = sj / jh;
             }
-            e.cellHtml = sjwc == '-'? '-':(sjwc/10000*100).toFixed(2)+"%";
+            e.cellHtml = sjwc == '-'? '-':(sjwc*100).toFixed(2)+"%";
         }
     }
 
