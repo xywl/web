@@ -176,17 +176,23 @@
         }
 
         if (e.field == "jhsl") {
-            var jh =  0;
+            var jh =  0;var num=0;
             for (var i = 0, l = rows.length; i < l; i++) {
                 var row = rows[i];
                 if(row.jhsl == '-'){
                     continue;
                 } else {
                     jh += row.jhsl*1;
+                    num +=1;
                 }
             }
             if(jh == 0) jh ='-';
             e.cellHtml =jh;
+            if(jh == '-') {
+                jh ='-';
+            }else {
+                jh = jh/num;
+            }
             $("."+this.id).val(jh);
         }
 
