@@ -18,8 +18,11 @@ var PageShipOil = function(){
                 PageShipOil.defaultOption.shipNoData = data.data.list;
                 PageShipOil.funSearch();
             });
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/getShipInfoFromDispatchInfo",{key:null}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
                 PageShipOil.defaultOption.disIdData = data;
+            });
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/getShipInfoFromDispatchInfo",{key:null}, function (data) {
+
                 mini.get("shipId").setData(data);
             });
 
