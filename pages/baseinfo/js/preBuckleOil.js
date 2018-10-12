@@ -18,10 +18,14 @@ var PagePreBuckleOil = function(){
                 mini.get("key").setData(data.data.list);
                 PagePreBuckleOil.funSearch();
             });
-            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/getShipInfoFromDispatchInfo",{key:null}, function (data) {
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/loadDispatchInfo",{key:null}, function (data) {
                 PagePreBuckleOil.defaultOption.disIdData = data;
+            });
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/dispatch/getShipInfoFromDispatchInfo",{key:null}, function (data) {
                 mini.get("shipId").setData(data);
             });
+
             PageMain.callAjax(PageMain.defaultOption.httpUrl + "/ship/getList",{pageSize:100000}, function (data) {
                 PagePreBuckleOil.defaultOption.shipNoData = data.data.list;
                 PagePreBuckleOil.funSearch();

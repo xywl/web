@@ -14,7 +14,7 @@
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="shipTaskInfoForm">
                 <lable class="form-label">关键字：</lable>
                 <lable class="form-label">船号：</lable>
-                <input name="shipId" id="shipId"   class="mini-combobox" valueField="shipId" allowInput="true"  textField="shipNo" required="true" onvaluechanged="PageShipTaskInfo.funSetShipId()"/>
+                <input name="shipId" id="shipId"   class="mini-combobox" valueField="shipId" allowInput="true"  textField="shipNo" required="true" onvaluechanged="PageShipTaskInfo.funSetShipId()"  emptyText="请选择..." nullItemText="请选择..." />
                 <lable class="form-label">调度单号：</lable>
                 <input name="disId" id="disId"   class="mini-combobox" valueField="id" textField="name" required="true"/>
                 <input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />

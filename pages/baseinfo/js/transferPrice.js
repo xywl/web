@@ -9,6 +9,7 @@ var PageTransferPrice = function(){
             contractFly : null,
             transferPriceId:0,
             contractId:0,
+            flowFly : [],
             customerCombox:null,
             priceTypeFly : [{id:1, name:"客户"},{id:2, name:"船户"}],
             detailGridForm:null
@@ -41,11 +42,29 @@ var PageTransferPrice = function(){
                     PageTransferPrice.funSearch();
                 }
             });
+
+            PageMain.callAjax(PageMain.defaultOption.httpUrl + "/flow/getList?pageIndex=0&pageSize=1000000000&queryParamFlag=1",{}, function (data) {
+                if (data.total > 0)
+                {
+                    PageTransferPrice.defaultOption.flowFly = data.data;
+                }
+            });
         },
         funSearch : function()
         {
         	var transferPriceForm = new mini.Form("transferPriceForm");
         	this.transferPriceGrid.load(transferPriceForm.getData());
+        },
+        funFlowRenderer : function (e)
+        {
+            for(var nItem = 0; nItem < PageTransferPrice.defaultOption.flowFly.length; nItem++)
+            {
+                if(e.value == PageTransferPrice.defaultOption.flowFly[nItem].id)
+                {
+                    return PageTransferPrice.defaultOption.flowFly[nItem].name;
+                }
+            }
+            return e.value;
         },
         funCustomerRenderer : function (e)
         {
