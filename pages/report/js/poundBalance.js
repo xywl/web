@@ -15,7 +15,10 @@ var PagePoundBalance = function(){
         funSearch : function()
         {
         	var pondForm = new mini.Form("pondForm");
-        	this.pounGrid.load(pondForm.getData());
+            var postData = pondForm.getData();
+            postData.startTime =mini.get("startTime").getFormValue();
+            postData.endTime =mini.get("endTime").getFormValue();
+        	this.pounGrid.load(postData);
         },
         funOperRenderer : function(e)
         {

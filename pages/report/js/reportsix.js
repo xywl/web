@@ -15,7 +15,10 @@ var PageReportsix = function(){
         funSearch : function()
         {
         	var reportsixForm = new mini.Form("reportsixForm");
-        	this.reportsixGrid.load(reportsixForm.getData());
+            var postData = reportsixForm.getData();
+            postData.startTime =mini.get("startTime").getFormValue();
+            postData.endTime =mini.get("endTime").getFormValue();
+        	this.reportsixGrid.load(postData);
         },
         funOperRenderer : function(e)
         {
