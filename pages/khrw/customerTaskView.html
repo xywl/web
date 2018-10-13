@@ -13,7 +13,7 @@
              showCloseButton="false">
             <div style="margin-left: 2%;display:inline;line-height: 32px;" class="searchBar" id="customerTaskViewForm">
                 <lable class="form-label">关键字：</lable>
-                <input name="key" id="key" class="mini-textbox" emptyText="请输入任务单号"  style="width:160px;"/>
+                <input name="key" id="key" class="mini-textbox" emptyText="请输入查询条件"  style="width:160px;"/>
 				<input id="queryParamFlag" name="queryParamFlag" value="1" class="mini-hidden" />
                 <a class="mini-button" iconCls="icon-search" onclick="PageCustomerTastView.funSearch()" plain="true"><label>查询</label></a>
                 <a class="mini-button" iconCls="icon-reset" onclick="PageCustomerTastView.funReset()" plain="true"><label>重置</label></a>
@@ -52,7 +52,7 @@
                     <div header="运力调度信息" headerAlign="center">
                         <div property="columns">
                             <div field="shipNo" width="100" headerAlign="center" allowSort="true">船号</div>
-                            <div field="shipFlag" width="100" headerAlign="center" allowSort="true">船舶所有权</div>
+                            <div field="shipFlag" width="100" headerAlign="center" allowSort="true" renderer="PageCustomerTastView.funRendererShipFlag">船舶所有权</div>
                             <div field="preWeight" width="100" headerAlign="center" allowSort="true">预报吨位</div>
                             <div field="preLoad" width="100" headerAlign="center" allowSort="true">预发吨位</div>
                             <div field="actualTransferPrice" width="100" headerAlign="center" allowSort="true">实际运价</div>
@@ -63,11 +63,11 @@
                         <div property="columns">
                             <div field="arriveSPortTime" width="130" headerAlign="center" renderer="PageCustomerTastView.funRendererArriveSPortTime" allowSort="true">空船实际到港时间</div>
                             <div field="loadTime" width="130" headerAlign="center" renderer="PageCustomerTastView.funRendererLoadTime" allowSort="true">空船实际装货时间</div>
-                            <div field="loadWeight" width="130" headerAlign="center" renderer="PageCustomerTastView.funRendererLoadWeight" allowSort="true">空船实际装货吨位</div>
+                            <div field="loadWeight" width="130" headerAlign="center" allowSort="true">空船实际装货吨位</div>
                             <div field="preArriveEPortTime" width="150" headerAlign="center" renderer="PageCustomerTastView.funRendererPreArriveEPortTime" allowSort="true">重船预计到卸货港时间</div>
                             <div field="actualArriveEPortTime" width="150" headerAlign="center" renderer="PageCustomerTastView.funRendererActualArriveEPortTime" allowSort="true">重船实际到卸货港时间</div>
                             <div field="dischargeTime" width="150" headerAlign="center" renderer="PageCustomerTastView.funRendererDischargeTime" allowSort="true">重船实际卸货时间</div>
-                            <div field="dischargeWeight" width="130" headerAlign="center" renderer="PageCustomerTastView.funRendererDischargeWeight" allowSort="true">重船实际卸货吨位</div>
+                            <div field="dischargeWeight" width="130" headerAlign="center" allowSort="true">重船实际卸货吨位</div>
                             <div field="dischargeDelayFee" width="100" headerAlign="center" allowSort="true">卸货延期费</div>
                             <div field="allowance" width="100" headerAlign="center" allowSort="true">异常补助</div>
                         </div>
