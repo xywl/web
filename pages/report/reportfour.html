@@ -191,7 +191,7 @@
             if(jh == '-') {
                 jh ='-';
             }else {
-                jh = jh/num;
+                jh = (jh/num).toFixed(2);
             }
             $("."+this.id).val(jh);
         }
@@ -232,7 +232,7 @@
             if(jh == 0 || sj == 0){
                 sjwc ='-';
             }else {
-                sjwc = sj / jh;
+                sjwc = (sj / jh);
             }
             e.cellHtml = sjwc == '-'? '-':(sjwc*100).toFixed(2)+"%";
         }
