@@ -5,7 +5,8 @@ var PageContractAdd = function(){
             basePath:"",
             action : "",
             goodsSubTypeFly:[],
-            contractForm : null
+            contractForm : null,
+            settleTypeFly:[{id: 11, text: '实发吨位现金结算'}, {id: 12, text: '实发吨位定期结算'}, {id: 21, text: '实收吨位现金结算'}, {id: 22, text: '实收吨位定期结算'}]
         },
         init :function ()
         {
@@ -22,6 +23,7 @@ var PageContractAdd = function(){
             mini.get("status").setData(data.status);
             mini.get("partyA").setData(data.partyA);
             mini.get("signDepartment").setData(data.dataDictFly);
+            mini.get("settleType").setData(PageContractAdd.defaultOption.settleTypeFly);
             mini.get("goodsType").setData(data.goodsTypeFly);
             PageContractAdd.defaultOption.goodsSubTypeFly = data.goodsSubTypeFly;
             if(this.defaultOption.action != "add")
