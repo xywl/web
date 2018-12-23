@@ -1380,6 +1380,8 @@ var PageMap = function()
             var tmpContent = '<table style="font-size:12px; width: 600px;"><tr><td colspan="2" style="border: 0px solid #CCCCCC;">'+
                 '<div style="width: 272px; float: left; height: 25px;">设<span style="padding:0 4px;"></span>备<span style="padding:0 4px;"></span>码：'+paramRow.devId+'</div>' +
                 '<div style="width: 272px; float: left; height: 25px;">船<span style="padding:0 14px;"></span>号：'+paramRow.shipNo+'</div>' +
+                '<div style="width: 272px; float: left; height: 25px;">船<span style="padding:0 14px;"></span>长：'+PageMain.funStrinfo(paramRow.name)+'</div>' +
+                '<div style="width: 272px; float: left; height: 25px;">电<span style="padding:0 14px;"></span>话：'+PageMain.funStrinfo(paramRow.mobile)+'</div>' +
                 '<div style="width: 272px; float: left; height: 25px;">时<span style="padding:0 14px;"></span>间：'+paramRow.gpsTime+'</div>' +
                 '<div style="width: 272px; float: left; height: 25px;">速<span style="padding:0 14px;"></span>度：'+paramRow.speed+'</div>';
             // 状态
@@ -1452,7 +1454,9 @@ var PageMap = function()
                     '<div style="width: 272px; float: left; height: 25px;">重船离港时间：'+PageMain.funStrToDate(mSail.departPortTime)+'</div>' +
                     '<div style="width: 272px; float: left; height: 25px;">实际卸货时间：'+PageMain.funStrToDate(mSail.dischargeTime)+'</div>' +
                     '<div style="width: 272px; float: left; height: 25px;">实际卸货重量：'+mSail.dischargeWeight+'</div>' +
-                    '<div style="width: 272px; float: left; height: 25px;">卸货延迟费用：'+mSail.dischargeDelayFee+'</div>';
+                    '<div style="width: 272px; float: left; height: 25px;">卸货延迟费用：'+mSail.dischargeDelayFee+'</div>'+
+                    '<div style="width: 272px; float: left; height: 25px;">发货单位：'+PageMain.funStrinfo(mSail.sender)+'</div>'+
+                    '<div style="width: 272px; float: left; height: 25px;">收货单位：'+PageMain.funStrinfo(mSail.receiver)+'</div>';
             }
             else
             {
@@ -1469,7 +1473,9 @@ var PageMap = function()
                         '<div style="width: 272px; float: left; height: 25px;">预发吨位：'+mDispatch.preLoad+'</div>'+
                         '<div style="width: 272px; float: left; height: 25px;">预计到港时间：'+PageMain.funStrToDate(mDispatch.preArriveTime)+'</div>'+
                         '<div style="width: 272px; float: left; height: 25px;">预结算金额：'+mDispatch.preSettleAmount+'</div>'+
-                        '<div style="width: 272px; float: left; height: 25px;">结算方式：'+PageMap.funSettleTypeInfo(mDispatch.settleType)+'</div>';
+                        '<div style="width: 272px; float: left; height: 25px;">结算方式：'+PageMap.funSettleTypeInfo(mDispatch.settleType)+'</div>'+
+                        '<div style="width: 272px; float: left; height: 25px;">发货单位：'+PageMain.funStrinfo(mDispatch.sender)+'</div>'+
+                        '<div style="width: 272px; float: left; height: 25px;">收货单位：'+PageMain.funStrinfo(mDispatch.receiver)+'</div>';
                 }
             }
 
